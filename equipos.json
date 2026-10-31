@@ -1,0 +1,45 @@
+[
+  {
+    "id": "dev-brother-dcp1602",
+    "brand": "Brother",
+    "model": "DCP-1602",
+    "type": "Impresora",
+    "serial": "",
+    "assignedUser": "Rodrigo",
+    "location": "Hogar",
+    "imageUrl": "img/brother_dcp1602.jpg",
+    "driverUrl": "Devices/Brother%20DCP-1602/Y14G_C1_U-inst-B1.EXE",
+    "windowsUser": "",
+    "windowsPassword": "",
+    "notes": "Multifuncional láser monocromática (impresora, copiadora y escáner de cama plana). Conectividad USB 2.0 de alta velocidad. Velocidad de impresión hasta 20 ppm. Resolución de hasta 2400 x 600 dpi.",
+    "observaciones": "Equipo multifuncional personal de Rodrigo. Utiliza cartucho de tóner Brother TN-1060 (~1.000 páginas) y unidad de tambor Brother DR-1060 (~10.000 páginas).\n\nArchivos Locales Guardados (Carpeta Devices):\n• [Instalador Paquete Completo de Controladores y Software (Y14G_C1_U-inst-B1.EXE)](Devices/Brother%20DCP-1602/Y14G_C1_U-inst-B1.EXE) (279.5 MB)\n• [Instalador Brother iPrint&Scan (iPrintScan-Setup-17_0_20_2.exe)](Devices/Brother%20DCP-1602/iPrintScan-Setup-17_0_20_2.exe) (370.4 MB)\n\nEnlaces Oficiales Web (Respaldo en Línea):\n• [Descargar Paquete Completo Oficial (Brother Web)](https://support.brother.com/g/b/downloadhowto.aspx?c=mx&lang=es&prod=dcp1602_us&os=10068&dlid=dlf106152_000&flang=27&type3=11)\n• [Descargar Brother iPrint&Scan Oficial (Brother Web)](https://support.brother.com/g/b/downloadhowto.aspx?c=us_ot&lang=en&prod=dcpt420w_all&os=10068&dlid=dlf106359_000&flang=4&type3=10272)",
+    "localFiles": [
+      {
+        "name": "Paquete Completo de Controladores y Software (DCP-1602)",
+        "file": "Y14G_C1_U-inst-B1.EXE",
+        "path": "Devices/Brother DCP-1602/Y14G_C1_U-inst-B1.EXE",
+        "size": "279.5 MB"
+      },
+      {
+        "name": "Brother iPrint&Scan (v17.0.20.2)",
+        "file": "iPrintScan-Setup-17_0_20_2.exe",
+        "path": "Devices/Brother DCP-1602/iPrintScan-Setup-17_0_20_2.exe",
+        "size": "370.4 MB"
+      }
+    ],
+    "supplies": {
+      "toner": {
+        "model": "Brother TN-1060",
+        "lastWarningDate": "",
+        "lastReplacedDate": ""
+      },
+      "drum": {
+        "model": "Brother DR-1060",
+        "lastWarningDate": "",
+        "lastReplacedDate": ""
+      }
+    },
+    "updatedAt": "2026-10-25",
+    "mfgDate": "2015"
+  }
+]

@@ -1,0 +1,2317 @@
+/**
+ * HomeInfra - Aplicación de Registro de Equipos y Soporte de Drivers
+ */
+
+// Base de datos predeterminada con imágenes de referencia, specs, credenciales y observaciones
+const DEFAULT_DEVICES = [
+  {
+    id: "dev-brother-dcp1602",
+    brand: "Brother",
+    model: "DCP-1602",
+    type: "Impresora",
+    serial: "",
+    assignedUser: "Rodrigo",
+    location: "Hogar",
+    imageUrl: "img/brother_dcp1602.jpg",
+    driverUrl: "Devices/Brother%20DCP-1602/Y14G_C1_U-inst-B1.EXE",
+    windowsUser: "",
+    windowsPassword: "",
+    notes: "Multifuncional láser monocromática (impresora, copiadora y escáner de cama plana). Conectividad USB 2.0 de alta velocidad. Velocidad de impresión hasta 20 ppm. Resolución de hasta 2400 x 600 dpi.",
+    observaciones: "Equipo multifuncional personal de Rodrigo. Utiliza cartucho de tóner Brother TN-1060 (~1.000 páginas) y unidad de tambor Brother DR-1060 (~10.000 páginas).\n\nArchivos Locales Guardados (Carpeta Devices):\n• [Instalador Paquete Completo de Controladores y Software (Y14G_C1_U-inst-B1.EXE)](Devices/Brother%20DCP-1602/Y14G_C1_U-inst-B1.EXE) (279.5 MB)\n• [Instalador Brother iPrint&Scan (iPrintScan-Setup-17_0_20_2.exe)](Devices/Brother%20DCP-1602/iPrintScan-Setup-17_0_20_2.exe) (370.4 MB)\n\nEnlaces Oficiales Web (Respaldo en Línea):\n• [Descargar Paquete Completo Oficial (Brother Web)](https://support.brother.com/g/b/downloadhowto.aspx?c=mx&lang=es&prod=dcp1602_us&os=10068&dlid=dlf106152_000&flang=27&type3=11)\n• [Descargar Brother iPrint&Scan Oficial (Brother Web)](https://support.brother.com/g/b/downloadhowto.aspx?c=us_ot&lang=en&prod=dcpt420w_all&os=10068&dlid=dlf106359_000&flang=4&type3=10272)",
+    localFiles: [
+      {
+        name: "Paquete Completo de Controladores y Software (DCP-1602)",
+        file: "Y14G_C1_U-inst-B1.EXE",
+        path: "Devices/Brother DCP-1602/Y14G_C1_U-inst-B1.EXE",
+        size: "279.5 MB"
+      },
+      {
+        name: "Brother iPrint&Scan (v17.0.20.2)",
+        file: "iPrintScan-Setup-17_0_20_2.exe",
+        path: "Devices/Brother DCP-1602/iPrintScan-Setup-17_0_20_2.exe",
+        size: "370.4 MB"
+      }
+    ],
+    supplies: {
+      toner: {
+        model: "Brother TN-1060",
+        lastWarningDate: "",
+        lastReplacedDate: ""
+      },
+      drum: {
+        model: "Brother DR-1060",
+        lastWarningDate: "",
+        lastReplacedDate: ""
+      }
+    },
+    mfgDate: "2015",
+    updatedAt: "2026-10-25"
+  }
+];
+
+// Clave de almacenamiento HomeInfra v3
+const STORAGE_KEY = "homeinfra_devices_inventory_v3";
+
+// Estado de la aplicación
+let devices = [];
+let currentFilterType = "ALL";
+let currentFilterBrand = "ALL";
+let currentSort = localStorage.getItem("metagroup_devices_sort") || "category";
+let searchQuery = "";
+const revealedPasswords = {};
+
+// Elementos del DOM
+const devicesGrid = document.getElementById("devices-grid");
+const emptyState = document.getElementById("empty-state");
+const resultsCount = document.getElementById("results-count");
+const searchInput = document.getElementById("search-input");
+const clearSearchBtn = document.getElementById("clear-search");
+const typeFilter = document.getElementById("type-filter");
+const brandFilter = document.getElementById("brand-filter");
+const sortSelect = document.getElementById("sort-select");
+
+// Estadísticas
+const statTotal = document.getElementById("stat-total");
+const statLaptops = document.getElementById("stat-laptops");
+const statDesktops = document.getElementById("stat-desktops");
+const statPrinters = document.getElementById("stat-printers");
+const statOthers = document.getElementById("stat-others");
+
+// Modal
+const deviceModal = document.getElementById("device-modal");
+const deviceForm = document.getElementById("device-form");
+const modalTitle = document.getElementById("modal-title");
+const modalCloseBtn = document.getElementById("modal-close");
+const cancelModalBtn = document.getElementById("btn-cancel-modal");
+const btnAddDevice = document.getElementById("btn-add-device");
+const btnSuggestDriver = document.getElementById("btn-suggest-driver");
+
+// Campos del formulario principal
+const formDeviceId = document.getElementById("device-id");
+const formBrand = document.getElementById("form-brand");
+const formType = document.getElementById("form-type");
+const formModel = document.getElementById("form-model");
+const formSerial = document.getElementById("form-serial");
+const formMfgDate = document.getElementById("form-mfg-date");
+const formAssignedUser = document.getElementById("form-assigned-user");
+const formLocation = document.getElementById("form-location");
+const formImageUrl = document.getElementById("form-image-url");
+const formDriverUrl = document.getElementById("form-driver-url");
+const formNotes = document.getElementById("form-notes");
+const formObservaciones = document.getElementById("form-observaciones");
+
+// Credenciales Windows
+const formWindowsUser = document.getElementById("form-windows-user");
+const formWindowsPass = document.getElementById("form-windows-pass");
+const btnToggleModalPass = document.getElementById("btn-toggle-modal-pass");
+
+// Licenciamiento Office
+const formOfficeStatus = document.getElementById("form-office-status");
+const formOfficeType = document.getElementById("form-office-type");
+const formOfficeDeactivationDate = document.getElementById("form-office-deactivation-date");
+const formOfficeNotes = document.getElementById("form-office-notes");
+
+// Campos de Hardware (CPU, RAM, GPU, Storage)
+const formCpuModel = document.getElementById("form-cpu-model");
+const formCpuYear = document.getElementById("form-cpu-year");
+const formCpuCores = document.getElementById("form-cpu-cores");
+const formCpuSpeed = document.getElementById("form-cpu-speed");
+const formCpuDetails = document.getElementById("form-cpu-details");
+
+const formRamCapacity = document.getElementById("form-ram-capacity");
+const formRamType = document.getElementById("form-ram-type");
+const formRamSpeed = document.getElementById("form-ram-speed");
+const formRamDetails = document.getElementById("form-ram-details");
+
+const formGpuModel = document.getElementById("form-gpu-model");
+const formGpuType = document.getElementById("form-gpu-type");
+const formGpuDetails = document.getElementById("form-gpu-details");
+const formStorage = document.getElementById("form-storage");
+
+// Consumibles Impresora (Tóner y Tambor)
+const formTonerWarningDate = document.getElementById("form-toner-warning-date");
+const formTonerReplacedDate = document.getElementById("form-toner-replaced-date");
+const formDrumWarningDate = document.getElementById("form-drum-warning-date");
+const formDrumReplacedDate = document.getElementById("form-drum-replaced-date");
+const suppliesSection = document.getElementById("printer-supplies-section");
+const hardwareSection = document.getElementById("hardware-section");
+const credentialsSection = document.getElementById("credentials-section");
+const officeSection = document.getElementById("office-section");
+
+
+// Botones de acción general y configuración
+const btnCopyMd = document.getElementById("btn-copy-md");
+const btnExportMd = document.getElementById("btn-export-md");
+const btnSyncFile = document.getElementById("btn-sync-file");
+const btnOpenSettings = document.getElementById("btn-open-settings");
+const btnOpenSettingsLink = document.getElementById("btn-open-settings-link");
+const btnExportJsonQuick = document.getElementById("btn-export-json-quick");
+const btnExportJson = document.getElementById("btn-export-json");
+const importJsonInput = document.getElementById("import-json-input");
+const btnFetchRepoBackup = document.getElementById("btn-fetch-repo-backup");
+const btnFactoryReset = document.getElementById("btn-factory-reset");
+const toast = document.getElementById("toast");
+const toastMsg = document.getElementById("toast-msg");
+
+// Modal de Configuración y Respaldos
+const settingsModal = document.getElementById("settings-modal");
+const settingsModalClose = document.getElementById("settings-modal-close");
+const btnCloseSettingsModal = document.getElementById("btn-close-settings-modal");
+const settingsDevicesCount = document.getElementById("settings-devices-count");
+const settingsStorageKey = document.getElementById("settings-storage-key");
+
+// Modal de Ficha Técnica Completa (Vista Detallada)
+const deviceDetailModal = document.getElementById("device-detail-modal");
+const detailModalTitle = document.getElementById("detail-modal-title");
+const detailModalEyebrow = document.getElementById("detail-modal-eyebrow");
+const detailModalUser = document.getElementById("detail-modal-user");
+const detailModalBody = document.getElementById("detail-modal-body");
+const detailModalClose = document.getElementById("detail-modal-close");
+const detailModalCloseBtn = document.getElementById("detail-modal-close-btn");
+const detailModalEditBtn = document.getElementById("detail-modal-edit-btn");
+const detailModalDriverLink = document.getElementById("detail-modal-driver-link");
+let currentDetailDeviceId = null;
+
+/**
+ * Inicialización
+ */
+async function init() {
+  await loadDevices();
+  if (sortSelect) sortSelect.value = currentSort;
+  bindEvents();
+  render();
+}
+
+/**
+ * Cargar datos desde localStorage o desde equipos.json
+ */
+async function loadDevices() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      devices = JSON.parse(saved);
+      let updated = false;
+      devices.forEach((dev) => {
+        if (Array.isArray(dev.images)) {
+          const filtered = dev.images.filter((img) => !img.id.startsWith("img-init"));
+          if (filtered.length !== dev.images.length) {
+            dev.images = filtered;
+            updated = true;
+          }
+        }
+      });
+
+      // Sincronizar officeLicense en equipos de localStorage si aún no lo tienen
+      devices.forEach((dev) => {
+        if (dev.type !== "Impresora" && !dev.officeLicense) {
+          dev.officeLicense = {
+            status: "Activa",
+            type: "Microsoft 365 Business Standard",
+            deactivationDate: "",
+            notes: "Licencia Office corporativa activa"
+          };
+          updated = true;
+        }
+      });
+
+      if (updated) saveDevices();
+      return;
+    }
+
+    try {
+      const response = await fetch("equipos.json");
+      if (response.ok) {
+        const json = await response.json();
+        if (Array.isArray(json) && json.length > 0) {
+          devices = json;
+          saveDevices();
+          return;
+        }
+      }
+    } catch (_) {
+      // Ignorar fallback si fetch falla (ej. file:// protocol)
+    }
+
+    devices = [...DEFAULT_DEVICES];
+    saveDevices();
+  } catch (err) {
+    console.error("Error al cargar inventario:", err);
+    devices = [...DEFAULT_DEVICES];
+  }
+}
+
+/**
+ * Guardar datos en localStorage
+ */
+function saveDevices() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(devices));
+  } catch (err) {
+    console.error("Error al guardar en localStorage:", err);
+  }
+}
+
+/**
+ * Vincular eventos de la interfaz
+ */
+function bindEvents() {
+  // Búsqueda
+  searchInput.addEventListener("input", (e) => {
+    searchQuery = e.target.value.trim().toLowerCase();
+    clearSearchBtn.style.display = searchQuery ? "block" : "none";
+    render();
+  });
+
+  clearSearchBtn.addEventListener("click", () => {
+    searchInput.value = "";
+    searchQuery = "";
+    clearSearchBtn.style.display = "none";
+    searchInput.focus();
+    render();
+  });
+
+  // Filtros
+  typeFilter.addEventListener("change", (e) => {
+    currentFilterType = e.target.value;
+    render();
+  });
+
+  brandFilter.addEventListener("change", (e) => {
+    currentFilterBrand = e.target.value;
+    render();
+  });
+
+  if (sortSelect) {
+    sortSelect.addEventListener("change", (e) => {
+      currentSort = e.target.value;
+      localStorage.setItem("metagroup_devices_sort", currentSort);
+      render();
+    });
+  }
+
+  // Modal
+  btnAddDevice.addEventListener("click", () => openDeviceModal());
+  modalCloseBtn.addEventListener("click", closeDeviceModal);
+  cancelModalBtn.addEventListener("click", closeDeviceModal);
+  deviceModal.addEventListener("click", (e) => {
+    if (e.target === deviceModal) closeDeviceModal();
+  });
+
+  // Toggle contraseña en el modal
+  if (btnToggleModalPass) {
+    btnToggleModalPass.addEventListener("click", () => {
+      const isPassword = formWindowsPass.type === "password";
+      formWindowsPass.type = isPassword ? "text" : "password";
+      btnToggleModalPass.textContent = isPassword ? "🔒" : "👁️";
+    });
+  }
+
+  // Formulario guardar
+  deviceForm.addEventListener("submit", handleFormSubmit);
+
+  // Sugerir driver URL
+  btnSuggestDriver.addEventListener("click", handleSuggestDriver);
+
+  // Cambio dinámico de tipo de equipo en el formulario
+  formType.addEventListener("change", () => {
+    updateFormSectionsVisibility(formType.value);
+  });
+
+  // Acciones de reporte / contexto.md
+  btnCopyMd.addEventListener("click", handleCopyMarkdown);
+  if (btnExportMd) btnExportMd.addEventListener("click", handleExportMarkdown);
+  btnSyncFile.addEventListener("click", handleSyncWithFile);
+
+  // Utilidades de respaldo y configuración
+  if (btnOpenSettings) btnOpenSettings.addEventListener("click", openSettingsModal);
+  if (btnOpenSettingsLink) btnOpenSettingsLink.addEventListener("click", openSettingsModal);
+  if (settingsModalClose) settingsModalClose.addEventListener("click", closeSettingsModal);
+  if (btnCloseSettingsModal) btnCloseSettingsModal.addEventListener("click", closeSettingsModal);
+  if (settingsModal) {
+    settingsModal.addEventListener("click", (e) => {
+      if (e.target === settingsModal) closeSettingsModal();
+    });
+  }
+  if (btnExportJsonQuick) btnExportJsonQuick.addEventListener("click", handleExportJson);
+  if (btnExportJson) btnExportJson.addEventListener("click", handleExportJson);
+  if (importJsonInput) importJsonInput.addEventListener("change", handleImportJson);
+  if (btnFetchRepoBackup) btnFetchRepoBackup.addEventListener("click", handleFetchRepoBackup);
+  if (btnFactoryReset) btnFactoryReset.addEventListener("click", handleFactoryReset);
+
+  // Vista de Ficha Técnica Completa a Pantalla Completa (Detalles)
+  if (detailModalClose) detailModalClose.addEventListener("click", closeDeviceDetailModal);
+  if (detailModalCloseBtn) detailModalCloseBtn.addEventListener("click", closeDeviceDetailModal);
+  const detailModalBottomBackBtn = document.getElementById("detail-modal-bottom-back-btn");
+  if (detailModalBottomBackBtn) detailModalBottomBackBtn.addEventListener("click", closeDeviceDetailModal);
+  const detailModalBottomEditBtn = document.getElementById("detail-modal-bottom-edit-btn");
+  if (detailModalBottomEditBtn) {
+    detailModalBottomEditBtn.addEventListener("click", () => {
+      if (currentDetailDeviceId) handleEditDevice(currentDetailDeviceId);
+    });
+  }
+
+  // Modal de Previsualización de Fotografía
+  const photoPreviewModal = document.getElementById("photo-preview-modal");
+  const photoPreviewClose = document.getElementById("photo-preview-close");
+  if (photoPreviewClose) photoPreviewClose.addEventListener("click", closePhotoPreviewModal);
+  if (photoPreviewModal) {
+    photoPreviewModal.addEventListener("click", (e) => {
+      if (e.target === photoPreviewModal) closePhotoPreviewModal();
+    });
+  }
+
+  // Escape key para cerrar vistas y modales activos ordenadamente
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      if (photoPreviewModal && photoPreviewModal.classList.contains("active")) {
+        closePhotoPreviewModal();
+      } else if (deviceModal && deviceModal.classList.contains("active")) {
+        closeDeviceModal();
+      } else if (settingsModal && settingsModal.classList.contains("active")) {
+        closeSettingsModal();
+      } else if (deviceDetailModal && deviceDetailModal.classList.contains("active")) {
+        closeDeviceDetailModal();
+      }
+    }
+  });
+}
+
+/**
+ * Prioridad de categorías / tipos de equipo para ordenación lógica institucional
+ */
+const TYPE_SORT_PRIORITY = {
+  "Laptop": 1,
+  "Desktop": 2,
+  "Impresora": 3,
+  "Monitor": 4,
+  "Servidor / Red": 5,
+  "Periférico": 6
+};
+
+/**
+ * Obtener puntaje de tiempo (timestamp) de un equipo a partir de su mfgDate o specs
+ */
+function getDeviceDateScore(dev) {
+  if (dev.mfgDate) {
+    const isoMatch = dev.mfgDate.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (isoMatch) {
+      return new Date(parseInt(isoMatch[1], 10), parseInt(isoMatch[2], 10) - 1, parseInt(isoMatch[3], 10)).getTime();
+    }
+    const yearMatch = dev.mfgDate.match(/\b(19\d\d|20\d\d)\b/);
+    if (yearMatch) {
+      return new Date(parseInt(yearMatch[1], 10), 0, 1).getTime();
+    }
+  }
+  if (dev.specs?.cpu?.year) {
+    return new Date(parseInt(dev.specs.cpu.year, 10), 0, 1).getTime();
+  }
+  if (dev.updatedAt) {
+    const d = new Date(dev.updatedAt).getTime();
+    if (!isNaN(d)) return d;
+  }
+  return 0;
+}
+
+/**
+ * Ordenar lista de equipos según el criterio seleccionado
+ */
+function sortDevices(list, sortType) {
+  return list.slice().sort((a, b) => {
+    switch (sortType) {
+      case "category": {
+        // Orden lógico por tipo de equipo
+        const priorityA = TYPE_SORT_PRIORITY[a.type] || 99;
+        const priorityB = TYPE_SORT_PRIORITY[b.type] || 99;
+        if (priorityA !== priorityB) {
+          return priorityA - priorityB;
+        }
+        // Sub-orden por marca
+        const brandCmp = (a.brand || "").localeCompare(b.brand || "", "es", { sensitivity: "base" });
+        if (brandCmp !== 0) return brandCmp;
+        // Sub-orden por modelo
+        return (a.model || "").localeCompare(b.model || "", "es", { sensitivity: "base" });
+      }
+
+      case "brand": {
+        const brandCmp = (a.brand || "").localeCompare(b.brand || "", "es", { sensitivity: "base" });
+        if (brandCmp !== 0) return brandCmp;
+        return (a.model || "").localeCompare(b.model || "", "es", { sensitivity: "base" });
+      }
+
+      case "model": {
+        const modelCmp = (a.model || "").localeCompare(b.model || "", "es", { sensitivity: "base" });
+        if (modelCmp !== 0) return modelCmp;
+        return (a.brand || "").localeCompare(b.brand || "", "es", { sensitivity: "base" });
+      }
+
+      case "age-desc": {
+        // Más recientes primero (año o fecha más alta primero)
+        const scoreA = getDeviceDateScore(a);
+        const scoreB = getDeviceDateScore(b);
+        if (scoreB !== scoreA) {
+          return scoreB - scoreA;
+        }
+        return (a.model || "").localeCompare(b.model || "", "es", { sensitivity: "base" });
+      }
+
+      case "age-asc": {
+        // Más antiguos primero (año o fecha más baja primero)
+        const scoreA = getDeviceDateScore(a);
+        const scoreB = getDeviceDateScore(b);
+        if (scoreA !== scoreB) {
+          return scoreA - scoreB;
+        }
+        return (a.model || "").localeCompare(b.model || "", "es", { sensitivity: "base" });
+      }
+
+      case "location": {
+        const userA = (a.assignedUser || a.location || "");
+        const userB = (b.assignedUser || b.location || "");
+        const userCmp = userA.localeCompare(userB, "es", { sensitivity: "base" });
+        if (userCmp !== 0) return userCmp;
+        return (a.model || "").localeCompare(b.model || "", "es", { sensitivity: "base" });
+      }
+
+      default:
+        return 0;
+    }
+  });
+}
+
+/**
+ * Extrae y normaliza los usuarios asociados al equipo.
+ * Soporta múltiples usuarios asignados, reasignaciones en el tiempo y cuentas múltiples del SO.
+ */
+function getDeviceUsers(dev) {
+  if (!dev) {
+    return [];
+  }
+
+  const users = [];
+  const seen = new Set();
+
+  const addName = (raw, type = "assigned") => {
+    if (!raw) return;
+    const clean = String(raw).trim();
+    if (!clean) return;
+
+    if (clean.includes(",") || clean.includes(";")) {
+      clean.split(/[,;]+/).forEach((part) => addName(part, type));
+      return;
+    }
+
+    const lower = clean.toLowerCase();
+    if (!seen.has(lower)) {
+      seen.add(lower);
+      users.push({ name: clean, type });
+    }
+  };
+
+  // 1. Usuario(s) asignado(s) explícito(s)
+  if (dev.assignedUser) {
+    addName(dev.assignedUser, "assigned");
+  }
+
+  // 2. Si no tiene asignado explícito, extraer de location si tiene formato "Nombre / Oficina"
+  if (!dev.assignedUser && dev.location) {
+    const parts = dev.location.split("/");
+    const candidate = parts[0].trim();
+    if (candidate && !/^(oficina|sala|recepci|remoto|central|laboratorio|red)/i.test(candidate)) {
+      addName(candidate, "assigned");
+    }
+  }
+
+  // 3. Cuentas en Sistema Operativo (windowsUser)
+  if (dev.windowsUser) {
+    const rawUsers = dev.windowsUser.split(/[,;]+/);
+    rawUsers.forEach((raw) => {
+      const trimmed = raw.trim();
+      if (!trimmed) return;
+      const nameOnly = trimmed.includes("\\") ? trimmed.split("\\")[1] : trimmed;
+      const exists = users.some(
+        (u) => u.name.toLowerCase() === nameOnly.toLowerCase() || u.name.toLowerCase() === trimmed.toLowerCase()
+      );
+      if (!exists) {
+        addName(nameOnly, "os");
+      }
+    });
+  }
+
+  return users;
+}
+
+/**
+ * Filtrar y ordenar lista de equipos
+ */
+function getFilteredDevices() {
+  const filtered = devices.filter((dev) => {
+    if (currentFilterType !== "ALL" && dev.type !== currentFilterType) {
+      return false;
+    }
+    if (currentFilterBrand !== "ALL" && dev.brand !== currentFilterBrand) {
+      return false;
+    }
+    if (searchQuery) {
+      let specsText = "";
+      if (dev.specs) {
+        specsText = `${dev.specs.cpu?.model || ""} ${dev.specs.cpu?.details || ""} ${dev.specs.ram?.capacity || ""} ${dev.specs.ram?.type || ""} ${dev.specs.gpu?.model || ""} ${dev.specs.gpu?.type || ""}`;
+      }
+      const credsText = `${dev.windowsUser || ""} ${dev.observaciones || ""}`;
+      const officeText = dev.officeLicense ? `${dev.officeLicense.status || ""} ${dev.officeLicense.type || ""} ${dev.officeLicense.notes || ""}` : "";
+      const target = `${dev.brand} ${dev.model} ${dev.type} ${dev.serial || ""} ${dev.mfgDate || ""} ${dev.assignedUser || ""} ${dev.location || ""} ${dev.notes || ""} ${specsText} ${credsText} ${officeText}`.toLowerCase();
+      if (!target.includes(searchQuery)) {
+        return false;
+      }
+    }
+    return true;
+  });
+
+  return sortDevices(filtered, currentSort);
+}
+
+/**
+ * Renderizado general
+ */
+function render() {
+  updateStats();
+  updateBrandFilterOptions();
+  renderGrid();
+}
+
+/**
+ * Actualizar estadísticas en los contadores superiores
+ */
+function updateStats() {
+  const total = devices.length;
+  const laptops = devices.filter((d) => d.type === "Laptop").length;
+  const desktops = devices.filter((d) => d.type === "Desktop").length;
+  const printers = devices.filter((d) => d.type === "Impresora").length;
+  const others = total - (laptops + desktops + printers);
+
+  statTotal.textContent = total;
+  statLaptops.textContent = laptops;
+  statDesktops.textContent = desktops;
+  statPrinters.textContent = printers;
+  statOthers.textContent = others >= 0 ? others : 0;
+}
+
+/**
+ * Actualizar dropdown de marcas dinámicamente
+ */
+function updateBrandFilterOptions() {
+  const brands = Array.from(new Set(devices.map((d) => d.brand).filter(Boolean))).sort();
+  const currentVal = brandFilter.value;
+
+  brandFilter.innerHTML = '<option value="ALL">Todas las marcas</option>';
+  brands.forEach((b) => {
+    const opt = document.createElement("option");
+    opt.value = b;
+    opt.textContent = b;
+    brandFilter.appendChild(opt);
+  });
+
+  if (brands.includes(currentVal)) {
+    brandFilter.value = currentVal;
+  } else {
+    brandFilter.value = "ALL";
+    currentFilterBrand = "ALL";
+  }
+}
+
+/**
+ * Generar bloque visual HTML para las especificaciones de hardware
+ */
+function buildSpecsHtml(specs) {
+  if (!specs || (!specs.cpu?.model && !specs.ram?.capacity && !specs.gpu?.model)) {
+    return "";
+  }
+
+  let html = `<div class="device-specs-box">`;
+
+  // CPU
+  if (specs.cpu?.model) {
+    const yearBadge = specs.cpu.year ? `<span class="spec-pill pill-year">${specs.cpu.year}</span>` : "";
+    const speedInfo = specs.cpu.speed ? ` • ${escapeHtml(specs.cpu.speed)}` : "";
+    const coresInfo = specs.cpu.cores ? ` (${escapeHtml(specs.cpu.cores)})` : "";
+    const detailsInfo = specs.cpu.details ? `<div class="spec-details">${escapeHtml(specs.cpu.details)}</div>` : "";
+
+    html += `
+      <div class="spec-item">
+        <div class="spec-icon-wrap spec-cpu-icon" title="Procesador / CPU">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+            <rect x="9" y="9" width="6" height="6"></rect>
+            <line x1="9" y1="1" x2="9" y2="4"></line>
+            <line x1="15" y1="1" x2="15" y2="4"></line>
+            <line x1="9" y1="20" x2="9" y2="23"></line>
+            <line x1="15" y1="20" x2="15" y2="23"></line>
+          </svg>
+        </div>
+        <div class="spec-content">
+          <div class="spec-title-row">
+            <span class="spec-name">${escapeHtml(specs.cpu.model)}</span>
+            ${yearBadge}
+          </div>
+          <div class="spec-details">${coresInfo}${speedInfo}</div>
+          ${detailsInfo}
+        </div>
+      </div>
+    `;
+  }
+
+  // RAM
+  if (specs.ram?.capacity) {
+    const ramType = specs.ram.type ? ` ${escapeHtml(specs.ram.type)}` : "";
+    const ramSpeed = specs.ram.speed ? ` @ ${escapeHtml(specs.ram.speed)}` : "";
+    const ramDetails = specs.ram.details ? `<div class="spec-details">${escapeHtml(specs.ram.details)}</div>` : "";
+
+    html += `
+      <div class="spec-item">
+        <div class="spec-icon-wrap spec-ram-icon" title="Memoria RAM">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+            <line x1="6" y1="18" x2="6" y2="20"></line>
+            <line x1="10" y1="18" x2="10" y2="20"></line>
+            <line x1="14" y1="18" x2="14" y2="20"></line>
+            <line x1="18" y1="18" x2="18" y2="20"></line>
+          </svg>
+        </div>
+        <div class="spec-content">
+          <div class="spec-title-row">
+            <span class="spec-name">${escapeHtml(specs.ram.capacity)}${ramType}</span>
+            <span class="spec-details">${ramSpeed}</span>
+          </div>
+          ${ramDetails}
+        </div>
+      </div>
+    `;
+  }
+
+  // GPU
+  if (specs.gpu?.model) {
+    const isDedicated = specs.gpu.type?.toLowerCase().includes("dedicada");
+    const gpuClass = isDedicated ? "pill-dedicated" : "pill-integrated";
+    const gpuTypeBadge = specs.gpu.type ? `<span class="spec-pill ${gpuClass}">${escapeHtml(specs.gpu.type)}</span>` : "";
+    const gpuDetails = specs.gpu.details ? `<div class="spec-details">${escapeHtml(specs.gpu.details)}</div>` : "";
+
+    html += `
+      <div class="spec-item">
+        <div class="spec-icon-wrap spec-gpu-icon" title="Tarjeta Gráfica / GPU">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+        </div>
+        <div class="spec-content">
+          <div class="spec-title-row">
+            <span class="spec-name">${escapeHtml(specs.gpu.model)}</span>
+            ${gpuTypeBadge}
+          </div>
+          ${gpuDetails}
+        </div>
+      </div>
+    `;
+  }
+
+  // Storage
+  if (specs.storage) {
+    html += `
+      <div class="spec-item">
+        <div class="spec-icon-wrap" style="background: rgba(251, 191, 36, 0.15); color: #fbbf24;" title="Almacenamiento">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+            <circle cx="7.5" cy="12" r="1.5"></circle>
+            <circle cx="16.5" cy="12" r="1.5"></circle>
+          </svg>
+        </div>
+        <div class="spec-content">
+          <div class="spec-name" style="font-size: 0.8rem;">${escapeHtml(specs.storage)}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  html += `</div>`;
+  return html;
+}
+
+/**
+ * Generar bloque visual para Credenciales de Windows
+ */
+function buildCredentialsHtml(dev) {
+  if (!dev.windowsUser && !dev.windowsPassword) {
+    return "";
+  }
+
+  const isRevealed = !!revealedPasswords[dev.id];
+  const passDisplay = isRevealed ? escapeHtml(dev.windowsPassword) : "••••••••";
+  const eyeIcon = isRevealed ? "🔒" : "👁️";
+
+  return `
+    <div class="device-credentials-box">
+      <div class="cred-row">
+        <span class="cred-label">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          Usuario Windows:
+        </span>
+        <div class="cred-value-wrap">
+          <span class="cred-value">${dev.windowsUser ? escapeHtml(dev.windowsUser) : "No asignado"}</span>
+          ${dev.windowsUser ? `<button class="cred-icon-btn" title="Copiar usuario" onclick="copyText('${escapeHtml(dev.windowsUser)}', 'Usuario copiado')">📋</button>` : ""}
+        </div>
+      </div>
+
+      ${dev.windowsPassword ? `
+      <div class="cred-row">
+        <span class="cred-label">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          Contraseña Windows:
+        </span>
+        <div class="cred-value-wrap">
+          <span class="cred-value">${passDisplay}</span>
+          <button class="cred-icon-btn" title="Mostrar/Ocultar contraseña" onclick="toggleCardPassword('${dev.id}')">${eyeIcon}</button>
+          <button class="cred-icon-btn" title="Copiar contraseña" onclick="copyText('${escapeHtml(dev.windowsPassword)}', 'Contraseña copiada')">📋</button>
+        </div>
+      </div>
+      ` : ""}
+    </div>
+  `;
+}
+
+/**
+ * Generar bloque visual para Licenciamiento de Microsoft Office
+ */
+function buildOfficeLicenseHtml(dev) {
+  if (dev.type === "Impresora" || !dev.officeLicense) {
+    return "";
+  }
+
+  const lic = dev.officeLicense;
+  const status = lic.status || "Sin Licencia";
+  const type = lic.type || "No especificado";
+  const deactivationDate = lic.deactivationDate || "";
+  const notes = lic.notes || "";
+
+  let badgeClass = "badge-office-none";
+  let statusIcon = "⚪";
+  if (status === "Activa") {
+    badgeClass = "badge-office-active";
+    statusIcon = "🟢";
+  } else if (status === "Desactivada") {
+    badgeClass = "badge-office-inactive";
+    statusIcon = "🔴";
+  } else if (status === "Pendiente") {
+    badgeClass = "badge-office-pending";
+    statusIcon = "🟡";
+  }
+
+  return `
+    <div class="device-office-box">
+      <div class="office-box-header">
+        <div class="office-header-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+            <line x1="9" y1="3" x2="9" y2="21"></line>
+          </svg>
+          <span>Licenciamiento Microsoft Office</span>
+        </div>
+        <span class="${badgeClass}">${statusIcon} ${escapeHtml(status)}</span>
+      </div>
+
+      <div class="detail-meta-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.5rem 1rem; margin-top: 0.2rem;">
+        <div class="detail-meta-item">
+          <span class="detail-meta-label">Versión / Edición:</span>
+          <span class="detail-meta-value"><strong>${escapeHtml(type)}</strong></span>
+        </div>
+        ${deactivationDate ? `
+        <div class="detail-meta-item">
+          <span class="detail-meta-label">Fecha de Desactivación:</span>
+          <span class="detail-meta-value" style="color: #fca5a5; font-weight: 600;">📅 ${escapeHtml(deactivationDate)}</span>
+        </div>
+        ` : ""}
+        ${notes ? `
+        <div class="detail-meta-item" style="grid-column: 1 / -1;">
+          <span class="detail-meta-label">Cuenta / Observación de Licencia:</span>
+          <span class="detail-meta-value">${escapeHtml(notes)}</span>
+        </div>
+        ` : ""}
+      </div>
+    </div>
+  `;
+}
+
+/**
+ * Generar bloque visual para Control de Consumibles de Impresora (Tóner y Tambor)
+ */
+function buildSuppliesHtml(dev) {
+  if (dev.type !== "Impresora" && !dev.supplies) {
+    return "";
+  }
+
+  const toner = dev.supplies?.toner || { model: "TN-2340 / TN-2370", lastWarningDate: "", lastReplacedDate: "" };
+  const drum = dev.supplies?.drum || { model: "DR-2340", lastWarningDate: "", lastReplacedDate: "" };
+
+  const formatD = (d) => {
+    if (!d) return '<span class="date-empty">Sin registro</span>';
+    const parts = d.split("-");
+    if (parts.length === 3) return `<strong class="date-active">${parts[2]}/${parts[1]}/${parts[0]}</strong>`;
+    return `<strong class="date-active">${escapeHtml(d)}</strong>`;
+  };
+
+  return `
+    <div class="printer-supplies-box">
+      <div class="supplies-box-header">
+        <div class="supplies-header-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          <span>Control y Registro de Consumibles</span>
+        </div>
+        <button type="button" class="btn btn-outline" style="font-size: 0.78rem; padding: 0.25rem 0.65rem;" onclick="handleEditDevice('${dev.id}')">
+          ✏️ Editar Fechas y Eventos
+        </button>
+      </div>
+
+      <!-- Fila Tóner -->
+      <div class="supply-tracker-item">
+        <div class="supply-item-top">
+          <span class="supply-chip chip-toner">TÓNER</span>
+          <span class="supply-model-code">${escapeHtml(toner.model || "TN-2340 / TN-2370")}</span>
+        </div>
+        <div class="supply-dates-row">
+          <div class="supply-date-cell">
+            <span class="date-cell-label">⚠️ Último aviso de fin:</span>
+            <span class="date-cell-value">${formatD(toner.lastWarningDate)}</span>
+          </div>
+          <div class="supply-date-cell">
+            <span class="date-cell-label">✅ Último reemplazo:</span>
+            <span class="date-cell-value">${formatD(toner.lastReplacedDate)}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fila Tambor -->
+      <div class="supply-tracker-item">
+        <div class="supply-item-top">
+          <span class="supply-chip chip-drum">TAMBOR</span>
+          <span class="supply-model-code">${escapeHtml(drum.model || "DR-2340")}</span>
+        </div>
+        <div class="supply-dates-row">
+          <div class="supply-date-cell">
+            <span class="date-cell-label">⚠️ Último aviso de fin:</span>
+            <span class="date-cell-value">${formatD(drum.lastWarningDate)}</span>
+          </div>
+          <div class="supply-date-cell">
+            <span class="date-cell-label">✅ Último reemplazo:</span>
+            <span class="date-cell-value">${formatD(drum.lastReplacedDate)}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+/**
+ * Toggle para mostrar/ocultar contraseña en una tarjeta específica
+ */
+window.toggleCardPassword = function (id) {
+  revealedPasswords[id] = !revealedPasswords[id];
+  if (currentDetailDeviceId === id) {
+    openDeviceDetailModal(id);
+  } else {
+    renderGrid();
+  }
+};
+
+/**
+ * Copiar texto arbitrario al portapapeles con mensaje toast
+ */
+window.copyText = function (text, msg = "Copiado al portapapeles") {
+  navigator.clipboard.writeText(text).then(() => {
+    showToast(msg);
+  }).catch(() => {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+    showToast(msg);
+  });
+};
+
+/**
+ * Redimensionar imagen a un tamaño óptimo para almacenamiento local (máx 1200px, JPEG 0.82)
+ */
+function resizeImageFile(file, maxWidth = 1200, maxHeight = 1200, quality = 0.82) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        let width = img.width;
+        let height = img.height;
+
+        if (width > maxWidth || height > maxHeight) {
+          if (width > height) {
+            height = Math.round((height * maxWidth) / width);
+            width = maxWidth;
+          } else {
+            width = Math.round((width * maxHeight) / height);
+            height = maxHeight;
+          }
+        }
+
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+
+        const dataUrl = canvas.toDataURL("image/jpeg", quality);
+        resolve(dataUrl);
+      };
+      img.onerror = () => resolve(e.target.result);
+      img.src = e.target.result;
+    };
+    reader.onerror = (err) => reject(err);
+    reader.readAsDataURL(file);
+  });
+}
+
+/**
+ * Generar HTML del módulo de Fotografías del Equipo (sin categorías, solo tag de nombre sobrepuesto)
+ * Exclusivamente para fotos de la unidad física subidas por el usuario; la imagen principal genérica de la tarjeta no se altera.
+ */
+function buildDevicePhotosHtml(dev) {
+  const images = Array.isArray(dev.images) ? dev.images : [];
+
+  let galleryHtml = "";
+  if (images.length === 0) {
+    galleryHtml = `
+      <div class="photos-empty-state">
+        <span>No hay fotografías adicionales registradas para esta unidad. Selecciona un archivo de imagen y asígnale un tag de nombre para subirla.</span>
+      </div>
+    `;
+  } else {
+    galleryHtml = `
+      <div class="device-photos-grid">
+        ${images.map((img) => `
+          <div class="device-photo-item" title="Clic para ampliar: ${escapeHtml(img.name)}">
+            <img src="${escapeHtml(img.url)}" alt="${escapeHtml(img.name)}" class="device-photo-img" onclick="handlePreviewPhotoById('${dev.id}', '${escapeHtml(img.id)}')">
+            <div class="device-photo-tag" title="${escapeHtml(img.name)}">${escapeHtml(img.name)}</div>
+            <button type="button" class="device-photo-delete" title="Eliminar foto" onclick="handleDeleteDevicePhoto('${dev.id}', '${escapeHtml(img.id)}')">&times;</button>
+          </div>
+        `).join("")}
+      </div>
+    `;
+  }
+
+  return `
+    <div class="device-photos-section" id="device-photos-section">
+      <div class="photos-section-header">
+        <div class="photos-section-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
+          </svg>
+          <span>Fotografías del Equipo (${images.length})</span>
+        </div>
+      </div>
+
+      <!-- Formulario para subir imagen con tag de nombre -->
+      <div class="upload-photo-panel">
+        <div class="upload-photo-row">
+          <div class="upload-field-file">
+            <label for="new-photo-file-${dev.id}" class="photo-file-label">
+              📁 Seleccionar imagen
+            </label>
+            <input type="file" id="new-photo-file-${dev.id}" accept="image/*" class="photo-file-input-hidden" onchange="handlePhotoFileSelected('${dev.id}', this)">
+            <span id="new-photo-filename-${dev.id}" class="photo-filename-display">Ningún archivo</span>
+          </div>
+
+          <div class="upload-field-name">
+            <input type="text" id="new-photo-name-${dev.id}" class="photo-name-input" placeholder="Tag de nombre (ej. Frontal, Trasera, Teclado...)" maxlength="50">
+          </div>
+
+          <button type="button" class="btn btn-primary btn-upload-photo" onclick="handleSubmitNewPhoto('${dev.id}')">
+            Subir Foto
+          </button>
+        </div>
+      </div>
+
+      ${galleryHtml}
+    </div>
+  `;
+}
+
+/**
+ * Evento al seleccionar archivo en el modal de ficha técnica
+ */
+window.handlePhotoFileSelected = function (deviceId, input) {
+  const filenameDisplay = document.getElementById(`new-photo-filename-${deviceId}`);
+  const nameInput = document.getElementById(`new-photo-name-${deviceId}`);
+
+  if (input.files && input.files[0]) {
+    const file = input.files[0];
+    if (filenameDisplay) {
+      filenameDisplay.textContent = file.name;
+    }
+    if (nameInput && !nameInput.value.trim()) {
+      const cleanName = file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ");
+      nameInput.value = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
+    }
+  } else if (filenameDisplay) {
+    filenameDisplay.textContent = "Ningún archivo";
+  }
+};
+
+/**
+ * Subir fotografía a un equipo individual (no altera la foto principal genérica)
+ */
+window.handleSubmitNewPhoto = async function (deviceId) {
+  const fileInput = document.getElementById(`new-photo-file-${deviceId}`);
+  const nameInput = document.getElementById(`new-photo-name-${deviceId}`);
+
+  if (!fileInput || !fileInput.files || !fileInput.files[0]) {
+    showToast("Por favor selecciona un archivo de imagen para subir");
+    return;
+  }
+
+  const file = fileInput.files[0];
+  const tagName = (nameInput ? nameInput.value.trim() : "") || file.name.replace(/\.[^/.]+$/, "");
+
+  try {
+    const resizedDataUrl = await resizeImageFile(file);
+
+    const dev = devices.find((d) => d.id === deviceId);
+    if (!dev) return;
+
+    if (!Array.isArray(dev.images)) {
+      dev.images = [];
+    }
+
+    const newPhoto = {
+      id: "img-" + Date.now() + "-" + Math.random().toString(36).substring(2, 6),
+      name: tagName,
+      url: resizedDataUrl
+    };
+
+    dev.images.push(newPhoto);
+
+    saveDevices();
+    renderGrid();
+    openDeviceDetailModal(deviceId);
+    showToast(`Fotografía guardada con tag: "${tagName}"`);
+  } catch (err) {
+    console.error("Error al procesar imagen:", err);
+    showToast("Hubo un error al procesar el archivo de imagen");
+  }
+};
+
+/**
+ * Eliminar fotografía de un equipo (no altera la foto principal genérica)
+ */
+window.handleDeleteDevicePhoto = function (deviceId, photoId) {
+  const dev = devices.find((d) => d.id === deviceId);
+  if (!dev || !dev.images) return;
+
+  const photo = dev.images.find((img) => img.id === photoId);
+  const photoName = photo ? photo.name : "esta fotografía";
+
+  if (!confirm(`¿Estás seguro de eliminar "${photoName}"?`)) {
+    return;
+  }
+
+  dev.images = dev.images.filter((img) => img.id !== photoId);
+
+  saveDevices();
+  renderGrid();
+  openDeviceDetailModal(deviceId);
+  showToast("Fotografía eliminada");
+};
+
+/**
+ * Vista previa ampliada de una foto específica por ID
+ */
+window.handlePreviewPhotoById = function (deviceId, photoId) {
+  const dev = devices.find((d) => d.id === deviceId);
+  if (!dev || !Array.isArray(dev.images)) return;
+  const photo = dev.images.find((img) => img.id === photoId);
+  if (photo) {
+    openPhotoPreviewModal(photo.url, photo.name);
+  }
+};
+
+/**
+ * Visor ampliado de fotografía con tag sobrepuesto
+ */
+window.openPhotoPreviewModal = function (url, tagName) {
+  const modal = document.getElementById("photo-preview-modal");
+  const img = document.getElementById("photo-preview-img");
+  const tag = document.getElementById("photo-preview-tag");
+  if (!modal || !img) return;
+
+  img.src = url;
+  if (tag) {
+    tag.textContent = tagName || "";
+    tag.style.display = tagName ? "block" : "none";
+  }
+  modal.classList.add("active");
+};
+
+window.closePhotoPreviewModal = function () {
+  const modal = document.getElementById("photo-preview-modal");
+  const img = document.getElementById("photo-preview-img");
+  if (modal) modal.classList.remove("active");
+  if (img) img.src = "";
+};
+
+/**
+ * Generar pastillas compactas de especificaciones básicas para la tarjeta resumida
+ */
+function buildCompactSpecsHtml(dev) {
+  let pills = [];
+
+  if (dev.type === "Impresora") {
+    pills.push(`<span class="compact-spec-pill pill-printer">🖨️ Láser Monocromática</span>`);
+    pills.push(`<span class="compact-spec-pill">🔌 USB 2.0</span>`);
+    if (dev.supplies?.toner?.model) {
+      const tonerShort = dev.supplies.toner.model.replace("Brother ", "");
+      pills.push(`<span class="compact-spec-pill pill-storage">Tóner ${escapeHtml(tonerShort)}</span>`);
+    }
+  } else {
+    // Procesador
+    if (dev.specs?.cpu?.model) {
+      pills.push(`<span class="compact-spec-pill pill-cpu" title="${escapeHtml(dev.specs.cpu.model)}">⚡ ${escapeHtml(dev.specs.cpu.model)}</span>`);
+    }
+    // Memoria RAM
+    if (dev.specs?.ram?.capacity) {
+      pills.push(`<span class="compact-spec-pill pill-ram">💾 ${escapeHtml(dev.specs.ram.capacity)} RAM</span>`);
+    }
+    // Almacenamiento
+    if (dev.specs?.storage) {
+      pills.push(`<span class="compact-spec-pill pill-storage">📁 ${escapeHtml(dev.specs.storage)}</span>`);
+    }
+    // GPU si es dedicada
+    if (dev.specs?.gpu?.model && dev.specs.gpu.type?.toLowerCase().includes("dedicada")) {
+      pills.push(`<span class="compact-spec-pill">🎮 ${escapeHtml(dev.specs.gpu.model)}</span>`);
+    }
+
+    // Licencia Office
+    if (dev.officeLicense) {
+      const oStatus = dev.officeLicense.status;
+      const oType = dev.officeLicense.type || "Office";
+      const shortType = oType.replace("Microsoft 365", "M365").replace("Standard", "Std").replace("Business", "Biz");
+      if (oStatus === "Activa") {
+        pills.push(`<span class="compact-spec-pill pill-office-active" title="Licencia Office Activa: ${escapeHtml(dev.officeLicense.type || '')}">💼 ${escapeHtml(shortType)}</span>`);
+      } else if (oStatus === "Desactivada") {
+        const deactStr = dev.officeLicense.deactivationDate ? ` (${dev.officeLicense.deactivationDate})` : "";
+        pills.push(`<span class="compact-spec-pill pill-office-inactive" title="Licencia desactivada${escapeHtml(deactStr)}">⛔ Office Desact.${escapeHtml(deactStr)}</span>`);
+      } else if (oStatus === "Pendiente") {
+        pills.push(`<span class="compact-spec-pill pill-office-pending" title="Licencia Office pendiente de activación">🟡 Office Pendiente</span>`);
+      }
+    }
+  }
+
+  if (pills.length === 0 && dev.notes) {
+    pills.push(`<span class="compact-spec-pill">${escapeHtml(dev.notes.slice(0, 40))}...</span>`);
+  }
+
+  return pills.join("");
+}
+
+/**
+ * Renderizar tarjetas de equipos en formato compacto (ahorro de espacio)
+ */
+function renderGrid() {
+  const filtered = getFilteredDevices();
+  devicesGrid.innerHTML = "";
+
+  resultsCount.textContent = `Mostrando ${filtered.length} de ${devices.length} equipo${devices.length === 1 ? '' : 's'}`;
+
+  if (filtered.length === 0) {
+    devicesGrid.style.display = "none";
+    emptyState.style.display = "block";
+    return;
+  }
+
+  devicesGrid.style.display = "grid";
+  emptyState.style.display = "none";
+
+  filtered.forEach((dev) => {
+    const card = document.createElement("div");
+    card.className = "device-card device-card-compact";
+
+    let badgeClass = "badge-other";
+    let accentColor = "#94a3b8";
+
+    switch (dev.type) {
+      case "Laptop":
+        badgeClass = "badge-laptop";
+        accentColor = "#818cf8";
+        break;
+      case "Desktop":
+        badgeClass = "badge-desktop";
+        accentColor = "#34d399";
+        break;
+      case "Impresora":
+        badgeClass = "badge-printer";
+        accentColor = "#fbbf24";
+        break;
+      case "Monitor":
+        badgeClass = "badge-monitor";
+        accentColor = "#38bdf8";
+        break;
+      case "Servidor / Red":
+        badgeClass = "badge-network";
+        accentColor = "#f472b6";
+        break;
+    }
+    card.style.setProperty("--card-accent-color", accentColor);
+
+    // Clic en la tarjeta abre la ficha técnica completa
+    card.addEventListener("click", () => {
+      openDeviceDetailModal(dev.id);
+    });
+
+    // Año de fabricación o lanzamiento
+    let yearBadge = "";
+    if (dev.mfgDate) {
+      const yrMatch = dev.mfgDate.match(/\b(19\d\d|20\d\d)\b/);
+      if (yrMatch) {
+        yearBadge = `<span class="spec-pill pill-year">${yrMatch[1]}</span>`;
+      }
+    }
+
+    const compactSpecsHtml = buildCompactSpecsHtml(dev);
+    const usersList = getDeviceUsers(dev);
+    let usersBadgesHtml = "";
+
+    if (dev.type === "Impresora" && !dev.assignedUser) {
+      usersBadgesHtml = `
+        <div class="card-user-badge badge-printer-shared" title="Ubicación: ${escapeHtml(dev.location || "Hogar")}">
+          <span class="user-avatar">🖨️</span>
+          <span class="user-name">${escapeHtml(dev.location || "Uso Compartido")}</span>
+        </div>
+      `;
+    } else if (usersList.length > 0) {
+      usersBadgesHtml = usersList.map((u) => {
+        const icon = u.type === "os" ? "💻" : "👤";
+        const roleTitle = u.type === "os" ? `Cuenta SO: ${escapeHtml(u.name)}` : `Usuario asignado: ${escapeHtml(u.name)}`;
+        const badgeClass = u.type === "os" ? "badge-user-os" : "badge-user-assigned";
+        return `
+          <div class="card-user-badge ${badgeClass}" title="${roleTitle}">
+            <span class="user-avatar">${icon}</span>
+            <span class="user-name">${escapeHtml(u.name)}</span>
+          </div>
+        `;
+      }).join("");
+    } else {
+      usersBadgesHtml = `
+        <div class="card-user-badge badge-user-empty" title="Sin usuario asignado">
+          <span class="user-avatar">👤</span>
+          <span class="user-name">${escapeHtml(dev.location || "Sin asignar")}</span>
+        </div>
+      `;
+    }
+
+    // Miniatura
+    const thumbHtml = dev.imageUrl
+      ? `<div class="card-thumbnail-wrap">
+           <img src="${escapeHtml(dev.imageUrl)}" alt="${escapeHtml(dev.brand)} ${escapeHtml(dev.model)}" class="card-thumbnail" loading="lazy" onerror="this.parentElement.style.display='none'">
+         </div>`
+      : "";
+
+    card.innerHTML = `
+      <!-- Fila Superior: Prioridad en el Usuario / Cuentas Asignadas -->
+      <div class="card-user-strip">
+        <div class="card-users-list">
+          ${usersBadgesHtml}
+        </div>
+        <div class="card-quick-actions" onclick="event.stopPropagation()">
+          <button class="icon-btn edit-btn" title="Editar equipo" onclick="event.stopPropagation(); handleEditDevice('${dev.id}')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+            </svg>
+          </button>
+          <button class="icon-btn delete-btn" title="Eliminar equipo" onclick="event.stopPropagation(); handleDeleteDevice('${dev.id}')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Cuerpo Principal: Miniatura + Marca + Modelo + Tipo -->
+      <div class="card-main-body">
+        ${thumbHtml}
+        <div class="card-headings">
+          <div class="card-type-row">
+            <span class="device-badge ${badgeClass}">${escapeHtml(dev.type)}</span>
+            ${yearBadge}
+          </div>
+          <div class="card-brand-label">
+            ${escapeHtml(dev.brand)}${dev.location ? ` • <span style="font-weight: normal; opacity: 0.85;">📍 ${escapeHtml(dev.location)}</span>` : ""}
+          </div>
+          <h3 class="card-model-title" title="${escapeHtml(dev.model)}">${escapeHtml(dev.model)}</h3>
+        </div>
+      </div>
+
+      <!-- Pastillas de características básicas -->
+      <div class="card-specs-summary">
+        ${compactSpecsHtml}
+      </div>
+
+      <!-- Pie de tarjeta: Serie & Prompt de Clic -->
+      <div class="card-compact-footer">
+        <span class="card-serial-text" title="Número de Serie / Activo">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          ${dev.serial ? escapeHtml(dev.serial) : "Sin S/N"}
+        </span>
+        <span class="btn-card-detail-hint">Ver ficha completa ➔</span>
+      </div>
+    `;
+
+    devicesGrid.appendChild(card);
+  });
+}
+
+/**
+ * Abrir modal con la ficha técnica completa del equipo
+ */
+window.openDeviceDetailModal = function (deviceId) {
+  const dev = devices.find((d) => d.id === deviceId);
+  if (!dev) return;
+
+  currentDetailDeviceId = deviceId;
+
+  if (detailModalTitle) {
+    detailModalTitle.textContent = `${dev.brand} ${dev.model}`;
+  }
+  if (detailModalEyebrow) {
+    detailModalEyebrow.textContent = `FICHA TÉCNICA COMPLETA • ${dev.type.toUpperCase()}`;
+  }
+  if (detailModalUser) {
+    const users = getDeviceUsers(dev);
+    const usersStr = users.length > 0 ? users.map((u) => u.name).join(", ") : (dev.assignedUser || "Sin asignar");
+    const locStr = dev.location ? ` <span style="opacity: 0.85; font-weight: normal; margin-left: 0.6rem;">📍 ${escapeHtml(dev.location)}</span>` : "";
+    detailModalUser.innerHTML = `👤 Usuario(s): <strong>${escapeHtml(usersStr)}</strong>${locStr}`;
+  }
+  if (detailModalDriverLink) {
+    detailModalDriverLink.href = dev.driverUrl || "#";
+    detailModalDriverLink.title = `Descargar drivers oficiales de ${dev.brand} ${dev.model}`;
+    if (dev.driverUrl && !dev.driverUrl.startsWith("http")) {
+      detailModalDriverLink.setAttribute("download", "");
+    } else {
+      detailModalDriverLink.removeAttribute("download");
+    }
+  }
+  const bottomDriverLink = document.getElementById("detail-modal-bottom-driver-link");
+  if (bottomDriverLink) {
+    bottomDriverLink.href = dev.driverUrl || "#";
+    bottomDriverLink.title = `Descargar drivers oficiales de ${dev.brand} ${dev.model}`;
+    if (dev.driverUrl && !dev.driverUrl.startsWith("http")) {
+      bottomDriverLink.setAttribute("download", "");
+    } else {
+      bottomDriverLink.removeAttribute("download");
+    }
+  }
+
+  if (detailModalEditBtn) {
+    detailModalEditBtn.onclick = () => {
+      handleEditDevice(dev.id);
+    };
+  }
+  const bottomEditBtn = document.getElementById("detail-modal-bottom-edit-btn");
+  if (bottomEditBtn) {
+    bottomEditBtn.onclick = () => {
+      handleEditDevice(dev.id);
+    };
+  }
+  const bottomBackBtn = document.getElementById("detail-modal-bottom-back-btn");
+  if (bottomBackBtn) {
+    bottomBackBtn.onclick = () => {
+      closeDeviceDetailModal();
+    };
+  }
+
+  // Componentes modulares completos
+  const specsHtml = buildSpecsHtml(dev.specs);
+  const credsHtml = buildCredentialsHtml(dev);
+  const officeHtml = buildOfficeLicenseHtml(dev);
+  const suppliesHtml = buildSuppliesHtml(dev);
+  const photosHtml = buildDevicePhotosHtml(dev);
+
+  let heroHtml = "";
+  if (dev.imageUrl) {
+    heroHtml = `
+      <div class="detail-hero-box">
+        <div class="detail-hero-img-wrap">
+          <img src="${escapeHtml(dev.imageUrl)}" alt="${escapeHtml(dev.brand)} ${escapeHtml(dev.model)}" class="detail-hero-img">
+        </div>
+        <div class="detail-hero-specs">
+          <div style="font-size: 0.78rem; font-weight: 700; color: var(--primary); text-transform: uppercase;">
+            ${escapeHtml(dev.brand)} • ${escapeHtml(dev.type)}
+          </div>
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin: 0; color: #ffffff;">
+            ${escapeHtml(dev.model)}
+          </h3>
+          <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 0.2rem;">
+            Serie / Activo: <code style="color: #7dd3fc; background: rgba(0,0,0,0.3); padding: 0.1rem 0.35rem; border-radius: 4px;">${dev.serial ? escapeHtml(dev.serial) : "Sin registrar"}</code>
+          </div>
+          <div style="font-size: 0.82rem; color: var(--text-muted);">
+            Fabricación / Lanzamiento: <strong>${dev.mfgDate ? escapeHtml(dev.mfgDate) : "No registrada"}</strong>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  const metaGridHtml = `
+    <div class="detail-meta-grid">
+      <div class="detail-meta-item">
+        <span class="detail-meta-label">Fabricante / Marca:</span>
+        <span class="detail-meta-value">${escapeHtml(dev.brand)}</span>
+      </div>
+      <div class="detail-meta-item">
+        <span class="detail-meta-label">Modelo:</span>
+        <span class="detail-meta-value">${escapeHtml(dev.model)}</span>
+      </div>
+      <div class="detail-meta-item">
+        <span class="detail-meta-label">Número de Serie:</span>
+        <span class="detail-meta-value" style="font-family: monospace;">${dev.serial ? escapeHtml(dev.serial) : "No registrado"}</span>
+      </div>
+      <div class="detail-meta-item">
+        <span class="detail-meta-label">Fabricación / Lanzamiento:</span>
+        <span class="detail-meta-value">${dev.mfgDate ? escapeHtml(dev.mfgDate) : "No registrada"}</span>
+      </div>
+      <div class="detail-meta-item">
+        <span class="detail-meta-label">Asignado / Ubicación:</span>
+        <span class="detail-meta-value">${escapeHtml(dev.location || "Oficina General")}</span>
+      </div>
+      <div class="detail-meta-item">
+        <span class="detail-meta-label">Última Actualización:</span>
+        <span class="detail-meta-value">${dev.updatedAt || "Reciente"}</span>
+      </div>
+    </div>
+  `;
+
+  let notesHtml = "";
+  if (dev.notes) {
+    notesHtml = `
+      <div class="device-notes" style="margin: 0;">
+        <div style="font-size: 0.72rem; font-weight: 700; color: #a5b4fc; text-transform: uppercase; margin-bottom: 0.3rem;">
+          ⚙️ Configuración de Fábrica & Datos Técnicos
+        </div>
+        <div>${escapeHtml(dev.notes)}</div>
+      </div>
+    `;
+  }
+
+  let obsHtml = "";
+  if (dev.observaciones) {
+    obsHtml = `
+      <div class="device-observaciones" style="margin: 0;">
+        <div class="observaciones-title">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          Observaciones, Mantenimiento & Repuestos
+        </div>
+        <div>${formatObservaciones(dev.observaciones)}</div>
+      </div>
+    `;
+  }
+
+  if (detailModalBody) {
+    detailModalBody.innerHTML = `
+      ${heroHtml}
+      ${!dev.imageUrl ? metaGridHtml : ""}
+      ${credsHtml}
+      ${officeHtml}
+      ${suppliesHtml}
+      ${specsHtml}
+      ${dev.imageUrl ? metaGridHtml : ""}
+      ${notesHtml}
+      ${obsHtml}
+      ${photosHtml}
+    `;
+  }
+
+  if (deviceDetailModal) {
+    deviceDetailModal.classList.add("active");
+    deviceDetailModal.scrollTop = 0;
+  }
+};
+
+/**
+ * Cerrar vista a pantalla completa de ficha técnica
+ */
+window.closeDeviceDetailModal = function () {
+  if (deviceDetailModal) {
+    deviceDetailModal.classList.remove("active");
+  }
+  currentDetailDeviceId = null;
+};
+
+/**
+ * Función auxiliar para normalizar fechas al formato estándar YYYY-MM-DD para input[type=date]
+ */
+function toIsoDate(val) {
+  if (!val) return "";
+  const str = String(val).trim();
+  if (/^\d{4}-\d{2}-\d{2}$/.test(str)) return str;
+  const dm = str.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/);
+  if (dm) {
+    return `${dm[3]}-${dm[2].padStart(2, "0")}-${dm[1].padStart(2, "0")}`;
+  }
+  return str;
+}
+
+/**
+ * Modal: Abrir para Crear o Editar con TODOS los campos en un solo lugar unificado
+ */
+function openDeviceModal(device = null) {
+  deviceForm.reset();
+  formWindowsPass.type = "password";
+  if (btnToggleModalPass) btnToggleModalPass.textContent = "👁️";
+
+  if (device) {
+    modalTitle.textContent = `Editar Equipo: ${device.brand} ${device.model}`;
+    formDeviceId.value = device.id;
+    formBrand.value = device.brand;
+    formType.value = device.type;
+    formModel.value = device.model;
+    formSerial.value = device.serial || "";
+    if (formMfgDate) formMfgDate.value = device.mfgDate || "";
+    if (formAssignedUser) formAssignedUser.value = device.assignedUser || "";
+    formLocation.value = device.location || "";
+    formImageUrl.value = device.imageUrl || "";
+    formDriverUrl.value = device.driverUrl;
+    formNotes.value = device.notes || "";
+    formObservaciones.value = device.observaciones || "";
+
+    // Credenciales
+    formWindowsUser.value = device.windowsUser || "";
+    formWindowsPass.value = device.windowsPassword || "";
+
+    // Hardware Specs
+    if (device.specs) {
+      formCpuModel.value = device.specs.cpu?.model || "";
+      formCpuYear.value = device.specs.cpu?.year || "";
+      formCpuCores.value = device.specs.cpu?.cores || "";
+      formCpuSpeed.value = device.specs.cpu?.speed || "";
+      formCpuDetails.value = device.specs.cpu?.details || "";
+
+      formRamCapacity.value = device.specs.ram?.capacity || "";
+      formRamType.value = device.specs.ram?.type || "";
+      formRamSpeed.value = device.specs.ram?.speed || "";
+      formRamDetails.value = device.specs.ram?.details || "";
+
+      formGpuModel.value = device.specs.gpu?.model || "";
+      formGpuType.value = device.specs.gpu?.type || "Integrada";
+      formGpuDetails.value = device.specs.gpu?.details || "";
+      formStorage.value = device.specs.storage || "";
+    }
+
+    // Consumibles Impresora (unificado)
+    if (device.supplies) {
+      if (formTonerWarningDate) formTonerWarningDate.value = toIsoDate(device.supplies.toner?.lastWarningDate);
+      if (formTonerReplacedDate) formTonerReplacedDate.value = toIsoDate(device.supplies.toner?.lastReplacedDate);
+      if (formDrumWarningDate) formDrumWarningDate.value = toIsoDate(device.supplies.drum?.lastWarningDate);
+      if (formDrumReplacedDate) formDrumReplacedDate.value = toIsoDate(device.supplies.drum?.lastReplacedDate);
+    } else {
+      if (formTonerWarningDate) formTonerWarningDate.value = "";
+      if (formTonerReplacedDate) formTonerReplacedDate.value = "";
+      if (formDrumWarningDate) formDrumWarningDate.value = "";
+      if (formDrumReplacedDate) formDrumReplacedDate.value = "";
+    }
+
+    // Licencia Office
+    if (device.officeLicense) {
+      if (formOfficeStatus) formOfficeStatus.value = device.officeLicense.status || "Activa";
+      if (formOfficeType) formOfficeType.value = device.officeLicense.type || "";
+      if (formOfficeDeactivationDate) formOfficeDeactivationDate.value = toIsoDate(device.officeLicense.deactivationDate);
+      if (formOfficeNotes) formOfficeNotes.value = device.officeLicense.notes || "";
+    } else {
+      if (formOfficeStatus) formOfficeStatus.value = "Activa";
+      if (formOfficeType) formOfficeType.value = "Microsoft 365 Business Standard";
+      if (formOfficeDeactivationDate) formOfficeDeactivationDate.value = "";
+      if (formOfficeNotes) formOfficeNotes.value = "";
+    }
+  } else {
+    modalTitle.textContent = "Registrar Nuevo Equipo";
+    formDeviceId.value = "";
+    formType.value = "Laptop";
+    formGpuType.value = "Integrada";
+    if (formMfgDate) formMfgDate.value = "";
+    if (formAssignedUser) formAssignedUser.value = "";
+    if (formTonerWarningDate) formTonerWarningDate.value = "";
+    if (formTonerReplacedDate) formTonerReplacedDate.value = "";
+    if (formDrumWarningDate) formDrumWarningDate.value = "";
+    if (formDrumReplacedDate) formDrumReplacedDate.value = "";
+    if (formOfficeStatus) formOfficeStatus.value = "Activa";
+    if (formOfficeType) formOfficeType.value = "Microsoft 365 Business Standard";
+    if (formOfficeDeactivationDate) formOfficeDeactivationDate.value = "";
+    if (formOfficeNotes) formOfficeNotes.value = "";
+  }
+  updateFormSectionsVisibility(device ? device.type : formType.value);
+  deviceModal.classList.add("active");
+  formBrand.focus();
+}
+
+/**
+ * Mostrar/ocultar secciones específicas del formulario según el tipo de equipo
+ */
+function updateFormSectionsVisibility(type) {
+  if (type === "Impresora") {
+    if (suppliesSection) suppliesSection.style.display = "block";
+    if (hardwareSection) hardwareSection.style.display = "none";
+    if (credentialsSection) credentialsSection.style.display = "none";
+    if (officeSection) officeSection.style.display = "none";
+  } else {
+    if (suppliesSection) suppliesSection.style.display = "none";
+    if (hardwareSection) hardwareSection.style.display = "block";
+    if (credentialsSection) credentialsSection.style.display = "block";
+    if (officeSection) officeSection.style.display = "block";
+  }
+}
+
+/**
+ * Modal: Cerrar
+ */
+function closeDeviceModal() {
+  deviceModal.classList.remove("active");
+}
+
+/**
+ * Manejar submit del formulario (Creación y Edición completa en un solo lugar)
+ */
+function handleFormSubmit(e) {
+  e.preventDefault();
+
+  const id = formDeviceId.value;
+  const brand = formBrand.value.trim();
+  const type = formType.value;
+  const model = formModel.value.trim();
+  const serial = formSerial.value.trim();
+  const mfgDate = formMfgDate ? formMfgDate.value.trim() : "";
+  const assignedUser = formAssignedUser ? formAssignedUser.value.trim() : "";
+  const location = formLocation.value.trim();
+  const imageUrl = formImageUrl.value.trim();
+  const driverUrl = formDriverUrl.value.trim();
+  const notes = formNotes.value.trim();
+  const observaciones = formObservaciones.value.trim();
+  const windowsUser = formWindowsUser.value.trim();
+  const windowsPassword = formWindowsPass.value.trim();
+  const today = new Date().toISOString().split("T")[0];
+
+  if (!brand || !model || !driverUrl) {
+    showToast("Por favor completa los campos obligatorios (*)");
+    return;
+  }
+
+  // Construir objeto de hardware specs si se llenó algún campo
+  let specs = null;
+  const cpuModel = formCpuModel.value.trim();
+  const ramCap = formRamCapacity.value.trim();
+  const gpuModel = formGpuModel.value.trim();
+  const storage = formStorage.value.trim();
+
+  if (cpuModel || ramCap || gpuModel || storage) {
+    specs = {
+      cpu: {
+        model: cpuModel,
+        year: formCpuYear.value ? parseInt(formCpuYear.value, 10) : undefined,
+        cores: formCpuCores.value.trim(),
+        speed: formCpuSpeed.value.trim(),
+        details: formCpuDetails.value.trim()
+      },
+      ram: {
+        capacity: ramCap,
+        type: formRamType.value.trim(),
+        speed: formRamSpeed.value.trim(),
+        details: formRamDetails.value.trim()
+      },
+      gpu: {
+        model: gpuModel,
+        type: formGpuType.value,
+        details: formGpuDetails.value.trim()
+      },
+      storage: storage
+    };
+  }
+
+  // Construir objeto de consumibles de forma unificada si aplica
+  let supplies = null;
+  const tonerWarning = formTonerWarningDate ? formTonerWarningDate.value : "";
+  const tonerReplaced = formTonerReplacedDate ? formTonerReplacedDate.value : "";
+  const drumWarning = formDrumWarningDate ? formDrumWarningDate.value : "";
+  const drumReplaced = formDrumReplacedDate ? formDrumReplacedDate.value : "";
+
+  if (type === "Impresora" || tonerWarning || tonerReplaced || drumWarning || drumReplaced) {
+    const existingDev = id ? devices.find((d) => d.id === id) : null;
+    const prevSupplies = existingDev?.supplies || {};
+    supplies = {
+      toner: {
+        model: prevSupplies.toner?.model || "Brother TN-2340 / TN-2370",
+        lastWarningDate: tonerWarning,
+        lastReplacedDate: tonerReplaced
+      },
+      drum: {
+        model: prevSupplies.drum?.model || "Brother DR-2340",
+        lastWarningDate: drumWarning,
+        lastReplacedDate: drumReplaced
+      }
+    };
+  }
+
+  // Construir objeto de Licencia Office si aplica (no para impresora)
+  let officeLicense = null;
+  if (type !== "Impresora") {
+    const oStatus = formOfficeStatus ? formOfficeStatus.value : "Activa";
+    const oType = formOfficeType ? formOfficeType.value.trim() : "";
+    const oDeactDate = formOfficeDeactivationDate ? formOfficeDeactivationDate.value : "";
+    const oNotes = formOfficeNotes ? formOfficeNotes.value.trim() : "";
+
+    officeLicense = {
+      status: oStatus,
+      type: oType,
+      deactivationDate: oDeactDate,
+      notes: oNotes
+    };
+  }
+
+  if (id) {
+    // Editar existente
+    const index = devices.findIndex((d) => d.id === id);
+    if (index !== -1) {
+      devices[index] = {
+        ...devices[index],
+        brand,
+        type,
+        model,
+        serial,
+        mfgDate,
+        assignedUser,
+        location,
+        imageUrl,
+        driverUrl,
+        windowsUser,
+        windowsPassword,
+        notes,
+        observaciones,
+        specs: specs || devices[index].specs,
+        supplies: supplies !== null ? supplies : devices[index].supplies,
+        officeLicense: officeLicense !== null ? officeLicense : devices[index].officeLicense,
+        updatedAt: today
+      };
+      showToast(`Equipo "${brand} ${model}" actualizado correctamente`);
+    }
+  } else {
+    // Nuevo equipo
+    const newDevice = {
+      id: "dev-" + Date.now(),
+      brand,
+      type,
+      model,
+      serial,
+      mfgDate,
+      assignedUser,
+      location,
+      imageUrl,
+      driverUrl,
+      windowsUser,
+      windowsPassword,
+      notes,
+      observaciones,
+      specs: specs,
+      supplies: supplies,
+      officeLicense: officeLicense,
+      updatedAt: today
+    };
+    devices.unshift(newDevice);
+    showToast(`Nuevo equipo "${brand} ${model}" registrado con éxito`);
+  }
+
+  saveDevices();
+  closeDeviceModal();
+  render();
+  // Si la vista completa de este equipo está abierta, refrescarla de inmediato con los datos actualizados
+  if (id && currentDetailDeviceId === id) {
+    openDeviceDetailModal(id);
+  }
+}
+
+/**
+ * Abrir modal de edición para un ID específico
+ */
+window.handleEditDevice = function (id) {
+  const dev = devices.find((d) => d.id === id);
+  if (dev) {
+    openDeviceModal(dev);
+  }
+};
+
+/**
+ * Eliminar un equipo
+ */
+window.handleDeleteDevice = function (id) {
+  const dev = devices.find((d) => d.id === id);
+  if (!dev) return;
+
+  if (confirm(`¿Estás seguro de eliminar "${dev.brand} ${dev.model}" del inventario?`)) {
+    devices = devices.filter((d) => d.id !== id);
+    saveDevices();
+    render();
+    showToast("Equipo eliminado");
+  }
+};
+
+/**
+ * Asistente para autogenerar URL de soporte de drivers
+ */
+function handleSuggestDriver() {
+  const brand = formBrand.value.trim();
+  const model = formModel.value.trim();
+
+  if (!brand && !model) {
+    showToast("Escribe primero la Marca y Modelo para sugerir el enlace");
+    formBrand.focus();
+    return;
+  }
+
+  const query = encodeURIComponent(`${brand} ${model} drivers support oficial`);
+  const searchUrl = `https://www.google.com/search?q=${query}`;
+  
+  let directLink = "";
+  const brandLower = brand.toLowerCase();
+
+  if (brandLower.includes("brother")) {
+    directLink = `https://support.brother.com/g/b/productsearch.aspx?c=es&lang=es&content=dl&q=${encodeURIComponent(model)}`;
+  } else if (brandLower.includes("lenovo")) {
+    directLink = `https://pcsupport.lenovo.com/search?query=${encodeURIComponent(model)}`;
+  } else if (brandLower.includes("dell")) {
+    directLink = `https://www.dell.com/support/home/es-es/product-support/product/${encodeURIComponent(model.replace(/\s+/g, '-').toLowerCase())}/drivers`;
+  } else if (brandLower.includes("hp")) {
+    directLink = `https://support.hp.com/search?q=${encodeURIComponent(model)}`;
+  } else if (brandLower.includes("epson")) {
+    directLink = `https://epson.com.do/search?text=${encodeURIComponent(model)}`;
+  } else {
+    directLink = `https://www.google.com/search?q=${query}`;
+  }
+
+  formDriverUrl.value = directLink;
+  window.open(searchUrl, "_blank");
+  showToast("Búsqueda de drivers abierta en nueva pestaña");
+}
+
+/**
+ * Generar el contenido completo en Markdown para contexto.md
+ */
+function generateMarkdownContent() {
+  const dateStr = new Date().toISOString().split("T")[0];
+  let md = `# Contexto del Proyecto: HomeInfra - Inventario de Equipos Personales\n\n`;
+  md += `## 📌 Descripción General\n`;
+  md += `Este archivo documenta el registro y contexto de los equipos tecnológicos personales de **HomeInfra**, incluyendo especificaciones clave (marca, modelo, tipo de equipo), número de serie o activo, responsable o ubicación física, imágenes de referencia de los equipos, especificaciones técnicas de hardware (**CPU**, **RAM**, **GPU**), **credenciales de acceso de Windows (Usuario y Contraseña)**, **observaciones técnicas e historial**, y enlaces directos para la descarga de controladores (drivers) oficiales.\n\n`;
+  md += `La base de datos principal estructurada reside en el archivo [\`equipos.json\`](file:///c:/Users/Administrador/Desktop/Code/HomeInfra/equipos.json) y se administra interactivamente a través de la aplicación web local \`HomeInfra\` (\`index.html\`, \`style.css\`, \`app.js\`).\n\n`;
+  md += `*Última actualización sincronizada:* \`${dateStr}\` | *Total de equipos:* **${devices.length}**\n\n`;
+  md += `---\n\n`;
+
+  md += `## 💻 Resumen de Equipos Registrados\n\n`;
+  md += `| # | Tipo | Marca | Modelo | Fabricación / Lanzamiento | CPU | RAM | GPU | Usuario Windows | Serie / Activo | Enlace a Drivers / Soporte |\n`;
+  md += `|---|------|-------|--------|---------------------------|-----|-----|-----|-----------------|----------------|----------------------------|\n`;
+
+  devices.forEach((dev, idx) => {
+    const serial = dev.serial ? dev.serial : "N/A";
+    const mfgStr = dev.mfgDate ? dev.mfgDate : "N/A";
+    const driverText = `Soporte Oficial ${dev.brand} ${dev.model}`;
+    const userStr = dev.windowsUser ? `\`${dev.windowsUser}\`` : 'N/A';
+    const cpuStr = dev.specs?.cpu?.model 
+      ? `${dev.specs.cpu.model}${dev.specs.cpu.year ? ` [${dev.specs.cpu.year}]` : ''}` 
+      : 'N/A';
+    const ramStr = dev.specs?.ram?.capacity 
+      ? `${dev.specs.ram.capacity} ${dev.specs.ram.type || ''}`.trim() 
+      : 'N/A';
+    const gpuStr = dev.specs?.gpu?.model 
+      ? `${dev.specs.gpu.model} (${dev.specs.gpu.type || 'Integrada'})` 
+      : 'N/A';
+
+    md += `| ${idx + 1} | ${dev.type} | ${dev.brand} | ${dev.model} | ${mfgStr} | ${cpuStr} | ${ramStr} | ${gpuStr} | ${userStr} | ${serial} | [${driverText}](${dev.driverUrl}) |\n`;
+  });
+
+  md += `\n---\n\n`;
+  md += `## 📋 Fichas Técnicas Detalladas de Equipos\n\n`;
+
+  devices.forEach((dev, idx) => {
+    md += `### ${idx + 1}. ${dev.brand} ${dev.model}\n`;
+    if (dev.imageUrl) {
+      md += `![${dev.brand} ${dev.model}](${dev.imageUrl})\n\n`;
+    }
+    md += `- **Tipo:** ${dev.type}\n`;
+    md += `- **Marca:** ${dev.brand}\n`;
+    md += `- **Modelo:** ${dev.model}\n`;
+    md += `- **Número de Serie / Activo:** ${dev.serial || "No registrado"}\n`;
+    md += `- **Fecha de Fabricación / Lanzamiento:** ${dev.mfgDate || "No registrada"}\n`;
+    if (dev.assignedUser) {
+      md += `- **Usuario(s) Asignado(s):** ${dev.assignedUser}\n`;
+    }
+    md += `- **Asignación / Ubicación:** ${dev.location || "Oficina General"}\n`;
+
+    if (dev.windowsUser || dev.windowsPassword) {
+      md += `- **Credenciales Windows:**\n`;
+      if (dev.windowsUser) md += `  - *Usuario:* \`${dev.windowsUser}\`\n`;
+      if (dev.windowsPassword) md += `  - *Contraseña:* \`${dev.windowsPassword}\`\n`;
+    }
+
+    if (dev.specs) {
+      md += `- **Especificaciones de Hardware:**\n`;
+      if (dev.specs.cpu?.model) {
+        md += `  - **Procesador (CPU):** ${dev.specs.cpu.model}\n`;
+        if (dev.specs.cpu.cores) md += `    - *Núcleos e Hilos:* ${dev.specs.cpu.cores}\n`;
+        if (dev.specs.cpu.speed) md += `    - *Frecuencia:* ${dev.specs.cpu.speed}\n`;
+        if (dev.specs.cpu.year) md += `    - *Año de salida:* ${dev.specs.cpu.year}\n`;
+        if (dev.specs.cpu.details) md += `    - *Características:* ${dev.specs.cpu.details}\n`;
+      }
+      if (dev.specs.ram?.capacity) {
+        md += `  - **Memoria RAM:** ${dev.specs.ram.capacity} ${dev.specs.ram.type || ''}\n`;
+        if (dev.specs.ram.speed) md += `    - *Frecuencia:* ${dev.specs.ram.speed}\n`;
+        if (dev.specs.ram.details) md += `    - *Configuración:* ${dev.specs.ram.details}\n`;
+      }
+      if (dev.specs.gpu?.model) {
+        md += `  - **Tarjeta Gráfica (GPU):** ${dev.specs.gpu.model}\n`;
+        if (dev.specs.gpu.type) md += `    - *Tipo:* **${dev.specs.gpu.type}**\n`;
+        if (dev.specs.gpu.details) md += `    - *Características:* ${dev.specs.gpu.details}\n`;
+      }
+      if (dev.specs.storage) {
+        md += `  - **Almacenamiento:** ${dev.specs.storage}\n`;
+      }
+    }
+
+    md += `- **Enlace de Drivers:** [Soporte Oficial ${dev.brand} ${dev.model}](${dev.driverUrl})\n`;
+    if (dev.notes) {
+      md += `- **Notas:** ${dev.notes}\n`;
+    }
+    if (dev.supplies) {
+      md += `- **Control de Consumibles y Mantenimiento:**\n`;
+      if (dev.supplies.toner) {
+        md += `  - **Tóner (${dev.supplies.toner.model || 'TN-2340 / TN-2370'}):**\n`;
+        md += `    - *Último aviso de fin de tóner:* ${dev.supplies.toner.lastWarningDate || 'Sin registro'}\n`;
+        md += `    - *Último reemplazo de tóner:* ${dev.supplies.toner.lastReplacedDate || 'Sin registro'}\n`;
+      }
+      if (dev.supplies.drum) {
+        md += `  - **Tambor / Drum (${dev.supplies.drum.model || 'DR-2340'}):**\n`;
+        md += `    - *Último aviso de fin de tambor:* ${dev.supplies.drum.lastWarningDate || 'Sin registro'}\n`;
+        md += `    - *Último reemplazo de tambor:* ${dev.supplies.drum.lastReplacedDate || 'Sin registro'}\n`;
+      }
+    }
+    if (dev.observaciones) {
+      md += `- **Observaciones:** ${dev.observaciones}\n`;
+    }
+    if (dev.officeLicense) {
+      md += `- **Licencia Microsoft Office:**\n`;
+      md += `  - *Estado:* ${dev.officeLicense.status || 'No especificado'}\n`;
+      md += `  - *Tipo / Versión:* ${dev.officeLicense.type || 'No especificado'}\n`;
+      if (dev.officeLicense.deactivationDate) {
+        md += `  - *Fecha de Desactivación:* ${dev.officeLicense.deactivationDate}\n`;
+      }
+      if (dev.officeLicense.notes) {
+        md += `  - *Observaciones / Cuenta:* ${dev.officeLicense.notes}\n`;
+      }
+    }
+    md += `\n`;
+  });
+
+  md += `---\n\n`;
+  md += `## 🛠️ Guía de Uso del Inventario y Driver Hub\n`;
+  md += `1. **Base de Datos:** El archivo [\`equipos.json\`](file:///c:/Users/Administrador/Desktop/Code/HomeInfra/equipos.json) almacena los registros de los equipos, imágenes de referencia, especificaciones de hardware, credenciales y observaciones.\n`;
+  md += `2. **Abrir la Aplicación:** Abre \`index.html\` en cualquier navegador web.\n`;
+  md += `3. **Registro y Edición:** Pulsa en **"Registrar Equipo"** o en el botón de **Editar** (icono de lápiz) en cualquier tarjeta para modificar cualquier campo en cualquier momento.\n`;
+  md += `4. **Acceso Rápido a Drivers:** Desde la tarjeta de cada equipo, el botón **"Descargar Drivers & Soporte"** te llevará directamente a la página oficial de descargas del fabricante.\n`;
+  md += `5. **Sincronización:** Usa el botón **"Descargar contexto.md"**, **"Sincronizar contexto.md"** o **"Copiar Markdown"** en la barra superior para actualizar este archivo cada vez que ingreses o modifiques equipos.\n`;
+
+  return md;
+}
+
+/**
+ * Copiar contenido Markdown al portapapeles
+ */
+async function handleCopyMarkdown() {
+  const content = generateMarkdownContent();
+  try {
+    await navigator.clipboard.writeText(content);
+    showToast("¡Markdown copiado al portapapeles! Listo para pegar en contexto.md");
+  } catch (err) {
+    const textarea = document.createElement("textarea");
+    textarea.value = content;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textarea);
+    showToast("¡Markdown copiado al portapapeles!");
+  }
+}
+
+/**
+ * Descargar archivo contexto.md
+ */
+function handleExportMarkdown() {
+  const content = generateMarkdownContent();
+  const blob = new Blob([content], { type: "text/markdown;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "contexto.md";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast("Descargando contexto.md actualizado...");
+}
+
+/**
+ * Sincronización directa mediante File System Access API
+ */
+async function handleSyncWithFile() {
+  const content = generateMarkdownContent();
+
+  if ("showSaveFilePicker" in window) {
+    try {
+      const handle = await window.showSaveFilePicker({
+        suggestedName: "contexto.md",
+        types: [
+          {
+            description: "Archivo Markdown (*.md)",
+            accept: { "text/markdown": [".md"] }
+          }
+        ]
+      });
+      const writable = await handle.createWritable();
+      await writable.write(content);
+      await writable.close();
+      showToast("¡contexto.md sincronizado y guardado con éxito!");
+      return;
+    } catch (err) {
+      if (err.name !== "AbortError") {
+        console.warn("File System API error, usando fallback descarga:", err);
+      } else {
+        return;
+      }
+    }
+  }
+
+  handleExportMarkdown();
+}
+
+/**
+ * Exportar base de datos a archivo equipos.json
+ */
+function handleExportJson() {
+  const dataStr = JSON.stringify(devices, null, 2);
+  const blob = new Blob([dataStr], { type: "application/json;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "equipos.json";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast("Base de datos equipos.json descargada");
+}
+
+/**
+ * Modal Configuración: Abrir
+ */
+function openSettingsModal() {
+  if (settingsDevicesCount) {
+    settingsDevicesCount.textContent = `${devices.length} equipo${devices.length === 1 ? '' : 's'}`;
+  }
+  if (settingsStorageKey) {
+    settingsStorageKey.textContent = STORAGE_KEY;
+  }
+  if (settingsModal) {
+    settingsModal.classList.add("active");
+  }
+}
+
+/**
+ * Modal Configuración: Cerrar
+ */
+function closeSettingsModal() {
+  if (settingsModal) {
+    settingsModal.classList.remove("active");
+  }
+}
+
+/**
+ * Traer respaldo oficial del proyecto GitHub / equipos.json
+ */
+async function handleFetchRepoBackup() {
+  const currentCount = devices.length;
+  const msg = 
+`⚠️ SINCRONIZAR CON RESPALDO OFICIAL DE GITHUB
+
+Tienes actualmente ${currentCount} equipo(s) en uso en este navegador.
+Esta acción consultará el archivo 'equipos.json' del repositorio GitHub y cargará la configuración oficial del proyecto.
+
+¿Deseas sincronizar y aplicar el respaldo del proyecto ahora?`;
+
+  if (!confirm(msg)) {
+    return;
+  }
+
+  showToast("Consultando respaldo de GitHub...");
+  try {
+    const response = await fetch("equipos.json?t=" + Date.now());
+    if (response.ok) {
+      const json = await response.json();
+      if (Array.isArray(json) && json.length > 0) {
+        devices = json;
+        saveDevices();
+        render();
+        closeSettingsModal();
+        showToast(`¡Respaldo de GitHub cargado! (${json.length} equipos sincronizados)`);
+        return;
+      }
+    }
+    throw new Error("No se pudo obtener la lista de equipos del archivo.");
+  } catch (err) {
+    console.warn("Fallo de red al consultar equipos.json, cargando plantilla base:", err);
+    devices = [...DEFAULT_DEVICES];
+    saveDevices();
+    render();
+    closeSettingsModal();
+    showToast("Respaldo base oficial del proyecto cargado con éxito");
+  }
+}
+
+/**
+ * Restablecer catálogo a estado de fábrica (protegido con palabra clave)
+ */
+function handleFactoryReset() {
+  const count = devices.length;
+  const userInput = prompt(
+`🛡️ CONFIRMACIÓN DE RESTABLECIMIENTO DE FÁBRICA
+
+Actualmente tienes ${count} equipo(s) activos en tu sesión de trabajo.
+Para evitar pérdidas accidentales de datos mientras usas la aplicación, escribe exactamente la palabra:
+
+REINICIAR
+
+(Si presionas Cancelar, tus datos permanecerán intactos).`
+  );
+
+  if (userInput === "REINICIAR") {
+    devices = [...DEFAULT_DEVICES];
+    saveDevices();
+    render();
+    closeSettingsModal();
+    showToast("Catálogo restablecido a valores iniciales de fábrica");
+  } else if (userInput !== null) {
+    alert("Operación cancelada: No se ingresó la palabra clave requerida.");
+  }
+}
+
+/**
+ * Importar base de datos JSON con confirmación previa
+ */
+function handleImportJson(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function (event) {
+    try {
+      const imported = JSON.parse(event.target.result);
+      if (Array.isArray(imported)) {
+        if (!confirm(`El archivo contiene ${imported.length} equipos. ¿Deseas reemplazar tu catálogo actual con los datos del archivo importado?`)) {
+          importJsonInput.value = "";
+          return;
+        }
+        devices = imported;
+        saveDevices();
+        render();
+        closeSettingsModal();
+        showToast(`Se importaron ${imported.length} equipos con éxito`);
+      } else {
+        alert("El archivo no contiene un formato de lista válido de equipos.");
+      }
+    } catch (err) {
+      alert("Error al leer el archivo JSON: formato inválido.");
+    }
+    importJsonInput.value = "";
+  };
+  reader.readAsText(file);
+}
+
+/**
+ * Mostrar notificación Toast
+ */
+let toastTimeout;
+function showToast(message) {
+  toastMsg.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3500);
+}
+
+/**
+ * Sanitizar texto para inserción HTML segura
+ */
+function escapeHtml(str) {
+  if (!str) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+/**
+ * Formatear texto de observaciones permitiendo enlaces markdown [texto](url) seguros
+ */
+function formatObservaciones(text) {
+  if (!text) return "";
+  let escaped = escapeHtml(text);
+  escaped = escaped.replace(/\[([^\]]+)\]\(([^\)\s]+)\)/g, (match, label, url) => {
+    const cleanUrl = url.replace(/&amp;/g, "&");
+    const isLocal = !cleanUrl.startsWith("http");
+    const downloadAttr = isLocal ? " download" : "";
+    return `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer"${downloadAttr} class="obs-link">${label}</a>`;
+  });
+  return escaped;
+}
+
+/**
+ * Redirigir cualquier llamado de registro de consumibles al editor unificado
+ */
+window.openSuppliesLogModal = function (deviceId) {
+  handleEditDevice(deviceId);
+};
+
+window.closeSuppliesLogModal = function () {
+  // Sin acción, modal redundante retirado
+};
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener("DOMContentLoaded", init);
