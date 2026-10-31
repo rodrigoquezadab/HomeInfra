@@ -357,6 +357,8 @@ const DEFAULT_DEVICES = [
 const STORAGE_KEY = "homeinfra_devices_inventory_v3";
 // IDs de equipos.json ya incorporados al inventario local
 const REPO_SEEN_IDS_KEY = "homeinfra_repo_seen_ids";
+// Última versión recibida de equipos.json por equipo, para detectar ediciones locales
+const REPO_SNAPSHOT_KEY = "homeinfra_repo_snapshot";
 
 // Estado de la aplicación
 let devices = [];
@@ -575,8 +577,10 @@ async function loadDevices() {
 }
 
 /**
- * Agregar al inventario local los equipos nuevos de equipos.json.
- * Solo se agregan IDs que nunca se habían visto, para no revivir equipos eliminados.
+ * Sincronizar el inventario local con equipos.json:
+ * - Agrega los equipos nuevos (IDs nunca vistos, para no revivir equipos eliminados).
+ * - Actualiza los equipos que cambiaron en equipos.json, si no fueron editados en este navegador
+ *   desde la última sincronización (se compara con la última versión recibida de equipos.json).
  */
 async function mergeNewRepoDevices() {
   try {
@@ -586,14 +590,32 @@ async function mergeNewRepoDevices() {
     if (!Array.isArray(json)) return false;
 
     const seenIds = new Set(JSON.parse(localStorage.getItem(REPO_SEEN_IDS_KEY) || "[]"));
+    const snapshot = JSON.parse(localStorage.getItem(REPO_SNAPSHOT_KEY) || "{}");
     const localIds = new Set(devices.map((d) => d.id));
     const newDevices = json.filter((d) => !localIds.has(d.id) && !seenIds.has(d.id));
+    let changed = newDevices.length > 0;
+
+    json.forEach((repoDev) => {
+      const index = devices.findIndex((d) => d.id === repoDev.id);
+      if (index === -1) return;
+      const localStr = JSON.stringify(devices[index]);
+      const repoStr = JSON.stringify(repoDev);
+      if (localStr === repoStr) return;
+      const lastRepoStr = snapshot[repoDev.id];
+      // Sin versión previa registrada: se actualiza si la copia local no es más reciente
+      const notEditedLocally = lastRepoStr !== undefined
+        ? localStr === lastRepoStr
+        : (devices[index].updatedAt || "") <= (repoDev.updatedAt || "");
+      if (notEditedLocally) {
+        devices[index] = repoDev;
+        changed = true;
+      }
+    });
 
     markRepoIdsSeen(json);
 
-    if (newDevices.length === 0) return false;
-    devices.push(...newDevices);
-    return true;
+    if (newDevices.length > 0) devices.push(...newDevices);
+    return changed;
   } catch (_) {
     // Ignorar si fetch falla (ej. file:// protocol)
     return false;
@@ -601,13 +623,18 @@ async function mergeNewRepoDevices() {
 }
 
 /**
- * Registrar como vistos los IDs de equipos.json
+ * Registrar como vistos los IDs de equipos.json y guardar la versión recibida de cada equipo
  */
 function markRepoIdsSeen(list) {
   try {
     const seenIds = new Set(JSON.parse(localStorage.getItem(REPO_SEEN_IDS_KEY) || "[]"));
-    list.forEach((d) => seenIds.add(d.id));
+    const snapshot = JSON.parse(localStorage.getItem(REPO_SNAPSHOT_KEY) || "{}");
+    list.forEach((d) => {
+      seenIds.add(d.id);
+      snapshot[d.id] = JSON.stringify(d);
+    });
     localStorage.setItem(REPO_SEEN_IDS_KEY, JSON.stringify([...seenIds]));
+    localStorage.setItem(REPO_SNAPSHOT_KEY, JSON.stringify(snapshot));
   } catch (err) {
     console.error("Error al registrar equipos vistos:", err);
   }
