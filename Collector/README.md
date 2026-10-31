@@ -15,6 +15,12 @@ Producto aislado dentro de HomeInfra. Scripts que se ejecutan en Windows, Linux 
 
 ## Uso
 
+### Desde la app (con internet)
+
+En la app HomeInfra, pulsa **Collector** en la barra superior. Elige el sistema (Windows, Linux o macOS), indica la carpeta de destino si quieres guardar el registro en otro lugar (por ejemplo, un pendrive) y copia el comando. Pégalo en una terminal del equipo a registrar: el comando descarga el script desde GitHub y lo ejecuta, sin instalar nada.
+
+### Desde un pendrive (sin internet)
+
 1. Copia la carpeta `Collector` completa a un pendrive.
 2. En el equipo a registrar, abre la carpeta y ejecuta el lanzador según el sistema:
    - **Windows:** doble clic en `Ejecutar-Collector.bat`.
@@ -70,5 +76,5 @@ No recolecta contraseñas, claves de producto ni archivos personales.
 
 ## Integración
 
-- **En la app:** Configuración & Respaldos → **Importar registro del Collector**. Si ya existe un equipo con el mismo número de serie, la app ofrece actualizarlo; si no, crea un equipo nuevo. Las piezas reemplazables (RAM, almacenamiento, red, batería) quedan registradas por separado en el campo `components` del equipo, según la visión ITIL de `contexto.md`.
+- **En la app:** botón **Collector** (o Configuración & Respaldos) → **Importar registros del Collector**. Se pueden seleccionar varios archivos a la vez, por ejemplo todos los de un pendrive. Si ya existe un equipo con el mismo número de serie, la app ofrece actualizarlo; si no, crea un equipo nuevo. Las piezas reemplazables (RAM, almacenamiento, red, batería) quedan registradas por separado en el campo `components` del equipo, según la visión ITIL de `contexto.md`.
 - **Con Claude:** copia los archivos de `Registros/` a la carpeta `Collector/Registros` del proyecto y pide a Claude que integre esos equipos en `equipos.json`.

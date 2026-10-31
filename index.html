@@ -47,6 +47,14 @@
           <span>Configuración</span>
         </button>
 
+        <button id="btn-open-collector" class="btn btn-outline" title="Recolectar los datos de un equipo con el HomeInfra Collector">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span>Collector</span>
+        </button>
+
         <button id="btn-add-device" class="btn btn-primary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -679,12 +687,32 @@
         </div>
 
         <!-- Registros del HomeInfra Collector -->
-        <div class="settings-group-block">
+        <div class="settings-group-block" id="settings-collector-block">
           <div class="settings-block-header">
             <span class="settings-block-title">🔎 Registros del HomeInfra Collector</span>
           </div>
           <p class="settings-desc">
-            Importa un registro <code>.json</code> generado por el script de la carpeta <code>Collector</code>. Crea el equipo con sus componentes, o actualiza el equipo existente con el mismo número de serie.
+            <strong>1. Recolectar datos:</strong> en el equipo a registrar, abre una terminal, pega el comando de su sistema y presiona Enter. El script descarga desde GitHub, no instala nada y guarda un registro <code>.json</code> y un resumen <code>.txt</code>.
+          </p>
+          <div class="collector-os-tabs" role="tablist">
+            <button type="button" class="collector-os-tab" data-os="windows">Windows</button>
+            <button type="button" class="collector-os-tab" data-os="linux">Linux</button>
+            <button type="button" class="collector-os-tab" data-os="macos">macOS</button>
+          </div>
+          <p class="field-hint" id="collector-os-hint"></p>
+          <div class="form-group" style="margin: 0;">
+            <label for="collector-output-dir">Carpeta de destino del registro</label>
+            <input type="text" id="collector-output-dir" spellcheck="false">
+          </div>
+          <div class="collector-command-box">
+            <code id="collector-command"></code>
+            <button type="button" class="btn btn-secondary" id="btn-copy-collector-command">Copiar</button>
+          </div>
+          <p class="field-hint">
+            Para usarlo sin internet (por ejemplo, desde un pendrive), descarga la carpeta <a href="https://github.com/rodrigoquezadab/HomeInfra/tree/main/Collector" target="_blank" rel="noopener">Collector</a> y sigue su README.
+          </p>
+          <p class="settings-desc">
+            <strong>2. Importar:</strong> carga aquí los registros <code>.json</code> generados; puedes seleccionar varios a la vez, por ejemplo desde un pendrive. Cada registro crea el equipo con sus componentes, o actualiza el equipo existente con el mismo número de serie, y queda guardado en este navegador. Para llevar el inventario completo a otro computador, usa <em>Descargar equipos.json</em> y <em>Cargar desde archivo .json</em>.
           </p>
           <div class="settings-actions-row">
             <label for="import-collector-input" class="btn btn-outline cursor-pointer" style="margin: 0;">
@@ -693,9 +721,9 @@
                 <polyline points="17 8 12 3 7 8"></polyline>
                 <line x1="12" y1="3" x2="12" y2="15"></line>
               </svg>
-              <span>Importar registro del Collector</span>
+              <span>Importar registros del Collector</span>
             </label>
-            <input type="file" id="import-collector-input" accept=".json" style="display: none;">
+            <input type="file" id="import-collector-input" accept=".json" multiple style="display: none;">
           </div>
         </div>
 

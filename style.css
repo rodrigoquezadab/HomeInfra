@@ -2268,3 +2268,48 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   pointer-events: none;
 }
+
+/* HomeInfra Collector: comandos por sistema operativo */
+.collector-os-tabs {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.collector-os-tab {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-muted);
+  border-radius: 6px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.collector-os-tab.active {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.55);
+  color: var(--text-main);
+}
+
+.collector-command-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+}
+
+.collector-command-box code {
+  flex: 1;
+  min-width: 0;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.76rem;
+  color: #e2e8f0;
+  white-space: pre-wrap;
+  word-break: break-all;
+  user-select: all;
+}

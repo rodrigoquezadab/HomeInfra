@@ -318,6 +318,35 @@ const btnExportJsonQuick = document.getElementById("btn-export-json-quick");
 const btnExportJson = document.getElementById("btn-export-json");
 const importJsonInput = document.getElementById("import-json-input");
 const importCollectorInput = document.getElementById("import-collector-input");
+const btnOpenCollector = document.getElementById("btn-open-collector");
+const collectorCommand = document.getElementById("collector-command");
+const collectorOsHint = document.getElementById("collector-os-hint");
+const btnCopyCollectorCommand = document.getElementById("btn-copy-collector-command");
+const collectorOutputDir = document.getElementById("collector-output-dir");
+
+// Comandos de una línea para ejecutar el HomeInfra Collector desde GitHub
+const COLLECTOR_RAW_URL = "https://raw.githubusercontent.com/rodrigoquezadab/HomeInfra/main/Collector";
+const COLLECTOR_COMMANDS = {
+  windows: {
+    hint: "Abre PowerShell (clic derecho en Inicio → Terminal) y pega el comando. Para guardar en un pendrive, cambia la carpeta de destino por su letra (ej. E:\\HomeInfra-Registros).",
+    defaultDir: "$([Environment]::GetFolderPath('Desktop'))\\HomeInfra-Registros",
+    defaultLabel: "Escritorio\\HomeInfra-Registros",
+    command: (dir) => `$f="$env:TEMP\\HomeInfra-Collector.ps1"; irm ${COLLECTOR_RAW_URL}/HomeInfra-Collector.ps1 -OutFile $f; powershell -NoProfile -ExecutionPolicy Bypass -File $f -OutputDir "${dir}"`
+  },
+  linux: {
+    hint: "Abre una terminal y pega el comando; pedirá tu contraseña (sudo) para leer números de serie y módulos de RAM. Para guardar en un pendrive, usa su ruta (ej. /media/$USER/PENDRIVE/HomeInfra-Registros).",
+    defaultDir: "$HOME/HomeInfra-Registros",
+    defaultLabel: "~/HomeInfra-Registros",
+    command: (dir) => `(curl -fsSL ${COLLECTOR_RAW_URL}/homeinfra-collector.sh || wget -qO- ${COLLECTOR_RAW_URL}/homeinfra-collector.sh) > /tmp/homeinfra-collector.sh && sudo bash /tmp/homeinfra-collector.sh "${dir}" && (sudo chown -R "$USER" "${dir}" 2>/dev/null || true)`
+  },
+  macos: {
+    hint: "Abre Terminal (Aplicaciones → Utilidades) y pega el comando. Para guardar en un pendrive, usa su ruta (ej. /Volumes/PENDRIVE/HomeInfra-Registros).",
+    defaultDir: "$HOME/Desktop/HomeInfra-Registros",
+    defaultLabel: "Escritorio/HomeInfra-Registros",
+    command: (dir) => `curl -fsSL ${COLLECTOR_RAW_URL}/homeinfra-collector.sh -o /tmp/homeinfra-collector.sh && curl -fsSL ${COLLECTOR_RAW_URL}/homeinfra-collector-macos.js -o /tmp/homeinfra-collector-macos.js && bash /tmp/homeinfra-collector.sh "${dir}"`
+  }
+};
+let currentCollectorOs = "windows";
 const btnFetchRepoBackup = document.getElementById("btn-fetch-repo-backup");
 const btnFactoryReset = document.getElementById("btn-factory-reset");
 const toast = document.getElementById("toast");
@@ -535,6 +564,17 @@ function bindEvents() {
   if (btnExportJson) btnExportJson.addEventListener("click", handleExportJson);
   if (importJsonInput) importJsonInput.addEventListener("change", handleImportJson);
   if (importCollectorInput) importCollectorInput.addEventListener("change", handleImportCollector);
+  if (btnOpenCollector) btnOpenCollector.addEventListener("click", openCollectorSection);
+  document.querySelectorAll(".collector-os-tab").forEach((tab) => {
+    tab.addEventListener("click", () => selectCollectorOs(tab.dataset.os));
+  });
+  if (btnCopyCollectorCommand) {
+    btnCopyCollectorCommand.addEventListener("click", () => {
+      copyText(collectorCommand.textContent, "Comando del Collector copiado");
+    });
+  }
+  if (collectorOutputDir) collectorOutputDir.addEventListener("input", updateCollectorCommand);
+  selectCollectorOs(detectCollectorOs());
   if (btnFetchRepoBackup) btnFetchRepoBackup.addEventListener("click", handleFetchRepoBackup);
   if (btnFactoryReset) btnFactoryReset.addEventListener("click", handleFactoryReset);
 
@@ -2495,6 +2535,52 @@ function handleImportJson(e) {
 }
 
 /**
+ * Detectar el sistema operativo del navegador para preseleccionar el comando
+ */
+function detectCollectorOs() {
+  const platform = (navigator.userAgentData?.platform || navigator.platform || navigator.userAgent || "").toLowerCase();
+  if (platform.includes("mac")) return "macos";
+  if (platform.includes("linux") || platform.includes("x11")) return "linux";
+  return "windows";
+}
+
+/**
+ * Mostrar el comando del Collector para el sistema elegido
+ */
+function selectCollectorOs(os) {
+  const entry = COLLECTOR_COMMANDS[os];
+  if (!entry || !collectorCommand) return;
+  currentCollectorOs = os;
+  if (collectorOutputDir) {
+    collectorOutputDir.value = "";
+    collectorOutputDir.placeholder = `Por defecto: ${entry.defaultLabel}`;
+  }
+  if (collectorOsHint) collectorOsHint.textContent = entry.hint;
+  document.querySelectorAll(".collector-os-tab").forEach((tab) => {
+    tab.classList.toggle("active", tab.dataset.os === os);
+  });
+  updateCollectorCommand();
+}
+
+/**
+ * Armar el comando con la carpeta de destino elegida
+ */
+function updateCollectorCommand() {
+  const entry = COLLECTOR_COMMANDS[currentCollectorOs];
+  const dir = (collectorOutputDir?.value || "").trim().replace(/"/g, "") || entry.defaultDir;
+  collectorCommand.textContent = entry.command(dir);
+}
+
+/**
+ * Abrir Configuración directamente en la sección del Collector
+ */
+function openCollectorSection() {
+  openSettingsModal();
+  const block = document.getElementById("settings-collector-block");
+  if (block) block.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+/**
  * Convertir un registro del HomeInfra Collector en datos de equipo
  */
 function collectorReportToDevice(report) {
@@ -2587,70 +2673,79 @@ function collectorReportToDevice(report) {
 }
 
 /**
- * Importar un registro del HomeInfra Collector
+ * Importar uno o varios registros del HomeInfra Collector
  */
-function handleImportCollector(e) {
-  const file = e.target.files[0];
-  if (!file) return;
+async function handleImportCollector(e) {
+  const files = Array.from(e.target.files || []);
+  if (files.length === 0) return;
 
-  const reader = new FileReader();
-  reader.onload = function (event) {
+  const today = new Date().toISOString().split("T")[0];
+  let created = 0;
+  let updated = 0;
+  const skipped = [];
+
+  for (const file of files) {
+    let report;
     try {
-      const report = JSON.parse(event.target.result);
-      if (report.schema !== "homeinfra-collector") {
-        alert("El archivo no es un registro del HomeInfra Collector.");
-        importCollectorInput.value = "";
-        return;
-      }
-
-      const data = collectorReportToDevice(report);
-      const today = new Date().toISOString().split("T")[0];
-      const existing = data.serial
-        ? devices.find((d) => (d.serial || "").toLowerCase() === data.serial.toLowerCase())
-        : null;
-
-      if (existing) {
-        if (!confirm(`Ya existe "${existing.brand} ${existing.model}" con el número de serie ${data.serial}.\n\n¿Deseas actualizar sus especificaciones y componentes con este registro?`)) {
-          importCollectorInput.value = "";
-          return;
-        }
-        existing.specs = data.specs;
-        existing.components = data.components;
-        existing.observaciones = [existing.observaciones, data.observaciones].filter(Boolean).join("\n\n");
-        existing.updatedAt = today;
-        showToast(`Equipo "${existing.brand} ${existing.model}" actualizado desde el Collector`);
-      } else {
-        devices.push({
-          id: "dev-" + Date.now(),
-          brand: data.brand,
-          type: data.type,
-          model: data.model,
-          serial: data.serial,
-          mfgDate: "",
-          assignedUser: "",
-          location: "Hogar",
-          imageUrl: "",
-          driverUrl: `https://www.google.com/search?q=${encodeURIComponent(`${data.brand} ${data.model} drivers support oficial`)}`,
-          windowsUser: "",
-          windowsPassword: "",
-          notes: "",
-          observaciones: data.observaciones,
-          specs: data.specs,
-          components: data.components,
-          updatedAt: today
-        });
-        showToast(`Equipo "${data.brand} ${data.model}" importado desde el Collector`);
-      }
-
-      saveDevices();
-      render();
-      closeSettingsModal();
+      report = JSON.parse(await file.text());
     } catch (err) {
-      alert("Error al leer el registro: formato JSON inválido.");
+      skipped.push(`${file.name} (JSON inválido)`);
+      continue;
     }
-    importCollectorInput.value = "";
-  };
-  reader.readAsText(file);
+    if (report.schema !== "homeinfra-collector") {
+      skipped.push(`${file.name} (no es un registro del Collector)`);
+      continue;
+    }
+
+    const data = collectorReportToDevice(report);
+    const existing = data.serial
+      ? devices.find((d) => (d.serial || "").toLowerCase() === data.serial.toLowerCase())
+      : null;
+
+    if (existing) {
+      if (!confirm(`Ya existe "${existing.brand} ${existing.model}" con el número de serie ${data.serial}.\n\n¿Deseas actualizar sus especificaciones y componentes con el registro ${file.name}?`)) {
+        skipped.push(`${file.name} (no actualizado)`);
+        continue;
+      }
+      existing.specs = data.specs;
+      existing.components = data.components;
+      existing.observaciones = [existing.observaciones, data.observaciones].filter(Boolean).join("\n\n");
+      existing.updatedAt = today;
+      updated++;
+    } else {
+      devices.push({
+        id: "dev-" + Date.now() + "-" + created,
+        brand: data.brand,
+        type: data.type,
+        model: data.model,
+        serial: data.serial,
+        mfgDate: "",
+        assignedUser: "",
+        location: "Hogar",
+        imageUrl: "",
+        driverUrl: `https://www.google.com/search?q=${encodeURIComponent(`${data.brand} ${data.model} drivers support oficial`)}`,
+        windowsUser: "",
+        windowsPassword: "",
+        notes: "",
+        observaciones: data.observaciones,
+        specs: data.specs,
+        components: data.components,
+        updatedAt: today
+      });
+      created++;
+    }
+  }
+
+  importCollectorInput.value = "";
+  if (created || updated) {
+    saveDevices();
+    render();
+    closeSettingsModal();
+    showToast(`Collector: ${created} equipo(s) nuevo(s), ${updated} actualizado(s)`);
+  }
+  if (skipped.length) {
+    alert(`No se importaron estos archivos:\n\n• ${skipped.join("\n• ")}`);
+  }
 }
 
 /**
