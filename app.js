@@ -220,6 +220,7 @@ const btnOpenSettingsLink = document.getElementById("btn-open-settings-link");
 const btnExportJsonQuick = document.getElementById("btn-export-json-quick");
 const btnExportJson = document.getElementById("btn-export-json");
 const importJsonInput = document.getElementById("import-json-input");
+const importCollectorInput = document.getElementById("import-collector-input");
 const btnFetchRepoBackup = document.getElementById("btn-fetch-repo-backup");
 const btnFactoryReset = document.getElementById("btn-factory-reset");
 const toast = document.getElementById("toast");
@@ -436,6 +437,7 @@ function bindEvents() {
   if (btnExportJsonQuick) btnExportJsonQuick.addEventListener("click", handleExportJson);
   if (btnExportJson) btnExportJson.addEventListener("click", handleExportJson);
   if (importJsonInput) importJsonInput.addEventListener("change", handleImportJson);
+  if (importCollectorInput) importCollectorInput.addEventListener("change", handleImportCollector);
   if (btnFetchRepoBackup) btnFetchRepoBackup.addEventListener("click", handleFetchRepoBackup);
   if (btnFactoryReset) btnFactoryReset.addEventListener("click", handleFactoryReset);
 
@@ -2391,6 +2393,165 @@ function handleImportJson(e) {
       alert("Error al leer el archivo JSON: formato inválido.");
     }
     importJsonInput.value = "";
+  };
+  reader.readAsText(file);
+}
+
+/**
+ * Convertir un registro del HomeInfra Collector en datos de equipo
+ */
+function collectorReportToDevice(report) {
+  const sys = report.system || {};
+  const cpu = (report.cpu || [])[0] || {};
+  const mem = report.memory || {};
+  const modules = mem.modules || [];
+  const gpus = report.gpu || [];
+  // Excluir el pendrive desde el que se ejecutó el script
+  const disks = (report.storage || []).filter((d) => !/usb/i.test(d.busType || ""));
+  const join = (...parts) => parts.filter(Boolean).join(" ");
+
+  const dedicatedGpu = gpus.find((g) => /nvidia|geforce|quadro|radeon\s+(rx|pro)/i.test(g.name || ""));
+  const mainGpu = dedicatedGpu || gpus[0] || {};
+  const ramType = modules.find((m) => m.type)?.type || "";
+  const ramSpeed = modules.find((m) => m.speedMTs)?.speedMTs;
+
+  const specs = {
+    cpu: {
+      model: cpu.name || "",
+      year: undefined,
+      cores: cpu.cores ? `${cpu.cores} núcleos / ${cpu.logicalProcessors} hilos` : "",
+      speed: cpu.maxClockMHz ? `${(cpu.maxClockMHz / 1000).toFixed(1)} GHz` : "",
+      details: ""
+    },
+    ram: {
+      capacity: `${mem.installedGB || mem.totalGB || 0} GB`,
+      type: ramType,
+      speed: ramSpeed ? `${ramSpeed} MT/s` : "",
+      details: `${mem.slotsUsed || modules.length} de ${mem.slotsTotal || "?"} ranuras usadas`
+    },
+    gpu: {
+      model: mainGpu.name || "",
+      type: dedicatedGpu ? "Dedicada" : "Integrada",
+      details: gpus.length > 1 ? gpus.map((g) => g.name).join(" + ") : ""
+    },
+    storage: disks.map((d) => join(d.mediaType, d.busType, `${Math.round(d.sizeGB)} GB`)).join(" + ")
+  };
+
+  // Piezas gestionadas por separado (visión ITIL en contexto.md)
+  const components = [];
+  if (cpu.name) components.push({ category: "CPU", model: cpu.name, serial: "", capacity: "", details: specs.cpu.cores, replaceable: false });
+  modules.forEach((m) => components.push({
+    category: "RAM",
+    model: join(m.manufacturer, m.partNumber),
+    serial: m.serial || "",
+    capacity: `${m.capacityGB} GB`,
+    details: join(m.type, m.formFactor, m.speedMTs ? `${m.speedMTs} MT/s` : "", m.slot ? `[${m.slot}]` : ""),
+    replaceable: m.formFactor === "SO-DIMM" || m.formFactor === "DIMM"
+  }));
+  disks.forEach((d) => components.push({
+    category: "Almacenamiento",
+    model: d.model || "",
+    serial: d.serial || "",
+    capacity: `${Math.round(d.sizeGB)} GB`,
+    details: join(d.mediaType, d.busType),
+    replaceable: true
+  }));
+  gpus.forEach((g) => components.push({ category: "GPU", model: g.name || "", serial: "", capacity: "", details: g.vendor || "", replaceable: false }));
+  (report.network || []).forEach((n) => components.push({ category: "Red", model: n.name || "", serial: "", capacity: "", details: `MAC ${n.mac}`, replaceable: /wi-?fi|wireless|wlan/i.test(n.name || "") }));
+  (report.battery || []).forEach((b) => components.push({
+    category: "Batería",
+    model: join(b.manufacturer, b.name),
+    serial: b.serial || "",
+    capacity: b.designedCapacityMWh ? `${b.designedCapacityMWh} mWh` : "",
+    details: b.healthPercent != null ? `Salud ${b.healthPercent}%` : "",
+    replaceable: true
+  }));
+  if (report.motherboard?.product) {
+    const mb = report.motherboard;
+    components.push({ category: "Placa base", model: join(mb.manufacturer, mb.product), serial: mb.serial || "", capacity: "", details: mb.version || "", replaceable: false });
+  }
+
+  const lines = [`Registro HomeInfra Collector (${(report.collectedAt || "").replace("T", " ")}):`];
+  if (sys.sku) lines.push(`• SKU: ${sys.sku}`);
+  if (sys.bios?.version) lines.push(`• BIOS: ${join(sys.bios.vendor, sys.bios.version)}${sys.bios.releaseDate ? ` (${sys.bios.releaseDate})` : ""}`);
+  components.forEach((c) => {
+    lines.push(`• ${c.category}: ${join(c.model, c.capacity, c.details ? `(${c.details})` : "")}${c.serial ? ` · S/N ${c.serial}` : ""}`);
+  });
+
+  return {
+    brand: sys.brand || sys.manufacturer || "",
+    model: sys.model || "",
+    type: sys.type === "Laptop" ? "Laptop" : "Desktop",
+    serial: sys.serial || "",
+    specs,
+    components,
+    observaciones: lines.join("\n")
+  };
+}
+
+/**
+ * Importar un registro del HomeInfra Collector
+ */
+function handleImportCollector(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function (event) {
+    try {
+      const report = JSON.parse(event.target.result);
+      if (report.schema !== "homeinfra-collector") {
+        alert("El archivo no es un registro del HomeInfra Collector.");
+        importCollectorInput.value = "";
+        return;
+      }
+
+      const data = collectorReportToDevice(report);
+      const today = new Date().toISOString().split("T")[0];
+      const existing = data.serial
+        ? devices.find((d) => (d.serial || "").toLowerCase() === data.serial.toLowerCase())
+        : null;
+
+      if (existing) {
+        if (!confirm(`Ya existe "${existing.brand} ${existing.model}" con el número de serie ${data.serial}.\n\n¿Deseas actualizar sus especificaciones y componentes con este registro?`)) {
+          importCollectorInput.value = "";
+          return;
+        }
+        existing.specs = data.specs;
+        existing.components = data.components;
+        existing.observaciones = [existing.observaciones, data.observaciones].filter(Boolean).join("\n\n");
+        existing.updatedAt = today;
+        showToast(`Equipo "${existing.brand} ${existing.model}" actualizado desde el Collector`);
+      } else {
+        devices.push({
+          id: "dev-" + Date.now(),
+          brand: data.brand,
+          type: data.type,
+          model: data.model,
+          serial: data.serial,
+          mfgDate: "",
+          assignedUser: "",
+          location: "Hogar",
+          imageUrl: "",
+          driverUrl: `https://www.google.com/search?q=${encodeURIComponent(`${data.brand} ${data.model} drivers support oficial`)}`,
+          windowsUser: "",
+          windowsPassword: "",
+          notes: "",
+          observaciones: data.observaciones,
+          specs: data.specs,
+          components: data.components,
+          updatedAt: today
+        });
+        showToast(`Equipo "${data.brand} ${data.model}" importado desde el Collector`);
+      }
+
+      saveDevices();
+      render();
+      closeSettingsModal();
+    } catch (err) {
+      alert("Error al leer el registro: formato JSON inválido.");
+    }
+    importCollectorInput.value = "";
   };
   reader.readAsText(file);
 }

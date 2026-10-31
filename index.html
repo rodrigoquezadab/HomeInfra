@@ -678,6 +678,27 @@
           </div>
         </div>
 
+        <!-- Registros del HomeInfra Collector -->
+        <div class="settings-group-block">
+          <div class="settings-block-header">
+            <span class="settings-block-title">🔎 Registros del HomeInfra Collector</span>
+          </div>
+          <p class="settings-desc">
+            Importa un registro <code>.json</code> generado por el script de la carpeta <code>Collector</code>. Crea el equipo con sus componentes, o actualiza el equipo existente con el mismo número de serie.
+          </p>
+          <div class="settings-actions-row">
+            <label for="import-collector-input" class="btn btn-outline cursor-pointer" style="margin: 0;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+              <span>Importar registro del Collector</span>
+            </label>
+            <input type="file" id="import-collector-input" accept=".json" style="display: none;">
+          </div>
+        </div>
+
         <!-- Respaldo del Proyecto GitHub -->
         <div class="settings-group-block">
           <div class="settings-block-header">
