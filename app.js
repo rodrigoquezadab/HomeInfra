@@ -121,6 +121,8 @@ const DEFAULT_DEVICES = [
 
 // Clave de almacenamiento HomeInfra v3
 const STORAGE_KEY = "homeinfra_devices_inventory_v3";
+// IDs de equipos.json ya incorporados al inventario local
+const REPO_SEEN_IDS_KEY = "homeinfra_repo_seen_ids";
 
 // Estado de la aplicación
 let devices = [];
@@ -271,6 +273,8 @@ async function loadDevices() {
         }
       });
 
+      if (await mergeNewRepoDevices()) updated = true;
+
       if (updated) saveDevices();
       return;
     }
@@ -281,6 +285,7 @@ async function loadDevices() {
         const json = await response.json();
         if (Array.isArray(json) && json.length > 0) {
           devices = json;
+          markRepoIdsSeen(json);
           saveDevices();
           return;
         }
@@ -294,6 +299,45 @@ async function loadDevices() {
   } catch (err) {
     console.error("Error al cargar inventario:", err);
     devices = [...DEFAULT_DEVICES];
+  }
+}
+
+/**
+ * Agregar al inventario local los equipos nuevos de equipos.json.
+ * Solo se agregan IDs que nunca se habían visto, para no revivir equipos eliminados.
+ */
+async function mergeNewRepoDevices() {
+  try {
+    const response = await fetch("equipos.json?t=" + Date.now());
+    if (!response.ok) return false;
+    const json = await response.json();
+    if (!Array.isArray(json)) return false;
+
+    const seenIds = new Set(JSON.parse(localStorage.getItem(REPO_SEEN_IDS_KEY) || "[]"));
+    const localIds = new Set(devices.map((d) => d.id));
+    const newDevices = json.filter((d) => !localIds.has(d.id) && !seenIds.has(d.id));
+
+    markRepoIdsSeen(json);
+
+    if (newDevices.length === 0) return false;
+    devices.push(...newDevices);
+    return true;
+  } catch (_) {
+    // Ignorar si fetch falla (ej. file:// protocol)
+    return false;
+  }
+}
+
+/**
+ * Registrar como vistos los IDs de equipos.json
+ */
+function markRepoIdsSeen(list) {
+  try {
+    const seenIds = new Set(JSON.parse(localStorage.getItem(REPO_SEEN_IDS_KEY) || "[]"));
+    list.forEach((d) => seenIds.add(d.id));
+    localStorage.setItem(REPO_SEEN_IDS_KEY, JSON.stringify([...seenIds]));
+  } catch (err) {
+    console.error("Error al registrar equipos vistos:", err);
   }
 }
 
@@ -2273,6 +2317,7 @@ Esta acción consultará el archivo 'equipos.json' del repositorio GitHub y carg
       const json = await response.json();
       if (Array.isArray(json) && json.length > 0) {
         devices = json;
+        markRepoIdsSeen(json);
         saveDevices();
         render();
         closeSettingsModal();
