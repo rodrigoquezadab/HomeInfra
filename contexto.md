@@ -16,6 +16,39 @@ La base de datos principal estructurada reside en el archivo [`equipos.json`](eq
 
 ---
 
+## 🧩 Visión: Gestión de Infraestructura basada en ITIL (Planificado)
+
+> **Estado:** Definición de alcance. Aún no implementado en la aplicación.
+
+HomeInfra evolucionará de un inventario de equipos a un sistema de gestión de infraestructura alineado con las prácticas de **ITIL** (Gestión de Activos y de la Configuración). Además de equipos completos, registrará **partes de computadores** (RAM, HDD/SSD, fuentes, tarjetas), **equipos de red** (routers, switches, puntos de acceso), **módulos** y otros elementos de infraestructura.
+
+### Elementos de Configuración (CI)
+- Cada elemento registrado (equipo, pieza, módulo o equipo de red) es un **Elemento de Configuración (CI)** con identidad propia: tipo, marca, modelo, número de serie, estado y fotos.
+- Los CI forman una **base de datos de configuración (CMDB)** que refleja qué existe y cómo se relaciona.
+
+### Equipos compuestos y piezas
+- Un equipo que contiene piezas (por ejemplo, un notebook) es un **CI padre**, y sus piezas son **CI hijos** relacionados con él.
+- Se distinguen dos clases de piezas:
+  - **Componentes integrados:** no reemplazables, forman parte fija del equipo (por ejemplo, CPU soldada, GPU integrada o RAM soldada a la placa). Se registran como parte del equipo.
+  - **Piezas reemplazables:** se gestionan por separado (por ejemplo, módulos de RAM SO-DIMM, HDD/SSD, tarjeta Wi-Fi, batería). Pueden instalarse, retirarse o moverse entre equipos.
+- Una pieza reemplazable conserva su identidad aunque cambie de equipo o quede guardada sin instalar.
+
+### Ciclo de vida de las piezas
+- Estados previstos: **En stock**, **Instalada**, **En reparación**, **Retirada** y **Dada de baja**.
+- Cada pieza registra en qué equipo está instalada actualmente, si corresponde.
+
+### Gestión de Cambios
+- Cada intervención sobre un equipo (por ejemplo, cambiar el HDD por un SSD o ampliar la RAM) se registra como un **cambio**: fecha, motivo, pieza retirada, pieza instalada y observaciones.
+- El historial de cambios permite saber la configuración actual y pasada de cada equipo.
+
+### Ejemplo
+**MSI Modern 14 B5M-011CL** (CI padre):
+- Integrados: CPU AMD Ryzen 5 5500U, GPU AMD Radeon Graphics.
+- Reemplazables (gestionados por separado): unidad de almacenamiento, tarjeta Wi-Fi Intel AX200 y módulos de RAM, si no van soldados a la placa.
+- Si se reemplaza la unidad de almacenamiento, la unidad anterior pasa a **En stock** o **Dada de baja**, la nueva queda **Instalada** en el notebook y el cambio queda registrado en su historial.
+
+---
+
 ## 💻 Resumen de Equipos Registrados
 
 | # | Tipo | Marca | Modelo | Fabricación / Lanzamiento | CPU | RAM | GPU | Usuario Asignado | Serie / Activo | Instalador / Driver Principal |
