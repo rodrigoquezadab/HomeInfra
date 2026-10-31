@@ -41,5 +41,75 @@
     },
     "updatedAt": "2026-10-25",
     "mfgDate": "2015"
+  },
+  {
+    "id": "dev-msi-modern14-b5m",
+    "brand": "MSI",
+    "model": "Modern 14 B5M-011CL",
+    "type": "Laptop",
+    "serial": "K2106N0089559",
+    "assignedUser": "",
+    "location": "Hogar",
+    "imageUrl": "img/msi_modern14_etiqueta_2023.jpg",
+    "driverUrl": "https://www.msi.com/Business-Productivity/Modern-14-B5SX/support",
+    "windowsUser": "",
+    "windowsPassword": "",
+    "notes": "Notebook MSI Modern 14 (Model No. MS-14DL). Wi-Fi Intel Wi-Fi 6 AX200 (AX200NGW). Alimentación DC 19V ⎓ 3.42A.",
+    "observaciones": "Datos de la etiqueta inferior:\n• SKU: Modern 14 B5M-011CL-GGAR555U8GXXDX10S\n• S/N: K2106N0089559\n• MFG: 2021/06\n• CHK: 264\n• Model No.: MS-14DL\n• DC Rating: 19V ⎓ 3.42A\n• Wi-Fi: Intel Wi-Fi 6 AX200 (Model AX200NGW)\n\nCPU, RAM y GPU deducidos del SKU (R555U = AMD Ryzen 5 5500U, 8G = 8 GB RAM); pendiente confirmar en el equipo. Almacenamiento no registrado.\n\nLa etiqueta del número de serie está desgastada (ver fotos 2026); la foto de 2023 conserva la lectura completa.",
+    "specs": {
+      "cpu": {
+        "model": "AMD Ryzen 5 5500U",
+        "year": 2021,
+        "cores": "6 núcleos / 12 hilos",
+        "speed": "2.1 - 4.0 GHz",
+        "details": "Deducido del SKU (GGAR555U)"
+      },
+      "ram": {
+        "capacity": "8 GB",
+        "type": "",
+        "speed": "",
+        "details": "Deducido del SKU (U8G)"
+      },
+      "gpu": {
+        "model": "AMD Radeon Graphics",
+        "type": "Integrada",
+        "details": "Integrada en el Ryzen 5 5500U"
+      },
+      "storage": ""
+    },
+    "images": [
+      {
+        "id": "img-msi-etiqueta-2023",
+        "name": "Etiqueta SKU / S/N (2023)",
+        "url": "img/msi_modern14_etiqueta_2023.jpg"
+      },
+      {
+        "id": "img-msi-etiqueta-2026",
+        "name": "Etiqueta SKU / S/N (2026, desgastada)",
+        "url": "img/msi_modern14_etiqueta_2026.jpg"
+      },
+      {
+        "id": "img-msi-fabricacion",
+        "name": "MFG 2021/06 · CHK 264",
+        "url": "img/msi_modern14_fabricacion.jpg"
+      },
+      {
+        "id": "img-msi-modelo",
+        "name": "Model No. MS-14DL",
+        "url": "img/msi_modern14_modelo_ms14dl.jpg"
+      },
+      {
+        "id": "img-msi-alimentacion",
+        "name": "DC Rating 19V 3.42A",
+        "url": "img/msi_modern14_alimentacion.jpg"
+      },
+      {
+        "id": "img-msi-wifi",
+        "name": "Wi-Fi Intel AX200",
+        "url": "img/msi_modern14_wifi_ax200.jpg"
+      }
+    ],
+    "mfgDate": "2021-06",
+    "updatedAt": "2026-10-31"
   }
 ]
