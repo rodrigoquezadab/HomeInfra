@@ -9,6 +9,13 @@
 
 COLLECTOR_VERSION="1.0.0"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# ==========================================================================
+#  CARPETA DE DESTINO DE LOS REGISTROS
+#  Se indica como primer argumento al ejecutar el script:
+#    bash homeinfra-collector.sh /media/$USER/PENDRIVE/HomeInfra-Registros
+#  Sin argumento se guardan en la carpeta Registros, junto a este script.
+# ==========================================================================
 OUTPUT_DIR="${1:-$SCRIPT_DIR/Registros}"
 
 # Carpeta de salida; si es de solo lectura (ej. CD), usar /tmp

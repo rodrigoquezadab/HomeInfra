@@ -692,18 +692,27 @@
             <span class="settings-block-title">🔎 Registros del HomeInfra Collector</span>
           </div>
           <p class="settings-desc">
-            <strong>1. Recolectar datos:</strong> en el equipo a registrar, abre una terminal, pega el comando de su sistema y presiona Enter. El script descarga desde GitHub, no instala nada y guarda un registro <code>.json</code> y un resumen <code>.txt</code>.
+            <strong>1. Recolectar datos:</strong> el comando descarga el script desde GitHub, no instala nada y guarda un registro <code>.json</code> y un resumen <code>.txt</code> en la carpeta que elijas.
           </p>
+
+          <p class="collector-step"><span class="collector-step-num">A</span> Elige el sistema del equipo a registrar</p>
           <div class="collector-os-tabs" role="tablist">
             <button type="button" class="collector-os-tab" data-os="windows">Windows</button>
             <button type="button" class="collector-os-tab" data-os="linux">Linux</button>
             <button type="button" class="collector-os-tab" data-os="macos">macOS</button>
           </div>
-          <p class="field-hint" id="collector-os-hint"></p>
-          <div class="form-group" style="margin: 0;">
-            <label for="collector-output-dir">Carpeta de destino del registro</label>
+
+          <p class="collector-step"><span class="collector-step-num">B</span> Elige dónde se guardarán los datos</p>
+          <div class="collector-dest-box">
+            <label for="collector-output-dir">📁 Carpeta de destino</label>
             <input type="text" id="collector-output-dir" spellcheck="false">
+            <p class="field-hint" style="margin: 0;">
+              Si la dejas vacía, se guarda en <strong id="collector-default-label"></strong>. Para guardar en un pendrive, escribe su ruta, por ejemplo <code id="collector-pendrive-example"></code>. La carpeta aparece <span class="collector-path">resaltada en amarillo</span> dentro del comando.
+            </p>
           </div>
+
+          <p class="collector-step"><span class="collector-step-num">C</span> Copia el comando y ejecútalo</p>
+          <p class="field-hint" id="collector-os-hint" style="margin: 0;"></p>
           <div class="collector-command-box">
             <code id="collector-command"></code>
             <button type="button" class="btn btn-secondary" id="btn-copy-collector-command">Copiar</button>

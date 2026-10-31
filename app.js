@@ -328,21 +328,24 @@ const collectorOutputDir = document.getElementById("collector-output-dir");
 const COLLECTOR_RAW_URL = "https://raw.githubusercontent.com/rodrigoquezadab/HomeInfra/main/Collector";
 const COLLECTOR_COMMANDS = {
   windows: {
-    hint: "Abre PowerShell (clic derecho en Inicio → Terminal) y pega el comando. Para guardar en un pendrive, cambia la carpeta de destino por su letra (ej. E:\\HomeInfra-Registros).",
+    hint: "En el equipo a registrar, abre PowerShell (clic derecho en Inicio → Terminal), pega el comando y presiona Enter.",
     defaultDir: "$([Environment]::GetFolderPath('Desktop'))\\HomeInfra-Registros",
     defaultLabel: "Escritorio\\HomeInfra-Registros",
+    pendriveExample: "E:\\HomeInfra-Registros (cambia E: por la letra del pendrive)",
     command: (dir) => `$f="$env:TEMP\\HomeInfra-Collector.ps1"; irm ${COLLECTOR_RAW_URL}/HomeInfra-Collector.ps1 -OutFile $f; powershell -NoProfile -ExecutionPolicy Bypass -File $f -OutputDir "${dir}"`
   },
   linux: {
-    hint: "Abre una terminal y pega el comando; pedirá tu contraseña (sudo) para leer números de serie y módulos de RAM. Para guardar en un pendrive, usa su ruta (ej. /media/$USER/PENDRIVE/HomeInfra-Registros).",
+    hint: "En el equipo a registrar, abre una terminal, pega el comando y presiona Enter. Pedirá tu contraseña (sudo) para leer números de serie y módulos de RAM.",
     defaultDir: "$HOME/HomeInfra-Registros",
-    defaultLabel: "~/HomeInfra-Registros",
+    defaultLabel: "~/HomeInfra-Registros (tu carpeta personal)",
+    pendriveExample: "/media/$USER/PENDRIVE/HomeInfra-Registros (cambia PENDRIVE por el nombre del pendrive)",
     command: (dir) => `(curl -fsSL ${COLLECTOR_RAW_URL}/homeinfra-collector.sh || wget -qO- ${COLLECTOR_RAW_URL}/homeinfra-collector.sh) > /tmp/homeinfra-collector.sh && sudo bash /tmp/homeinfra-collector.sh "${dir}" && (sudo chown -R "$USER" "${dir}" 2>/dev/null || true)`
   },
   macos: {
-    hint: "Abre Terminal (Aplicaciones → Utilidades) y pega el comando. Para guardar en un pendrive, usa su ruta (ej. /Volumes/PENDRIVE/HomeInfra-Registros).",
+    hint: "En el equipo a registrar, abre Terminal (Aplicaciones → Utilidades), pega el comando y presiona Enter.",
     defaultDir: "$HOME/Desktop/HomeInfra-Registros",
     defaultLabel: "Escritorio/HomeInfra-Registros",
+    pendriveExample: "/Volumes/PENDRIVE/HomeInfra-Registros (cambia PENDRIVE por el nombre del pendrive)",
     command: (dir) => `curl -fsSL ${COLLECTOR_RAW_URL}/homeinfra-collector.sh -o /tmp/homeinfra-collector.sh && curl -fsSL ${COLLECTOR_RAW_URL}/homeinfra-collector-macos.js -o /tmp/homeinfra-collector-macos.js && bash /tmp/homeinfra-collector.sh "${dir}"`
   }
 };
@@ -2584,6 +2587,10 @@ function selectCollectorOs(os) {
     collectorOutputDir.placeholder = `Por defecto: ${entry.defaultLabel}`;
   }
   if (collectorOsHint) collectorOsHint.textContent = entry.hint;
+  const pendriveExample = document.getElementById("collector-pendrive-example");
+  if (pendriveExample) pendriveExample.textContent = entry.pendriveExample;
+  const defaultLabel = document.getElementById("collector-default-label");
+  if (defaultLabel) defaultLabel.textContent = entry.defaultLabel;
   document.querySelectorAll(".collector-os-tab").forEach((tab) => {
     tab.classList.toggle("active", tab.dataset.os === os);
   });
@@ -2596,7 +2603,11 @@ function selectCollectorOs(os) {
 function updateCollectorCommand() {
   const entry = COLLECTOR_COMMANDS[currentCollectorOs];
   const dir = (collectorOutputDir?.value || "").trim().replace(/"/g, "") || entry.defaultDir;
-  collectorCommand.textContent = entry.command(dir);
+  // Resaltar la carpeta de destino dentro del comando (el texto copiado no cambia)
+  const marker = "\u0000DIR\u0000";
+  collectorCommand.innerHTML = escapeHtml(entry.command(marker))
+    .split(marker)
+    .join(`<span class="collector-path">${escapeHtml(dir)}</span>`);
 }
 
 /**

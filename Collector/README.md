@@ -17,7 +17,11 @@ Producto aislado dentro de HomeInfra. Scripts que se ejecutan en Windows, Linux 
 
 ### Desde la app (con internet)
 
-En la app HomeInfra, pulsa **Collector** en la barra superior. Elige el sistema (Windows, Linux o macOS), indica la carpeta de destino si quieres guardar el registro en otro lugar (por ejemplo, un pendrive) y copia el comando. Pégalo en una terminal del equipo a registrar: el comando descarga el script desde GitHub y lo ejecuta, sin instalar nada.
+En la app HomeInfra, pulsa **Collector** en la barra superior y sigue los tres pasos:
+
+- **A.** Elige el sistema del equipo a registrar (Windows, Linux o macOS).
+- **B.** Escribe la **carpeta de destino** en el recuadro amarillo (ver [Cambiar la carpeta de destino](#-cambiar-la-carpeta-de-destino)).
+- **C.** Copia el comando, pégalo en una terminal del equipo a registrar y presiona Enter. Descarga el script desde GitHub y lo ejecuta, sin instalar nada.
 
 ### Desde un pendrive (sin internet)
 
@@ -30,17 +34,52 @@ En la app HomeInfra, pulsa **Collector** en la barra superior. Elige el sistema 
    - `<Marca>_<Modelo>_<Serie>_<fecha>.json`: registro completo para importar.
    - `<Marca>_<Modelo>_<Serie>_<fecha>.txt`: resumen legible.
 
-Si la carpeta es de solo lectura (por ejemplo, un CD), los registros se guardan en `%TEMP%\HomeInfra-Registros` (Windows) o `/tmp/HomeInfra-Registros` (Linux y macOS). También se puede indicar otra carpeta:
+No necesita conexión a internet y no modifica el equipo.
+
+## 📁 Cambiar la carpeta de destino
+
+Por defecto los registros se guardan así:
+
+| Forma de uso | Carpeta por defecto |
+|--------------|---------------------|
+| Comando desde la app, Windows | `Escritorio\HomeInfra-Registros` |
+| Comando desde la app, Linux | `~/HomeInfra-Registros` (carpeta personal) |
+| Comando desde la app, macOS | `Escritorio/HomeInfra-Registros` |
+| Lanzadores del pendrive | `Registros/`, junto a los scripts |
+
+Si la carpeta no se puede escribir (por ejemplo, un CD), se usa `%TEMP%\HomeInfra-Registros` (Windows) o `/tmp/HomeInfra-Registros` (Linux y macOS).
+
+Para guardarlos en otro lugar:
+
+**Desde la app:** escribe la ruta en el recuadro amarillo **📁 Carpeta de destino** (paso B). El comando se actualiza solo y la carpeta aparece resaltada en amarillo dentro de él. Ejemplos de pendrive:
+
+- Windows: `E:\HomeInfra-Registros` (cambia `E:` por la letra del pendrive)
+- Linux: `/media/$USER/PENDRIVE/HomeInfra-Registros` (cambia `PENDRIVE` por el nombre del pendrive)
+- macOS: `/Volumes/PENDRIVE/HomeInfra-Registros`
+
+**Windows, desde el pendrive:** abre `Ejecutar-Collector.bat` con el Bloc de notas y escribe la ruta en la línea marcada **CARPETA DE DESTINO**:
 
 ```bat
-Ejecutar-Collector.bat -OutputDir D:\Registros
+set "DESTINO=E:\HomeInfra-Registros"
 ```
+
+**macOS, desde el pendrive:** abre `Ejecutar-Collector.command` con un editor de texto y escribe la ruta en la línea marcada **CARPETA DE DESTINO**:
 
 ```bash
-bash homeinfra-collector.sh /media/usb/Registros
+DESTINO="/Volumes/PENDRIVE/HomeInfra-Registros"
 ```
 
-No necesita conexión a internet y no modifica el equipo.
+**Linux (o cualquier sistema desde la terminal):** indica la ruta al final del comando:
+
+```bash
+sudo bash homeinfra-collector.sh /media/$USER/PENDRIVE/HomeInfra-Registros
+```
+
+```powershell
+powershell -ExecutionPolicy Bypass -File HomeInfra-Collector.ps1 -OutputDir "E:\HomeInfra-Registros"
+```
+
+Si la carpeta no existe, el script la crea.
 
 ### Linux
 

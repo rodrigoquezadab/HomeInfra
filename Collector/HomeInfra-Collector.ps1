@@ -10,6 +10,13 @@
 .PARAMETER OutputDir
   Carpeta de salida. Por defecto: <carpeta del script>\Registros
 #>
+# ==========================================================================
+#  CARPETA DE DESTINO DE LOS REGISTROS
+#  Se indica con -OutputDir al ejecutar el script, o en la variable DESTINO
+#  de Ejecutar-Collector.bat. Ejemplo:
+#    powershell -ExecutionPolicy Bypass -File HomeInfra-Collector.ps1 -OutputDir "E:\HomeInfra-Registros"
+#  Sin -OutputDir se guardan en la carpeta Registros, junto a este script.
+# ==========================================================================
 param(
   [string]$OutputDir = ""
 )
