@@ -139,6 +139,12 @@
       </div>
     </section>
 
+    <!-- Selector de vista: equipos completos o componentes por separado -->
+    <div class="view-switcher" role="tablist" aria-label="Vista del inventario">
+      <button type="button" class="view-tab active" data-view="devices" role="tab">💻 Equipos completos</button>
+      <button type="button" class="view-tab" data-view="components" role="tab">🧩 Componentes</button>
+    </div>
+
     <!-- Filter & Search Toolbar -->
     <section class="toolbar-section">
       <div class="search-box">
@@ -150,7 +156,14 @@
         <button id="clear-search" class="clear-btn" title="Limpiar búsqueda" style="display: none;">&times;</button>
       </div>
 
-      <div class="filter-group">
+      <div class="filter-group components-only" style="display: none;">
+        <label for="component-category-filter" class="filter-label">Categoría:</label>
+        <select id="component-category-filter" class="select-input">
+          <option value="ALL">Todas las categorías</option>
+        </select>
+      </div>
+
+      <div class="filter-group devices-only">
         <label for="type-filter" class="filter-label">Tipo:</label>
         <select id="type-filter" class="select-input">
           <option value="ALL">Todos los tipos</option>
@@ -163,14 +176,14 @@
         </select>
       </div>
 
-      <div class="filter-group">
+      <div class="filter-group devices-only">
         <label for="brand-filter" class="filter-label">Marca:</label>
         <select id="brand-filter" class="select-input">
           <option value="ALL">Todas las marcas</option>
         </select>
       </div>
 
-      <div class="filter-group">
+      <div class="filter-group devices-only">
         <label for="sort-select" class="filter-label">Ordenar por:</label>
         <select id="sort-select" class="select-input">
           <option value="category">📂 Categoría / Tipo</option>
@@ -205,6 +218,13 @@
     <!-- Cards Grid -->
     <div class="devices-grid" id="devices-grid">
       <!-- Equipment cards will be inserted here dynamically -->
+    </div>
+
+    <!-- Vista de componentes por separado -->
+    <div class="devices-grid" id="components-grid" style="display: none;"></div>
+    <div class="empty-state" id="components-empty-state" style="display: none;">
+      <h3>No se encontraron componentes</h3>
+      <p>Los componentes se registran al importar un registro del HomeInfra Collector o al agregarlos a un equipo.</p>
     </div>
 
     <!-- Empty State Message -->

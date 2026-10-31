@@ -338,10 +338,15 @@ let currentFilterType = "ALL";
 let currentFilterBrand = "ALL";
 let currentSort = localStorage.getItem("homeinfra_devices_sort") || "category";
 let searchQuery = "";
+let currentView = localStorage.getItem("homeinfra_view") === "components" ? "components" : "devices";
+let currentComponentCategory = "ALL";
 const revealedPasswords = {};
 
 // Elementos del DOM
 const devicesGrid = document.getElementById("devices-grid");
+const componentsGrid = document.getElementById("components-grid");
+const componentsEmptyState = document.getElementById("components-empty-state");
+const componentCategoryFilter = document.getElementById("component-category-filter");
 const emptyState = document.getElementById("empty-state");
 const resultsCount = document.getElementById("results-count");
 const searchInput = document.getElementById("search-input");
@@ -611,6 +616,21 @@ function bindEvents() {
     searchInput.focus();
     render();
   });
+
+  // Vista: equipos completos o componentes por separado
+  document.querySelectorAll(".view-tab").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      currentView = tab.dataset.view;
+      localStorage.setItem("homeinfra_view", currentView);
+      render();
+    });
+  });
+  if (componentCategoryFilter) {
+    componentCategoryFilter.addEventListener("change", (e) => {
+      currentComponentCategory = e.target.value;
+      render();
+    });
+  }
 
   // Filtros
   typeFilter.addEventListener("change", (e) => {
@@ -929,7 +949,142 @@ function getFilteredDevices() {
 function render() {
   updateStats();
   updateBrandFilterOptions();
+  updateComponentCategoryOptions();
+  applyViewVisibility();
   renderGrid();
+}
+
+/**
+ * Mostrar los controles y la grilla de la vista activa
+ */
+function applyViewVisibility() {
+  const isComponents = currentView === "components";
+  document.querySelectorAll(".view-tab").forEach((tab) => {
+    tab.classList.toggle("active", tab.dataset.view === currentView);
+  });
+  document.querySelectorAll(".devices-only").forEach((el) => { el.style.display = isComponents ? "none" : ""; });
+  document.querySelectorAll(".components-only").forEach((el) => { el.style.display = isComponents ? "" : "none"; });
+  searchInput.placeholder = isComponents
+    ? "Buscar componente por modelo, serie, categoría o equipo..."
+    : "Buscar por marca, modelo, serie o asignado...";
+  if (isComponents) {
+    devicesGrid.style.display = "none";
+    emptyState.style.display = "none";
+  } else {
+    componentsGrid.style.display = "none";
+    componentsEmptyState.style.display = "none";
+  }
+}
+
+/**
+ * Lista plana de componentes de todos los equipos, con su equipo de origen
+ */
+function getAllComponents() {
+  const list = [];
+  devices.forEach((dev) => {
+    (dev.components || []).forEach((comp) => list.push({ ...comp, parent: dev }));
+  });
+  return list;
+}
+
+/**
+ * Actualizar dropdown de categorías de componentes
+ */
+function updateComponentCategoryOptions() {
+  if (!componentCategoryFilter) return;
+  const categories = Array.from(new Set(getAllComponents().map((c) => c.category).filter(Boolean))).sort();
+  componentCategoryFilter.innerHTML = '<option value="ALL">Todas las categorías</option>';
+  categories.forEach((cat) => {
+    const opt = document.createElement("option");
+    opt.value = cat;
+    opt.textContent = cat;
+    componentCategoryFilter.appendChild(opt);
+  });
+  if (!categories.includes(currentComponentCategory)) currentComponentCategory = "ALL";
+  componentCategoryFilter.value = currentComponentCategory;
+}
+
+/**
+ * Componentes relacionados por deviceId: cargador de un laptop, o laptop de un cargador
+ */
+function getLinkedRows(dev) {
+  const rows = [];
+  (dev.components || []).filter((c) => c.category === "Cargador").forEach((c) => {
+    rows.push({
+      icon: "🔌",
+      label: "Cargador",
+      text: [c.model, c.capacity, c.details].filter(Boolean).join(" · "),
+      targetId: devices.some((d) => d.id === c.deviceId) ? c.deviceId : null
+    });
+  });
+  devices.forEach((owner) => {
+    (owner.components || []).forEach((c) => {
+      if (c.deviceId === dev.id) {
+        rows.push({ icon: "💻", label: `${c.category} de`, text: `${owner.brand} ${owner.model}`, targetId: owner.id });
+      }
+    });
+  });
+  return rows;
+}
+
+/**
+ * Renderizar la vista de componentes por separado
+ */
+function renderComponentsGrid() {
+  const all = getAllComponents();
+  const filtered = all.filter((c) => {
+    if (currentComponentCategory !== "ALL" && c.category !== currentComponentCategory) return false;
+    if (searchQuery) {
+      const target = `${c.category} ${c.model} ${c.serial || ""} ${c.capacity || ""} ${c.details || ""} ${c.parent.brand} ${c.parent.model}`.toLowerCase();
+      if (!target.includes(searchQuery)) return false;
+    }
+    return true;
+  });
+
+  resultsCount.textContent = `Mostrando ${filtered.length} de ${all.length} componente${all.length === 1 ? "" : "s"}`;
+  componentsGrid.innerHTML = "";
+
+  if (filtered.length === 0) {
+    componentsGrid.style.display = "none";
+    componentsEmptyState.style.display = "block";
+    return;
+  }
+  componentsGrid.style.display = "grid";
+  componentsEmptyState.style.display = "none";
+
+  filtered.forEach((c) => {
+    const card = document.createElement("div");
+    card.className = "device-card device-card-compact component-card";
+    card.style.setProperty("--card-accent-color", c.replaceable ? "#fbbf24" : "#94a3b8");
+    card.title = `Instalado en ${c.parent.brand} ${c.parent.model}`;
+    card.addEventListener("click", () => openDeviceDetailModal(c.parent.id));
+
+    const linked = c.deviceId && devices.some((d) => d.id === c.deviceId)
+      ? `<button type="button" class="card-linked-row" onclick="event.stopPropagation(); openDeviceDetailModal('${escapeHtml(c.deviceId)}')">📄 Ver ficha del ${escapeHtml(c.category.toLowerCase())} ➔</button>`
+      : "";
+
+    card.innerHTML = `
+      <div class="card-main-body">
+        <div class="card-headings">
+          <div class="card-type-row">
+            <span class="device-badge badge-other">${escapeHtml(c.category)}</span>
+            <span class="spec-pill ${c.replaceable ? "pill-replaceable" : "pill-integrated"}">${c.replaceable ? "Reemplazable" : "Integrado"}</span>
+          </div>
+          <h3 class="card-model-title" title="${escapeHtml(c.model)}">${escapeHtml(c.model || "Sin modelo")}</h3>
+        </div>
+      </div>
+      <div class="card-specs-summary">
+        ${c.capacity ? `<span class="compact-spec-pill">${escapeHtml(c.capacity)}</span>` : ""}
+        ${c.details ? `<span class="compact-spec-pill">${escapeHtml(c.details)}</span>` : ""}
+      </div>
+      ${linked}
+      <div class="card-compact-footer">
+        <span class="card-serial-text" title="Número de serie">${c.serial ? `S/N ${escapeHtml(c.serial)}` : "Sin S/N"}</span>
+        <span class="btn-card-detail-hint" title="Equipo donde está instalado">${escapeHtml(c.parent.brand)} ${escapeHtml(c.parent.model)} ➔</span>
+      </div>
+    `;
+    componentsGrid.appendChild(card);
+  });
 }
 
 /**
@@ -1588,6 +1743,10 @@ function buildCompactSpecsHtml(dev) {
  * Renderizar tarjetas de equipos en formato compacto (ahorro de espacio)
  */
 function renderGrid() {
+  if (currentView === "components") {
+    renderComponentsGrid();
+    return;
+  }
   const filtered = getFilteredDevices();
   devicesGrid.innerHTML = "";
 
@@ -1648,6 +1807,13 @@ function renderGrid() {
     }
 
     const compactSpecsHtml = buildCompactSpecsHtml(dev);
+    // Cargador del laptop, o equipo al que pertenece un cargador
+    const linkedRowsHtml = getLinkedRows(dev).map((row) => {
+      const content = `<span class="linked-icon">${row.icon}</span><span><strong>${escapeHtml(row.label)}:</strong> ${escapeHtml(row.text)}</span>`;
+      return row.targetId
+        ? `<button type="button" class="card-linked-row" title="Abrir ficha" onclick="event.stopPropagation(); openDeviceDetailModal('${escapeHtml(row.targetId)}')">${content}<span class="linked-arrow">➔</span></button>`
+        : `<div class="card-linked-row">${content}</div>`;
+    }).join("");
     const usersList = getDeviceUsers(dev);
     let usersBadgesHtml = "";
 
@@ -1726,6 +1892,8 @@ function renderGrid() {
       <div class="card-specs-summary">
         ${compactSpecsHtml}
       </div>
+
+      ${linkedRowsHtml}
 
       <!-- Pie de tarjeta: Serie & Prompt de Clic -->
       <div class="card-compact-footer">
