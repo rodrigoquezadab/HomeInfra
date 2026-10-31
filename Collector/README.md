@@ -1,30 +1,52 @@
 # HomeInfra Collector
 
-Producto aislado dentro de HomeInfra. Script que se ejecuta en Windows (incluido un pendrive o live USB con WinPE) y recolecta los datos del equipo y de sus componentes, para importarlos en la app HomeInfra o usarlos con Claude.
+Producto aislado dentro de HomeInfra. Scripts que se ejecutan en Windows, Linux y macOS (incluido un pendrive o live USB) y recolectan los datos del equipo y de sus componentes, para importarlos en la app HomeInfra o usarlos con Claude. Los tres sistemas generan el mismo formato de registro.
 
 ## Contenido
 
-| Archivo | Uso |
-|---------|-----|
-| `Ejecutar-Collector.bat` | Lanzador para doble clic. Ejecuta el script sin cambiar la política de ejecución del sistema. |
-| `HomeInfra-Collector.ps1` | Script de recolección (PowerShell 5.1 o superior). |
-| `Registros/` | Carpeta donde se guardan los registros generados. |
+| Archivo | Sistema | Uso |
+|---------|---------|-----|
+| `Ejecutar-Collector.bat` | Windows | Lanzador para doble clic. Ejecuta el script sin cambiar la política de ejecución del sistema. |
+| `HomeInfra-Collector.ps1` | Windows | Script de recolección (PowerShell 5.1 o superior). |
+| `homeinfra-collector.sh` | Linux y macOS | Script de recolección (bash). En macOS llama a `homeinfra-collector-macos.js`. |
+| `homeinfra-collector-macos.js` | macOS | Recolección con JavaScript for Automation (incluido en macOS). |
+| `Ejecutar-Collector.command` | macOS | Lanzador para doble clic. |
+| `Registros/` | Todos | Carpeta donde se guardan los registros generados. |
 
 ## Uso
 
 1. Copia la carpeta `Collector` completa a un pendrive.
-2. En el equipo a registrar, abre la carpeta y haz doble clic en `Ejecutar-Collector.bat`.
+2. En el equipo a registrar, abre la carpeta y ejecuta el lanzador según el sistema:
+   - **Windows:** doble clic en `Ejecutar-Collector.bat`.
+   - **Linux:** abre una terminal en la carpeta y ejecuta `sudo bash homeinfra-collector.sh`. Sin `sudo` también funciona, pero no lee algunos números de serie (equipo, placa base) ni el detalle de los módulos de RAM, que requiere `dmidecode`.
+   - **macOS:** doble clic en `Ejecutar-Collector.command`, o en una terminal `bash homeinfra-collector.sh`. No necesita `sudo`.
 3. El script muestra un resumen en pantalla y guarda dos archivos en `Registros/`:
    - `<Marca>_<Modelo>_<Serie>_<fecha>.json`: registro completo para importar.
    - `<Marca>_<Modelo>_<Serie>_<fecha>.txt`: resumen legible.
 
-Si la carpeta es de solo lectura (por ejemplo, un CD), los registros se guardan en `%TEMP%\HomeInfra-Registros`. También se puede indicar otra carpeta:
+Si la carpeta es de solo lectura (por ejemplo, un CD), los registros se guardan en `%TEMP%\HomeInfra-Registros` (Windows) o `/tmp/HomeInfra-Registros` (Linux y macOS). También se puede indicar otra carpeta:
 
 ```bat
 Ejecutar-Collector.bat -OutputDir D:\Registros
 ```
 
-No necesita permisos de administrador ni conexión a internet, y no modifica el equipo.
+```bash
+bash homeinfra-collector.sh /media/usb/Registros
+```
+
+No necesita conexión a internet y no modifica el equipo.
+
+### Linux
+
+- Usa solo herramientas presentes en casi cualquier distribución (bash, coreutils, `/sys` y `/proc`). Si están disponibles, aprovecha `dmidecode` (módulos de RAM), `lspci` (GPU) y `udevadm` (números de serie de discos).
+- Funciona desde un live USB (por ejemplo, Ubuntu o SystemRescue).
+- En pendrives con formato FAT32 o exFAT los archivos no conservan el permiso de ejecución; por eso se ejecuta con `bash homeinfra-collector.sh` en vez de `./homeinfra-collector.sh`.
+
+### macOS
+
+- Usa `system_profiler` y JavaScript for Automation, incluidos en macOS; no requiere instalar nada.
+- En Mac con Apple Silicon la RAM está integrada en el chip y se registra como un único componente soldado.
+- Si macOS bloquea el `.command` por seguridad, ejecútalo con clic derecho → Abrir, o usa `bash homeinfra-collector.sh` en la terminal.
 
 ### Live USB / WinPE
 
@@ -41,6 +63,8 @@ En un entorno WinPE, el script requiere que la imagen incluya PowerShell y WMI (
 - **Red:** adaptadores físicos y su dirección MAC.
 - **Batería:** modelo, fabricante, número de serie, capacidad de diseño y actual, porcentaje de salud.
 - **Monitores:** fabricante, modelo, número de serie, año.
+
+Los datos que no se pueden leer en un sistema quedan vacíos en el registro (por ejemplo, los números de serie de RAM en macOS, o la versión de driver de GPU en Linux). El campo `environment.platform` indica si el registro viene de `linux` o `macos`.
 
 No recolecta contraseñas, claves de producto ni archivos personales.
 

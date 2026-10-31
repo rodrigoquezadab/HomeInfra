@@ -2427,7 +2427,7 @@ function collectorReportToDevice(report) {
       capacity: `${mem.installedGB || mem.totalGB || 0} GB`,
       type: ramType,
       speed: ramSpeed ? `${ramSpeed} MT/s` : "",
-      details: `${mem.slotsUsed || modules.length} de ${mem.slotsTotal || "?"} ranuras usadas`
+      details: modules.length ? `${mem.slotsUsed || modules.length} de ${mem.slotsTotal || "?"} ranuras usadas` : "Sin detalle de módulos"
     },
     gpu: {
       model: mainGpu.name || "",
