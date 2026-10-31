@@ -66,7 +66,7 @@ HomeInfra evolucionará de un inventario de equipos a un sistema de gestión de 
 ## 📋 Fichas Técnicas Detalladas de Equipos
 
 ### 1. Brother DCP-1602
-![Brother DCP-1602](img/brother_dcp1602.jpg)
+![Brother DCP-1602](img/brother_dcp1602_comercial.jpg)
 
 - **Tipo:** Impresora
 - **Marca:** Brother
@@ -93,9 +93,12 @@ Archivos Locales Guardados (Carpeta Devices):
 Enlaces Oficiales Web (Respaldo en Línea):
 • [Descargar Paquete Completo Oficial (Brother Web)](https://support.brother.com/g/b/downloadhowto.aspx?c=mx&lang=es&prod=dcp1602_us&os=10068&dlid=dlf106152_000&flang=27&type3=11)
 • [Descargar Brother iPrint&Scan Oficial (Brother Web)](https://support.brother.com/g/b/downloadhowto.aspx?c=us_ot&lang=en&prod=dcpt420w_all&os=10068&dlid=dlf106359_000&flang=4&type3=10272)
+- **Fotografías:**
+  - Imagen comercial (Icecat): [`img/brother_dcp1602_comercial.jpg`](img/brother_dcp1602_comercial.jpg)
+  - Imagen de referencia anterior (ilustración): [`img/brother_dcp1602.jpg`](img/brother_dcp1602.jpg)
 
 ### 2. MSI Modern 14 B5M-011CL
-![MSI Modern 14 B5M-011CL](img/msi_modern14_etiqueta_2023.jpg)
+![MSI Modern 14 B5M-011CL](img/msi_modern14_comercial.jpg)
 
 - **Tipo:** Laptop
 - **Marca:** MSI
@@ -129,6 +132,7 @@ CPU, RAM y GPU deducidos del SKU (R555U = AMD Ryzen 5 5500U, 8G = 8 GB RAM); pen
 
 La etiqueta del número de serie está desgastada (ver fotos 2026); la foto de 2023 conserva la lectura completa.
 - **Fotografías:**
+  - Imagen comercial (Icecat, Modern 14 B5M): [`img/msi_modern14_comercial.jpg`](img/msi_modern14_comercial.jpg)
   - Etiqueta SKU / S/N (2023): [`img/msi_modern14_etiqueta_2023.jpg`](img/msi_modern14_etiqueta_2023.jpg)
   - Etiqueta SKU / S/N (2026, desgastada): [`img/msi_modern14_etiqueta_2026.jpg`](img/msi_modern14_etiqueta_2026.jpg)
   - MFG 2021/06 · CHK 264: [`img/msi_modern14_fabricacion.jpg`](img/msi_modern14_fabricacion.jpg)
@@ -137,7 +141,7 @@ La etiqueta del número de serie está desgastada (ver fotos 2026); la foto de 2
   - Wi-Fi Intel AX200: [`img/msi_modern14_wifi_ax200.jpg`](img/msi_modern14_wifi_ax200.jpg)
 
 ### 3. Acer Aspire E3-112-C6ME
-![Acer Aspire E3-112-C6ME](img/acer_e3-112_etiqueta_serie.jpg)
+![Acer Aspire E3-112-C6ME](img/acer_e3-112_comercial.jpg)
 
 - **Tipo:** Laptop
 - **Marca:** Acer
@@ -163,13 +167,14 @@ CPU, RAM y almacenamiento no figuran en las etiquetas; pendiente registrarlos co
   - *Red:* WLAN + Bluetooth combo QCWB335 (FCC ID PPD-QCWB335) · reemplazable
   - *Cargador:* Lite-On PA-1650-02 65 W (19V ⎓ 3.42A) · S/N AP06503016824OB7E6P606 · reemplazable · equipo relacionado: `dev-acer-e3-112-cargador`
 - **Fotografías:**
+  - Imagen comercial (Icecat, Aspire E3-112): [`img/acer_e3-112_comercial.jpg`](img/acer_e3-112_comercial.jpg)
   - Etiqueta modelo / S/N / MFG: [`img/acer_e3-112_etiqueta_serie.jpg`](img/acer_e3-112_etiqueta_serie.jpg)
   - Etiqueta WLAN + Bluetooth QCWB335: [`img/acer_e3-112_etiqueta_wifi_qcwb335.jpg`](img/acer_e3-112_etiqueta_wifi_qcwb335.jpg)
   - Cargador: etiqueta Lite-On PA-1650-02: [`img/acer_e3-112_cargador_etiqueta_liteon_pa-1650-02.jpg`](img/acer_e3-112_cargador_etiqueta_liteon_pa-1650-02.jpg)
   - Cargador: vista general: [`img/acer_e3-112_cargador_vista_general.jpg`](img/acer_e3-112_cargador_vista_general.jpg)
 
 ### 4. Lite-On PA-1650-02 (Adaptador AC 65W)
-![Lite-On PA-1650-02 (Adaptador AC 65W)](img/acer_e3-112_cargador_etiqueta_liteon_pa-1650-02.jpg)
+![Lite-On PA-1650-02 (Adaptador AC 65W)](img/acer_e3-112_cargador_vista_general.jpg)
 
 - **Tipo:** Periférico
 - **Marca:** Lite-On
@@ -192,10 +197,10 @@ Compatibilidad: el notebook requiere 19V ⎓ 2.1A; este cargador entrega el mism
 
 Equipo asociado: Acer Aspire E3-112-C6ME (dev-acer-e3-112).
 - **Fotografías:**
+  - Vista general con cable y conector: [`img/acer_e3-112_cargador_vista_general.jpg`](img/acer_e3-112_cargador_vista_general.jpg)
   - Etiqueta Lite-On PA-1650-02: [`img/acer_e3-112_cargador_etiqueta_liteon_pa-1650-02.jpg`](img/acer_e3-112_cargador_etiqueta_liteon_pa-1650-02.jpg)
   - Código de barras ADT (serie): [`img/acer_e3-112_cargador_serie_ap06503.jpg`](img/acer_e3-112_cargador_serie_ap06503.jpg)
   - Etiqueta de advertencia de temperatura: [`img/acer_e3-112_cargador_advertencia_temperatura.jpg`](img/acer_e3-112_cargador_advertencia_temperatura.jpg)
-  - Vista general con cable y conector: [`img/acer_e3-112_cargador_vista_general.jpg`](img/acer_e3-112_cargador_vista_general.jpg)
 
 ### 5. PC armado Core i5-12400F · MSI PRO H610M-G DDR4
 - **Tipo:** Desktop

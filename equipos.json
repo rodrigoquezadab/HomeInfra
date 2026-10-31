@@ -7,7 +7,7 @@
     "serial": "",
     "assignedUser": "Rodrigo",
     "location": "Hogar",
-    "imageUrl": "img/brother_dcp1602.jpg",
+    "imageUrl": "img/brother_dcp1602_comercial.jpg",
     "driverUrl": "Devices/Brother%20DCP-1602/Y14G_C1_U-inst-B1.EXE",
     "windowsUser": "",
     "windowsPassword": "",
@@ -40,7 +40,19 @@
       }
     },
     "updatedAt": "2026-10-25",
-    "mfgDate": "2015"
+    "mfgDate": "2015",
+    "images": [
+      {
+        "id": "img-brother-comercial",
+        "name": "Imagen comercial (Icecat)",
+        "url": "img/brother_dcp1602_comercial.jpg"
+      },
+      {
+        "id": "img-brother-referencia",
+        "name": "Imagen de referencia anterior (ilustración)",
+        "url": "img/brother_dcp1602.jpg"
+      }
+    ]
   },
   {
     "id": "dev-msi-modern14-b5m",
@@ -50,7 +62,7 @@
     "serial": "K2106N0089559",
     "assignedUser": "",
     "location": "Hogar",
-    "imageUrl": "img/msi_modern14_etiqueta_2023.jpg",
+    "imageUrl": "img/msi_modern14_comercial.jpg",
     "driverUrl": "https://www.msi.com/Business-Productivity/Modern-14-B5SX/support",
     "windowsUser": "",
     "windowsPassword": "",
@@ -78,6 +90,11 @@
       "storage": ""
     },
     "images": [
+      {
+        "id": "img-msi-comercial",
+        "name": "Imagen comercial (Icecat, Modern 14 B5M)",
+        "url": "img/msi_modern14_comercial.jpg"
+      },
       {
         "id": "img-msi-etiqueta-2023",
         "name": "Etiqueta SKU / S/N (2023)",
@@ -120,7 +137,7 @@
     "serial": "NXMRLAL004434177F97600",
     "assignedUser": "",
     "location": "Hogar",
-    "imageUrl": "img/acer_e3-112_etiqueta_serie.jpg",
+    "imageUrl": "img/acer_e3-112_comercial.jpg",
     "driverUrl": "https://www.acer.com/latam-es/support/product-support/E3-112",
     "windowsUser": "",
     "windowsPassword": "",
@@ -146,6 +163,11 @@
       }
     ],
     "images": [
+      {
+        "id": "img-acer-comercial",
+        "name": "Imagen comercial (Icecat, Aspire E3-112)",
+        "url": "img/acer_e3-112_comercial.jpg"
+      },
       {
         "id": "img-acer-etiqueta-serie",
         "name": "Etiqueta modelo / S/N / MFG",
@@ -178,13 +200,18 @@
     "serial": "AP06503016824OB7E6P606",
     "assignedUser": "",
     "location": "Hogar",
-    "imageUrl": "img/acer_e3-112_cargador_etiqueta_liteon_pa-1650-02.jpg",
+    "imageUrl": "img/acer_e3-112_cargador_vista_general.jpg",
     "driverUrl": "https://www.acer.com/latam-es/support/product-support/E3-112",
     "windowsUser": "",
     "windowsPassword": "",
     "notes": "Cargador del Acer Aspire E3-112-C6ME (S/N NXMRLAL004434177F97600). Entrada 100-240V ~ 1.6A 50-60Hz. Salida 19V ⎓ 3.42A, 65W, centro positivo. Conector de punta amarilla.",
     "observaciones": "Datos de la etiqueta:\n• Fabricante: Lite-On Technology Corporation\n• Modelo: PA-1650-02\n• Entrada: 100-240V ~ 1.6A, 50-60Hz\n• Salida: 19V ⎓ 3.42A, 65W (centro positivo)\n• Fecha de fabricación: 2008/06\n• Etiqueta de serie: 8616796906 · AC · Rev: A06\n• Código de barras ADT: AP06503016824OB7E6P606\n\nCompatibilidad: el notebook requiere 19V ⎓ 2.1A; este cargador entrega el mismo voltaje con mayor corriente disponible (3.42A), por lo que es compatible. Por su fecha de fabricación (2008) no es el cargador de fábrica del notebook (2014).\n\nEquipo asociado: Acer Aspire E3-112-C6ME (dev-acer-e3-112).",
     "images": [
+      {
+        "id": "img-acer-cargador-vista",
+        "name": "Vista general con cable y conector",
+        "url": "img/acer_e3-112_cargador_vista_general.jpg"
+      },
       {
         "id": "img-acer-cargador-etiqueta",
         "name": "Etiqueta Lite-On PA-1650-02",
@@ -199,11 +226,6 @@
         "id": "img-acer-cargador-advertencia",
         "name": "Etiqueta de advertencia de temperatura",
         "url": "img/acer_e3-112_cargador_advertencia_temperatura.jpg"
-      },
-      {
-        "id": "img-acer-cargador-vista",
-        "name": "Vista general con cable y conector",
-        "url": "img/acer_e3-112_cargador_vista_general.jpg"
       }
     ],
     "mfgDate": "2008-06",

@@ -12,7 +12,7 @@ const DEFAULT_DEVICES = [
     serial: "",
     assignedUser: "Rodrigo",
     location: "Hogar",
-    imageUrl: "img/brother_dcp1602.jpg",
+    imageUrl: "img/brother_dcp1602_comercial.jpg",
     driverUrl: "Devices/Brother%20DCP-1602/Y14G_C1_U-inst-B1.EXE",
     windowsUser: "",
     windowsPassword: "",
@@ -44,8 +44,20 @@ const DEFAULT_DEVICES = [
         lastReplacedDate: ""
       }
     },
+    updatedAt: "2026-10-25",
     mfgDate: "2015",
-    updatedAt: "2026-10-25"
+    images: [
+      {
+        id: "img-brother-comercial",
+        name: "Imagen comercial (Icecat)",
+        url: "img/brother_dcp1602_comercial.jpg"
+      },
+      {
+        id: "img-brother-referencia",
+        name: "Imagen de referencia anterior (ilustración)",
+        url: "img/brother_dcp1602.jpg"
+      }
+    ]
   },
   {
     id: "dev-msi-modern14-b5m",
@@ -55,7 +67,7 @@ const DEFAULT_DEVICES = [
     serial: "K2106N0089559",
     assignedUser: "",
     location: "Hogar",
-    imageUrl: "img/msi_modern14_etiqueta_2023.jpg",
+    imageUrl: "img/msi_modern14_comercial.jpg",
     driverUrl: "https://www.msi.com/Business-Productivity/Modern-14-B5SX/support",
     windowsUser: "",
     windowsPassword: "",
@@ -83,6 +95,11 @@ const DEFAULT_DEVICES = [
       storage: ""
     },
     images: [
+      {
+        id: "img-msi-comercial",
+        name: "Imagen comercial (Icecat, Modern 14 B5M)",
+        url: "img/msi_modern14_comercial.jpg"
+      },
       {
         id: "img-msi-etiqueta-2023",
         name: "Etiqueta SKU / S/N (2023)",
@@ -125,7 +142,7 @@ const DEFAULT_DEVICES = [
     serial: "NXMRLAL004434177F97600",
     assignedUser: "",
     location: "Hogar",
-    imageUrl: "img/acer_e3-112_etiqueta_serie.jpg",
+    imageUrl: "img/acer_e3-112_comercial.jpg",
     driverUrl: "https://www.acer.com/latam-es/support/product-support/E3-112",
     windowsUser: "",
     windowsPassword: "",
@@ -151,6 +168,11 @@ const DEFAULT_DEVICES = [
       }
     ],
     images: [
+      {
+        id: "img-acer-comercial",
+        name: "Imagen comercial (Icecat, Aspire E3-112)",
+        url: "img/acer_e3-112_comercial.jpg"
+      },
       {
         id: "img-acer-etiqueta-serie",
         name: "Etiqueta modelo / S/N / MFG",
@@ -183,13 +205,18 @@ const DEFAULT_DEVICES = [
     serial: "AP06503016824OB7E6P606",
     assignedUser: "",
     location: "Hogar",
-    imageUrl: "img/acer_e3-112_cargador_etiqueta_liteon_pa-1650-02.jpg",
+    imageUrl: "img/acer_e3-112_cargador_vista_general.jpg",
     driverUrl: "https://www.acer.com/latam-es/support/product-support/E3-112",
     windowsUser: "",
     windowsPassword: "",
     notes: "Cargador del Acer Aspire E3-112-C6ME (S/N NXMRLAL004434177F97600). Entrada 100-240V ~ 1.6A 50-60Hz. Salida 19V ⎓ 3.42A, 65W, centro positivo. Conector de punta amarilla.",
     observaciones: "Datos de la etiqueta:\n• Fabricante: Lite-On Technology Corporation\n• Modelo: PA-1650-02\n• Entrada: 100-240V ~ 1.6A, 50-60Hz\n• Salida: 19V ⎓ 3.42A, 65W (centro positivo)\n• Fecha de fabricación: 2008/06\n• Etiqueta de serie: 8616796906 · AC · Rev: A06\n• Código de barras ADT: AP06503016824OB7E6P606\n\nCompatibilidad: el notebook requiere 19V ⎓ 2.1A; este cargador entrega el mismo voltaje con mayor corriente disponible (3.42A), por lo que es compatible. Por su fecha de fabricación (2008) no es el cargador de fábrica del notebook (2014).\n\nEquipo asociado: Acer Aspire E3-112-C6ME (dev-acer-e3-112).",
     images: [
+      {
+        id: "img-acer-cargador-vista",
+        name: "Vista general con cable y conector",
+        url: "img/acer_e3-112_cargador_vista_general.jpg"
+      },
       {
         id: "img-acer-cargador-etiqueta",
         name: "Etiqueta Lite-On PA-1650-02",
@@ -204,11 +231,6 @@ const DEFAULT_DEVICES = [
         id: "img-acer-cargador-advertencia",
         name: "Etiqueta de advertencia de temperatura",
         url: "img/acer_e3-112_cargador_advertencia_temperatura.jpg"
-      },
-      {
-        id: "img-acer-cargador-vista",
-        name: "Vista general con cable y conector",
-        url: "img/acer_e3-112_cargador_vista_general.jpg"
       }
     ],
     mfgDate: "2008-06",
@@ -915,10 +937,25 @@ function getDeviceUsers(dev) {
 }
 
 /**
+ * Accesorios enlazados a otro equipo (ej. el cargador de un laptop): se ven dentro de ese equipo
+ * y en la vista de componentes, no como equipo completo aparte
+ */
+function isLinkedAccessory(dev) {
+  return devices.some((owner) => (owner.components || []).some((c) => c.deviceId === dev.id));
+}
+
+/**
+ * Equipos completos: todos menos los accesorios enlazados
+ */
+function getCompleteDevices() {
+  return devices.filter((dev) => !isLinkedAccessory(dev));
+}
+
+/**
  * Filtrar y ordenar lista de equipos
  */
 function getFilteredDevices() {
-  const filtered = devices.filter((dev) => {
+  const filtered = getCompleteDevices().filter((dev) => {
     if (currentFilterType !== "ALL" && dev.type !== currentFilterType) {
       return false;
     }
@@ -1091,10 +1128,11 @@ function renderComponentsGrid() {
  * Actualizar estadísticas en los contadores superiores
  */
 function updateStats() {
-  const total = devices.length;
-  const laptops = devices.filter((d) => d.type === "Laptop").length;
-  const desktops = devices.filter((d) => d.type === "Desktop").length;
-  const printers = devices.filter((d) => d.type === "Impresora").length;
+  const complete = getCompleteDevices();
+  const total = complete.length;
+  const laptops = complete.filter((d) => d.type === "Laptop").length;
+  const desktops = complete.filter((d) => d.type === "Desktop").length;
+  const printers = complete.filter((d) => d.type === "Impresora").length;
   const others = total - (laptops + desktops + printers);
 
   statTotal.textContent = total;
@@ -1108,7 +1146,7 @@ function updateStats() {
  * Actualizar dropdown de marcas dinámicamente
  */
 function updateBrandFilterOptions() {
-  const brands = Array.from(new Set(devices.map((d) => d.brand).filter(Boolean))).sort();
+  const brands = Array.from(new Set(getCompleteDevices().map((d) => d.brand).filter(Boolean))).sort();
   const currentVal = brandFilter.value;
 
   brandFilter.innerHTML = '<option value="ALL">Todas las marcas</option>';
@@ -1750,7 +1788,8 @@ function renderGrid() {
   const filtered = getFilteredDevices();
   devicesGrid.innerHTML = "";
 
-  resultsCount.textContent = `Mostrando ${filtered.length} de ${devices.length} equipo${devices.length === 1 ? '' : 's'}`;
+  const completeCount = getCompleteDevices().length;
+  resultsCount.textContent = `Mostrando ${filtered.length} de ${completeCount} equipo${completeCount === 1 ? '' : 's'}`;
 
   if (filtered.length === 0) {
     devicesGrid.style.display = "none";
