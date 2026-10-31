@@ -56,7 +56,7 @@ const STORAGE_KEY = "homeinfra_devices_inventory_v3";
 let devices = [];
 let currentFilterType = "ALL";
 let currentFilterBrand = "ALL";
-let currentSort = localStorage.getItem("metagroup_devices_sort") || "category";
+let currentSort = localStorage.getItem("homeinfra_devices_sort") || "category";
 let searchQuery = "";
 const revealedPasswords = {};
 
@@ -201,19 +201,6 @@ async function loadDevices() {
         }
       });
 
-      // Sincronizar officeLicense en equipos de localStorage si aún no lo tienen
-      devices.forEach((dev) => {
-        if (dev.type !== "Impresora" && !dev.officeLicense) {
-          dev.officeLicense = {
-            status: "Activa",
-            type: "Microsoft 365 Business Standard",
-            deactivationDate: "",
-            notes: "Licencia Office corporativa activa"
-          };
-          updated = true;
-        }
-      });
-
       if (updated) saveDevices();
       return;
     }
@@ -284,7 +271,7 @@ function bindEvents() {
   if (sortSelect) {
     sortSelect.addEventListener("change", (e) => {
       currentSort = e.target.value;
-      localStorage.setItem("metagroup_devices_sort", currentSort);
+      localStorage.setItem("homeinfra_devices_sort", currentSort);
       render();
     });
   }
@@ -1503,7 +1490,7 @@ window.openDeviceDetailModal = function (deviceId) {
       </div>
       <div class="detail-meta-item">
         <span class="detail-meta-label">Asignado / Ubicación:</span>
-        <span class="detail-meta-value">${escapeHtml(dev.location || "Oficina General")}</span>
+        <span class="detail-meta-value">${escapeHtml(dev.location || "Hogar")}</span>
       </div>
       <div class="detail-meta-item">
         <span class="detail-meta-label">Última Actualización:</span>
@@ -1651,7 +1638,7 @@ function openDeviceModal(device = null) {
       if (formOfficeNotes) formOfficeNotes.value = device.officeLicense.notes || "";
     } else {
       if (formOfficeStatus) formOfficeStatus.value = "Activa";
-      if (formOfficeType) formOfficeType.value = "Microsoft 365 Business Standard";
+      if (formOfficeType) formOfficeType.value = "";
       if (formOfficeDeactivationDate) formOfficeDeactivationDate.value = "";
       if (formOfficeNotes) formOfficeNotes.value = "";
     }
@@ -1667,7 +1654,7 @@ function openDeviceModal(device = null) {
     if (formDrumWarningDate) formDrumWarningDate.value = "";
     if (formDrumReplacedDate) formDrumReplacedDate.value = "";
     if (formOfficeStatus) formOfficeStatus.value = "Activa";
-    if (formOfficeType) formOfficeType.value = "Microsoft 365 Business Standard";
+    if (formOfficeType) formOfficeType.value = "";
     if (formOfficeDeactivationDate) formOfficeDeactivationDate.value = "";
     if (formOfficeNotes) formOfficeNotes.value = "";
   }
@@ -1930,7 +1917,7 @@ function generateMarkdownContent() {
   let md = `# Contexto del Proyecto: HomeInfra - Inventario de Equipos Personales\n\n`;
   md += `## 📌 Descripción General\n`;
   md += `Este archivo documenta el registro y contexto de los equipos tecnológicos personales de **HomeInfra**, incluyendo especificaciones clave (marca, modelo, tipo de equipo), número de serie o activo, responsable o ubicación física, imágenes de referencia de los equipos, especificaciones técnicas de hardware (**CPU**, **RAM**, **GPU**), **credenciales de acceso de Windows (Usuario y Contraseña)**, **observaciones técnicas e historial**, y enlaces directos para la descarga de controladores (drivers) oficiales.\n\n`;
-  md += `La base de datos principal estructurada reside en el archivo [\`equipos.json\`](file:///c:/Users/Administrador/Desktop/Code/HomeInfra/equipos.json) y se administra interactivamente a través de la aplicación web local \`HomeInfra\` (\`index.html\`, \`style.css\`, \`app.js\`).\n\n`;
+  md += `La base de datos principal estructurada reside en el archivo [\`equipos.json\`](equipos.json) y se administra interactivamente a través de la aplicación web local \`HomeInfra\` (\`index.html\`, \`style.css\`, \`app.js\`).\n\n`;
   md += `*Última actualización sincronizada:* \`${dateStr}\` | *Total de equipos:* **${devices.length}**\n\n`;
   md += `---\n\n`;
 
@@ -1972,7 +1959,7 @@ function generateMarkdownContent() {
     if (dev.assignedUser) {
       md += `- **Usuario(s) Asignado(s):** ${dev.assignedUser}\n`;
     }
-    md += `- **Asignación / Ubicación:** ${dev.location || "Oficina General"}\n`;
+    md += `- **Asignación / Ubicación:** ${dev.location || "Hogar"}\n`;
 
     if (dev.windowsUser || dev.windowsPassword) {
       md += `- **Credenciales Windows:**\n`;
@@ -2040,7 +2027,7 @@ function generateMarkdownContent() {
 
   md += `---\n\n`;
   md += `## 🛠️ Guía de Uso del Inventario y Driver Hub\n`;
-  md += `1. **Base de Datos:** El archivo [\`equipos.json\`](file:///c:/Users/Administrador/Desktop/Code/HomeInfra/equipos.json) almacena los registros de los equipos, imágenes de referencia, especificaciones de hardware, credenciales y observaciones.\n`;
+  md += `1. **Base de Datos:** El archivo [\`equipos.json\`](equipos.json) almacena los registros de los equipos, imágenes de referencia, especificaciones de hardware, credenciales y observaciones.\n`;
   md += `2. **Abrir la Aplicación:** Abre \`index.html\` en cualquier navegador web.\n`;
   md += `3. **Registro y Edición:** Pulsa en **"Registrar Equipo"** o en el botón de **Editar** (icono de lápiz) en cualquier tarjeta para modificar cualquier campo en cualquier momento.\n`;
   md += `4. **Acceso Rápido a Drivers:** Desde la tarjeta de cada equipo, el botón **"Descargar Drivers & Soporte"** te llevará directamente a la página oficial de descargas del fabricante.\n`;
