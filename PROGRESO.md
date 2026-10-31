@@ -18,6 +18,7 @@ Registro de dónde quedó el trabajo y qué falta por hacer en la próxima sesi�
 | 2 | MSI Modern 14 B5M-011CL | Laptop | Datos de etiqueta y 6 fotos. CPU y RAM deducidos del SKU; almacenamiento sin registrar. |
 | 3 | Acer Aspire E3-112-C6ME | Laptop | Datos de etiqueta y 4 fotos. CPU, RAM y almacenamiento sin registrar. |
 | 4 | Lite-On PA-1650-02 | Periférico (cargador) | Cargador del Acer E3-112, enlazado en sus componentes (`deviceId`). Compatible (19V; 3.42A ≥ 2.1A), pero no es el original de fábrica (fabricado en 2008). |
+| 5 | PC armado: Core i5-12400F · MSI PRO H610M-G DDR4 | Desktop | Registrado con el Collector (`Collector/Registros/MSI_MS-7D46_20261031-192112.json`). Sin serie de equipo: se usa la serie de la placa base. Sin fotos. |
 
 ### App
 - Limpieza de referencias a la app anterior (MetaGroup / MetaDrivers).
@@ -38,6 +39,7 @@ Registro de dónde quedó el trabajo y qué falta por hacer en la próxima sesi�
 - [ ] Ejecutar el Collector en el **Acer E3-112** para registrar CPU, RAM y almacenamiento.
 - [ ] Ejecutar el Collector en el **MSI Modern 14** para confirmar CPU/RAM y registrar el almacenamiento.
 - [ ] Registrar el número de serie de la **Brother DCP-1602**.
+- [ ] **PC armado (i5-12400F):** activar XMP en la BIOS (la RAM de 3600 MT/s funciona a 2667; la plataforma admite hasta 3200), agregar fotos y registrar el monitor LG TV como equipo propio si corresponde.
 - [ ] Revisar la carpeta `C:\Users\ThinkPad\Desktop\pcs` por más equipos o accesorios por registrar.
 
 ### HomeInfra Collector

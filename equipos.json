@@ -208,5 +208,116 @@
     ],
     "mfgDate": "2008-06",
     "updatedAt": "2026-10-31"
+  },
+  {
+    "id": "dev-pc-i5-12400f-h610m",
+    "brand": "PC armado",
+    "model": "Core i5-12400F · MSI PRO H610M-G DDR4",
+    "type": "Desktop",
+    "serial": "07D4612_M21D142444",
+    "assignedUser": "",
+    "location": "Hogar",
+    "imageUrl": "",
+    "driverUrl": "https://www.msi.com/Motherboard/PRO-H610M-G-DDR4/support",
+    "windowsUser": "",
+    "windowsPassword": "",
+    "notes": "PC de escritorio armado. Placa base MSI PRO H610M-G DDR4 (MS-7D46), Intel Core i5-12400F, 16 GB DDR4 Corsair Vengeance LPX (2 × 8 GB), NVIDIA GeForce GTX 1660 SUPER, SSD WD Blue SN570 500 GB y HDD WD 80 GB. Nombre en red: DESKTOP-QIPN19H. Microsoft Windows 11 Pro (10.0.26200), instalado el 2026-10-01.",
+    "observaciones": "El equipo no tiene número de serie propio (PC armado); se usa el número de serie de la placa base como identificador.\nLa RAM Corsair CMK8GX4M1Z3600C18 es de 3600 MT/s pero funciona a 2667 MT/s: el perfil XMP no está activado en la BIOS. El chipset H610 y el i5-12400F admiten DDR4 hasta 3200 MT/s.\nEl HDD WDC WD800BD (80 GB) es una unidad antigua; Windows no informa su tipo (se registra como HDD por el modelo).\n\nRegistro HomeInfra Collector (2026-10-31 19:21:12):\n• BIOS: American Megatrends International, LLC. 1.H0 (2024-03-25)\n• CPU: 12th Gen Intel(R) Core(TM) i5-12400F (6 núcleos / 12 hilos socket U3E1)\n• RAM: Corsair CMK8GX4M1Z3600C18 8 GB (DDR4 DIMM 2667 MT/s [Controller0-DIMMA1])\n• RAM: Corsair CMK8GX4M1Z3600C18 8 GB (DDR4 DIMM 2667 MT/s [Controller1-DIMMB1])\n• Almacenamiento: WD Blue SN570 500GB 466 GB (SSD NVMe) · S/N E823_8FA6_BF53_0001_001B_448B_4569_B02C.\n• Almacenamiento: WDC WD800BD-22MRA1 75 GB (SATA) · S/N WD-WMAM9AMY4260\n• GPU: NVIDIA GeForce GTX 1660 SUPER 4 GB (NVIDIA)\n• Red: Intel(R) Ethernet Connection (17) I219-V (MAC 04:7C:16:05:0E:B3)\n• Placa base: Micro-Star International Co., Ltd. PRO H610M-G DDR4 (MS-7D46) (1.0) · S/N 07D4612_M21D142444",
+    "specs": {
+      "cpu": {
+        "model": "12th Gen Intel(R) Core(TM) i5-12400F",
+        "cores": "6 núcleos / 12 hilos",
+        "speed": "2.5 GHz",
+        "details": ""
+      },
+      "ram": {
+        "capacity": "16 GB",
+        "type": "DDR4",
+        "speed": "2667 MT/s",
+        "details": "2 de 2 ranuras usadas"
+      },
+      "gpu": {
+        "model": "NVIDIA GeForce GTX 1660 SUPER",
+        "type": "Dedicada",
+        "details": ""
+      },
+      "storage": "SSD NVMe 466 GB + HDD SATA 75 GB"
+    },
+    "components": [
+      {
+        "category": "CPU",
+        "model": "12th Gen Intel(R) Core(TM) i5-12400F",
+        "serial": "",
+        "capacity": "",
+        "details": "6 núcleos / 12 hilos socket U3E1",
+        "replaceable": true
+      },
+      {
+        "category": "RAM",
+        "model": "Corsair CMK8GX4M1Z3600C18",
+        "serial": "",
+        "capacity": "8 GB",
+        "details": "DDR4 DIMM 2667 MT/s [Controller0-DIMMA1] · módulo de 3600 MT/s funcionando a 2667 MT/s",
+        "replaceable": true
+      },
+      {
+        "category": "RAM",
+        "model": "Corsair CMK8GX4M1Z3600C18",
+        "serial": "",
+        "capacity": "8 GB",
+        "details": "DDR4 DIMM 2667 MT/s [Controller1-DIMMB1] · módulo de 3600 MT/s funcionando a 2667 MT/s",
+        "replaceable": true
+      },
+      {
+        "category": "Almacenamiento",
+        "model": "WD Blue SN570 500GB",
+        "serial": "E823_8FA6_BF53_0001_001B_448B_4569_B02C.",
+        "capacity": "466 GB",
+        "details": "SSD NVMe",
+        "replaceable": true
+      },
+      {
+        "category": "Almacenamiento",
+        "model": "WDC WD800BD-22MRA1",
+        "serial": "WD-WMAM9AMY4260",
+        "capacity": "75 GB",
+        "details": "HDD SATA",
+        "replaceable": true
+      },
+      {
+        "category": "GPU",
+        "model": "NVIDIA GeForce GTX 1660 SUPER",
+        "serial": "",
+        "capacity": "4 GB",
+        "details": "NVIDIA",
+        "replaceable": true
+      },
+      {
+        "category": "Red",
+        "model": "Intel(R) Ethernet Connection (17) I219-V",
+        "serial": "",
+        "capacity": "",
+        "details": "MAC 04:7C:16:05:0E:B3",
+        "replaceable": false
+      },
+      {
+        "category": "Placa base",
+        "model": "Micro-Star International Co., Ltd. PRO H610M-G DDR4 (MS-7D46)",
+        "serial": "07D4612_M21D142444",
+        "capacity": "",
+        "details": "1.0",
+        "replaceable": false
+      },
+      {
+        "category": "Monitor",
+        "model": "LG TV (fabricante EDID GSM)",
+        "serial": "",
+        "capacity": "",
+        "details": "Pantalla externa conectada; año 2011 según EDID",
+        "replaceable": true
+      }
+    ],
+    "mfgDate": "",
+    "updatedAt": "2026-10-31"
   }
 ]

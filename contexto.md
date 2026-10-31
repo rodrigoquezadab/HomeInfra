@@ -5,7 +5,7 @@ Este archivo documenta el registro y contexto de los equipos tecnológicos perso
 
 La base de datos principal estructurada reside en el archivo [`equipos.json`](equipos.json) y se administra interactivamente a través de la aplicación web local `HomeInfra` (`index.html`, `style.css`, `app.js`).
 
-*Última actualización sincronizada:* `2026-10-31` | *Total de equipos:* **4**
+*Última actualización sincronizada:* `2026-10-31` | *Total de equipos:* **5**
 
 ---
 
@@ -59,6 +59,7 @@ HomeInfra evolucionará de un inventario de equipos a un sistema de gestión de 
 | 2 | Laptop | MSI | Modern 14 B5M-011CL | 2021-06 | AMD Ryzen 5 5500U [2021] | 8 GB | AMD Radeon Graphics (Integrada) | N/A | K2106N0089559 | [Soporte Oficial MSI Modern 14 B5M-011CL](https://www.msi.com/Business-Productivity/Modern-14-B5SX/support) |
 | 3 | Laptop | Acer | Aspire E3-112-C6ME | 2014-08-23 | N/A | N/A | N/A | N/A | NXMRLAL004434177F97600 | [Soporte Oficial Acer Aspire E3-112-C6ME](https://www.acer.com/latam-es/support/product-support/E3-112) |
 | 4 | Periférico | Lite-On | PA-1650-02 (Adaptador AC 65W) | 2008-06 | N/A | N/A | N/A | N/A | AP06503016824OB7E6P606 | [Soporte Oficial Lite-On PA-1650-02 (Adaptador AC 65W)](https://www.acer.com/latam-es/support/product-support/E3-112) |
+| 5 | Desktop | PC armado | Core i5-12400F · MSI PRO H610M-G DDR4 | N/A | 12th Gen Intel(R) Core(TM) i5-12400F | 16 GB DDR4 | NVIDIA GeForce GTX 1660 SUPER (Dedicada) | N/A | 07D4612_M21D142444 | [Soporte Oficial PC armado Core i5-12400F · MSI PRO H610M-G DDR4](https://www.msi.com/Motherboard/PRO-H610M-G-DDR4/support) |
 
 ---
 
@@ -195,6 +196,50 @@ Equipo asociado: Acer Aspire E3-112-C6ME (dev-acer-e3-112).
   - Código de barras ADT (serie): [`img/acer_e3-112_cargador_serie_ap06503.jpg`](img/acer_e3-112_cargador_serie_ap06503.jpg)
   - Etiqueta de advertencia de temperatura: [`img/acer_e3-112_cargador_advertencia_temperatura.jpg`](img/acer_e3-112_cargador_advertencia_temperatura.jpg)
   - Vista general con cable y conector: [`img/acer_e3-112_cargador_vista_general.jpg`](img/acer_e3-112_cargador_vista_general.jpg)
+
+### 5. PC armado Core i5-12400F · MSI PRO H610M-G DDR4
+- **Tipo:** Desktop
+- **Marca:** PC armado
+- **Modelo:** Core i5-12400F · MSI PRO H610M-G DDR4
+- **Número de Serie / Activo:** 07D4612_M21D142444
+- **Fecha de Fabricación / Lanzamiento:** No registrada
+- **Asignación / Ubicación:** Hogar
+- **Especificaciones de Hardware:**
+  - **Procesador (CPU):** 12th Gen Intel(R) Core(TM) i5-12400F
+    - *Núcleos e Hilos:* 6 núcleos / 12 hilos
+    - *Frecuencia:* 2.5 GHz
+  - **Memoria RAM:** 16 GB DDR4
+    - *Frecuencia:* 2667 MT/s
+    - *Configuración:* 2 de 2 ranuras usadas
+  - **Tarjeta Gráfica (GPU):** NVIDIA GeForce GTX 1660 SUPER
+    - *Tipo:* **Dedicada**
+  - **Almacenamiento:** SSD NVMe 466 GB + HDD SATA 75 GB
+- **Enlace de Drivers:** [Soporte Oficial PC armado Core i5-12400F · MSI PRO H610M-G DDR4](https://www.msi.com/Motherboard/PRO-H610M-G-DDR4/support)
+- **Notas:** PC de escritorio armado. Placa base MSI PRO H610M-G DDR4 (MS-7D46), Intel Core i5-12400F, 16 GB DDR4 Corsair Vengeance LPX (2 × 8 GB), NVIDIA GeForce GTX 1660 SUPER, SSD WD Blue SN570 500 GB y HDD WD 80 GB. Nombre en red: DESKTOP-QIPN19H. Microsoft Windows 11 Pro (10.0.26200), instalado el 2026-10-01.
+- **Observaciones:** El equipo no tiene número de serie propio (PC armado); se usa el número de serie de la placa base como identificador.
+La RAM Corsair CMK8GX4M1Z3600C18 es de 3600 MT/s pero funciona a 2667 MT/s: el perfil XMP no está activado en la BIOS. El chipset H610 y el i5-12400F admiten DDR4 hasta 3200 MT/s.
+El HDD WDC WD800BD (80 GB) es una unidad antigua; Windows no informa su tipo (se registra como HDD por el modelo).
+
+Registro HomeInfra Collector (2026-10-31 19:21:12):
+• BIOS: American Megatrends International, LLC. 1.H0 (2024-03-25)
+• CPU: 12th Gen Intel(R) Core(TM) i5-12400F (6 núcleos / 12 hilos socket U3E1)
+• RAM: Corsair CMK8GX4M1Z3600C18 8 GB (DDR4 DIMM 2667 MT/s [Controller0-DIMMA1])
+• RAM: Corsair CMK8GX4M1Z3600C18 8 GB (DDR4 DIMM 2667 MT/s [Controller1-DIMMB1])
+• Almacenamiento: WD Blue SN570 500GB 466 GB (SSD NVMe) · S/N E823_8FA6_BF53_0001_001B_448B_4569_B02C.
+• Almacenamiento: WDC WD800BD-22MRA1 75 GB (SATA) · S/N WD-WMAM9AMY4260
+• GPU: NVIDIA GeForce GTX 1660 SUPER 4 GB (NVIDIA)
+• Red: Intel(R) Ethernet Connection (17) I219-V (MAC 04:7C:16:05:0E:B3)
+• Placa base: Micro-Star International Co., Ltd. PRO H610M-G DDR4 (MS-7D46) (1.0) · S/N 07D4612_M21D142444
+- **Componentes:**
+  - *CPU:* 12th Gen Intel(R) Core(TM) i5-12400F (6 núcleos / 12 hilos socket U3E1) · reemplazable
+  - *RAM:* Corsair CMK8GX4M1Z3600C18 8 GB (DDR4 DIMM 2667 MT/s [Controller0-DIMMA1] · módulo de 3600 MT/s funcionando a 2667 MT/s) · reemplazable
+  - *RAM:* Corsair CMK8GX4M1Z3600C18 8 GB (DDR4 DIMM 2667 MT/s [Controller1-DIMMB1] · módulo de 3600 MT/s funcionando a 2667 MT/s) · reemplazable
+  - *Almacenamiento:* WD Blue SN570 500GB 466 GB (SSD NVMe) · S/N E823_8FA6_BF53_0001_001B_448B_4569_B02C. · reemplazable
+  - *Almacenamiento:* WDC WD800BD-22MRA1 75 GB (HDD SATA) · S/N WD-WMAM9AMY4260 · reemplazable
+  - *GPU:* NVIDIA GeForce GTX 1660 SUPER 4 GB (NVIDIA) · reemplazable
+  - *Red:* Intel(R) Ethernet Connection (17) I219-V (MAC 04:7C:16:05:0E:B3) · integrado
+  - *Placa base:* Micro-Star International Co., Ltd. PRO H610M-G DDR4 (MS-7D46) (1.0) · S/N 07D4612_M21D142444 · integrado
+  - *Monitor:* LG TV (fabricante EDID GSM) (Pantalla externa conectada; año 2011 según EDID) · reemplazable
 
 ---
 

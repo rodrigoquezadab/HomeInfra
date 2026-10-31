@@ -1,0 +1,138 @@
+{
+    "schema":  "homeinfra-collector",
+    "version":  "1.0.0",
+    "collectedAt":  "2026-10-31T19:21:12",
+    "environment":  {
+                        "computerName":  "DESKTOP-QIPN19H",
+                        "isWinPE":  false,
+                        "os":  "Microsoft Windows 11 Pro",
+                        "osVersion":  "10.0.26200",
+                        "osBuild":  "26200",
+                        "osInstallDate":  "2026-10-01"
+                    },
+    "system":  {
+                   "brand":  "MSI",
+                   "manufacturer":  "Micro-Star International Co., Ltd.",
+                   "model":  "MS-7D46",
+                   "modelRaw":  "MS-7D46",
+                   "sku":  "",
+                   "family":  "",
+                   "serial":  "",
+                   "uuid":  "9FA38CA7-A986-3218-A239-047C16050EB3",
+                   "type":  "Desktop",
+                   "chassisTypes":  [
+                                        3
+                                    ],
+                   "bios":  {
+                                "vendor":  "American Megatrends International, LLC.",
+                                "version":  "1.H0",
+                                "releaseDate":  "2024-03-25",
+                                "serial":  ""
+                            }
+               },
+    "motherboard":  {
+                        "manufacturer":  "Micro-Star International Co., Ltd.",
+                        "product":  "PRO H610M-G DDR4 (MS-7D46)",
+                        "version":  "1.0",
+                        "serial":  "07D4612_M21D142444"
+                    },
+    "cpu":  [
+                {
+                    "name":  "12th Gen Intel(R) Core(TM) i5-12400F",
+                    "manufacturer":  "GenuineIntel",
+                    "cores":  6,
+                    "logicalProcessors":  12,
+                    "maxClockMHz":  2500,
+                    "socket":  "U3E1"
+                }
+            ],
+    "memory":  {
+                   "totalGB":  15.9,
+                   "installedGB":  16,
+                   "slotsTotal":  2,
+                   "slotsUsed":  2,
+                   "maxCapacityGB":  64,
+                   "modules":  [
+                                   {
+                                       "slot":  "Controller0-DIMMA1",
+                                       "bank":  "BANK 0",
+                                       "capacityGB":  8,
+                                       "type":  "DDR4",
+                                       "formFactor":  "DIMM",
+                                       "speedMTs":  2667,
+                                       "configuredMTs":  2667,
+                                       "manufacturer":  "Corsair",
+                                       "partNumber":  "CMK8GX4M1Z3600C18",
+                                       "serial":  ""
+                                   },
+                                   {
+                                       "slot":  "Controller1-DIMMB1",
+                                       "bank":  "BANK 0",
+                                       "capacityGB":  8,
+                                       "type":  "DDR4",
+                                       "formFactor":  "DIMM",
+                                       "speedMTs":  2667,
+                                       "configuredMTs":  2667,
+                                       "manufacturer":  "Corsair",
+                                       "partNumber":  "CMK8GX4M1Z3600C18",
+                                       "serial":  ""
+                                   }
+                               ]
+               },
+    "storage":  [
+                    {
+                        "model":  "WD Blue SN570 500GB",
+                        "serial":  "E823_8FA6_BF53_0001_001B_448B_4569_B02C.",
+                        "sizeGB":  465.8,
+                        "mediaType":  "SSD",
+                        "busType":  "NVMe",
+                        "firmware":  "234100WD",
+                        "health":  "Healthy"
+                    },
+                    {
+                        "model":  "Sony Storage Media",
+                        "serial":  "7B2211109146005852",
+                        "sizeGB":  3.8,
+                        "mediaType":  "Unspecified",
+                        "busType":  "USB",
+                        "firmware":  "0100",
+                        "health":  "Healthy"
+                    },
+                    {
+                        "model":  "WDC WD800BD-22MRA1",
+                        "serial":  "WD-WMAM9AMY4260",
+                        "sizeGB":  74.5,
+                        "mediaType":  "Unspecified",
+                        "busType":  "SATA",
+                        "firmware":  "10.01E01",
+                        "health":  "Healthy"
+                    }
+                ],
+    "gpu":  [
+                {
+                    "name":  "NVIDIA GeForce GTX 1660 SUPER",
+                    "vendor":  "NVIDIA",
+                    "driverVersion":  "32.0.16.1088",
+                    "adapterRAMGB":  4
+                }
+            ],
+    "network":  [
+                    {
+                        "name":  "Intel(R) Ethernet Connection (17) I219-V",
+                        "manufacturer":  "Intel",
+                        "mac":  "04:7C:16:05:0E:B3",
+                        "type":  "Ethernet 802.3"
+                    }
+                ],
+    "battery":  [
+
+                ],
+    "monitors":  [
+                     {
+                         "manufacturer":  "GSM",
+                         "model":  "LG TV",
+                         "serial":  "16843009",
+                         "year":  2011
+                     }
+                 ]
+}
