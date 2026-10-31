@@ -2433,3 +2433,24 @@ button.card-linked-row:hover {
   color: #cbd5e1;
   border: 1px solid rgba(148, 163, 184, 0.3);
 }
+
+/* Tarjetas de componentes: fondo claro para imágenes oficiales con transparencia
+   y pie que no se desarma con números de serie largos */
+.component-card .card-thumbnail-wrap {
+  background: #f1f5f9;
+}
+
+.component-card .card-compact-footer {
+  flex-wrap: wrap;
+  gap: 0.3rem 0.6rem;
+}
+
+.component-card .card-serial-text {
+  min-width: 0;
+  word-break: break-all;
+}
+
+.component-card .btn-card-detail-hint {
+  margin-left: auto;
+  text-align: right;
+}

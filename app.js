@@ -277,7 +277,8 @@ const DEFAULT_DEVICES = [
         serial: "",
         capacity: "",
         details: "6 núcleos / 12 hilos socket U3E1",
-        replaceable: true
+        replaceable: true,
+        imageUrl: "img/componente_cpu_intel_core_i5.png"
       },
       {
         category: "RAM",
@@ -285,7 +286,8 @@ const DEFAULT_DEVICES = [
         serial: "",
         capacity: "8 GB",
         details: "DDR4 DIMM 2667 MT/s [Controller0-DIMMA1] · módulo de 3600 MT/s funcionando a 2667 MT/s",
-        replaceable: true
+        replaceable: true,
+        imageUrl: "img/componente_ram_corsair_vengeance_lpx.png"
       },
       {
         category: "RAM",
@@ -293,7 +295,8 @@ const DEFAULT_DEVICES = [
         serial: "",
         capacity: "8 GB",
         details: "DDR4 DIMM 2667 MT/s [Controller1-DIMMB1] · módulo de 3600 MT/s funcionando a 2667 MT/s",
-        replaceable: true
+        replaceable: true,
+        imageUrl: "img/componente_ram_corsair_vengeance_lpx.png"
       },
       {
         category: "Almacenamiento",
@@ -333,7 +336,8 @@ const DEFAULT_DEVICES = [
         serial: "07D4612_M21D142444",
         capacity: "",
         details: "1.0",
-        replaceable: false
+        replaceable: false,
+        imageUrl: "img/componente_placa_msi_pro_h610m-g_ddr4.jpg"
       },
       {
         category: "Monitor",
@@ -1100,8 +1104,18 @@ function renderComponentsGrid() {
       ? `<button type="button" class="card-linked-row" onclick="event.stopPropagation(); openDeviceDetailModal('${escapeHtml(c.deviceId)}')">📄 Ver ficha del ${escapeHtml(c.category.toLowerCase())} ➔</button>`
       : "";
 
+    // Imagen propia del componente, o la del equipo enlazado (ej. un cargador registrado aparte)
+    const linkedDevice = c.deviceId ? devices.find((d) => d.id === c.deviceId) : null;
+    const compImage = c.imageUrl || linkedDevice?.imageUrl || "";
+    const thumbHtml = compImage
+      ? `<div class="card-thumbnail-wrap">
+           <img src="${escapeHtml(compImage)}" alt="${escapeHtml(c.model)}" class="card-thumbnail" loading="lazy" onerror="this.parentElement.style.display='none'">
+         </div>`
+      : "";
+
     card.innerHTML = `
       <div class="card-main-body">
+        ${thumbHtml}
         <div class="card-headings">
           <div class="card-type-row">
             <span class="device-badge badge-other">${escapeHtml(c.category)}</span>
