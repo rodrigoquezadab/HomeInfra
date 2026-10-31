@@ -2174,9 +2174,17 @@ function generateMarkdownContent() {
   md += `*Última actualización sincronizada:* \`${dateStr}\` | *Total de equipos:* **${devices.length}**\n\n`;
   md += `---\n\n`;
 
+  md += `## ⚠️ Directiva de Desarrollo y Alcance (Regla Estricta)\n`;
+  md += `> **REGLA FUNDAMENTAL:**\n`;
+  md += `> Evitar estrictamente cambiar, crear o implementar funcionalidades, textos o componentes que no vayan en directa y exclusiva relación con lo que el usuario solicita puntualmente.\n`;
+  md += `> - No asumir requerimientos no pedidos.\n`;
+  md += `> - No agregar elementos estéticos ni funcionales que no hayan sido solicitados expresamente.\n`;
+  md += `> - No alterar partes del sistema ni comportamientos fuera del alcance directo de la petición actual.\n\n`;
+  md += `---\n\n`;
+
   md += `## 🧩 Visión: Gestión de Infraestructura basada en ITIL (Planificado)\n`;
   md += `\n`;
-  md += `> **Estado:** Definición de alcance. Aún no implementado en la aplicación.\n`;
+  md += `> **Estado:** Implementación parcial. Los equipos ya guardan sus piezas en el campo \`components\` (categoría, modelo, serie, capacidad, si es reemplazable y, para accesorios registrados aparte como un cargador, el \`deviceId\` del equipo relacionado). Faltan la vista de componentes en la interfaz, los estados del ciclo de vida y el historial de cambios.\n`;
   md += `\n`;
   md += `HomeInfra evolucionará de un inventario de equipos a un sistema de gestión de infraestructura alineado con las prácticas de **ITIL** (Gestión de Activos y de la Configuración). Además de equipos completos, registrará **partes de computadores** (RAM, HDD/SSD, fuentes, tarjetas), **equipos de red** (routers, switches, puntos de acceso), **módulos** y otros elementos de infraestructura.\n`;
   md += `\n`;
@@ -2296,6 +2304,24 @@ function generateMarkdownContent() {
     if (dev.observaciones) {
       md += `- **Observaciones:** ${dev.observaciones}\n`;
     }
+    if (Array.isArray(dev.components) && dev.components.length > 0) {
+      md += `- **Componentes:**\n`;
+      dev.components.forEach((c) => {
+        const parts = [c.model, c.capacity, c.details ? `(${c.details})` : ""].filter(Boolean).join(" ");
+        const serialStr = c.serial ? ` · S/N ${c.serial}` : "";
+        const replaceStr = c.replaceable ? "reemplazable" : "integrado";
+        const linkStr = c.deviceId ? ` · equipo relacionado: \`${c.deviceId}\`` : "";
+        md += `  - *${c.category}:* ${parts}${serialStr} · ${replaceStr}${linkStr}\n`;
+      });
+    }
+    if (Array.isArray(dev.images) && dev.images.length > 0) {
+      md += `- **Fotografías:**\n`;
+      dev.images.forEach((img) => {
+        // Las fotos subidas desde la app se guardan como data URL en el navegador
+        const ref = img.url && !img.url.startsWith("data:") ? `[\`${img.url}\`](${img.url})` : "(guardada en el navegador)";
+        md += `  - ${img.name}: ${ref}\n`;
+      });
+    }
     if (dev.officeLicense) {
       md += `- **Licencia Microsoft Office:**\n`;
       md += `  - *Estado:* ${dev.officeLicense.status || 'No especificado'}\n`;
@@ -2317,6 +2343,8 @@ function generateMarkdownContent() {
   md += `3. **Registro y Edición:** Pulsa en **"Registrar Equipo"** o en el botón de **Editar** (icono de lápiz) en cualquier tarjeta para modificar cualquier campo en cualquier momento.\n`;
   md += `4. **Acceso Rápido a Drivers:** Desde la tarjeta de cada equipo, el botón **"Descargar Drivers & Soporte"** te llevará directamente a la página oficial de descargas del fabricante.\n`;
   md += `5. **Sincronización:** Usa el botón **"Descargar contexto.md"**, **"Sincronizar contexto.md"** o **"Copiar Markdown"** en la barra superior para actualizar este archivo cada vez que ingreses o modifiques equipos.\n`;
+  md += `6. **HomeInfra Collector:** El botón **"Collector"** muestra el comando para recolectar los datos de un equipo en Windows, Linux o macOS, y permite importar los registros \`.json\` generados (varios a la vez). El script también puede llevarse en un pendrive desde la carpeta [\`Collector\`](Collector/README.md).\n`;
+  md += `7. **Equipos nuevos desde equipos.json:** Al abrir la app, los equipos de \`equipos.json\` que el navegador aún no conoce se agregan solos; los eliminados desde la app no vuelven a aparecer.\n`;
 
   return md;
 }
