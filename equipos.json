@@ -111,5 +111,102 @@
     ],
     "mfgDate": "2021-06",
     "updatedAt": "2026-10-31"
+  },
+  {
+    "id": "dev-acer-e3-112",
+    "brand": "Acer",
+    "model": "Aspire E3-112-C6ME",
+    "type": "Laptop",
+    "serial": "NXMRLAL004434177F97600",
+    "assignedUser": "",
+    "location": "Hogar",
+    "imageUrl": "img/acer_e3-112_etiqueta_serie.jpg",
+    "driverUrl": "https://www.acer.com/latam-es/support/product-support/E3-112",
+    "windowsUser": "",
+    "windowsPassword": "",
+    "notes": "Notebook Acer Aspire E3-112 series (RMN ZHK). Wi-Fi + Bluetooth combo QCWB335. Alimentación DC 19V ⎓ 2.1A.",
+    "observaciones": "Datos de la etiqueta inferior:\n• Modelo: E3-112-C6ME (E3-112 series)\n• S/N: NXMRLAL004434177F97600\n• SNID: 43409624976\n• MFG Date: 2014/08/23\n• RMN: ZHK\n• DC Rating: 19V ⎓ 2.1A\n• WLAN + Bluetooth: QCWB335 (FCC ID PPD-QCWB335)\n\nCargador asignado: Lite-On PA-1650-02 (19V ⎓ 3.42A, 65W), S/N AP06503016824OB7E6P606. Registrado como equipo aparte (dev-acer-e3-112-cargador).\n\nCPU, RAM y almacenamiento no figuran en las etiquetas; pendiente registrarlos con el HomeInfra Collector.",
+    "components": [
+      {
+        "category": "Red",
+        "model": "WLAN + Bluetooth combo QCWB335",
+        "serial": "",
+        "capacity": "",
+        "details": "FCC ID PPD-QCWB335",
+        "replaceable": true
+      },
+      {
+        "category": "Cargador",
+        "model": "Lite-On PA-1650-02",
+        "serial": "AP06503016824OB7E6P606",
+        "capacity": "65 W",
+        "details": "19V ⎓ 3.42A",
+        "replaceable": true,
+        "deviceId": "dev-acer-e3-112-cargador"
+      }
+    ],
+    "images": [
+      {
+        "id": "img-acer-etiqueta-serie",
+        "name": "Etiqueta modelo / S/N / MFG",
+        "url": "img/acer_e3-112_etiqueta_serie.jpg"
+      },
+      {
+        "id": "img-acer-etiqueta-wifi",
+        "name": "Etiqueta WLAN + Bluetooth QCWB335",
+        "url": "img/acer_e3-112_etiqueta_wifi_qcwb335.jpg"
+      },
+      {
+        "id": "img-acer-cargador-etiqueta",
+        "name": "Cargador: etiqueta Lite-On PA-1650-02",
+        "url": "img/acer_e3-112_cargador_etiqueta_liteon_pa-1650-02.jpg"
+      },
+      {
+        "id": "img-acer-cargador-vista",
+        "name": "Cargador: vista general",
+        "url": "img/acer_e3-112_cargador_vista_general.jpg"
+      }
+    ],
+    "mfgDate": "2014-08-23",
+    "updatedAt": "2026-10-31"
+  },
+  {
+    "id": "dev-acer-e3-112-cargador",
+    "brand": "Lite-On",
+    "model": "PA-1650-02 (Adaptador AC 65W)",
+    "type": "Periférico",
+    "serial": "AP06503016824OB7E6P606",
+    "assignedUser": "",
+    "location": "Hogar",
+    "imageUrl": "img/acer_e3-112_cargador_etiqueta_liteon_pa-1650-02.jpg",
+    "driverUrl": "https://www.acer.com/latam-es/support/product-support/E3-112",
+    "windowsUser": "",
+    "windowsPassword": "",
+    "notes": "Cargador del Acer Aspire E3-112-C6ME (S/N NXMRLAL004434177F97600). Entrada 100-240V ~ 1.6A 50-60Hz. Salida 19V ⎓ 3.42A, 65W, centro positivo. Conector de punta amarilla.",
+    "observaciones": "Datos de la etiqueta:\n• Fabricante: Lite-On Technology Corporation\n• Modelo: PA-1650-02\n• Entrada: 100-240V ~ 1.6A, 50-60Hz\n• Salida: 19V ⎓ 3.42A, 65W (centro positivo)\n• Fecha de fabricación: 2008/06\n• Etiqueta de serie: 8616796906 · AC · Rev: A06\n• Código de barras ADT: AP06503016824OB7E6P606\n\nCompatibilidad: el notebook requiere 19V ⎓ 2.1A; este cargador entrega el mismo voltaje con mayor corriente disponible (3.42A), por lo que es compatible. Por su fecha de fabricación (2008) no es el cargador de fábrica del notebook (2014).\n\nEquipo asociado: Acer Aspire E3-112-C6ME (dev-acer-e3-112).",
+    "images": [
+      {
+        "id": "img-acer-cargador-etiqueta",
+        "name": "Etiqueta Lite-On PA-1650-02",
+        "url": "img/acer_e3-112_cargador_etiqueta_liteon_pa-1650-02.jpg"
+      },
+      {
+        "id": "img-acer-cargador-serie",
+        "name": "Código de barras ADT (serie)",
+        "url": "img/acer_e3-112_cargador_serie_ap06503.jpg"
+      },
+      {
+        "id": "img-acer-cargador-advertencia",
+        "name": "Etiqueta de advertencia de temperatura",
+        "url": "img/acer_e3-112_cargador_advertencia_temperatura.jpg"
+      },
+      {
+        "id": "img-acer-cargador-vista",
+        "name": "Vista general con cable y conector",
+        "url": "img/acer_e3-112_cargador_vista_general.jpg"
+      }
+    ],
+    "mfgDate": "2008-06",
+    "updatedAt": "2026-10-31"
   }
 ]
