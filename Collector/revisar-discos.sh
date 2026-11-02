@@ -50,6 +50,13 @@ done
 # --------------------------------------------------------------------------
 ahora() { date '+%Y-%m-%d %H:%M:%S'; }
 
+# Al terminar el script, SystemRescue abre su consola y borra la pantalla:
+# el último mensaje queda visible hasta que alguien presione Enter
+quedar_en_pantalla() {
+  echo ""
+  read -r -p "Presiona Enter para ir a la consola de SystemRescue... " _ || true
+}
+
 # Error que detiene la revisión: se muestra y, si se puede, se guarda en el pendrive
 error_fatal() {
   echo ""
@@ -61,6 +68,7 @@ error_fatal() {
     { echo "$(ahora)  ERROR"; printf '%s\n' "$@"; } > "$RUN_DIR/ERROR.txt"
     sync
   fi
+  quedar_en_pantalla
   exit 1
 }
 
@@ -266,12 +274,16 @@ if [ ${#DISCOS[@]} -eq 0 ]; then
   sync
   clear
   cat "$RUN_DIR/INVENTARIO.txt"
-  echo "=============================================="
-  echo "  TERMINADO: inventario de $INVENTARIO_N disco(s) guardado."
-  echo "  No se probó ningún disco: $SIN_PRUEBA."
-  echo "  Reportes en el pendrive: HomeInfra-Discos/$(basename "$RUN_DIR")"
-  echo "  Para apagar el equipo escribe: poweroff"
-  echo "=============================================="
+  {
+    echo "=============================================="
+    echo "  TERMINADO: inventario de $INVENTARIO_N disco(s) guardado."
+    echo "  No se probó ningún disco: $SIN_PRUEBA."
+    echo "  Reportes en el pendrive: HomeInfra-Discos/$(basename "$RUN_DIR")"
+    echo "  Para apagar el equipo escribe: poweroff"
+    echo "=============================================="
+  } | tee "$RUN_DIR/FINAL.txt"
+  sync
+  quedar_en_pantalla
   exit 0
 fi
 
@@ -297,9 +309,12 @@ revisar_disco() {
   badblocks -wsv -b 4096 -t random -o "$TMP_DIR/${s}_malos.txt" "/dev/$d" > "$TMP_DIR/${s}_badblocks.log" 2>&1
   rc=$?
   echo "$rc" > "$TMP_DIR/${s}.rc"
-  # Del avance (una línea por segundo) se guarda solo la última
-  tr '\b' '\n' < "$TMP_DIR/${s}_badblocks.log" | grep -v '^[[:space:]]*$' | grep -v '% done' > "${p}_2_badblocks.log"
-  tr '\b' '\n' < "$TMP_DIR/${s}_badblocks.log" | grep '% done' | tail -1 >> "${p}_2_badblocks.log"
+  # badblocks reescribe el avance con retrocesos (\b) cada segundo: se quitan
+  # esos avances intermedios y se guarda solo el último
+  tr -d '\b' < "$TMP_DIR/${s}_badblocks.log" \
+    | sed -E 's/ *[0-9.]+% done, [0-9:]+ elapsed\. \([0-9/]+ errors\)//g; s/: *done/: done/; s/ +$//' \
+    | grep -v '^$' > "${p}_2_badblocks.log"
+  echo "Último avance: $(tr '\b' '\n' < "$TMP_DIR/${s}_badblocks.log" | grep '% done' | tail -1 | sed 's/^ *//')" >> "${p}_2_badblocks.log"
   cp "$TMP_DIR/${s}_malos.txt" "${p}_2_sectores_malos.txt" 2>/dev/null || : > "${p}_2_sectores_malos.txt"
   malos=$(grep -c . "${p}_2_sectores_malos.txt")
   sync
@@ -413,14 +428,20 @@ escribir_resumen
 clear
 cat "$RUN_DIR/RESUMEN.txt"
 echo ""
-echo "=============================================="
-if [ "$REVISAR_N" -eq 0 ]; then
-  echo "  TERMINADO: los ${#DISCOS[@]} discos están APTOS."
-else
-  echo "  TERMINADO con observaciones: $REVISAR_N de ${#DISCOS[@]} discos para REVISAR."
-fi
-[ ${#NO_CONECTADOS[@]} -gt 0 ] && echo "  Aviso: ${#NO_CONECTADOS[@]} disco(s) de la lista no estaban conectados."
-echo "  Inventario de $INVENTARIO_N disco(s) conectados: INVENTARIO.txt"
-echo "  Reportes guardados en el pendrive: HomeInfra-Discos/$(basename "$RUN_DIR")"
-echo "  Para apagar el equipo escribe: poweroff"
-echo "=============================================="
+{
+  echo "=============================================="
+  if [ "$REVISAR_N" -eq 0 ] && [ ${#DISCOS[@]} -eq 1 ]; then
+    echo "  TERMINADO: el disco está APTO."
+  elif [ "$REVISAR_N" -eq 0 ]; then
+    echo "  TERMINADO: los ${#DISCOS[@]} discos están APTOS."
+  else
+    echo "  TERMINADO con observaciones: $REVISAR_N de ${#DISCOS[@]} discos para REVISAR."
+  fi
+  [ ${#NO_CONECTADOS[@]} -gt 0 ] && echo "  Aviso: ${#NO_CONECTADOS[@]} disco(s) de la lista no estaban conectados."
+  echo "  Inventario de $INVENTARIO_N disco(s) conectados: INVENTARIO.txt"
+  echo "  Reportes guardados en el pendrive: HomeInfra-Discos/$(basename "$RUN_DIR")"
+  echo "  Para apagar el equipo escribe: poweroff"
+  echo "=============================================="
+} | tee "$RUN_DIR/FINAL.txt"
+sync
+quedar_en_pantalla

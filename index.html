@@ -902,7 +902,7 @@ Y457MMEFS      Toshiba DT01ACA100 1 TB</code>
             <li>No hace falta mirar: cada reporte se guarda en el pendrive apenas termina su etapa. Si vuelves, la pantalla muestra la etapa y el avance de cada disco, y se actualiza cada minuto.</li>
             <li>No retires el pendrive hasta ver el mensaje final. Aparece un resumen con un veredicto preliminar por disco: <strong>APTO</strong> (sin sectores malos, sin sectores pendientes ni incorregibles, sin nuevos sectores reasignados y prueba larga sin errores) o <strong>REVISAR</strong>.</li>
             <li>El mensaje final dice <strong>TERMINADO: los N discos están APTOS</strong> si todo salió bien, o <strong>TERMINADO con observaciones</strong> con cuántos discos hay que revisar. También avisa si algún disco de la lista no estaba conectado.</li>
-            <li>Para apagar el equipo escribe <code>poweroff</code> y presiona Enter.</li>
+            <li>El mensaje final (o el de error) queda en pantalla hasta que presiones Enter, y también se guarda en el pendrive como <code>FINAL.txt</code>, así que no hace falta estar presente cuando termina. Después de Enter aparece la consola de SystemRescue: para apagar el equipo escribe <code>poweroff</code> y presiona Enter.</li>
           </ul>
 
           <p class="collector-step"><span class="collector-step-num">8</span> Lleva los reportes a HomeInfra</p>
@@ -913,6 +913,7 @@ Y457MMEFS      Toshiba DT01ACA100 1 TB</code>
                 <li><code>INVENTARIO.txt</code>: todos los discos conectados, con modelo, número de serie, firmware, capacidad, velocidad, formato, interfaz, horas de uso, salud SMART, particiones y si se probó o no.</li>
                 <li><code>inventario\</code>: por cada disco conectado, su reporte SMART completo (<code>_smart.txt</code> y <code>_smart.json</code>) y sus particiones (<code>_particiones.txt</code>).</li>
                 <li><code>SIN_PRUEBA.txt</code>: solo si no se probó ningún disco, con el motivo.</li>
+                <li><code>FINAL.txt</code>: el mensaje final que se mostró en pantalla.</li>
                 <li><code>ERROR.txt</code>: solo si la prueba no pudo empezar, con el motivo.</li>
                 <li><code>&lt;serie&gt;_0_estado.txt</code>: registro de las etapas con fecha y hora.</li>
                 <li><code>&lt;serie&gt;_1_smart_inicial.txt</code> y <code>&lt;serie&gt;_3_smart_final.txt</code>: reportes SMART completos.</li>
