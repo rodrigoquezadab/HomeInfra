@@ -854,7 +854,8 @@
             </a>
           </div>
           <ul class="disk-test-list">
-            <li>En el Explorador de archivos abre la unidad <strong>RESCUE1302</strong>, crea en la raíz una carpeta llamada <code>autorun</code> y copia dentro el archivo descargado.</li>
+            <li>En el Explorador de archivos abre la unidad <strong>RESCUE1302</strong> y entra en la carpeta <code>autorun</code>, que ya viene en el pendrive (la trae SystemRescue, con un archivo vacío <code>.gitkeep</code> que puedes dejar). Copia dentro el archivo descargado. Si la carpeta no existe, créala en la raíz.</li>
+            <li>En la raíz también hay dos archivos llamados <code>autorun</code> (<code>autorun.inf</code> y <code>autorun.ico</code>): los crea Rufus para mostrar el ícono del pendrive en Windows. No los toques ni copies el script ahí: el script va dentro de la carpeta.</li>
             <li>El archivo debe llamarse exactamente <code>autorun</code>, sin extensión. Para comprobarlo activa <em>Vista → Mostrar → Extensiones de nombre de archivo</em>; si aparece como <code>autorun.sh</code> o <code>autorun.txt</code>, quítale la extensión.</li>
             <li>No abras ni guardes el script con el Bloc de notas: Windows puede cambiar sus saltos de línea y deja de funcionar.</li>
           </ul>
@@ -872,11 +873,13 @@ Y457MMEFS      Toshiba DT01ACA100 1 TB</code>
           </div>
           <div class="collector-command-box">
             <code>RESCUE1302 (pendrive)
-├── autorun\
-│   └── autorun             ← script de HomeInfra (paso 4)
-├── discos-autorizados.txt  ← discos que se pueden borrar (paso 5)
-├── HomeInfra-Discos\       ← reportes (los crea el script)
-└── boot\, EFI\, sysresccd\ ← SystemRescue (no tocar)</code>
+├── autorun\                     ← carpeta que trae SystemRescue
+│   ├── .gitkeep                 ← viene con la carpeta (puede quedar)
+│   └── autorun                  ← script de HomeInfra (paso 4)
+├── discos-autorizados.txt       ← discos que se pueden borrar (paso 5)
+├── HomeInfra-Discos\            ← reportes (los crea el script)
+├── autorun.inf, autorun.ico     ← ícono, los crea Rufus (no tocar)
+└── boot\, EFI\, sysresccd\, …   ← SystemRescue (no tocar)</code>
           </div>
 
           <p class="collector-step"><span class="collector-step-num">6</span> Arranca el equipo de prueba</p>
