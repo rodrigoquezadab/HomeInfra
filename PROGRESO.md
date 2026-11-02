@@ -36,8 +36,16 @@ Registro de dónde quedó el trabajo y qué falta por hacer en la próxima sesi�
 | 20 | SSD Samsung 850 EVO 500GB | Periférico (general) | Comercial (Icecat) | S/N S21HNXAGA21889H. |
 | 21 | Tarjeta RAID/HBA Inspur YZCA-00019-101 | Periférico (general) | Foto local | QN QTE227E00948A07 · LSI SAS 6 Gb/s 8 puertos (modelo 9240-8i / 9211-8i según firmware, por confirmar). |
 | 22 | Tarjeta SATA PCIe x1 ASM1061 (2 puertos) | Pieza (En stock) | Foto local | Genérica, chip ASMedia ASM1061, PCIe 2.0 x1, 2 × SATA 6 Gb/s. Sin número de serie. |
-| 23 | Adaptador M.2 NVMe a PCIe x16 | Pieza (En stock) | Foto local | Genérico; conector de largo x16, funciona en x4 (deducido). Código del vendedor 68002B116237580. |
+| 23 | Adaptador M.2 NVMe a PCIe x16 (sellado) | Pieza (En stock) | Foto local | Nuevo, en su bolsa. Conector de largo x16, funciona en x4 (deducido). Código del vendedor 68002B116237580. |
+| 23b | Adaptador M.2 NVMe a PCIe x16 (segunda unidad) | Pieza (En stock) | Foto local | Abierto. Mismo modelo (deducido). |
 | 24 | HDD WD Blue 500GB WD5000LPCX | Pieza (En stock) | Foto local | Nuevo, sellado. S/N WXG1AC75PY4Z · 2018-01-03. |
+| 25 | HDD WD Green 1TB WD10EARS | Pieza (En stock) | Foto local | S/N WCAZA1114403 · 2010-09-20 · SATA 3 Gb/s. |
+| 26 | HDD WD Blue 1TB WD10EZEX | Pieza (En stock) | Foto local | S/N WCC6Y3JZFCPE · 2017-01-27 · 7200 rpm · Lenovo FRU 00PC551. |
+| 27 | HDD Seagate Barracuda 7200.12 320GB ST3320413AS | Pieza (En stock) | Foto local | S/N Z2A0XF4D · Date Code 11332 (2011). |
+| 28 | HDD Seagate Barracuda 7200.10 250GB ST3250410AS | Pieza (En stock) | Foto local | S/N 6RY08XZ6 · Date Code 08031 (2007). |
+| 29 | HDD WD Blue 500GB WD5000AZLX | Pieza (En stock) | Foto local | S/N WCC6Z0VE64ZA · 2017-07-11 · 7200 rpm · Dell DP/N 0FY6CW. |
+| 30 | HDD Toshiba 1TB DT01ACA100 | Pieza (En stock) | Foto local | S/N Y457MMEFS · NOV-2014 · 7200 rpm (según modelo). |
+| 31 | HDD WD Green 3TB WD30EZRX (Respaldo) | Pieza (En stock) | Foto local | S/N WMAWZ0231988 · 2011-12-05. Respaldo del RAID espejo de los otros dos WD30EZRX; contiene datos. |
 
 Fotos locales agregadas: PC i7-2600K (gabinete 2022 como principal y placa 2023) y PC i5-12400F (caja del procesador como principal). Carpeta `C:\Users\ThinkPad\Desktop\pcs` ordenada: una carpeta por equipo, fotos con nombres descriptivos.
 
@@ -81,7 +89,7 @@ Estado: **pendiente de que el usuario revise los detalles** (2026-11-02). Retoma
 
 Otras opciones evaluadas: A (medios 4,25 TB / datos 9 TB, plan anterior), C (medios 10,25 TB / datos 1 TB), D (medios 5,25 TB con paridad simple: no recomendada).
 
-Quedan libres: P5Q PRO TURBO + E6750 + 4 GB DDR2, Zotac 8400 GS, Samsung PM981a 256 GB, Patriot 120 GB ×2, tarjeta SATA ASM1061, HDD WD5000LPCX nuevo.
+Quedan libres: P5Q PRO TURBO + E6750 + 4 GB DDR2, Zotac 8400 GS, Samsung PM981a 256 GB, Patriot 120 GB ×2, tarjeta SATA ASM1061, segundo adaptador NVMe, HDD WD5000LPCX nuevo y los 6 discos de escritorio registrados el 2026-11-02 (sin contar el WD30EZRX de respaldo).
 
 ### Pendiente para decidir / antes de armar
 - [ ] Usuario confirma la opción B (o elige otra).
@@ -91,6 +99,7 @@ Quedan libres: P5Q PRO TURBO + E6750 + 4 GB DDR2, Zotac 8400 GS, Samsung PM981a 
 - [ ] Tarjeta SATA ASM1061 (2 puertos, PCIe x1): disponible para sumar puertos al servidor de datos si el P5G41T-M LX tiene ranura x1 libre.
 - [ ] Confirmar modelo de la TV Caixun (opcional).
 - [ ] Copiar el contenido de los discos "Respaldos" (WD20EARS) y "Trabajo 1" (WD1001FALS) antes de usarlos.
+- [ ] **Replantear el servidor de datos:** la opción B usa los dos WD30EZRX como paridad y datos, pero forman un RAID espejo con datos (respaldo en un tercer WD30EZRX, WMAWZ0231988). Considerar también los discos nuevos: WD10EARS, WD10EZEX y DT01ACA100 (1 TB), WD5000AZLX (500 GB), ST3320413AS (320 GB) y ST3250410AS (250 GB).
 - [ ] Revisar SMART y hacer prueba completa de cada disco; desactivar el estacionamiento agresivo de cabezales de los WD Green.
 - [ ] Flashear la tarjeta Inspur a modo IT (desde DOS o shell UEFI).
 - [ ] Verificar que los complementos SnapRAID y mergerfs de omv-extras estén publicados para OMV 8 (si no, instalar OMV 7).

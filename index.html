@@ -55,6 +55,15 @@
           <span>Collector</span>
         </button>
 
+        <button id="btn-open-disk-test" class="btn btn-outline" title="Revisar la integridad de discos con el pendrive de prueba">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+            <circle cx="12" cy="11" r="4"></circle>
+            <line x1="12" y1="11" x2="15" y2="17"></line>
+          </svg>
+          <span>Discos</span>
+        </button>
+
         <button id="btn-add-device" class="btn btn-primary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -777,6 +786,118 @@
             </label>
             <input type="file" id="import-collector-input" accept=".json" multiple style="display: none;">
           </div>
+        </div>
+
+        <!-- Revisión de discos con el pendrive de prueba (SystemRescue) -->
+        <div class="settings-group-block" id="settings-disk-test-block">
+          <div class="settings-block-header">
+            <span class="settings-block-title">🩺 Revisión de discos (pendrive de prueba)</span>
+          </div>
+          <p class="settings-desc">
+            Prueba la integridad de varios discos al mismo tiempo: reporte SMART inicial, revisión completa de la superficie con <code>badblocks</code>, prueba larga del SMART y reporte SMART final. Todo funciona desde un mismo pendrive: arrancas el equipo con él, la prueba empieza sola y los reportes quedan guardados en ese mismo pendrive.
+          </p>
+          <p class="disk-test-warning">
+            ⚠️ La prueba <strong>borra por completo</strong> los discos probados. Conecta solo los discos que quieras probar y desconecta los que tengan datos.
+          </p>
+
+          <p class="collector-step"><span class="collector-step-num">1</span> Qué necesitas</p>
+          <ul class="disk-test-list">
+            <li>Un pendrive de <strong>4 GB o más</strong>. Se borrará por completo. Rotúlalo por fuera, por ejemplo «HomeInfra Discos».</li>
+            <li>Un PC con Windows para prepararlo.</li>
+            <li><a href="https://rufus.ie/es/" target="_blank" rel="noopener">Rufus</a>: usa la versión portable, no requiere instalación.</li>
+            <li><strong>SystemRescue 13.02</strong>: sistema Linux gratuito que arranca desde el pendrive (paso 2).</li>
+            <li>El script de revisión de HomeInfra (paso 4).</li>
+          </ul>
+
+          <p class="collector-step"><span class="collector-step-num">2</span> Descarga SystemRescue</p>
+          <ul class="disk-test-list">
+            <li>Página oficial: <a href="https://www.system-rescue.org/Download/" target="_blank" rel="noopener">system-rescue.org/Download</a>. Descarga el archivo <code>systemrescue-13.02-amd64.iso</code> (1,3 GB). Enlace directo: <a href="https://fastly-cdn.system-rescue.org/releases/13.02/systemrescue-13.02-amd64.iso" target="_blank" rel="noopener">systemrescue-13.02-amd64.iso</a>.</li>
+            <li>Opcional, para comprobar que la descarga está completa: en PowerShell, dentro de la carpeta de descargas, ejecuta <code>Get-FileHash .\systemrescue-13.02-amd64.iso -Algorithm SHA256</code> y compara el resultado con el archivo <code>.sha256</code> de la misma página.</li>
+            <li>Una versión más nueva también sirve; solo cambia la etiqueta del pendrive (por ejemplo, la 13.03 usa <code>RESCUE1303</code>).</li>
+          </ul>
+
+          <p class="collector-step"><span class="collector-step-num">3</span> Crea el pendrive con Rufus</p>
+          <p class="settings-desc">Conecta el pendrive, abre Rufus y deja estas opciones:</p>
+          <div class="disk-test-table-wrap">
+            <table class="disk-test-table">
+              <thead>
+                <tr><th>Opción en Rufus</th><th>Valor</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Dispositivo <span class="disk-test-en">(Device)</span></td><td>Tu pendrive. Revisa la letra y el tamaño para no borrar otra unidad.</td></tr>
+                <tr><td>Elección de arranque <span class="disk-test-en">(Boot selection)</span></td><td>«Disco o imagen ISO» → <strong>SELECCIONAR</strong> → <code>systemrescue-13.02-amd64.iso</code></td></tr>
+                <tr><td>Esquema de partición <span class="disk-test-en">(Partition scheme)</span></td><td><strong>MBR</strong></td></tr>
+                <tr><td>Sistema destino <span class="disk-test-en">(Target system)</span></td><td><strong>BIOS o UEFI</strong></td></tr>
+                <tr><td>Etiqueta de volumen <span class="disk-test-en">(Volume label)</span></td><td><strong><code>RESCUE1302</code></strong>. <strong>No la cambies:</strong> SystemRescue busca el pendrive por este nombre y no arranca si es otro.</td></tr>
+                <tr><td>Sistema de archivos <span class="disk-test-en">(File system)</span></td><td><strong>FAT32</strong></td></tr>
+                <tr><td>Tamaño del clúster <span class="disk-test-en">(Cluster size)</span></td><td>El que viene por defecto.</td></tr>
+                <tr><td>Opciones de formato</td><td>Marcados: «Formato rápido» y «Crear etiqueta extendida y archivos de icono». Sin marcar: «Comprobar bloques defectuosos».</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <ul class="disk-test-list">
+            <li>Presiona <strong>EMPEZAR</strong> <span class="disk-test-en">(START)</span>. Si Rufus ofrece descargar archivos adicionales (Syslinux o GRUB), acepta con <strong>Sí</strong>.</li>
+            <li>Cuando pregunte cómo escribir la imagen, elige <strong>«Escribir en modo Imagen ISO (Recomendado)»</strong>. No uses el modo DD: deja el pendrive de solo lectura y los reportes no se podrían guardar.</li>
+            <li>Acepta el aviso de que se borrará el pendrive y espera a que la barra diga <strong>PREPARADO</strong> <span class="disk-test-en">(READY)</span>.</li>
+          </ul>
+
+          <p class="collector-step"><span class="collector-step-num">4</span> Copia el script al pendrive</p>
+          <div class="settings-actions-row">
+            <a class="btn btn-secondary" href="Collector/revisar-discos.sh" download="autorun">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Descargar script (autorun)</span>
+            </a>
+          </div>
+          <ul class="disk-test-list">
+            <li>En el Explorador de archivos abre la unidad <strong>RESCUE1302</strong>, crea en la raíz una carpeta llamada <code>autorun</code> y copia dentro el archivo descargado.</li>
+            <li>El archivo debe llamarse exactamente <code>autorun</code>, sin extensión. Para comprobarlo activa <em>Vista → Mostrar → Extensiones de nombre de archivo</em>; si aparece como <code>autorun.sh</code> o <code>autorun.txt</code>, quítale la extensión.</li>
+            <li>No abras ni guardes el script con el Bloc de notas: Windows puede cambiar sus saltos de línea y deja de funcionar.</li>
+          </ul>
+          <div class="collector-command-box">
+            <code>RESCUE1302 (pendrive)
+├── autorun\
+│   └── autorun             ← script de HomeInfra (lo copias tú)
+├── HomeInfra-Discos\       ← reportes (los crea el script)
+└── boot\, EFI\, sysresccd\ ← SystemRescue (no tocar)</code>
+          </div>
+
+          <p class="collector-step"><span class="collector-step-num">5</span> Arranca el equipo de prueba</p>
+          <ul class="disk-test-list">
+            <li>Con el equipo apagado, conecta por SATA los discos a probar, con su cable de energía, y luego el pendrive.</li>
+            <li>Enciende y abre el menú de arranque con la tecla que indique la pantalla de inicio: <strong>F12</strong> en Gigabyte, <strong>F8</strong> en ASUS, <strong>F11</strong> en MSI. Elige el pendrive; si aparece dos veces, la opción que empieza con «UEFI:» arranca en modo UEFI y la otra en modo BIOS: ambas sirven.</li>
+            <li>En el menú de SystemRescue elige la primera opción: <em>Boot SystemRescue using default options</em>. Si en modo UEFI no arranca, desactiva <em>Secure Boot</em> en la BIOS o usa la opción sin «UEFI:».</li>
+            <li>Al terminar de cargar, la prueba se inicia sola y muestra los discos detectados con su modelo, tamaño y número de serie. Revisa que sean los correctos (si alguno dice <strong>TIENE DATOS</strong>, revísalo dos veces), escribe <code>BORRAR</code> y presiona Enter.</li>
+            <li>Para usar SystemRescue para otra cosa, presiona Enter sin escribir nada: la prueba se cancela sin tocar los discos.</li>
+          </ul>
+
+          <p class="collector-step"><span class="collector-step-num">6</span> Déjalo trabajar</p>
+          <ul class="disk-test-list">
+            <li>Todos los discos se prueban al mismo tiempo; la prueba dura lo que tarde el disco más lento. Aproximadamente: 500 GB, de 3 a 5 horas; 1 TB, de 6 a 9 horas; 2 TB, de 12 a 16 horas; 3 TB, de 18 a 24 horas.</li>
+            <li>No hace falta mirar: cada reporte se guarda en el pendrive apenas termina su etapa. Si vuelves, la pantalla muestra la etapa y el avance de cada disco, y se actualiza cada minuto.</li>
+            <li>No retires el pendrive hasta ver <strong>TERMINADO</strong>. Aparece un resumen con un veredicto preliminar por disco: <strong>APTO</strong> (sin sectores malos, sin sectores pendientes ni incorregibles, sin nuevos sectores reasignados y prueba larga sin errores) o <strong>REVISAR</strong>.</li>
+            <li>Para apagar el equipo escribe <code>poweroff</code> y presiona Enter.</li>
+          </ul>
+
+          <p class="collector-step"><span class="collector-step-num">7</span> Lleva los reportes a HomeInfra</p>
+          <ul class="disk-test-list">
+            <li>Cada ejecución crea en el pendrive la carpeta <code>HomeInfra-Discos\&lt;placa&gt;_&lt;fecha&gt;\</code>, así las pruebas de distintos equipos no se mezclan. Dentro quedan:
+              <ul>
+                <li><code>RESUMEN.txt</code>: valores SMART iniciales y finales, sectores malos, resultado de la prueba larga y veredicto de cada disco.</li>
+                <li><code>&lt;serie&gt;_0_estado.txt</code>: registro de las etapas con fecha y hora.</li>
+                <li><code>&lt;serie&gt;_1_smart_inicial.txt</code> y <code>&lt;serie&gt;_3_smart_final.txt</code>: reportes SMART completos.</li>
+                <li><code>&lt;serie&gt;_2_badblocks.log</code> y <code>&lt;serie&gt;_2_sectores_malos.txt</code>: si este último está vacío, no hubo sectores malos.</li>
+              </ul>
+            </li>
+            <li>Conecta el pendrive a tu PC y copia la carpeta <code>HomeInfra-Discos</code> al proyecto, en <code>Collector/Registros/Discos/</code>. El resultado de cada disco se registra en su ficha (vista <em>Piezas</em>, búsqueda por número de serie).</li>
+            <li>El pendrive sirve para siempre: para probar otros discos, vuelve al paso 5.</li>
+          </ul>
+          <p class="field-hint">
+            Uso manual: tras cancelar con Enter, <code>bash /run/archiso/bootmnt/autorun/autorun sda sdb</code> prueba solo los discos indicados (los nombres se ven con <code>lsblk</code>). El script también está en la carpeta <a href="https://github.com/rodrigoquezadab/HomeInfra/tree/main/Collector" target="_blank" rel="noopener">Collector</a> como <code>revisar-discos.sh</code>.
+          </p>
         </div>
 
         <!-- Respaldo del Proyecto GitHub -->

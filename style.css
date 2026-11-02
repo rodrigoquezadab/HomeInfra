@@ -2371,6 +2371,76 @@ body {
   font-weight: 700;
 }
 
+/* Revisión de discos: procedimiento del pendrive de prueba */
+.disk-test-warning {
+  margin: 0;
+  font-size: 0.83rem;
+  line-height: 1.45;
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.45);
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+}
+
+.disk-test-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.disk-test-list ul {
+  margin: 0.3rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.disk-test-list code,
+.disk-test-table code,
+.disk-test-warning code {
+  overflow-wrap: anywhere;
+}
+
+.disk-test-table-wrap {
+  overflow-x: auto;
+}
+
+.disk-test-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.disk-test-table th,
+.disk-test-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.45rem 0.55rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.disk-test-table th {
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.disk-test-table td:first-child {
+  color: var(--text-main);
+  font-weight: 600;
+  width: 38%;
+}
+
+.disk-test-en {
+  color: var(--text-dim);
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+
 /* Selector de vista: equipos completos / componentes */
 .view-switcher {
   display: flex;

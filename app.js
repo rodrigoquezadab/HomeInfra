@@ -2528,7 +2528,7 @@ const DEFAULT_DEVICES = [
     replaceable: true,
     capacity: "3 TB",
     details: "3.5\" SATA 6 Gb/s · 64 MB caché",
-    notes: "",
+    notes: "En RAID espejo con el otro WD30EZRX (WCAWZ2268707). Contiene datos. Respaldo en el WD30EZRX WMAWZ0231988.",
     mfgDate: "2012-06-07",
     status: "En stock",
     installedIn: null,
@@ -2573,7 +2573,7 @@ const DEFAULT_DEVICES = [
     replaceable: true,
     capacity: "3 TB",
     details: "3.5\" SATA 6 Gb/s · 64 MB caché",
-    notes: "",
+    notes: "En RAID espejo con el otro WD30EZRX (WCAWZ2212479). Contiene datos. Respaldo en el WD30EZRX WMAWZ0231988.",
     mfgDate: "2012-07-26",
     status: "En stock",
     installedIn: null,
@@ -3026,6 +3026,45 @@ const DEFAULT_DEVICES = [
     replaceable: true,
     capacity: "",
     details: "M.2 M key (NVMe) · conector PCIe de largo x16 · hasta x4 carriles",
+    notes: "Nuevo, sellado en su bolsa.",
+    mfgDate: "",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos del adaptador (nuevo, sellado)"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-adaptador-m2-nvme-pcie-x16",
+    hardwareType: "Otro",
+    brand: "Genérica",
+    model: "Adaptador M.2 NVMe a PCIe x16",
+    serial: "",
+    imageUrl: "img/adaptador_m2_nvme_pcie_x16_bolsa.jpg",
+    driverUrl: "",
+    observaciones: "Datos de la etiqueta de la bolsa (código del vendedor, no es número de serie):\n• 68002B116237580 · \"NGFF NVME转接卡 M.2转 PCI…\" (adaptador NVMe M.2 a PCI…) · A43-01-02\n• Serigrafía: \"M.2 Mkey NVMe\"\n\nConector de borde de largo x16: va en una ranura x16 (o de extremo abierto). Una unidad NVMe usa como máximo 4 carriles, por lo que funciona en x4 (deducido; el cableado de carriles no se ve en la foto). Incluye separador y tornillo para la unidad. Pasivo: no necesita drivers.\n\nHay una segunda unidad abierta, registrada aparte.",
+    images: [
+      {
+        id: "img-adaptador-nvme-bolsa",
+        name: "En su bolsa (etiqueta)",
+        url: "img/adaptador_m2_nvme_pcie_x16_bolsa.jpg"
+      }
+    ]
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "",
+    details: "M.2 M key (NVMe) · conector PCIe de largo x16 · hasta x4 carriles",
     notes: "",
     mfgDate: "",
     status: "En stock",
@@ -3039,20 +3078,15 @@ const DEFAULT_DEVICES = [
       }
     ],
     updatedAt: "2026-11-02",
-    id: "pz-adaptador-m2-nvme-pcie-x16",
+    id: "pz-adaptador-m2-nvme-pcie-x16-2",
     hardwareType: "Otro",
     brand: "Genérica",
-    model: "Adaptador M.2 NVMe a PCIe x16",
+    model: "Adaptador M.2 NVMe a PCIe x16 (segunda unidad)",
     serial: "",
-    imageUrl: "img/adaptador_m2_nvme_pcie_x16_bolsa.jpg",
+    imageUrl: "img/adaptador_m2_nvme_pcie_x16_reverso.jpg",
     driverUrl: "",
-    observaciones: "Datos de la etiqueta de la bolsa (código del vendedor, no es número de serie):\n• 68002B116237580 · \"NGFF NVME转接卡 M.2转 PCI…\" (adaptador NVMe M.2 a PCI…) · A43-01-02\n• Serigrafía: \"M.2 Mkey NVMe\" · 2 12 1\n\nConector de borde de largo x16: va en una ranura x16 (o de extremo abierto). Una unidad NVMe usa como máximo 4 carriles, por lo que funciona en x4 (deducido; el cableado de carriles no se ve en la foto). Incluye separador y tornillo para la unidad. Pasivo: no necesita drivers.",
+    observaciones: "Datos del reverso (sin etiqueta ni número de serie):\n• Logos PCI Express, CE, FC y RoHS · serigrafía \"2 12 1\"\n• Fuera de su bolsa, con el separador de latón puesto.\n\nConector de borde de largo x16: va en una ranura x16 (o de extremo abierto). Funciona en x4 (deducido). Mismo modelo que la unidad sellada (deducido por la forma de la placa). Pasivo: no necesita drivers.",
     images: [
-      {
-        id: "img-adaptador-nvme-bolsa",
-        name: "En su bolsa (etiqueta)",
-        url: "img/adaptador_m2_nvme_pcie_x16_bolsa.jpg"
-      },
       {
         id: "img-adaptador-nvme-reverso",
         name: "Reverso y conector",
@@ -3104,6 +3138,286 @@ const DEFAULT_DEVICES = [
       }
     ],
     year: "2018"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "1 TB",
+    details: "3.5\" SATA 3 Gb/s · 64 MB caché",
+    notes: "",
+    mfgDate: "2010-09-20",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-hdd-wd10ears",
+    hardwareType: "HDD",
+    brand: "Western Digital",
+    model: "WD Caviar Green WD10EARS",
+    serial: "WCAZA1114403",
+    imageUrl: "img/hdd_wd10ears_1tb_etiqueta.jpg",
+    driverUrl: "https://www.google.com/search?q=Western%20Digital%20WD%20Caviar%20Green%20WD10EARS%20support",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD10EARS-00MVWB0 · S/N: WCAZA1114403\n• Fecha: 20 SEP 2010 · Producto de Malasia\n• DCM: HHRNNTJMH · DCX: 1M00V1RW4 · R/N: 771698 · WWN: 50014EE6007445C4 · LBA: 1953525168",
+    images: [
+      {
+        id: "img-pz-hdd-wd10ears",
+        name: "Etiqueta",
+        url: "img/hdd_wd10ears_1tb_etiqueta.jpg"
+      }
+    ],
+    year: "2010"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "1 TB",
+    details: "3.5\" SATA 6 Gb/s · 64 MB caché · 7200 rpm",
+    notes: "",
+    mfgDate: "2017-01-27",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-hdd-wd10ezex",
+    hardwareType: "HDD",
+    brand: "Western Digital",
+    model: "WD Blue WD10EZEX",
+    serial: "WCC6Y3JZFCPE",
+    imageUrl: "img/hdd_wd10ezex_1tb_etiqueta.jpg",
+    driverUrl: "https://www.google.com/search?q=Western%20Digital%20WD%20Blue%20WD10EZEX%20support",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD10EZEX-08WN4A0 · S/N: WCC6Y3JZFCPE\n• Fecha: 27 JAN 2017 · Producto de Tailandia\n• DCM: HANNKT2CEB · DCX: ZW0PN364F · R/N: 800039 · WWN: 50014EE20E63EA9A · LBA: 1953525168\n• Lenovo: LI PN SH20K17927 · FRU 00PC551 (disco de un equipo Lenovo)",
+    images: [
+      {
+        id: "img-pz-hdd-wd10ezex",
+        name: "Etiqueta",
+        url: "img/hdd_wd10ezex_1tb_etiqueta.jpg"
+      }
+    ],
+    year: "2017"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "320 GB",
+    details: "3.5\" SATA 3 Gb/s · 7200 rpm",
+    notes: "",
+    mfgDate: "2011 (deducido del Date Code 11332)",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-hdd-seagate-st3320413as",
+    hardwareType: "HDD",
+    brand: "Seagate",
+    model: "Barracuda 7200.12 ST3320413AS",
+    serial: "Z2A0XF4D",
+    imageUrl: "img/hdd_seagate_st3320413as_320gb_etiqueta.jpg",
+    driverUrl: "https://www.google.com/search?q=Seagate%20Barracuda%207200.12%20ST3320413AS%20support",
+    observaciones: "Datos de la etiqueta:\n• ST3320413AS · S/N: Z2A0XF4D · P/N: 9YP14C-303 · Firmware: JC45\n• Date Code: 11332 · Site Code: TK · Producto de Tailandia\n• Marcado a mano \"320GB\".",
+    images: [
+      {
+        id: "img-pz-hdd-seagate-st3320413as",
+        name: "Etiqueta",
+        url: "img/hdd_seagate_st3320413as_320gb_etiqueta.jpg"
+      }
+    ],
+    year: "2011"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "250 GB",
+    details: "3.5\" SATA 3 Gb/s · 7200 rpm",
+    notes: "",
+    mfgDate: "2007 (deducido del Date Code 08031)",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-hdd-seagate-st3250410as",
+    hardwareType: "HDD",
+    brand: "Seagate",
+    model: "Barracuda 7200.10 ST3250410AS",
+    serial: "6RY08XZ6",
+    imageUrl: "img/hdd_seagate_st3250410as_250gb_etiqueta.jpg",
+    driverUrl: "https://www.google.com/search?q=Seagate%20Barracuda%207200.10%20ST3250410AS%20support",
+    observaciones: "Datos de la etiqueta:\n• ST3250410AS · S/N: 6RY08XZ6 · P/N: 9EU142-300 · Firmware: 3.AAA\n• Date Code: 08031 · Site Code: SU · Producto de China\n• Etiqueta adicional pegada: 412-3723 · 15-08-2007",
+    images: [
+      {
+        id: "img-pz-hdd-seagate-st3250410as",
+        name: "Etiqueta",
+        url: "img/hdd_seagate_st3250410as_250gb_etiqueta.jpg"
+      }
+    ],
+    year: "2007"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "500 GB",
+    details: "3.5\" SATA 6 Gb/s · 32 MB caché · 7200 rpm",
+    notes: "",
+    mfgDate: "2017-07-11",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-hdd-wd5000azlx",
+    hardwareType: "HDD",
+    brand: "Western Digital",
+    model: "WD Blue WD5000AZLX",
+    serial: "WCC6Z0VE64ZA",
+    imageUrl: "img/hdd_wd5000azlx_500gb_etiqueta.jpg",
+    driverUrl: "https://www.google.com/search?q=Western%20Digital%20WD%20Blue%20WD5000AZLX%20support",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD5000AZLX-75K2TA0 · S/N: WCC6Z0VE64ZA · Firmware: A0\n• Fecha: 11 JUL 2017 · Producto de Tailandia\n• DCM: HARNNT2CHB · DCX: EK0Z203T6 · R/N: 800039 · WWN: 50014EE20EFACE27 · LBA: 976773168\n• Dell: DP/N 0FY6CW (TH-0FY6CW-WDT00-77B-D0J7-A00) (disco de un equipo Dell)",
+    images: [
+      {
+        id: "img-pz-hdd-wd5000azlx",
+        name: "Etiqueta",
+        url: "img/hdd_wd5000azlx_500gb_etiqueta.jpg"
+      }
+    ],
+    year: "2017"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "1 TB",
+    details: "3.5\" SATA 6 Gb/s · 7200 rpm",
+    notes: "",
+    mfgDate: "2014-11",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-hdd-toshiba-dt01aca100",
+    hardwareType: "HDD",
+    brand: "Toshiba",
+    model: "DT01ACA100",
+    serial: "Y457MMEFS",
+    imageUrl: "img/hdd_toshiba_dt01aca100_1tb_etiqueta.jpg",
+    driverUrl: "https://www.google.com/search?q=Toshiba%20DT01ACA100%20support",
+    observaciones: "Datos de la etiqueta:\n• DT01ACA100 · S/N: Y457MMEFS (junto al S/N aparece \"WK7\")\n• Fecha: NOV-2014 · Hecho en China\n• Drive rev: AAA AA10/750 · HDKPC03A0A02 S · LBA: 1,953,525,168\n• Marcado a mano \"1TB\".\n\nVelocidad de 7200 rpm según el modelo (no figura en la etiqueta).",
+    images: [
+      {
+        id: "img-pz-hdd-toshiba-dt01aca100",
+        name: "Etiqueta",
+        url: "img/hdd_toshiba_dt01aca100_1tb_etiqueta.jpg"
+      }
+    ],
+    year: "2014"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "3 TB",
+    details: "3.5\" SATA 6 Gb/s · 64 MB caché",
+    notes: "Disco de respaldo del RAID espejo formado por los otros dos WD30EZRX (WCAWZ2212479 y WCAWZ2268707). Contiene datos.",
+    mfgDate: "2011-12-05",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-hdd-wd30ezrx-wmawz0231988",
+    hardwareType: "HDD",
+    brand: "Western Digital",
+    model: "WD Caviar Green WD30EZRX (Respaldo)",
+    serial: "WMAWZ0231988",
+    imageUrl: "img/hdd_wd30ezrx_3tb_wmawz0231988.jpg",
+    driverUrl: "https://www.google.com/search?q=Western%20Digital%20WD%20Caviar%20Green%20WD30EZRX%20(Respaldo)%20support",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD30EZRX-00MMMB0 · S/N: WMAWZ0231988\n• Fecha: 05 DEC 2011 · Producto de Malasia\n• DCM: HBRCHV2CA · DCX: 3M08M07M1 · R/N: 771698 · WWN: 50014EE0ADAF8500\n• Marcado a mano: \"Mirror 02 copia\" (etiqueta pegada) y \"Respaldo\".",
+    images: [
+      {
+        id: "img-pz-hdd-wd30ezrx-wmawz0231988",
+        name: "Etiqueta",
+        url: "img/hdd_wd30ezrx_3tb_wmawz0231988.jpg"
+      }
+    ],
+    year: "2011"
   }
 ];
 
@@ -3221,6 +3535,7 @@ const btnExportJson = document.getElementById("btn-export-json");
 const importJsonInput = document.getElementById("import-json-input");
 const importCollectorInput = document.getElementById("import-collector-input");
 const btnOpenCollector = document.getElementById("btn-open-collector");
+const btnOpenDiskTest = document.getElementById("btn-open-disk-test");
 const collectorCommand = document.getElementById("collector-command");
 const collectorOsHint = document.getElementById("collector-os-hint");
 const btnCopyCollectorCommand = document.getElementById("btn-copy-collector-command");
@@ -3532,6 +3847,7 @@ function bindEvents() {
   if (importJsonInput) importJsonInput.addEventListener("change", handleImportJson);
   if (importCollectorInput) importCollectorInput.addEventListener("change", handleImportCollector);
   if (btnOpenCollector) btnOpenCollector.addEventListener("click", openCollectorSection);
+  if (btnOpenDiskTest) btnOpenDiskTest.addEventListener("click", openDiskTestSection);
   document.querySelectorAll(".collector-os-tab").forEach((tab) => {
     tab.addEventListener("click", () => selectCollectorOs(tab.dataset.os));
   });
@@ -6242,6 +6558,15 @@ function updateCollectorCommand() {
 function openCollectorSection() {
   openSettingsModal();
   const block = document.getElementById("settings-collector-block");
+  if (block) block.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+/**
+ * Abrir Configuración directamente en la sección de revisión de discos
+ */
+function openDiskTestSection() {
+  openSettingsModal();
+  const block = document.getElementById("settings-disk-test-block");
   if (block) block.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
