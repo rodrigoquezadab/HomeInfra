@@ -18,7 +18,13 @@ Registro de dónde quedó el trabajo y qué falta por hacer en la próxima sesi�
 | 2 | MSI Modern 14 B5M-011CL | Laptop | Comercial (Icecat) | Datos de etiqueta y 6 fotos. CPU y RAM deducidos del SKU; almacenamiento sin registrar. Sin componentes. |
 | 3 | Acer Aspire E3-112-C6ME | Laptop | Comercial (Icecat, versión plateada) | Datos de etiqueta y 4 fotos. CPU, RAM y almacenamiento sin registrar. Componentes: Wi-Fi QCWB335 y cargador. |
 | 4 | Lite-On PA-1650-02 | Periférico (cargador) | Foto local (vista general) | Cargador del Acer E3-112, enlazado con `deviceId`. Se ve dentro de la tarjeta del Acer y en la vista de componentes, no como equipo aparte. Compatible (19V; 3.42A ≥ 2.1A), pero no es el original de fábrica (2008). |
-| 5 | PC armado: Core i5-12400F · MSI PRO H610M-G DDR4 | Desktop | Sin imagen | Registrado con el Collector (`Collector/Registros/MSI_MS-7D46_20261031-192112.json`). Serie de la placa base como identificador. 9 componentes. |
+| 5 | PC armado: Core i5-12400F · MSI PRO H610M-G DDR4 | Desktop | Sin imagen | Registrado con el Collector (`Collector/Registros/MSI_MS-7D46_20261031-192112.json`). Serie de la placa base como identificador. 8 componentes (el monitor pasó a dispositivo general). |
+| 6 | PC armado: Core 2 Quad Q6700 · ASUS P5G41T-M LX | Desktop | Sin imagen | Collector 2026-11-01. Sin disco propio. Windows informó 2 núcleos (el Q6700 tiene 4). RAM sin datos de fabricante (BIOS); tipo DDR3 deducido de la placa. |
+| 7 | PC armado: Core 2 Duo E6750 · ASUS P5Q PRO TURBO | Desktop | Sin imagen | Collector 2026-11-02. Sin disco propio. GeForce 210 dedicada. RAM sin datos de fabricante (BIOS); tipo DDR2 deducido de la placa. |
+| 8 | PC armado: Core i7-2600K · Gigabyte Z77-HD3 | Desktop | Sin imagen | Collector 2026-11-01. Sin disco propio. Sin serie de placa: se identifica por MAC y UUID. Windows informó 1 núcleo / 2 hilos (el 2600K tiene 4 / 8). |
+| 9 | Monitor LG TV | Monitor (general) | Sin imagen | Dispositivo compartido entre PCs; no es componente de ningún equipo. EDID sin serie real ni modelo exacto. |
+| 10 | SSD Patriot Burst Elite 120GB | Periférico (general) | Sin imagen | SSD de Windows 10 Pro ("SERVER", instalado 2025-01-28) que se mueve entre PCs para arrancarlos; no es componente de ningún equipo. |
+| 11 | Pendrive Sony 4 GB | Periférico (general) | Sin imagen | Pendrive del Collector; no es componente de ningún equipo. |
 
 ### App
 - Dos vistas: **💻 Equipos completos** (principal) y **🧩 Componentes** (cada pieza por separado, filtro por categoría, búsqueda, imagen y equipo donde está instalada).
@@ -46,7 +52,10 @@ Registro de dónde quedó el trabajo y qué falta por hacer en la próxima sesi�
 - [ ] Ejecutar el Collector en el **Acer E3-112** para registrar CPU, RAM y almacenamiento.
 - [ ] Ejecutar el Collector en el **MSI Modern 14** para confirmar CPU/RAM, registrar el almacenamiento y generar sus componentes.
 - [ ] Registrar el número de serie de la **Brother DCP-1602**.
-- [ ] **PC armado (i5-12400F):** activar XMP en la BIOS (la RAM de 3600 MT/s funciona a 2667; la plataforma admite hasta 3200), agregar fotos (o elegir imagen principal) y registrar el monitor LG TV como equipo propio si corresponde.
+- [ ] **PC armado (i5-12400F):** activar XMP en la BIOS (la RAM de 3600 MT/s funciona a 2667; la plataforma admite hasta 3200) y agregar fotos (o elegir imagen principal).
+- [ ] **SSD de Windows compartido:** revisar si tiene limitado el número de procesadores (msconfig → Arranque → Opciones avanzadas); en los PCs Q6700 e i7-2600K Windows informó menos núcleos de los reales.
+- [ ] **PCs Q6700, E6750 e i7-2600K:** fotos, modelo exacto de la RAM y si tienen disco propio.
+- [ ] **Monitor LG TV:** registrar el modelo exacto (etiqueta trasera).
 - [ ] Revisar la carpeta `C:\Users\ThinkPad\Desktop\pcs` por más equipos o accesorios por registrar.
 
 ### Imágenes

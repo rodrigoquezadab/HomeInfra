@@ -338,18 +338,328 @@ const DEFAULT_DEVICES = [
         details: "1.0",
         replaceable: false,
         imageUrl: "img/componente_placa_msi_pro_h610m-g_ddr4.jpg"
-      },
-      {
-        category: "Monitor",
-        model: "LG TV (fabricante EDID GSM)",
-        serial: "",
-        capacity: "",
-        details: "Pantalla externa conectada; año 2011 según EDID",
-        replaceable: true
       }
     ],
     mfgDate: "",
-    updatedAt: "2026-10-31"
+    updatedAt: "2026-11-01"
+  },
+  {
+    id: "dev-pc-q6700-p5g41t-m-lx",
+    brand: "PC armado",
+    model: "Core 2 Quad Q6700 · ASUS P5G41T-M LX",
+    type: "Desktop",
+    serial: "107933150000113",
+    assignedUser: "",
+    location: "Hogar",
+    imageUrl: "",
+    driverUrl: "https://www.asus.com/supportonly/p5g41t-m%20lx/helpdesk_download/",
+    windowsUser: "",
+    windowsPassword: "",
+    notes: "PC de escritorio armado. Placa base ASUS P5G41T-M LX (chipset Intel G41), Intel Core 2 Quad Q6700, 8 GB de RAM (2 × 4 GB), gráficos integrados Intel G41 y red Qualcomm Atheros AR8131.",
+    observaciones: "El equipo no tiene número de serie propio (PC armado); se usa el número de serie de la placa base como identificador.\nWindows informó 2 núcleos / 2 hilos; el modelo tiene 4 núcleos / 4 hilos según la especificación de Intel. Probablemente el Windows del SSD compartido tiene limitado el número de procesadores (msconfig → Arranque → Opciones avanzadas).\nRegistrado arrancando con el SSD de Windows compartido (Patriot Burst Elite 120GB) y el monitor LG TV, registrados aparte como dispositivos generales.\n\nRegistro HomeInfra Collector (2026-11-01 21:02:05):\n• BIOS: American Megatrends Inc. 1101 (2012-06-07)\n• CPU: Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz (2 núcleos / 2 hilos socket LGA775)\n• RAM: 4 GB (DIMM [DIMM A1])\n• RAM: 4 GB (DIMM [DIMM B1])\n• GPU: Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1) (Intel Corporation)\n• Red: Qualcomm Atheros AR8131 PCI-E Gigabit Ethernet Controller (NDIS 6.30) (MAC BC:AE:C5:28:68:F4)\n• Placa base: ASUSTeK Computer INC. P5G41T-M LX (Rev X.0x) · S/N 107933150000113",
+    specs: {
+      cpu: {
+        model: "Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz",
+        cores: "4 núcleos / 4 hilos",
+        speed: "2.7 GHz",
+        details: "Windows informó 2 núcleos / 2 hilos"
+      },
+      ram: {
+        capacity: "8 GB",
+        type: "DDR3",
+        speed: "",
+        details: "2 de 2 ranuras usadas · tipo DDR3 deducido del modelo de placa"
+      },
+      gpu: {
+        model: "Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1)",
+        type: "Integrada",
+        details: ""
+      },
+      storage: "Sin disco propio (usa el SSD de Windows compartido)"
+    },
+    components: [
+      {
+        category: "CPU",
+        model: "Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz",
+        serial: "",
+        capacity: "",
+        details: "4 núcleos / 4 hilos socket LGA775",
+        replaceable: true
+      },
+      {
+        category: "RAM",
+        model: "",
+        serial: "",
+        capacity: "4 GB",
+        details: "DDR3 DIMM [DIMM A1] · tipo deducido del modelo de placa",
+        replaceable: true
+      },
+      {
+        category: "RAM",
+        model: "",
+        serial: "",
+        capacity: "4 GB",
+        details: "DDR3 DIMM [DIMM B1] · tipo deducido del modelo de placa",
+        replaceable: true
+      },
+      {
+        category: "GPU",
+        model: "Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1)",
+        serial: "",
+        capacity: "",
+        details: "Intel Corporation",
+        replaceable: false
+      },
+      {
+        category: "Red",
+        model: "Qualcomm Atheros AR8131 PCI-E Gigabit Ethernet Controller (NDIS 6.30)",
+        serial: "",
+        capacity: "",
+        details: "MAC BC:AE:C5:28:68:F4",
+        replaceable: false
+      },
+      {
+        category: "Placa base",
+        model: "ASUSTeK Computer INC. P5G41T-M LX",
+        serial: "107933150000113",
+        capacity: "",
+        details: "Rev X.0x",
+        replaceable: false
+      }
+    ],
+    mfgDate: "",
+    updatedAt: "2026-11-01"
+  },
+  {
+    id: "dev-pc-e6750-p5q-pro-turbo",
+    brand: "PC armado",
+    model: "Core 2 Duo E6750 · ASUS P5Q PRO TURBO",
+    type: "Desktop",
+    serial: "MS1C93BC3400692",
+    assignedUser: "",
+    location: "Hogar",
+    imageUrl: "",
+    driverUrl: "https://www.asus.com/supportonly/p5q%20pro%20turbo/helpdesk_download/",
+    windowsUser: "",
+    windowsPassword: "",
+    notes: "PC de escritorio armado. Placa base ASUS P5Q PRO TURBO (chipset Intel P45), Intel Core 2 Duo E6750, 4 GB de RAM DDR2-800 (2 × 2 GB), NVIDIA GeForce 210 y red Atheros AR8121/AR8113/AR8114.",
+    observaciones: "El equipo no tiene número de serie propio (PC armado); se usa el número de serie de la placa base como identificador.\n\nRegistrado arrancando con el SSD de Windows compartido (Patriot Burst Elite 120GB) y el monitor LG TV, registrados aparte como dispositivos generales.\n\nRegistro HomeInfra Collector (2026-11-02 00:04:39):\n• BIOS: American Megatrends Inc. 0701 (2012-10-07)\n• CPU: Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz (2 núcleos / 2 hilos socket LGA 775)\n• RAM: 2 GB (DIMM 800 MT/s [DIMM0])\n• RAM: 2 GB (DIMM 800 MT/s [DIMM2])\n• GPU: NVIDIA GeForce 210 1 GB (NVIDIA)\n• Red: Atheros AR8121/AR8113/AR8114 PCI-E Ethernet Controller (MAC 00:24:8C:6B:E7:F6)\n• Placa base: ASUSTeK Computer INC. P5Q PRO TURBO (Rev 1.xx) · S/N MS1C93BC3400692",
+    specs: {
+      cpu: {
+        model: "Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz",
+        cores: "2 núcleos / 2 hilos",
+        speed: "2.7 GHz",
+        details: ""
+      },
+      ram: {
+        capacity: "4 GB",
+        type: "DDR2",
+        speed: "800 MT/s",
+        details: "2 de 4 ranuras usadas · tipo DDR2 deducido del modelo de placa"
+      },
+      gpu: {
+        model: "NVIDIA GeForce 210",
+        type: "Dedicada",
+        details: ""
+      },
+      storage: "Sin disco propio (usa el SSD de Windows compartido)"
+    },
+    components: [
+      {
+        category: "CPU",
+        model: "Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz",
+        serial: "",
+        capacity: "",
+        details: "2 núcleos / 2 hilos socket LGA 775",
+        replaceable: true
+      },
+      {
+        category: "RAM",
+        model: "",
+        serial: "",
+        capacity: "2 GB",
+        details: "DDR2 DIMM 800 MT/s [DIMM0] · tipo deducido del modelo de placa",
+        replaceable: true
+      },
+      {
+        category: "RAM",
+        model: "",
+        serial: "",
+        capacity: "2 GB",
+        details: "DDR2 DIMM 800 MT/s [DIMM2] · tipo deducido del modelo de placa",
+        replaceable: true
+      },
+      {
+        category: "GPU",
+        model: "NVIDIA GeForce 210",
+        serial: "",
+        capacity: "1 GB",
+        details: "NVIDIA",
+        replaceable: true
+      },
+      {
+        category: "Red",
+        model: "Atheros AR8121/AR8113/AR8114 PCI-E Ethernet Controller",
+        serial: "",
+        capacity: "",
+        details: "MAC 00:24:8C:6B:E7:F6",
+        replaceable: false
+      },
+      {
+        category: "Placa base",
+        model: "ASUSTeK Computer INC. P5Q PRO TURBO",
+        serial: "MS1C93BC3400692",
+        capacity: "",
+        details: "Rev 1.xx",
+        replaceable: false
+      }
+    ],
+    mfgDate: "",
+    updatedAt: "2026-11-01"
+  },
+  {
+    id: "dev-pc-i7-2600k-z77-hd3",
+    brand: "PC armado",
+    model: "Core i7-2600K · Gigabyte Z77-HD3",
+    type: "Desktop",
+    serial: "",
+    assignedUser: "",
+    location: "Hogar",
+    imageUrl: "",
+    driverUrl: "https://www.gigabyte.com/Motherboard/GA-Z77-HD3-rev-10/support",
+    windowsUser: "",
+    windowsPassword: "",
+    notes: "PC de escritorio armado. Placa base Gigabyte Z77-HD3 (chipset Intel Z77), Intel Core i7-2600K, 16 GB DDR3-1600 Kingston HyperX Fury (2 × 8 GB), gráficos integrados Intel HD Graphics 3000 y red Realtek PCIe GbE.",
+    observaciones: "El equipo no tiene número de serie propio y la placa no informa el suyo; se identifica por la MAC de red 74:D4:35:11:F0:AC y el UUID 03D40274-0435-0511-F006-AC0700080009.\nWindows informó 1 núcleos / 2 hilos; el modelo tiene 4 núcleos / 8 hilos según la especificación de Intel. Probablemente el Windows del SSD compartido tiene limitado el número de procesadores (msconfig → Arranque → Opciones avanzadas).\nRegistrado arrancando con el SSD de Windows compartido (Patriot Burst Elite 120GB) y el monitor LG TV, registrados aparte como dispositivos generales.\n\nRegistro HomeInfra Collector (2026-11-01 17:53:51):\n• BIOS: American Megatrends Inc. F3 (2013-09-24)\n• CPU: Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz (1 núcleos / 2 hilos)\n• RAM: Kingston HX316C10F/8 8 GB (DDR3 DIMM 1600 MT/s [ChannelB-DIMM1]) · S/N 19FA6341\n• RAM: Kingston HX316C10F/8 8 GB (DDR3 DIMM 1600 MT/s [ChannelA-DIMM1]) · S/N 4C33D19F\n• GPU: Intel(R) HD Graphics 3000 (Intel Corporation)\n• Red: Realtek PCIe GbE Family Controller #2 (MAC 74:D4:35:11:F0:AC)\n• Placa base: Gigabyte Technology Co., Ltd. Z77-HD3",
+    specs: {
+      cpu: {
+        model: "Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz",
+        cores: "4 núcleos / 8 hilos",
+        speed: "3.4 GHz",
+        details: "Windows informó 1 núcleos / 2 hilos"
+      },
+      ram: {
+        capacity: "16 GB",
+        type: "DDR3",
+        speed: "1600 MT/s",
+        details: "2 de 4 ranuras usadas"
+      },
+      gpu: {
+        model: "Intel(R) HD Graphics 3000",
+        type: "Integrada",
+        details: ""
+      },
+      storage: "Sin disco propio (usa el SSD de Windows compartido)"
+    },
+    components: [
+      {
+        category: "CPU",
+        model: "Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz",
+        serial: "",
+        capacity: "",
+        details: "4 núcleos / 8 hilos",
+        replaceable: true
+      },
+      {
+        category: "RAM",
+        model: "Kingston HX316C10F/8",
+        serial: "19FA6341",
+        capacity: "8 GB",
+        details: "DDR3 DIMM 1600 MT/s [ChannelB-DIMM1]",
+        replaceable: true
+      },
+      {
+        category: "RAM",
+        model: "Kingston HX316C10F/8",
+        serial: "4C33D19F",
+        capacity: "8 GB",
+        details: "DDR3 DIMM 1600 MT/s [ChannelA-DIMM1]",
+        replaceable: true
+      },
+      {
+        category: "GPU",
+        model: "Intel(R) HD Graphics 3000",
+        serial: "",
+        capacity: "",
+        details: "Intel Corporation",
+        replaceable: false
+      },
+      {
+        category: "Red",
+        model: "Realtek PCIe GbE Family Controller #2",
+        serial: "",
+        capacity: "",
+        details: "MAC 74:D4:35:11:F0:AC",
+        replaceable: false
+      },
+      {
+        category: "Placa base",
+        model: "Gigabyte Technology Co., Ltd. Z77-HD3",
+        serial: "",
+        capacity: "",
+        details: "",
+        replaceable: false
+      }
+    ],
+    mfgDate: "",
+    updatedAt: "2026-11-01"
+  },
+  {
+    id: "dev-monitor-lg-tv",
+    brand: "LG",
+    model: "TV (usado como monitor)",
+    type: "Monitor",
+    serial: "",
+    assignedUser: "",
+    location: "Hogar",
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=LG%20TV%20monitor%20soporte%20oficial",
+    windowsUser: "",
+    windowsPassword: "",
+    notes: "Televisor LG usado como monitor compartido entre los PCs de escritorio. Identificado por EDID (fabricante GSM = LG, nombre \"LG TV\").",
+    observaciones: "Dispositivo general, no forma parte de ningún equipo.\n\nEl EDID no entrega un número de serie real (16843009 es un valor de relleno) ni el modelo exacto. Año según EDID: 2010 (2011 al conectarse al PC i5-12400F).\n\nDetectado conectado a:\n• Core i5-12400F · MSI PRO H610M-G DDR4 (2026-10-31)\n• Core 2 Quad Q6700 · ASUS P5G41T-M LX (2026-11-01)\n• Core 2 Duo E6750 · ASUS P5Q PRO TURBO (2026-11-02)\n• Core i7-2600K · Gigabyte Z77-HD3 (2026-11-01)",
+    mfgDate: "2010",
+    updatedAt: "2026-11-01"
+  },
+  {
+    id: "dev-ssd-patriot-burst-elite-120gb",
+    brand: "Patriot",
+    model: "Burst Elite 120GB (SSD de Windows compartido)",
+    type: "Periférico",
+    serial: "PBEIIBB21030118778",
+    assignedUser: "",
+    location: "Hogar",
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=Patriot%20Burst%20Elite%20120GB%20SSD%20soporte",
+    windowsUser: "",
+    windowsPassword: "",
+    notes: "SSD SATA 2.5\" Patriot Burst Elite de 120 GB (111.8 GB útiles), firmware FW200918. Tiene instalado Windows 10 Pro 22H2 (10.0.19045), nombre de equipo \"SERVER\", instalado el 2025-01-28. Se mueve entre PCs para arrancarlos y registrarlos.",
+    observaciones: "Dispositivo general, no forma parte de ningún equipo.\n\nEn los PCs con Core 2 Quad Q6700 y Core i7-2600K, Windows informó menos núcleos de los que tiene el procesador. Probablemente este Windows tiene limitado el número de procesadores (msconfig → Arranque → Opciones avanzadas → Número de procesadores).\n\nUsado para arrancar:\n• Core 2 Quad Q6700 · ASUS P5G41T-M LX (2026-11-01)\n• Core 2 Duo E6750 · ASUS P5Q PRO TURBO (2026-11-02)\n• Core i7-2600K · Gigabyte Z77-HD3 (2026-11-01)",
+    specs: {
+      storage: "SSD SATA 120 GB"
+    },
+    mfgDate: "",
+    updatedAt: "2026-11-01"
+  },
+  {
+    id: "dev-pendrive-sony-4gb",
+    brand: "Sony",
+    model: "Pendrive USB 4 GB (HomeInfra Collector)",
+    type: "Periférico",
+    serial: "7B2211109146005852",
+    assignedUser: "",
+    location: "Hogar",
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=Sony%20USB%20flash%20drive%20soporte",
+    windowsUser: "",
+    windowsPassword: "",
+    notes: "Pendrive USB Sony (Sony Storage Media) de 4 GB (3.8 GB útiles), firmware 0100. Se usa para llevar el HomeInfra Collector y sus registros.",
+    observaciones: "Dispositivo general, no forma parte de ningún equipo.\n\nDetectado en:\n• Core i5-12400F · MSI PRO H610M-G DDR4 (2026-10-31)\n• Core 2 Quad Q6700 · ASUS P5G41T-M LX (2026-11-01)\n• Core 2 Duo E6750 · ASUS P5Q PRO TURBO (2026-11-02)\n• Core i7-2600K · Gigabyte Z77-HD3 (2026-11-01)",
+    specs: {
+      storage: "USB 4 GB"
+    },
+    mfgDate: "",
+    updatedAt: "2026-11-01"
   }
 ];
 
@@ -2985,7 +3295,14 @@ function collectorReportToDevice(report) {
   const sys = report.system || {};
   const cpu = (report.cpu || [])[0] || {};
   const mem = report.memory || {};
-  const modules = mem.modules || [];
+  // Algunas BIOS antiguas rellenan la RAM con "Manufacturer0", "PartNum0", "SerNum0"
+  const noFiller = (v) => (/^(Manufacturer|PartNum|ModulePartNumber|SerNum)\d*$/i.test(v || "") ? "" : v || "");
+  const modules = (mem.modules || []).map((m) => ({
+    ...m,
+    manufacturer: noFiller(m.manufacturer),
+    partNumber: noFiller(m.partNumber),
+    serial: noFiller(m.serial)
+  }));
   const gpus = report.gpu || [];
   // Excluir el pendrive desde el que se ejecutó el script
   const disks = (report.storage || [])
@@ -3025,7 +3342,9 @@ function collectorReportToDevice(report) {
   const components = [];
   // En escritorio la CPU va en socket y la GPU dedicada en una ranura PCIe; en laptops van soldadas
   const isDesktop = sys.type !== "Laptop";
-  if (cpu.name) components.push({ category: "CPU", model: cpu.name, serial: "", capacity: "", details: join(specs.cpu.cores, cpu.socket ? `socket ${cpu.socket}` : ""), replaceable: isDesktop });
+  // Algunas BIOS informan el nombre del procesador en lugar del socket
+  const socket = cpu.socket && cpu.socket !== cpu.name ? cpu.socket : "";
+  if (cpu.name) components.push({ category: "CPU", model: cpu.name, serial: "", capacity: "", details: join(specs.cpu.cores, socket ? `socket ${socket}` : ""), replaceable: isDesktop });
   modules.forEach((m) => components.push({
     category: "RAM",
     model: join(m.manufacturer, m.partNumber),
@@ -3046,7 +3365,8 @@ function collectorReportToDevice(report) {
     category: "GPU",
     model: g.name || "",
     serial: "",
-    capacity: g.adapterRAMGB ? `${g.adapterRAMGB} GB` : "",
+    // En gráficos integrados la memoria informada es compartida con el sistema
+    capacity: g === dedicatedGpu && g.adapterRAMGB ? `${g.adapterRAMGB} GB` : "",
     details: g.vendor || "",
     replaceable: isDesktop && g === dedicatedGpu
   }));

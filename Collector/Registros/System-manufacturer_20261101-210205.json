@@ -1,0 +1,129 @@
+{
+    "schema":  "homeinfra-collector",
+    "version":  "1.0.0",
+    "collectedAt":  "2026-11-01T21:02:05",
+    "environment":  {
+                        "computerName":  "SERVER",
+                        "isWinPE":  false,
+                        "os":  "Microsoft Windows 10 Pro",
+                        "osVersion":  "10.0.19045",
+                        "osBuild":  "19045",
+                        "osInstallDate":  "2025-01-28"
+                    },
+    "system":  {
+                   "brand":  "System manufacturer",
+                   "manufacturer":  "System manufacturer",
+                   "model":  "",
+                   "modelRaw":  "",
+                   "sku":  "",
+                   "family":  "",
+                   "serial":  "",
+                   "uuid":  "DA1B11C0-0060-11E0-97C5-BCAEC52868F4",
+                   "type":  "Desktop",
+                   "chassisTypes":  [
+                                        3
+                                    ],
+                   "bios":  {
+                                "vendor":  "American Megatrends Inc.",
+                                "version":  "1101",
+                                "releaseDate":  "2012-06-07",
+                                "serial":  ""
+                            }
+               },
+    "motherboard":  {
+                        "manufacturer":  "ASUSTeK Computer INC.",
+                        "product":  "P5G41T-M LX",
+                        "version":  "Rev X.0x",
+                        "serial":  "107933150000113"
+                    },
+    "cpu":  [
+                {
+                    "name":  "Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz",
+                    "manufacturer":  "GenuineIntel",
+                    "cores":  2,
+                    "logicalProcessors":  2,
+                    "maxClockMHz":  2667,
+                    "socket":  "LGA775"
+                }
+            ],
+    "memory":  {
+                   "totalGB":  8,
+                   "installedGB":  8,
+                   "slotsTotal":  2,
+                   "slotsUsed":  2,
+                   "maxCapacityGB":  8,
+                   "modules":  [
+                                   {
+                                       "slot":  "DIMM A1",
+                                       "bank":  "BANK0",
+                                       "capacityGB":  4,
+                                       "type":  "",
+                                       "formFactor":  "DIMM",
+                                       "speedMTs":  null,
+                                       "configuredMTs":  null,
+                                       "manufacturer":  "Manufacturer0",
+                                       "partNumber":  "PartNum0",
+                                       "serial":  "SerNum0"
+                                   },
+                                   {
+                                       "slot":  "DIMM B1",
+                                       "bank":  "BANK1",
+                                       "capacityGB":  4,
+                                       "type":  "",
+                                       "formFactor":  "DIMM",
+                                       "speedMTs":  null,
+                                       "configuredMTs":  null,
+                                       "manufacturer":  "Manufacturer1",
+                                       "partNumber":  "PartNum1",
+                                       "serial":  "SerNum1"
+                                   }
+                               ]
+               },
+    "storage":  [
+                    {
+                        "model":  "Sony Storage Media",
+                        "serial":  "7B2211109146005852",
+                        "sizeGB":  3.8,
+                        "mediaType":  "Unspecified",
+                        "busType":  "USB",
+                        "firmware":  "0100",
+                        "health":  "Healthy"
+                    },
+                    {
+                        "model":  "Patriot Burst Elite 120GB",
+                        "serial":  "PBEIIBB21030118778",
+                        "sizeGB":  111.8,
+                        "mediaType":  "SSD",
+                        "busType":  "ATA",
+                        "firmware":  "FW200918",
+                        "health":  "Healthy"
+                    }
+                ],
+    "gpu":  [
+                {
+                    "name":  "Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1)",
+                    "vendor":  "Intel Corporation",
+                    "driverVersion":  "8.15.10.2702",
+                    "adapterRAMGB":  3.8
+                }
+            ],
+    "network":  [
+                    {
+                        "name":  "Qualcomm Atheros AR8131 PCI-E Gigabit Ethernet Controller (NDIS 6.30)",
+                        "manufacturer":  "Qualcomm Atheros",
+                        "mac":  "BC:AE:C5:28:68:F4",
+                        "type":  "Ethernet 802.3"
+                    }
+                ],
+    "battery":  [
+
+                ],
+    "monitors":  [
+                     {
+                         "manufacturer":  "GSM",
+                         "model":  "LG TV",
+                         "serial":  "16843009",
+                         "year":  2010
+                     }
+                 ]
+}

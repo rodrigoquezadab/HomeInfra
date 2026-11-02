@@ -1,0 +1,28 @@
+HomeInfra Collector v1.0.0 - 2026-11-01 21:02
+============================================================
+Equipo:        System manufacturer  (Desktop)
+N.º de serie:  
+SKU:           
+BIOS:          American Megatrends Inc. 1101 (2012-06-07)
+Placa base:    ASUSTeK Computer INC. P5G41T-M LX S/N 107933150000113
+Sistema:       Microsoft Windows 10 Pro 10.0.19045
+
+CPU:
+  - Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz | 2 núcleos / 2 hilos | 2667 MHz
+
+RAM: 8 GB instalados | ranuras usadas 2 de 2
+  - [DIMM A1] 4 GB  DIMM  MT/s | Manufacturer0 PartNum0 S/N SerNum0
+  - [DIMM B1] 4 GB  DIMM  MT/s | Manufacturer1 PartNum1 S/N SerNum1
+
+Almacenamiento:
+  - Sony Storage Media | 3.8 GB | Unspecified USB | S/N 7B2211109146005852
+  - Patriot Burst Elite 120GB | 111.8 GB | SSD ATA | S/N PBEIIBB21030118778
+
+GPU:
+  - Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1)
+
+Red:
+  - Qualcomm Atheros AR8131 PCI-E Gigabit Ethernet Controller (NDIS 6.30) | MAC BC:AE:C5:28:68:F4
+
+Monitores:
+  - GSM LG TV S/N 16843009 (2010)

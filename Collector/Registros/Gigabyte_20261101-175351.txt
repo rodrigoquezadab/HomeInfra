@@ -1,0 +1,28 @@
+HomeInfra Collector v1.0.0 - 2026-11-01 17:53
+============================================================
+Equipo:        Gigabyte  (Desktop)
+N.º de serie:  
+SKU:           
+BIOS:          American Megatrends Inc. F3 (2013-09-24)
+Placa base:    Gigabyte Technology Co., Ltd. Z77-HD3 S/N 
+Sistema:       Microsoft Windows 10 Pro 10.0.19045
+
+CPU:
+  - Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz | 1 núcleos / 2 hilos | 3403 MHz
+
+RAM: 16 GB instalados | ranuras usadas 2 de 4
+  - [ChannelB-DIMM1] 8 GB DDR3 DIMM 1600 MT/s | Kingston HX316C10F/8 S/N 19FA6341
+  - [ChannelA-DIMM1] 8 GB DDR3 DIMM 1600 MT/s | Kingston HX316C10F/8 S/N 4C33D19F
+
+Almacenamiento:
+  - Patriot Burst Elite 120GB | 111.8 GB | SSD SATA | S/N PBEIIBB21030118778
+  - Sony Storage Media | 3.8 GB | Unspecified USB | S/N 7B2211109146005852
+
+GPU:
+  - Intel(R) HD Graphics 3000
+
+Red:
+  - Realtek PCIe GbE Family Controller #2 | MAC 74:D4:35:11:F0:AC
+
+Monitores:
+  - GSM LG TV S/N 16843009 (2010)

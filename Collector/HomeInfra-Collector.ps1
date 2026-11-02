@@ -41,6 +41,8 @@ function Clean($Value) {
   $placeholders = @("To be filled by O.E.M.", "Default string", "System Serial Number", "System Product Name",
     "Not Specified", "None", "0", "00000000", "Unknown", "O.E.M.", "N/A", "Not Available", "Chassis Serial Number")
   if ($placeholders -contains $text) { return "" }
+  # Algunas BIOS antiguas rellenan la RAM con "Manufacturer0", "PartNum0", "SerNum0"
+  if ($text -match '^(Manufacturer|PartNum|ModulePartNumber|SerNum)\d*$') { return "" }
   return $text
 }
 

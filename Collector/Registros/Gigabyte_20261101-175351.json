@@ -1,0 +1,129 @@
+{
+    "schema":  "homeinfra-collector",
+    "version":  "1.0.0",
+    "collectedAt":  "2026-11-01T17:53:51",
+    "environment":  {
+                        "computerName":  "SERVER",
+                        "isWinPE":  false,
+                        "os":  "Microsoft Windows 10 Pro",
+                        "osVersion":  "10.0.19045",
+                        "osBuild":  "19045",
+                        "osInstallDate":  "2025-01-28"
+                    },
+    "system":  {
+                   "brand":  "Gigabyte",
+                   "manufacturer":  "Gigabyte Technology Co., Ltd.",
+                   "model":  "",
+                   "modelRaw":  "",
+                   "sku":  "",
+                   "family":  "",
+                   "serial":  "",
+                   "uuid":  "03D40274-0435-0511-F006-AC0700080009",
+                   "type":  "Desktop",
+                   "chassisTypes":  [
+                                        3
+                                    ],
+                   "bios":  {
+                                "vendor":  "American Megatrends Inc.",
+                                "version":  "F3",
+                                "releaseDate":  "2013-09-24",
+                                "serial":  ""
+                            }
+               },
+    "motherboard":  {
+                        "manufacturer":  "Gigabyte Technology Co., Ltd.",
+                        "product":  "Z77-HD3",
+                        "version":  "",
+                        "serial":  ""
+                    },
+    "cpu":  [
+                {
+                    "name":  "Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz",
+                    "manufacturer":  "GenuineIntel",
+                    "cores":  1,
+                    "logicalProcessors":  2,
+                    "maxClockMHz":  3403,
+                    "socket":  "Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz"
+                }
+            ],
+    "memory":  {
+                   "totalGB":  15.9,
+                   "installedGB":  16,
+                   "slotsTotal":  4,
+                   "slotsUsed":  2,
+                   "maxCapacityGB":  32,
+                   "modules":  [
+                                   {
+                                       "slot":  "ChannelB-DIMM1",
+                                       "bank":  "BANK 3",
+                                       "capacityGB":  8,
+                                       "type":  "DDR3",
+                                       "formFactor":  "DIMM",
+                                       "speedMTs":  1600,
+                                       "configuredMTs":  1600,
+                                       "manufacturer":  "Kingston",
+                                       "partNumber":  "HX316C10F/8",
+                                       "serial":  "19FA6341"
+                                   },
+                                   {
+                                       "slot":  "ChannelA-DIMM1",
+                                       "bank":  "BANK 1",
+                                       "capacityGB":  8,
+                                       "type":  "DDR3",
+                                       "formFactor":  "DIMM",
+                                       "speedMTs":  1600,
+                                       "configuredMTs":  1600,
+                                       "manufacturer":  "Kingston",
+                                       "partNumber":  "HX316C10F/8",
+                                       "serial":  "4C33D19F"
+                                   }
+                               ]
+               },
+    "storage":  [
+                    {
+                        "model":  "Patriot Burst Elite 120GB",
+                        "serial":  "PBEIIBB21030118778",
+                        "sizeGB":  111.8,
+                        "mediaType":  "SSD",
+                        "busType":  "SATA",
+                        "firmware":  "FW200918",
+                        "health":  "Healthy"
+                    },
+                    {
+                        "model":  "Sony Storage Media",
+                        "serial":  "7B2211109146005852",
+                        "sizeGB":  3.8,
+                        "mediaType":  "Unspecified",
+                        "busType":  "USB",
+                        "firmware":  "0100",
+                        "health":  "Healthy"
+                    }
+                ],
+    "gpu":  [
+                {
+                    "name":  "Intel(R) HD Graphics 3000",
+                    "vendor":  "Intel Corporation",
+                    "driverVersion":  "9.17.10.4459",
+                    "adapterRAMGB":  2.1
+                }
+            ],
+    "network":  [
+                    {
+                        "name":  "Realtek PCIe GbE Family Controller #2",
+                        "manufacturer":  "Realtek",
+                        "mac":  "74:D4:35:11:F0:AC",
+                        "type":  "Ethernet 802.3"
+                    }
+                ],
+    "battery":  [
+
+                ],
+    "monitors":  [
+                     {
+                         "manufacturer":  "GSM",
+                         "model":  "LG TV",
+                         "serial":  "16843009",
+                         "year":  2010
+                     }
+                 ]
+}

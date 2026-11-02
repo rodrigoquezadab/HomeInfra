@@ -5,7 +5,7 @@ Este archivo documenta el registro y contexto de los equipos tecnológicos perso
 
 La base de datos principal estructurada reside en el archivo [`equipos.json`](equipos.json) y se administra interactivamente a través de la aplicación web local `HomeInfra` (`index.html`, `style.css`, `app.js`).
 
-*Última actualización sincronizada:* `2026-10-31` | *Total de equipos:* **5**
+*Última actualización sincronizada:* `2026-11-02` | *Total de equipos:* **11**
 
 ---
 
@@ -60,6 +60,12 @@ HomeInfra evolucionará de un inventario de equipos a un sistema de gestión de 
 | 3 | Laptop | Acer | Aspire E3-112-C6ME | 2014-08-23 | N/A | N/A | N/A | N/A | NXMRLAL004434177F97600 | [Soporte Oficial Acer Aspire E3-112-C6ME](https://www.acer.com/latam-es/support/product-support/E3-112) |
 | 4 | Periférico | Lite-On | PA-1650-02 (Adaptador AC 65W) | 2008-06 | N/A | N/A | N/A | N/A | AP06503016824OB7E6P606 | [Soporte Oficial Lite-On PA-1650-02 (Adaptador AC 65W)](https://www.acer.com/latam-es/support/product-support/E3-112) |
 | 5 | Desktop | PC armado | Core i5-12400F · MSI PRO H610M-G DDR4 | N/A | 12th Gen Intel(R) Core(TM) i5-12400F | 16 GB DDR4 | NVIDIA GeForce GTX 1660 SUPER (Dedicada) | N/A | 07D4612_M21D142444 | [Soporte Oficial PC armado Core i5-12400F · MSI PRO H610M-G DDR4](https://www.msi.com/Motherboard/PRO-H610M-G-DDR4/support) |
+| 6 | Desktop | PC armado | Core 2 Quad Q6700 · ASUS P5G41T-M LX | N/A | Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz | 8 GB DDR3 | Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1) (Integrada) | N/A | 107933150000113 | [Soporte Oficial PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX](https://www.asus.com/supportonly/p5g41t-m%20lx/helpdesk_download/) |
+| 7 | Desktop | PC armado | Core 2 Duo E6750 · ASUS P5Q PRO TURBO | N/A | Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz | 4 GB DDR2 | NVIDIA GeForce 210 (Dedicada) | N/A | MS1C93BC3400692 | [Soporte Oficial PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO](https://www.asus.com/supportonly/p5q%20pro%20turbo/helpdesk_download/) |
+| 8 | Desktop | PC armado | Core i7-2600K · Gigabyte Z77-HD3 | N/A | Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz | 16 GB DDR3 | Intel(R) HD Graphics 3000 (Integrada) | N/A | N/A | [Soporte Oficial PC armado Core i7-2600K · Gigabyte Z77-HD3](https://www.gigabyte.com/Motherboard/GA-Z77-HD3-rev-10/support) |
+| 9 | Monitor | LG | TV (usado como monitor) | 2010 | N/A | N/A | N/A | N/A | N/A | [Soporte Oficial LG TV (usado como monitor)](https://www.google.com/search?q=LG%20TV%20monitor%20soporte%20oficial) |
+| 10 | Periférico | Patriot | Burst Elite 120GB (SSD de Windows compartido) | N/A | N/A | N/A | N/A | N/A | PBEIIBB21030118778 | [Soporte Oficial Patriot Burst Elite 120GB (SSD de Windows compartido)](https://www.google.com/search?q=Patriot%20Burst%20Elite%20120GB%20SSD%20soporte) |
+| 11 | Periférico | Sony | Pendrive USB 4 GB (HomeInfra Collector) | N/A | N/A | N/A | N/A | N/A | 7B2211109146005852 | [Soporte Oficial Sony Pendrive USB 4 GB (HomeInfra Collector)](https://www.google.com/search?q=Sony%20USB%20flash%20drive%20soporte) |
 
 ---
 
@@ -244,7 +250,182 @@ Registro HomeInfra Collector (2026-10-31 19:21:12):
   - *GPU:* NVIDIA GeForce GTX 1660 SUPER 4 GB (NVIDIA) · reemplazable
   - *Red:* Intel(R) Ethernet Connection (17) I219-V (MAC 04:7C:16:05:0E:B3) · integrado
   - *Placa base:* Micro-Star International Co., Ltd. PRO H610M-G DDR4 (MS-7D46) (1.0) · S/N 07D4612_M21D142444 · integrado
-  - *Monitor:* LG TV (fabricante EDID GSM) (Pantalla externa conectada; año 2011 según EDID) · reemplazable
+
+### 6. PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX
+- **Tipo:** Desktop
+- **Marca:** PC armado
+- **Modelo:** Core 2 Quad Q6700 · ASUS P5G41T-M LX
+- **Número de Serie / Activo:** 107933150000113
+- **Fecha de Fabricación / Lanzamiento:** No registrada
+- **Asignación / Ubicación:** Hogar
+- **Especificaciones de Hardware:**
+  - **Procesador (CPU):** Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz
+    - *Núcleos e Hilos:* 4 núcleos / 4 hilos
+    - *Frecuencia:* 2.7 GHz
+    - *Características:* Windows informó 2 núcleos / 2 hilos
+  - **Memoria RAM:** 8 GB DDR3
+    - *Configuración:* 2 de 2 ranuras usadas · tipo DDR3 deducido del modelo de placa
+  - **Tarjeta Gráfica (GPU):** Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1)
+    - *Tipo:* **Integrada**
+  - **Almacenamiento:** Sin disco propio (usa el SSD de Windows compartido)
+- **Enlace de Drivers:** [Soporte Oficial PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX](https://www.asus.com/supportonly/p5g41t-m%20lx/helpdesk_download/)
+- **Notas:** PC de escritorio armado. Placa base ASUS P5G41T-M LX (chipset Intel G41), Intel Core 2 Quad Q6700, 8 GB de RAM (2 × 4 GB), gráficos integrados Intel G41 y red Qualcomm Atheros AR8131.
+- **Observaciones:** El equipo no tiene número de serie propio (PC armado); se usa el número de serie de la placa base como identificador.
+Windows informó 2 núcleos / 2 hilos; el modelo tiene 4 núcleos / 4 hilos según la especificación de Intel. Probablemente el Windows del SSD compartido tiene limitado el número de procesadores (msconfig → Arranque → Opciones avanzadas).
+Registrado arrancando con el SSD de Windows compartido (Patriot Burst Elite 120GB) y el monitor LG TV, registrados aparte como dispositivos generales.
+
+Registro HomeInfra Collector (2026-11-01 21:02:05):
+• BIOS: American Megatrends Inc. 1101 (2012-06-07)
+• CPU: Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz (2 núcleos / 2 hilos socket LGA775)
+• RAM: 4 GB (DIMM [DIMM A1])
+• RAM: 4 GB (DIMM [DIMM B1])
+• GPU: Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1) (Intel Corporation)
+• Red: Qualcomm Atheros AR8131 PCI-E Gigabit Ethernet Controller (NDIS 6.30) (MAC BC:AE:C5:28:68:F4)
+• Placa base: ASUSTeK Computer INC. P5G41T-M LX (Rev X.0x) · S/N 107933150000113
+- **Componentes:**
+  - *CPU:* Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz (4 núcleos / 4 hilos socket LGA775) · reemplazable
+  - *RAM:* 4 GB (DDR3 DIMM [DIMM A1] · tipo deducido del modelo de placa) · reemplazable
+  - *RAM:* 4 GB (DDR3 DIMM [DIMM B1] · tipo deducido del modelo de placa) · reemplazable
+  - *GPU:* Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1) (Intel Corporation) · integrado
+  - *Red:* Qualcomm Atheros AR8131 PCI-E Gigabit Ethernet Controller (NDIS 6.30) (MAC BC:AE:C5:28:68:F4) · integrado
+  - *Placa base:* ASUSTeK Computer INC. P5G41T-M LX (Rev X.0x) · S/N 107933150000113 · integrado
+
+### 7. PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO
+- **Tipo:** Desktop
+- **Marca:** PC armado
+- **Modelo:** Core 2 Duo E6750 · ASUS P5Q PRO TURBO
+- **Número de Serie / Activo:** MS1C93BC3400692
+- **Fecha de Fabricación / Lanzamiento:** No registrada
+- **Asignación / Ubicación:** Hogar
+- **Especificaciones de Hardware:**
+  - **Procesador (CPU):** Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz
+    - *Núcleos e Hilos:* 2 núcleos / 2 hilos
+    - *Frecuencia:* 2.7 GHz
+  - **Memoria RAM:** 4 GB DDR2
+    - *Frecuencia:* 800 MT/s
+    - *Configuración:* 2 de 4 ranuras usadas · tipo DDR2 deducido del modelo de placa
+  - **Tarjeta Gráfica (GPU):** NVIDIA GeForce 210
+    - *Tipo:* **Dedicada**
+  - **Almacenamiento:** Sin disco propio (usa el SSD de Windows compartido)
+- **Enlace de Drivers:** [Soporte Oficial PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO](https://www.asus.com/supportonly/p5q%20pro%20turbo/helpdesk_download/)
+- **Notas:** PC de escritorio armado. Placa base ASUS P5Q PRO TURBO (chipset Intel P45), Intel Core 2 Duo E6750, 4 GB de RAM DDR2-800 (2 × 2 GB), NVIDIA GeForce 210 y red Atheros AR8121/AR8113/AR8114.
+- **Observaciones:** El equipo no tiene número de serie propio (PC armado); se usa el número de serie de la placa base como identificador.
+
+Registrado arrancando con el SSD de Windows compartido (Patriot Burst Elite 120GB) y el monitor LG TV, registrados aparte como dispositivos generales.
+
+Registro HomeInfra Collector (2026-11-02 00:04:39):
+• BIOS: American Megatrends Inc. 0701 (2012-10-07)
+• CPU: Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz (2 núcleos / 2 hilos socket LGA 775)
+• RAM: 2 GB (DIMM 800 MT/s [DIMM0])
+• RAM: 2 GB (DIMM 800 MT/s [DIMM2])
+• GPU: NVIDIA GeForce 210 1 GB (NVIDIA)
+• Red: Atheros AR8121/AR8113/AR8114 PCI-E Ethernet Controller (MAC 00:24:8C:6B:E7:F6)
+• Placa base: ASUSTeK Computer INC. P5Q PRO TURBO (Rev 1.xx) · S/N MS1C93BC3400692
+- **Componentes:**
+  - *CPU:* Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz (2 núcleos / 2 hilos socket LGA 775) · reemplazable
+  - *RAM:* 2 GB (DDR2 DIMM 800 MT/s [DIMM0] · tipo deducido del modelo de placa) · reemplazable
+  - *RAM:* 2 GB (DDR2 DIMM 800 MT/s [DIMM2] · tipo deducido del modelo de placa) · reemplazable
+  - *GPU:* NVIDIA GeForce 210 1 GB (NVIDIA) · reemplazable
+  - *Red:* Atheros AR8121/AR8113/AR8114 PCI-E Ethernet Controller (MAC 00:24:8C:6B:E7:F6) · integrado
+  - *Placa base:* ASUSTeK Computer INC. P5Q PRO TURBO (Rev 1.xx) · S/N MS1C93BC3400692 · integrado
+
+### 8. PC armado Core i7-2600K · Gigabyte Z77-HD3
+- **Tipo:** Desktop
+- **Marca:** PC armado
+- **Modelo:** Core i7-2600K · Gigabyte Z77-HD3
+- **Número de Serie / Activo:** No registrado
+- **Fecha de Fabricación / Lanzamiento:** No registrada
+- **Asignación / Ubicación:** Hogar
+- **Especificaciones de Hardware:**
+  - **Procesador (CPU):** Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz
+    - *Núcleos e Hilos:* 4 núcleos / 8 hilos
+    - *Frecuencia:* 3.4 GHz
+    - *Características:* Windows informó 1 núcleos / 2 hilos
+  - **Memoria RAM:** 16 GB DDR3
+    - *Frecuencia:* 1600 MT/s
+    - *Configuración:* 2 de 4 ranuras usadas
+  - **Tarjeta Gráfica (GPU):** Intel(R) HD Graphics 3000
+    - *Tipo:* **Integrada**
+  - **Almacenamiento:** Sin disco propio (usa el SSD de Windows compartido)
+- **Enlace de Drivers:** [Soporte Oficial PC armado Core i7-2600K · Gigabyte Z77-HD3](https://www.gigabyte.com/Motherboard/GA-Z77-HD3-rev-10/support)
+- **Notas:** PC de escritorio armado. Placa base Gigabyte Z77-HD3 (chipset Intel Z77), Intel Core i7-2600K, 16 GB DDR3-1600 Kingston HyperX Fury (2 × 8 GB), gráficos integrados Intel HD Graphics 3000 y red Realtek PCIe GbE.
+- **Observaciones:** El equipo no tiene número de serie propio y la placa no informa el suyo; se identifica por la MAC de red 74:D4:35:11:F0:AC y el UUID 03D40274-0435-0511-F006-AC0700080009.
+Windows informó 1 núcleos / 2 hilos; el modelo tiene 4 núcleos / 8 hilos según la especificación de Intel. Probablemente el Windows del SSD compartido tiene limitado el número de procesadores (msconfig → Arranque → Opciones avanzadas).
+Registrado arrancando con el SSD de Windows compartido (Patriot Burst Elite 120GB) y el monitor LG TV, registrados aparte como dispositivos generales.
+
+Registro HomeInfra Collector (2026-11-01 17:53:51):
+• BIOS: American Megatrends Inc. F3 (2013-09-24)
+• CPU: Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz (1 núcleos / 2 hilos)
+• RAM: Kingston HX316C10F/8 8 GB (DDR3 DIMM 1600 MT/s [ChannelB-DIMM1]) · S/N 19FA6341
+• RAM: Kingston HX316C10F/8 8 GB (DDR3 DIMM 1600 MT/s [ChannelA-DIMM1]) · S/N 4C33D19F
+• GPU: Intel(R) HD Graphics 3000 (Intel Corporation)
+• Red: Realtek PCIe GbE Family Controller #2 (MAC 74:D4:35:11:F0:AC)
+• Placa base: Gigabyte Technology Co., Ltd. Z77-HD3
+- **Componentes:**
+  - *CPU:* Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz (4 núcleos / 8 hilos) · reemplazable
+  - *RAM:* Kingston HX316C10F/8 8 GB (DDR3 DIMM 1600 MT/s [ChannelB-DIMM1]) · S/N 19FA6341 · reemplazable
+  - *RAM:* Kingston HX316C10F/8 8 GB (DDR3 DIMM 1600 MT/s [ChannelA-DIMM1]) · S/N 4C33D19F · reemplazable
+  - *GPU:* Intel(R) HD Graphics 3000 (Intel Corporation) · integrado
+  - *Red:* Realtek PCIe GbE Family Controller #2 (MAC 74:D4:35:11:F0:AC) · integrado
+  - *Placa base:* Gigabyte Technology Co., Ltd. Z77-HD3 · integrado
+
+### 9. LG TV (usado como monitor)
+- **Tipo:** Monitor
+- **Marca:** LG
+- **Modelo:** TV (usado como monitor)
+- **Número de Serie / Activo:** No registrado
+- **Fecha de Fabricación / Lanzamiento:** 2010
+- **Asignación / Ubicación:** Hogar
+- **Enlace de Drivers:** [Soporte Oficial LG TV (usado como monitor)](https://www.google.com/search?q=LG%20TV%20monitor%20soporte%20oficial)
+- **Notas:** Televisor LG usado como monitor compartido entre los PCs de escritorio. Identificado por EDID (fabricante GSM = LG, nombre "LG TV").
+- **Observaciones:** Dispositivo general, no forma parte de ningún equipo.
+
+El EDID no entrega un número de serie real (16843009 es un valor de relleno) ni el modelo exacto. Año según EDID: 2010 (2011 al conectarse al PC i5-12400F).
+
+Detectado conectado a:
+• Core i5-12400F · MSI PRO H610M-G DDR4 (2026-10-31)
+• Core 2 Quad Q6700 · ASUS P5G41T-M LX (2026-11-01)
+• Core 2 Duo E6750 · ASUS P5Q PRO TURBO (2026-11-02)
+• Core i7-2600K · Gigabyte Z77-HD3 (2026-11-01)
+
+### 10. Patriot Burst Elite 120GB (SSD de Windows compartido)
+- **Tipo:** Periférico
+- **Marca:** Patriot
+- **Modelo:** Burst Elite 120GB (SSD de Windows compartido)
+- **Número de Serie / Activo:** PBEIIBB21030118778
+- **Fecha de Fabricación / Lanzamiento:** No registrada
+- **Asignación / Ubicación:** Hogar
+- **Especificaciones de Hardware:**
+  - **Almacenamiento:** SSD SATA 120 GB
+- **Enlace de Drivers:** [Soporte Oficial Patriot Burst Elite 120GB (SSD de Windows compartido)](https://www.google.com/search?q=Patriot%20Burst%20Elite%20120GB%20SSD%20soporte)
+- **Notas:** SSD SATA 2.5" Patriot Burst Elite de 120 GB (111.8 GB útiles), firmware FW200918. Tiene instalado Windows 10 Pro 22H2 (10.0.19045), nombre de equipo "SERVER", instalado el 2025-01-28. Se mueve entre PCs para arrancarlos y registrarlos.
+- **Observaciones:** Dispositivo general, no forma parte de ningún equipo.
+
+En los PCs con Core 2 Quad Q6700 y Core i7-2600K, Windows informó menos núcleos de los que tiene el procesador. Probablemente este Windows tiene limitado el número de procesadores (msconfig → Arranque → Opciones avanzadas → Número de procesadores).
+
+Usado para arrancar:
+• Core 2 Quad Q6700 · ASUS P5G41T-M LX (2026-11-01)
+• Core 2 Duo E6750 · ASUS P5Q PRO TURBO (2026-11-02)
+• Core i7-2600K · Gigabyte Z77-HD3 (2026-11-01)
+
+### 11. Sony Pendrive USB 4 GB (HomeInfra Collector)
+- **Tipo:** Periférico
+- **Marca:** Sony
+- **Modelo:** Pendrive USB 4 GB (HomeInfra Collector)
+- **Número de Serie / Activo:** 7B2211109146005852
+- **Fecha de Fabricación / Lanzamiento:** No registrada
+- **Asignación / Ubicación:** Hogar
+- **Especificaciones de Hardware:**
+  - **Almacenamiento:** USB 4 GB
+- **Enlace de Drivers:** [Soporte Oficial Sony Pendrive USB 4 GB (HomeInfra Collector)](https://www.google.com/search?q=Sony%20USB%20flash%20drive%20soporte)
+- **Notas:** Pendrive USB Sony (Sony Storage Media) de 4 GB (3.8 GB útiles), firmware 0100. Se usa para llevar el HomeInfra Collector y sus registros.
+- **Observaciones:** Dispositivo general, no forma parte de ningún equipo.
+
+Detectado en:
+• Core i5-12400F · MSI PRO H610M-G DDR4 (2026-10-31)
+• Core 2 Quad Q6700 · ASUS P5G41T-M LX (2026-11-01)
+• Core 2 Duo E6750 · ASUS P5Q PRO TURBO (2026-11-02)
+• Core i7-2600K · Gigabyte Z77-HD3 (2026-11-01)
 
 ---
 

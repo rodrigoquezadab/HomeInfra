@@ -1,0 +1,129 @@
+{
+    "schema":  "homeinfra-collector",
+    "version":  "1.0.0",
+    "collectedAt":  "2026-11-02T00:04:39",
+    "environment":  {
+                        "computerName":  "SERVER",
+                        "isWinPE":  false,
+                        "os":  "Microsoft Windows 10 Pro",
+                        "osVersion":  "10.0.19045",
+                        "osBuild":  "19045",
+                        "osInstallDate":  "2025-01-28"
+                    },
+    "system":  {
+                   "brand":  "System manufacturer",
+                   "manufacturer":  "System manufacturer",
+                   "model":  "",
+                   "modelRaw":  "",
+                   "sku":  "",
+                   "family":  "",
+                   "serial":  "",
+                   "uuid":  "1E00FD60-008C-D501-2F21-00248C6BE7F6",
+                   "type":  "Desktop",
+                   "chassisTypes":  [
+                                        3
+                                    ],
+                   "bios":  {
+                                "vendor":  "American Megatrends Inc.",
+                                "version":  "0701",
+                                "releaseDate":  "2012-10-07",
+                                "serial":  ""
+                            }
+               },
+    "motherboard":  {
+                        "manufacturer":  "ASUSTeK Computer INC.",
+                        "product":  "P5Q PRO TURBO",
+                        "version":  "Rev 1.xx",
+                        "serial":  "MS1C93BC3400692"
+                    },
+    "cpu":  [
+                {
+                    "name":  "Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz",
+                    "manufacturer":  "GenuineIntel",
+                    "cores":  2,
+                    "logicalProcessors":  2,
+                    "maxClockMHz":  2670,
+                    "socket":  "LGA 775"
+                }
+            ],
+    "memory":  {
+                   "totalGB":  4,
+                   "installedGB":  4,
+                   "slotsTotal":  4,
+                   "slotsUsed":  2,
+                   "maxCapacityGB":  4,
+                   "modules":  [
+                                   {
+                                       "slot":  "DIMM0",
+                                       "bank":  "BANK0",
+                                       "capacityGB":  2,
+                                       "type":  "",
+                                       "formFactor":  "DIMM",
+                                       "speedMTs":  800,
+                                       "configuredMTs":  null,
+                                       "manufacturer":  "Manufacturer00",
+                                       "partNumber":  "ModulePartNumber00",
+                                       "serial":  "SerNum00"
+                                   },
+                                   {
+                                       "slot":  "DIMM2",
+                                       "bank":  "BANK2",
+                                       "capacityGB":  2,
+                                       "type":  "",
+                                       "formFactor":  "DIMM",
+                                       "speedMTs":  800,
+                                       "configuredMTs":  null,
+                                       "manufacturer":  "Manufacturer02",
+                                       "partNumber":  "ModulePartNumber02",
+                                       "serial":  "SerNum02"
+                                   }
+                               ]
+               },
+    "storage":  [
+                    {
+                        "model":  "Patriot Burst Elite 120GB",
+                        "serial":  "PBEIIBB21030118778",
+                        "sizeGB":  111.8,
+                        "mediaType":  "SSD",
+                        "busType":  "SATA",
+                        "firmware":  "FW200918",
+                        "health":  "Healthy"
+                    },
+                    {
+                        "model":  "Sony Storage Media",
+                        "serial":  "7B2211109146005852",
+                        "sizeGB":  3.8,
+                        "mediaType":  "Unspecified",
+                        "busType":  "USB",
+                        "firmware":  "0100",
+                        "health":  "Healthy"
+                    }
+                ],
+    "gpu":  [
+                {
+                    "name":  "NVIDIA GeForce 210",
+                    "vendor":  "NVIDIA",
+                    "driverVersion":  "9.18.13.4174",
+                    "adapterRAMGB":  1
+                }
+            ],
+    "network":  [
+                    {
+                        "name":  "Atheros AR8121/AR8113/AR8114 PCI-E Ethernet Controller",
+                        "manufacturer":  "Atheros",
+                        "mac":  "00:24:8C:6B:E7:F6",
+                        "type":  "Ethernet 802.3"
+                    }
+                ],
+    "battery":  [
+
+                ],
+    "monitors":  [
+                     {
+                         "manufacturer":  "GSM",
+                         "model":  "LG TV",
+                         "serial":  "16843009",
+                         "year":  2010
+                     }
+                 ]
+}

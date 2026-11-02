@@ -1,0 +1,28 @@
+HomeInfra Collector v1.0.0 - 2026-11-02 00:04
+============================================================
+Equipo:        System manufacturer  (Desktop)
+N.º de serie:  
+SKU:           
+BIOS:          American Megatrends Inc. 0701 (2012-10-07)
+Placa base:    ASUSTeK Computer INC. P5Q PRO TURBO S/N MS1C93BC3400692
+Sistema:       Microsoft Windows 10 Pro 10.0.19045
+
+CPU:
+  - Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz | 2 núcleos / 2 hilos | 2670 MHz
+
+RAM: 4 GB instalados | ranuras usadas 2 de 4
+  - [DIMM0] 2 GB  DIMM 800 MT/s | Manufacturer00 ModulePartNumber00 S/N SerNum00
+  - [DIMM2] 2 GB  DIMM 800 MT/s | Manufacturer02 ModulePartNumber02 S/N SerNum02
+
+Almacenamiento:
+  - Patriot Burst Elite 120GB | 111.8 GB | SSD SATA | S/N PBEIIBB21030118778
+  - Sony Storage Media | 3.8 GB | Unspecified USB | S/N 7B2211109146005852
+
+GPU:
+  - NVIDIA GeForce 210
+
+Red:
+  - Atheros AR8121/AR8113/AR8114 PCI-E Ethernet Controller | MAC 00:24:8C:6B:E7:F6
+
+Monitores:
+  - GSM LG TV S/N 16843009 (2010)
