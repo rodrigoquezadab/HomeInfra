@@ -28,6 +28,13 @@ Registro de dónde quedó el trabajo y qué falta por hacer en la próxima sesi�
 | 12 | Tarjeta de video ZOTAC GeForce 8400 GS GEN2 512MB DDR2 | Periférico (general) | Foto local (etiqueta) | PN 288-90N44-040ZT, S/N N103100027911. No es componente de ningún equipo. Sin imagen comercial (no está en Icecat). |
 | 13 | PC armado: MSI A68HM-E33 V2 (CPU AMD por identificar) | Desktop | Foto local (placa) | Registrado desde una foto: placa, RAM HyperX Fury HX318C10FR/4 y una GPU dedicada sin identificar. Pendiente pasarle el Collector. |
 | 14 | SSD Patriot Burst Elite 120GB (segunda unidad) | Periférico (general) | Sin imagen | Mismo modelo que el SSD de Windows compartido. Número de serie pendiente. |
+| 15 | HDD WD Blue 1TB WD10SPZX (marcado 1) | Periférico (general) | Foto local | S/N WXN1AA821XCH · 2018-12-14 · HP P/N L24400-001. |
+| 16 | HDD WD Blue 1TB WD10JPVX (marcado 2) | Periférico (general) | Foto local | S/N WX31A177YXJU · 2017-02-10 · HP P/N 726834-001. |
+| 17 | HDD Seagate/Samsung Spinpoint M8 1TB ST1000LM024 (marcado 3) | Periférico (general) | Foto local | S/N S32HJ9HF204858 · de un laptop Samsung NP870Z5G. |
+| 18 | HDD Toshiba MQ01ACF050 500GB | Periférico (general) | Foto local | S/N 54O9C6M8T (confirmar O/0) · 2014-05-24 · HP P/N 724967-001. |
+| 19 | HDD WD Blue 750GB WD7500BPVT | Periférico (general) | Foto local | S/N WXD1E72EHP04 · 2012-11-04 · Lenovo FRU. |
+| 20 | SSD Samsung 850 EVO 500GB | Periférico (general) | Comercial (Icecat) | S/N S21HNXAGA21889H. |
+| 21 | Tarjeta RAID/HBA Inspur YZCA-00019-101 | Periférico (general) | Foto local | QN QTE227E00948A07 · LSI SAS 6 Gb/s 8 puertos (modelo 9240-8i / 9211-8i según firmware, por confirmar). |
 
 Fotos locales agregadas: PC i7-2600K (gabinete 2022 como principal y placa 2023) y PC i5-12400F (caja del procesador como principal). Carpeta `C:\Users\ThinkPad\Desktop\pcs` ordenada: una carpeta por equipo, fotos con nombres descriptivos.
 

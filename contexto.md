@@ -5,7 +5,7 @@ Este archivo documenta el registro y contexto de los equipos tecnológicos perso
 
 La base de datos principal estructurada reside en el archivo [`equipos.json`](equipos.json) y se administra interactivamente a través de la aplicación web local `HomeInfra` (`index.html`, `style.css`, `app.js`).
 
-*Última actualización sincronizada:* `2026-11-02` | *Total de equipos:* **14**
+*Última actualización sincronizada:* `2026-11-02` | *Total de equipos:* **21**
 
 ---
 
@@ -69,6 +69,13 @@ HomeInfra evolucionará de un inventario de equipos a un sistema de gestión de 
 | 12 | Periférico | Sony | Pendrive USB 4 GB (HomeInfra Collector) | N/A | N/A | N/A | N/A | N/A | 7B2211109146005852 | [Soporte Oficial Sony Pendrive USB 4 GB (HomeInfra Collector)](https://www.google.com/search?q=Sony%20USB%20flash%20drive%20soporte) |
 | 13 | Periférico | ZOTAC | GeForce 8400 GS GEN2 512MB DDR2 | 2007 (lanzamiento de la GeForce 8400 GS) | N/A | N/A | NVIDIA GeForce 8400 GS (Dedicada) | N/A | N103100027911 | [Soporte Oficial ZOTAC GeForce 8400 GS GEN2 512MB DDR2](https://www.nvidia.com/Download/index.aspx?lang=es) |
 | 14 | Desktop | PC armado | MSI A68HM-E33 V2 (CPU AMD por identificar) | 2014 (lanzamiento del chipset AMD A68H) | N/A | N/A | N/A | N/A | G716320033 33004 | [Soporte Oficial PC armado MSI A68HM-E33 V2 (CPU AMD por identificar)](https://www.msi.com/Motherboard/A68HM-E33-V2/support) |
+| 15 | Periférico | Western Digital | WD Blue 1TB WD10SPZX (marcado 1) | 2018-12-14 | N/A | N/A | N/A | N/A | WXN1AA821XCH | [Soporte Oficial Western Digital WD Blue 1TB WD10SPZX (marcado 1)](https://www.westerndigital.com/support) |
+| 16 | Periférico | Western Digital | WD Blue 1TB WD10JPVX (marcado 2) | 2017-02-10 | N/A | N/A | N/A | N/A | WX31A177YXJU | [Soporte Oficial Western Digital WD Blue 1TB WD10JPVX (marcado 2)](https://www.westerndigital.com/support) |
+| 17 | Periférico | Seagate (Samsung) | Spinpoint M8 1TB ST1000LM024 (marcado 3) | 2011 (lanzamiento de la serie Spinpoint M8) | N/A | N/A | N/A | N/A | S32HJ9HF204858 | [Soporte Oficial Seagate (Samsung) Spinpoint M8 1TB ST1000LM024 (marcado 3)](https://www.seagate.com/support/) |
+| 18 | Periférico | Toshiba | MQ01ACF050 500GB | 2014-05-24 | N/A | N/A | N/A | N/A | 54O9C6M8T | [Soporte Oficial Toshiba MQ01ACF050 500GB](https://www.toshiba-storage.com/) |
+| 19 | Periférico | Western Digital | WD Blue 750GB WD7500BPVT | 2012-11-04 | N/A | N/A | N/A | N/A | WXD1E72EHP04 | [Soporte Oficial Western Digital WD Blue 750GB WD7500BPVT](https://www.westerndigital.com/support) |
+| 20 | Periférico | Samsung | SSD 850 EVO 500GB | 2014 (lanzamiento del 850 EVO) | N/A | N/A | N/A | N/A | S21HNXAGA21889H | [Soporte Oficial Samsung SSD 850 EVO 500GB](https://semiconductor.samsung.com/consumer-storage/support/tools/) |
+| 21 | Periférico | Inspur | Tarjeta RAID/HBA SAS 6Gb/s YZCA-00019-101 (chip LSI) | N/A | N/A | N/A | N/A | N/A | QTE227E00948A07 | [Soporte Oficial Inspur Tarjeta RAID/HBA SAS 6Gb/s YZCA-00019-101 (chip LSI)](https://www.broadcom.com/support/download-search) |
 
 ---
 
@@ -572,6 +579,165 @@ Año del equipo: lanzamiento del chipset AMD A68H (2014).
   - *GPU:* Tarjeta de video dedicada (por identificar) (Instalada en la ranura PCIe x16) · reemplazable
 - **Fotografías:**
   - Placa MSI A68HM-E33 V2 con RAM HyperX Fury (2024): [`img/msi_a68hm-e33_v2_placa.jpg`](img/msi_a68hm-e33_v2_placa.jpg)
+
+### 15. Western Digital WD Blue 1TB WD10SPZX (marcado 1)
+![Western Digital WD Blue 1TB WD10SPZX (marcado 1)](img/hdd_wd10spzx_1tb_etiqueta.jpg)
+
+- **Tipo:** Periférico
+- **Marca:** Western Digital
+- **Modelo:** WD Blue 1TB WD10SPZX (marcado 1)
+- **Número de Serie / Activo:** WXN1AA821XCH
+- **Fecha de Fabricación / Lanzamiento:** 2018-12-14
+- **Asignación / Ubicación:** Hogar
+- **Especificaciones de Hardware:**
+  - **Almacenamiento:** HDD SATA 6 Gb/s 1 TB 2.5" 5400 rpm
+- **Enlace de Drivers:** [Soporte Oficial Western Digital WD Blue 1TB WD10SPZX (marcado 1)](https://www.westerndigital.com/support)
+- **Notas:** Disco duro 2.5" WD Blue de 1 TB, SATA 6 Gb/s, 5400 rpm (Advanced Format). Marcado a mano con "1".
+- **Observaciones:** Datos de la etiqueta:
+• MDL: WD10SPZX-60Z10T0 · S/N: WXN1AA821XCH
+• Fecha: 14 DEC 2018 · FW: 04.01A04 · R/N: 800066
+• HP P/N: L24400-001 (disco de un equipo HP)
+
+Dispositivo general: no está registrado como componente de ningún equipo.
+- **Fotografías:**
+  - Etiqueta: [`img/hdd_wd10spzx_1tb_etiqueta.jpg`](img/hdd_wd10spzx_1tb_etiqueta.jpg)
+  - Etiqueta (otra toma): [`img/hdd_wd10spzx_1tb_etiqueta_b.jpg`](img/hdd_wd10spzx_1tb_etiqueta_b.jpg)
+
+### 16. Western Digital WD Blue 1TB WD10JPVX (marcado 2)
+![Western Digital WD Blue 1TB WD10JPVX (marcado 2)](img/hdd_wd10jpvx_1tb_etiqueta.jpg)
+
+- **Tipo:** Periférico
+- **Marca:** Western Digital
+- **Modelo:** WD Blue 1TB WD10JPVX (marcado 2)
+- **Número de Serie / Activo:** WX31A177YXJU
+- **Fecha de Fabricación / Lanzamiento:** 2017-02-10
+- **Asignación / Ubicación:** Hogar
+- **Especificaciones de Hardware:**
+  - **Almacenamiento:** HDD SATA 6 Gb/s 1 TB 2.5" 5400 rpm
+- **Enlace de Drivers:** [Soporte Oficial Western Digital WD Blue 1TB WD10JPVX (marcado 2)](https://www.westerndigital.com/support)
+- **Notas:** Disco duro 2.5" WD Blue de 1 TB, SATA 6 Gb/s, 5400 rpm (Advanced Format). Marcado a mano con "2".
+- **Observaciones:** Datos de la etiqueta:
+• MDL: WD10JPVX-60JC3T0 · S/N: WX31A177YXJU
+• Fecha: 10 FEB 2017 · FW: 01.01A01 · DCM: HHNTJHN
+• HP P/N: 726834-001 (disco de un equipo HP)
+
+Dispositivo general: no está registrado como componente de ningún equipo.
+- **Fotografías:**
+  - Etiqueta: [`img/hdd_wd10jpvx_1tb_etiqueta.jpg`](img/hdd_wd10jpvx_1tb_etiqueta.jpg)
+
+### 17. Seagate (Samsung) Spinpoint M8 1TB ST1000LM024 (marcado 3)
+![Seagate (Samsung) Spinpoint M8 1TB ST1000LM024 (marcado 3)](img/hdd_st1000lm024_1tb_etiqueta.jpg)
+
+- **Tipo:** Periférico
+- **Marca:** Seagate (Samsung)
+- **Modelo:** Spinpoint M8 1TB ST1000LM024 (marcado 3)
+- **Número de Serie / Activo:** S32HJ9HF204858
+- **Fecha de Fabricación / Lanzamiento:** 2011 (lanzamiento de la serie Spinpoint M8)
+- **Asignación / Ubicación:** Hogar
+- **Especificaciones de Hardware:**
+  - **Almacenamiento:** HDD SATA 3 Gb/s 1 TB 2.5" 5400 rpm
+- **Enlace de Drivers:** [Soporte Oficial Seagate (Samsung) Spinpoint M8 1TB ST1000LM024 (marcado 3)](https://www.seagate.com/support/)
+- **Notas:** Disco duro 2.5" Samsung Spinpoint M8 de 1 TB (fabricado por Seagate tras comprar la división de discos de Samsung), SATA 3 Gb/s, 5400 rpm. Marcado a mano con "3".
+- **Observaciones:** Datos de la etiqueta:
+• Model: ST1000LM024 · HDD P/N: HN-M101MBB/SC3 · S/N: S32HJ9HF204858
+• REV. A · F/W: 2BA30001 · LBA 1.953.525.168 (1000.0 GB)
+• Etiqueta Samsung: MODEL NP870Z5G-X01CL 1TB · SEC S/N CN02BA5903851AC540F2D0996 (disco de un laptop Samsung NP870Z5G)
+
+Sin imagen comercial que lo identifique; se usa la foto de la etiqueta.
+
+Dispositivo general: no está registrado como componente de ningún equipo.
+- **Fotografías:**
+  - Etiqueta: [`img/hdd_st1000lm024_1tb_etiqueta.jpg`](img/hdd_st1000lm024_1tb_etiqueta.jpg)
+
+### 18. Toshiba MQ01ACF050 500GB
+![Toshiba MQ01ACF050 500GB](img/hdd_toshiba_mq01acf050_500gb_etiqueta.jpg)
+
+- **Tipo:** Periférico
+- **Marca:** Toshiba
+- **Modelo:** MQ01ACF050 500GB
+- **Número de Serie / Activo:** 54O9C6M8T
+- **Fecha de Fabricación / Lanzamiento:** 2014-05-24
+- **Asignación / Ubicación:** Hogar
+- **Especificaciones de Hardware:**
+  - **Almacenamiento:** HDD SATA 6 Gb/s 500 GB 2.5" 7200 rpm
+- **Enlace de Drivers:** [Soporte Oficial Toshiba MQ01ACF050 500GB](https://www.toshiba-storage.com/)
+- **Notas:** Disco duro 2.5" Toshiba de 500 GB, SATA 6 Gb/s, 7200 rpm, 7 mm (Advanced Format).
+- **Observaciones:** Datos de la etiqueta:
+• Disk drive: MQ01ACF050 · Drive rev: AAH AA00/AV0A1C · DC+5V 1.1A
+• Fecha: 24 MAY 2014 · S/N: 54O9C6M8T (lectura de la foto; confirmar O/0) · YR9 HDKCC00H2A01 T
+• HP P/N: 724967-001 · HP SPS: 703267-001 (disco de un equipo HP)
+
+Dispositivo general: no está registrado como componente de ningún equipo.
+- **Fotografías:**
+  - Etiqueta: [`img/hdd_toshiba_mq01acf050_500gb_etiqueta.jpg`](img/hdd_toshiba_mq01acf050_500gb_etiqueta.jpg)
+
+### 19. Western Digital WD Blue 750GB WD7500BPVT
+![Western Digital WD Blue 750GB WD7500BPVT](img/hdd_wd7500bpvt_750gb_etiqueta.jpg)
+
+- **Tipo:** Periférico
+- **Marca:** Western Digital
+- **Modelo:** WD Blue 750GB WD7500BPVT
+- **Número de Serie / Activo:** WXD1E72EHP04
+- **Fecha de Fabricación / Lanzamiento:** 2012-11-04
+- **Asignación / Ubicación:** Hogar
+- **Especificaciones de Hardware:**
+  - **Almacenamiento:** HDD SATA 3 Gb/s 750 GB 2.5" 5400 rpm
+- **Enlace de Drivers:** [Soporte Oficial Western Digital WD Blue 750GB WD7500BPVT](https://www.westerndigital.com/support)
+- **Notas:** Disco duro 2.5" WD Blue de 750 GB, SATA 3 Gb/s, 5400 rpm (Advanced Format). Marcado a mano con "750".
+- **Observaciones:** Datos de la etiqueta:
+• MDL: WD7500BPVT-24HXZT3 · S/N: WXD1E72EHP04
+• Fecha: 04 NOV 2012 · DCM: SHOT2HN · DCX: EH30X7TZH
+• Lenovo LI P/N: 0B47496 · LC P/N: 16-004848 (disco de un equipo Lenovo)
+
+Dispositivo general: no está registrado como componente de ningún equipo.
+- **Fotografías:**
+  - Etiqueta: [`img/hdd_wd7500bpvt_750gb_etiqueta.jpg`](img/hdd_wd7500bpvt_750gb_etiqueta.jpg)
+
+### 20. Samsung SSD 850 EVO 500GB
+![Samsung SSD 850 EVO 500GB](img/componente_ssd_samsung_850evo_500gb.jpg)
+
+- **Tipo:** Periférico
+- **Marca:** Samsung
+- **Modelo:** SSD 850 EVO 500GB
+- **Número de Serie / Activo:** S21HNXAGA21889H
+- **Fecha de Fabricación / Lanzamiento:** 2014 (lanzamiento del 850 EVO)
+- **Asignación / Ubicación:** Hogar
+- **Especificaciones de Hardware:**
+  - **Almacenamiento:** SSD SATA 6 Gb/s 500 GB 2.5"
+- **Enlace de Drivers:** [Soporte Oficial Samsung SSD 850 EVO 500GB](https://semiconductor.samsung.com/consumer-storage/support/tools/)
+- **Notas:** SSD SATA 2.5" Samsung 850 EVO de 500 GB (V-NAND), SATA 6 Gb/s.
+- **Observaciones:** Datos de la etiqueta:
+• Model: MZ-75E500 · P/N: MZ7LN500 · S/N: S21HNXAGA21889H
+• WWN: 5002538D4067BD4x (último carácter no legible)
+
+Imagen principal: comercial (Icecat, 850 EVO 500GB); la foto de la etiqueta está en la galería.
+
+Dispositivo general: no está registrado como componente de ningún equipo.
+- **Fotografías:**
+  - Imagen comercial (Icecat): [`img/componente_ssd_samsung_850evo_500gb.jpg`](img/componente_ssd_samsung_850evo_500gb.jpg)
+  - Etiqueta: [`img/ssd_samsung_850evo_500gb_etiqueta.jpg`](img/ssd_samsung_850evo_500gb_etiqueta.jpg)
+
+### 21. Inspur Tarjeta RAID/HBA SAS 6Gb/s YZCA-00019-101 (chip LSI)
+![Inspur Tarjeta RAID/HBA SAS 6Gb/s YZCA-00019-101 (chip LSI)](img/raid_inspur_yzca-00019-101_tarjeta.jpg)
+
+- **Tipo:** Periférico
+- **Marca:** Inspur
+- **Modelo:** Tarjeta RAID/HBA SAS 6Gb/s YZCA-00019-101 (chip LSI)
+- **Número de Serie / Activo:** QTE227E00948A07
+- **Fecha de Fabricación / Lanzamiento:** No registrada
+- **Asignación / Ubicación:** Hogar
+- **Enlace de Drivers:** [Soporte Oficial Inspur Tarjeta RAID/HBA SAS 6Gb/s YZCA-00019-101 (chip LSI)](https://www.broadcom.com/support/download-search)
+- **Notas:** Controladora PCIe SAS/SATA de 6 Gb/s y 8 puertos, con chip LSI, para servidores Inspur (ej. NF5240M3). Perfil bajo, con disipador.
+- **Observaciones:** Datos de la etiqueta:
+• PN: (Y)ZCA-00019-101 · QN: QTE227E00948A07 (se usa como número de serie)
+• Dirección SAS: 56C92BF000040116
+
+Identificación según vendedores (no hay documentación oficial de Inspur): controladora LSI de 8 puertos SAS/SATA a 6 Gb/s, vendida como LSI 9240-8i (RAID 0/1/5, firmware IR) o como 9211-8i (HBA, firmware IT). El modo depende del firmware instalado; confirmarlo al conectarla.
+
+Dispositivo general: no está registrado como componente de ningún equipo.
+- **Fotografías:**
+  - Vista de la tarjeta: [`img/raid_inspur_yzca-00019-101_tarjeta.jpg`](img/raid_inspur_yzca-00019-101_tarjeta.jpg)
+  - Etiquetas PN / QN / SAS: [`img/raid_inspur_yzca-00019-101_etiqueta.jpg`](img/raid_inspur_yzca-00019-101_etiqueta.jpg)
 
 ---
 

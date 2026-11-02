@@ -1136,6 +1136,207 @@ const DEFAULT_DEVICES = [
     ],
     mfgDate: "2014 (lanzamiento del chipset AMD A68H)",
     updatedAt: "2026-11-02"
+  },
+  {
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    updatedAt: "2026-11-02",
+    id: "dev-hdd-wd10spzx-1tb",
+    brand: "Western Digital",
+    model: "WD Blue 1TB WD10SPZX (marcado 1)",
+    type: "Periférico",
+    serial: "WXN1AA821XCH",
+    imageUrl: "img/hdd_wd10spzx_1tb_etiqueta.jpg",
+    driverUrl: "https://www.westerndigital.com/support",
+    notes: "Disco duro 2.5\" WD Blue de 1 TB, SATA 6 Gb/s, 5400 rpm (Advanced Format). Marcado a mano con \"1\".",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD10SPZX-60Z10T0 · S/N: WXN1AA821XCH\n• Fecha: 14 DEC 2018 · FW: 04.01A04 · R/N: 800066\n• HP P/N: L24400-001 (disco de un equipo HP)\n\nDispositivo general: no está registrado como componente de ningún equipo.",
+    specs: {
+      storage: "HDD SATA 6 Gb/s 1 TB 2.5\" 5400 rpm"
+    },
+    images: [
+      {
+        id: "img-hdd-wd10spzx-a",
+        name: "Etiqueta",
+        url: "img/hdd_wd10spzx_1tb_etiqueta.jpg"
+      },
+      {
+        id: "img-hdd-wd10spzx-b",
+        name: "Etiqueta (otra toma)",
+        url: "img/hdd_wd10spzx_1tb_etiqueta_b.jpg"
+      }
+    ],
+    mfgDate: "2018-12-14"
+  },
+  {
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    updatedAt: "2026-11-02",
+    id: "dev-hdd-wd10jpvx-1tb",
+    brand: "Western Digital",
+    model: "WD Blue 1TB WD10JPVX (marcado 2)",
+    type: "Periférico",
+    serial: "WX31A177YXJU",
+    imageUrl: "img/hdd_wd10jpvx_1tb_etiqueta.jpg",
+    driverUrl: "https://www.westerndigital.com/support",
+    notes: "Disco duro 2.5\" WD Blue de 1 TB, SATA 6 Gb/s, 5400 rpm (Advanced Format). Marcado a mano con \"2\".",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD10JPVX-60JC3T0 · S/N: WX31A177YXJU\n• Fecha: 10 FEB 2017 · FW: 01.01A01 · DCM: HHNTJHN\n• HP P/N: 726834-001 (disco de un equipo HP)\n\nDispositivo general: no está registrado como componente de ningún equipo.",
+    specs: {
+      storage: "HDD SATA 6 Gb/s 1 TB 2.5\" 5400 rpm"
+    },
+    images: [
+      {
+        id: "img-hdd-wd10jpvx",
+        name: "Etiqueta",
+        url: "img/hdd_wd10jpvx_1tb_etiqueta.jpg"
+      }
+    ],
+    mfgDate: "2017-02-10"
+  },
+  {
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    updatedAt: "2026-11-02",
+    id: "dev-hdd-st1000lm024-1tb",
+    brand: "Seagate (Samsung)",
+    model: "Spinpoint M8 1TB ST1000LM024 (marcado 3)",
+    type: "Periférico",
+    serial: "S32HJ9HF204858",
+    imageUrl: "img/hdd_st1000lm024_1tb_etiqueta.jpg",
+    driverUrl: "https://www.seagate.com/support/",
+    notes: "Disco duro 2.5\" Samsung Spinpoint M8 de 1 TB (fabricado por Seagate tras comprar la división de discos de Samsung), SATA 3 Gb/s, 5400 rpm. Marcado a mano con \"3\".",
+    observaciones: "Datos de la etiqueta:\n• Model: ST1000LM024 · HDD P/N: HN-M101MBB/SC3 · S/N: S32HJ9HF204858\n• REV. A · F/W: 2BA30001 · LBA 1.953.525.168 (1000.0 GB)\n• Etiqueta Samsung: MODEL NP870Z5G-X01CL 1TB · SEC S/N CN02BA5903851AC540F2D0996 (disco de un laptop Samsung NP870Z5G)\n\nSin imagen comercial que lo identifique; se usa la foto de la etiqueta.\n\nDispositivo general: no está registrado como componente de ningún equipo.",
+    specs: {
+      storage: "HDD SATA 3 Gb/s 1 TB 2.5\" 5400 rpm"
+    },
+    images: [
+      {
+        id: "img-hdd-st1000lm024",
+        name: "Etiqueta",
+        url: "img/hdd_st1000lm024_1tb_etiqueta.jpg"
+      }
+    ],
+    mfgDate: "2011 (lanzamiento de la serie Spinpoint M8)"
+  },
+  {
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    updatedAt: "2026-11-02",
+    id: "dev-hdd-toshiba-mq01acf050-500gb",
+    brand: "Toshiba",
+    model: "MQ01ACF050 500GB",
+    type: "Periférico",
+    serial: "54O9C6M8T",
+    imageUrl: "img/hdd_toshiba_mq01acf050_500gb_etiqueta.jpg",
+    driverUrl: "https://www.toshiba-storage.com/",
+    notes: "Disco duro 2.5\" Toshiba de 500 GB, SATA 6 Gb/s, 7200 rpm, 7 mm (Advanced Format).",
+    observaciones: "Datos de la etiqueta:\n• Disk drive: MQ01ACF050 · Drive rev: AAH AA00/AV0A1C · DC+5V 1.1A\n• Fecha: 24 MAY 2014 · S/N: 54O9C6M8T (lectura de la foto; confirmar O/0) · YR9 HDKCC00H2A01 T\n• HP P/N: 724967-001 · HP SPS: 703267-001 (disco de un equipo HP)\n\nDispositivo general: no está registrado como componente de ningún equipo.",
+    specs: {
+      storage: "HDD SATA 6 Gb/s 500 GB 2.5\" 7200 rpm"
+    },
+    images: [
+      {
+        id: "img-hdd-toshiba",
+        name: "Etiqueta",
+        url: "img/hdd_toshiba_mq01acf050_500gb_etiqueta.jpg"
+      }
+    ],
+    mfgDate: "2014-05-24"
+  },
+  {
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    updatedAt: "2026-11-02",
+    id: "dev-hdd-wd7500bpvt-750gb",
+    brand: "Western Digital",
+    model: "WD Blue 750GB WD7500BPVT",
+    type: "Periférico",
+    serial: "WXD1E72EHP04",
+    imageUrl: "img/hdd_wd7500bpvt_750gb_etiqueta.jpg",
+    driverUrl: "https://www.westerndigital.com/support",
+    notes: "Disco duro 2.5\" WD Blue de 750 GB, SATA 3 Gb/s, 5400 rpm (Advanced Format). Marcado a mano con \"750\".",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD7500BPVT-24HXZT3 · S/N: WXD1E72EHP04\n• Fecha: 04 NOV 2012 · DCM: SHOT2HN · DCX: EH30X7TZH\n• Lenovo LI P/N: 0B47496 · LC P/N: 16-004848 (disco de un equipo Lenovo)\n\nDispositivo general: no está registrado como componente de ningún equipo.",
+    specs: {
+      storage: "HDD SATA 3 Gb/s 750 GB 2.5\" 5400 rpm"
+    },
+    images: [
+      {
+        id: "img-hdd-wd7500bpvt",
+        name: "Etiqueta",
+        url: "img/hdd_wd7500bpvt_750gb_etiqueta.jpg"
+      }
+    ],
+    mfgDate: "2012-11-04"
+  },
+  {
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    updatedAt: "2026-11-02",
+    id: "dev-ssd-samsung-850evo-500gb",
+    brand: "Samsung",
+    model: "SSD 850 EVO 500GB",
+    type: "Periférico",
+    serial: "S21HNXAGA21889H",
+    imageUrl: "img/componente_ssd_samsung_850evo_500gb.jpg",
+    driverUrl: "https://semiconductor.samsung.com/consumer-storage/support/tools/",
+    notes: "SSD SATA 2.5\" Samsung 850 EVO de 500 GB (V-NAND), SATA 6 Gb/s.",
+    observaciones: "Datos de la etiqueta:\n• Model: MZ-75E500 · P/N: MZ7LN500 · S/N: S21HNXAGA21889H\n• WWN: 5002538D4067BD4x (último carácter no legible)\n\nImagen principal: comercial (Icecat, 850 EVO 500GB); la foto de la etiqueta está en la galería.\n\nDispositivo general: no está registrado como componente de ningún equipo.",
+    specs: {
+      storage: "SSD SATA 6 Gb/s 500 GB 2.5\""
+    },
+    images: [
+      {
+        id: "img-ssd-850evo-comercial",
+        name: "Imagen comercial (Icecat)",
+        url: "img/componente_ssd_samsung_850evo_500gb.jpg"
+      },
+      {
+        id: "img-ssd-850evo-etiqueta",
+        name: "Etiqueta",
+        url: "img/ssd_samsung_850evo_500gb_etiqueta.jpg"
+      }
+    ],
+    mfgDate: "2014 (lanzamiento del 850 EVO)"
+  },
+  {
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    updatedAt: "2026-11-02",
+    id: "dev-raid-inspur-yzca-00019-101",
+    brand: "Inspur",
+    model: "Tarjeta RAID/HBA SAS 6Gb/s YZCA-00019-101 (chip LSI)",
+    type: "Periférico",
+    serial: "QTE227E00948A07",
+    imageUrl: "img/raid_inspur_yzca-00019-101_tarjeta.jpg",
+    driverUrl: "https://www.broadcom.com/support/download-search",
+    notes: "Controladora PCIe SAS/SATA de 6 Gb/s y 8 puertos, con chip LSI, para servidores Inspur (ej. NF5240M3). Perfil bajo, con disipador.",
+    observaciones: "Datos de la etiqueta:\n• PN: (Y)ZCA-00019-101 · QN: QTE227E00948A07 (se usa como número de serie)\n• Dirección SAS: 56C92BF000040116\n\nIdentificación según vendedores (no hay documentación oficial de Inspur): controladora LSI de 8 puertos SAS/SATA a 6 Gb/s, vendida como LSI 9240-8i (RAID 0/1/5, firmware IR) o como 9211-8i (HBA, firmware IT). El modo depende del firmware instalado; confirmarlo al conectarla.\n\nDispositivo general: no está registrado como componente de ningún equipo.",
+    images: [
+      {
+        id: "img-raid-tarjeta",
+        name: "Vista de la tarjeta",
+        url: "img/raid_inspur_yzca-00019-101_tarjeta.jpg"
+      },
+      {
+        id: "img-raid-etiqueta",
+        name: "Etiquetas PN / QN / SAS",
+        url: "img/raid_inspur_yzca-00019-101_etiqueta.jpg"
+      }
+    ],
+    mfgDate: ""
   }
 ];
 
