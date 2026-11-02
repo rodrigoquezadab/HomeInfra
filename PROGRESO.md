@@ -69,6 +69,7 @@ Fotos locales agregadas: PC i7-2600K (gabinete 2022 como principal y placa 2023)
 - [ ] **PCs Q6700, E6750 e i7-2600K:** fotos, modelo exacto de la RAM y si tienen disco propio.
 - [ ] **Monitor LG TV:** registrar el modelo exacto (etiqueta trasera).
 - [ ] **Segundo SSD Patriot Burst Elite 120GB:** registrar número de serie, firmware y contenido (Collector o etiqueta).
+- [ ] **Lote de fotos 2026-11-02:** 18 piezas nuevas (11 HDD, 2 SSD NVMe, 2 RAM, 3 fuentes de poder) y el cargador del MSI Modern 14. Confirmar: cuántas unidades Patriot Burst Elite hay (4 fotos sin serie visible), en qué PC está cada fuente de poder, si la MSI N210-MD1G es la GeForce 210 del PC E6750, si el Kingston OM8PDP3256B es el SSD original del MSI Modern 14 y el S/N del WD30EZRX WCAWZ2268707.
 - [ ] **PC MSI A68HM-E33 V2:** ejecutar el Collector (CPU, RAM total, GPU, almacenamiento) y confirmar la MAC 4C:CC:6A:5F:66:21.
 - [ ] Revisar la carpeta `C:\Users\ThinkPad\Desktop\pcs` por más equipos o accesorios por registrar.
 
@@ -83,11 +84,11 @@ Fotos locales agregadas: PC i7-2600K (gabinete 2022 como principal y placa 2023)
 - [ ] Probar en **WinPE** / Hiren's BootCD PE.
 
 ### Gestión ITIL (ver `contexto.md`)
-- [ ] Mostrar los **componentes** dentro de la ficha detallada de cada equipo (hoy en la vista de componentes y en Observaciones).
-- [ ] Registrar piezas como **elementos independientes** (RAM, discos, cargadores) con estado: En stock, Instalada, En reparación, Retirada, Dada de baja.
-- [ ] **Historial de cambios** por equipo (fecha, motivo, pieza retirada, pieza instalada).
-- [ ] Permitir agregar, editar y enlazar componentes desde la interfaz (hoy se cargan desde el Collector o a mano en `equipos.json`).
-- [ ] Nuevos tipos de elementos: partes de computador, routers, switches, módulos.
+- [x] Piezas como **registros propios** (`kind: "pieza"`) con estado (Instalada, En stock, En reparación, Retirada, Dada de baja), equipo actual (`installedIn`) e **historial** (`history`). Lo integrado vive dentro de su placa base o procesador (`integrated`).
+- [x] Ficha de pieza con acciones **Instalar / Mover / Retirar** y su historial; ficha de equipo con sus piezas instaladas y las que estuvieron antes.
+- [ ] Crear piezas nuevas desde la interfaz (hoy: Collector, fotos o a mano en `equipos.json`); el formulario permite editar piezas existentes.
+- [ ] Al reimportar un equipo con el Collector, detectar piezas que ya no están (hoy solo se agregan nuevas y se anota "Detectada" en las conocidas).
+- [ ] Nuevos tipos de elementos: routers, switches, módulos.
 
 ### Problemas conocidos
 - [ ] **Instaladores en GitHub Pages:** los `.EXE` de `Devices/` están en Git LFS y GitHub Pages sirve solo el puntero LFS, no el archivo. Los enlaces locales de la Brother funcionan en Live Server pero no en el sitio publicado.

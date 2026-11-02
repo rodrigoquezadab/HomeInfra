@@ -5,7 +5,7 @@ Este archivo documenta el registro y contexto de los equipos tecnológicos perso
 
 La base de datos principal estructurada reside en el archivo [`equipos.json`](equipos.json) y se administra interactivamente a través de la aplicación web local `HomeInfra` (`index.html`, `style.css`, `app.js`).
 
-*Última actualización sincronizada:* `2026-11-02` | *Total de equipos:* **21**
+*Última actualización sincronizada:* `2026-11-02` | *Equipos:* **10** | *Piezas:* **56**
 
 ---
 
@@ -20,7 +20,7 @@ La base de datos principal estructurada reside en el archivo [`equipos.json`](eq
 
 ## 🧩 Visión: Gestión de Infraestructura basada en ITIL (Planificado)
 
-> **Estado:** Implementación parcial. Los equipos ya guardan sus piezas en el campo `components` (categoría, modelo, serie, capacidad, si es reemplazable y, para accesorios registrados aparte como un cargador, el `deviceId` del equipo relacionado). Faltan la vista de componentes en la interfaz, los estados del ciclo de vida y el historial de cambios.
+> **Estado:** Implementado. Cada pieza reemplazable (CPU, RAM, placa base, GPU, discos, tarjetas, cargadores) es un registro propio en `equipos.json` con `kind: "pieza"`, un estado (Instalada, En stock, En reparación, Retirada, Dada de baja), el equipo donde está instalada (`installedIn`) y su historial de movimientos (`history`). Lo integrado (por ejemplo, el video o la red de una placa base, o los gráficos de un procesador) vive dentro de su pieza anfitriona (`integrated`) y no se gestiona por separado. La app permite instalar, mover y retirar piezas desde su ficha.
 
 HomeInfra evolucionará de un inventario de equipos a un sistema de gestión de infraestructura alineado con las prácticas de **ITIL** (Gestión de Activos y de la Configuración). Además de equipos completos, registrará **partes de computadores** (RAM, HDD/SSD, fuentes, tarjetas), **equipos de red** (routers, switches, puntos de acceso), **módulos** y otros elementos de infraestructura.
 
@@ -58,24 +58,13 @@ HomeInfra evolucionará de un inventario de equipos a un sistema de gestión de 
 | 1 | Impresora | Brother | DCP-1602 | 2015 | N/A | N/A | N/A | N/A | N/A | [Soporte Oficial Brother DCP-1602](Devices/Brother%20DCP-1602/Y14G_C1_U-inst-B1.EXE) |
 | 2 | Laptop | MSI | Modern 14 B5M-011CL | 2021-06 | AMD Ryzen 5 5500U [2021] | 8 GB | AMD Radeon Graphics (Integrada) | N/A | K2106N0089559 | [Soporte Oficial MSI Modern 14 B5M-011CL](https://www.msi.com/Business-Productivity/Modern-14-B5SX/support) |
 | 3 | Laptop | Acer | Aspire E3-112-C6ME | 2014-08-23 | N/A | N/A | N/A | N/A | NXMRLAL004434177F97600 | [Soporte Oficial Acer Aspire E3-112-C6ME](https://www.acer.com/latam-es/support/product-support/E3-112) |
-| 4 | Periférico | Lite-On | PA-1650-02 (Adaptador AC 65W) | 2008-06 | N/A | N/A | N/A | N/A | AP06503016824OB7E6P606 | [Soporte Oficial Lite-On PA-1650-02 (Adaptador AC 65W)](https://www.acer.com/latam-es/support/product-support/E3-112) |
-| 5 | Desktop | PC armado | Core i5-12400F · MSI PRO H610M-G DDR4 | 2022 (lanzamiento de la plataforma Intel H610) | 12th Gen Intel(R) Core(TM) i5-12400F [2022] | 16 GB DDR4 | NVIDIA GeForce GTX 1660 SUPER (Dedicada) | N/A | 07D4612_M21D142444 | [Soporte Oficial PC armado Core i5-12400F · MSI PRO H610M-G DDR4](https://www.msi.com/Motherboard/PRO-H610M-G-DDR4/support) |
-| 6 | Desktop | PC armado | Core 2 Quad Q6700 · ASUS P5G41T-M LX | 2008 (lanzamiento del chipset Intel G41) | Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz [2007] | 8 GB DDR3 | Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1) (Integrada) | N/A | 107933150000113 | [Soporte Oficial PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX](https://www.asus.com/supportonly/p5g41t-m%20lx/helpdesk_download/) |
-| 7 | Desktop | PC armado | Core 2 Duo E6750 · ASUS P5Q PRO TURBO | 2008 (lanzamiento del chipset Intel P45) | Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz [2007] | 4 GB DDR2 | NVIDIA GeForce 210 (Dedicada) | N/A | MS1C93BC3400692 | [Soporte Oficial PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO](https://www.asus.com/supportonly/p5q%20pro%20turbo/helpdesk_download/) |
-| 8 | Desktop | PC armado | Core i7-2600K · Gigabyte Z77-HD3 | 2012 (lanzamiento del chipset Intel Z77) | Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz [2011] | 16 GB DDR3 | Intel(R) HD Graphics 3000 (Integrada) | N/A | N/A | [Soporte Oficial PC armado Core i7-2600K · Gigabyte Z77-HD3](https://www.gigabyte.com/Motherboard/GA-Z77-HD3-rev-10/support) |
-| 9 | Monitor | LG | TV (usado como monitor) | 2010 | N/A | N/A | N/A | N/A | N/A | [Soporte Oficial LG TV (usado como monitor)](https://www.google.com/search?q=LG%20TV%20monitor%20soporte%20oficial) |
-| 10 | Periférico | Patriot | Burst Elite 120GB (SSD de Windows compartido) | N/A | N/A | N/A | N/A | N/A | PBEIIBB21030118778 | [Soporte Oficial Patriot Burst Elite 120GB (SSD de Windows compartido)](https://www.google.com/search?q=Patriot%20Burst%20Elite%20120GB%20SSD%20soporte) |
-| 11 | Periférico | Patriot | Burst Elite 120GB (segunda unidad) | N/A | N/A | N/A | N/A | N/A | N/A | [Soporte Oficial Patriot Burst Elite 120GB (segunda unidad)](https://www.google.com/search?q=Patriot%20Burst%20Elite%20120GB%20SSD%20soporte) |
-| 12 | Periférico | Sony | Pendrive USB 4 GB (HomeInfra Collector) | N/A | N/A | N/A | N/A | N/A | 7B2211109146005852 | [Soporte Oficial Sony Pendrive USB 4 GB (HomeInfra Collector)](https://www.google.com/search?q=Sony%20USB%20flash%20drive%20soporte) |
-| 13 | Periférico | ZOTAC | GeForce 8400 GS GEN2 512MB DDR2 | 2007 (lanzamiento de la GeForce 8400 GS) | N/A | N/A | NVIDIA GeForce 8400 GS (Dedicada) | N/A | N103100027911 | [Soporte Oficial ZOTAC GeForce 8400 GS GEN2 512MB DDR2](https://www.nvidia.com/Download/index.aspx?lang=es) |
-| 14 | Desktop | PC armado | MSI A68HM-E33 V2 (CPU AMD por identificar) | 2014 (lanzamiento del chipset AMD A68H) | N/A | N/A | N/A | N/A | G716320033 33004 | [Soporte Oficial PC armado MSI A68HM-E33 V2 (CPU AMD por identificar)](https://www.msi.com/Motherboard/A68HM-E33-V2/support) |
-| 15 | Periférico | Western Digital | WD Blue 1TB WD10SPZX (marcado 1) | 2018-12-14 | N/A | N/A | N/A | N/A | WXN1AA821XCH | [Soporte Oficial Western Digital WD Blue 1TB WD10SPZX (marcado 1)](https://www.westerndigital.com/support) |
-| 16 | Periférico | Western Digital | WD Blue 1TB WD10JPVX (marcado 2) | 2017-02-10 | N/A | N/A | N/A | N/A | WX31A177YXJU | [Soporte Oficial Western Digital WD Blue 1TB WD10JPVX (marcado 2)](https://www.westerndigital.com/support) |
-| 17 | Periférico | Seagate (Samsung) | Spinpoint M8 1TB ST1000LM024 (marcado 3) | 2011 (lanzamiento de la serie Spinpoint M8) | N/A | N/A | N/A | N/A | S32HJ9HF204858 | [Soporte Oficial Seagate (Samsung) Spinpoint M8 1TB ST1000LM024 (marcado 3)](https://www.seagate.com/support/) |
-| 18 | Periférico | Toshiba | MQ01ACF050 500GB | 2014-05-24 | N/A | N/A | N/A | N/A | 54O9C6M8T | [Soporte Oficial Toshiba MQ01ACF050 500GB](https://www.toshiba-storage.com/) |
-| 19 | Periférico | Western Digital | WD Blue 750GB WD7500BPVT | 2012-11-04 | N/A | N/A | N/A | N/A | WXD1E72EHP04 | [Soporte Oficial Western Digital WD Blue 750GB WD7500BPVT](https://www.westerndigital.com/support) |
-| 20 | Periférico | Samsung | SSD 850 EVO 500GB | 2014 (lanzamiento del 850 EVO) | N/A | N/A | N/A | N/A | S21HNXAGA21889H | [Soporte Oficial Samsung SSD 850 EVO 500GB](https://semiconductor.samsung.com/consumer-storage/support/tools/) |
-| 21 | Periférico | Inspur | Tarjeta RAID/HBA SAS 6Gb/s YZCA-00019-101 (chip LSI) | N/A | N/A | N/A | N/A | N/A | QTE227E00948A07 | [Soporte Oficial Inspur Tarjeta RAID/HBA SAS 6Gb/s YZCA-00019-101 (chip LSI)](https://www.broadcom.com/support/download-search) |
+| 4 | Desktop | PC armado | Core i5-12400F · MSI PRO H610M-G DDR4 | 2022 (lanzamiento de la plataforma Intel H610) | 12th Gen Intel(R) Core(TM) i5-12400F [2022] | 16 GB DDR4 | NVIDIA GeForce GTX 1660 SUPER (Dedicada) | N/A | 07D4612_M21D142444 | [Soporte Oficial PC armado Core i5-12400F · MSI PRO H610M-G DDR4](https://www.msi.com/Motherboard/PRO-H610M-G-DDR4/support) |
+| 5 | Desktop | PC armado | Core 2 Quad Q6700 · ASUS P5G41T-M LX | 2008 (lanzamiento del chipset Intel G41) | Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz [2007] | 8 GB DDR3 | Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1) (Integrada) | N/A | 107933150000113 | [Soporte Oficial PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX](https://www.asus.com/supportonly/p5g41t-m%20lx/helpdesk_download/) |
+| 6 | Desktop | PC armado | Core 2 Duo E6750 · ASUS P5Q PRO TURBO | 2008 (lanzamiento del chipset Intel P45) | Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz [2007] | 4 GB DDR2 | NVIDIA GeForce 210 (Dedicada) | N/A | MS1C93BC3400692 | [Soporte Oficial PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO](https://www.asus.com/supportonly/p5q%20pro%20turbo/helpdesk_download/) |
+| 7 | Desktop | PC armado | Core i7-2600K · Gigabyte Z77-HD3 | 2012 (lanzamiento del chipset Intel Z77) | Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz [2011] | 16 GB DDR3 | Intel(R) HD Graphics 3000 (Integrada) | N/A | N/A | [Soporte Oficial PC armado Core i7-2600K · Gigabyte Z77-HD3](https://www.gigabyte.com/Motherboard/GA-Z77-HD3-rev-10/support) |
+| 8 | Monitor | LG | TV (usado como monitor) | 2010 | N/A | N/A | N/A | N/A | N/A | [Soporte Oficial LG TV (usado como monitor)](https://www.google.com/search?q=LG%20TV%20monitor%20soporte%20oficial) |
+| 9 | Periférico | Sony | Pendrive USB 4 GB (HomeInfra Collector) | N/A | N/A | N/A | N/A | N/A | 7B2211109146005852 | [Soporte Oficial Sony Pendrive USB 4 GB (HomeInfra Collector)](https://www.google.com/search?q=Sony%20USB%20flash%20drive%20soporte) |
+| 10 | Desktop | PC armado | MSI A68HM-E33 V2 (CPU AMD por identificar) | 2014 (lanzamiento del chipset AMD A68H) | N/A | N/A | N/A | N/A | G716320033 33004 | [Soporte Oficial PC armado MSI A68HM-E33 V2 (CPU AMD por identificar)](https://www.msi.com/Motherboard/A68HM-E33-V2/support) |
 
 ---
 
@@ -148,6 +137,8 @@ Enlaces Oficiales Web (Respaldo en Línea):
 CPU, RAM y GPU deducidos del SKU (R555U = AMD Ryzen 5 5500U, 8G = 8 GB RAM); pendiente confirmar en el equipo. Almacenamiento no registrado.
 
 La etiqueta del número de serie está desgastada (ver fotos 2026); la foto de 2023 conserva la lectura completa.
+- **Piezas instaladas:**
+  - *Cargador:* Delta (MSI) ADP-65GD D 65 W (19V ⎓ 3.42A) · S/N 6KJW131009B · pieza `pz-cargador-msi-delta-adp-65gd`
 - **Fotografías:**
   - Imagen comercial (Icecat, Modern 14 B5M): [`img/msi_modern14_comercial.jpg`](img/msi_modern14_comercial.jpg)
   - Etiqueta SKU / S/N (2023): [`img/msi_modern14_etiqueta_2023.jpg`](img/msi_modern14_etiqueta_2023.jpg)
@@ -180,9 +171,9 @@ La etiqueta del número de serie está desgastada (ver fotos 2026); la foto de 2
 Cargador asignado: Lite-On PA-1650-02 (19V ⎓ 3.42A, 65W), S/N AP06503016824OB7E6P606. Registrado como equipo aparte (dev-acer-e3-112-cargador).
 
 CPU, RAM y almacenamiento no figuran en las etiquetas; pendiente registrarlos con el HomeInfra Collector.
-- **Componentes:**
-  - *Red:* WLAN + Bluetooth combo QCWB335 (FCC ID PPD-QCWB335) · 2012 · reemplazable
-  - *Cargador:* Lite-On PA-1650-02 65 W (19V ⎓ 3.42A) · S/N AP06503016824OB7E6P606 · reemplazable · equipo relacionado: `dev-acer-e3-112-cargador`
+- **Piezas instaladas:**
+  - *Red:* Qualcomm Atheros WLAN + Bluetooth combo QCWB335 (FCC ID PPD-QCWB335) · 2012 · pieza `pz-acer-e3-112-nic-1`
+  - *Cargador:* Lite-On PA-1650-02 (Adaptador AC 65W) 65 W (19V ⎓ 3.42A) · S/N AP06503016824OB7E6P606 · pieza `dev-acer-e3-112-cargador`
 - **Fotografías:**
   - Imagen comercial (Icecat, Aspire E3-112): [`img/acer_e3-112_comercial.jpg`](img/acer_e3-112_comercial.jpg)
   - Etiqueta modelo / S/N / MFG: [`img/acer_e3-112_etiqueta_serie.jpg`](img/acer_e3-112_etiqueta_serie.jpg)
@@ -190,36 +181,7 @@ CPU, RAM y almacenamiento no figuran en las etiquetas; pendiente registrarlos co
   - Cargador: etiqueta Lite-On PA-1650-02: [`img/acer_e3-112_cargador_etiqueta_liteon_pa-1650-02.jpg`](img/acer_e3-112_cargador_etiqueta_liteon_pa-1650-02.jpg)
   - Cargador: vista general: [`img/acer_e3-112_cargador_vista_general.jpg`](img/acer_e3-112_cargador_vista_general.jpg)
 
-### 4. Lite-On PA-1650-02 (Adaptador AC 65W)
-![Lite-On PA-1650-02 (Adaptador AC 65W)](img/acer_e3-112_cargador_vista_general.jpg)
-
-- **Tipo:** Periférico
-- **Marca:** Lite-On
-- **Modelo:** PA-1650-02 (Adaptador AC 65W)
-- **Número de Serie / Activo:** AP06503016824OB7E6P606
-- **Fecha de Fabricación / Lanzamiento:** 2008-06
-- **Asignación / Ubicación:** Hogar
-- **Enlace de Drivers:** [Soporte Oficial Lite-On PA-1650-02 (Adaptador AC 65W)](https://www.acer.com/latam-es/support/product-support/E3-112)
-- **Notas:** Cargador del Acer Aspire E3-112-C6ME (S/N NXMRLAL004434177F97600). Entrada 100-240V ~ 1.6A 50-60Hz. Salida 19V ⎓ 3.42A, 65W, centro positivo. Conector de punta amarilla.
-- **Observaciones:** Datos de la etiqueta:
-• Fabricante: Lite-On Technology Corporation
-• Modelo: PA-1650-02
-• Entrada: 100-240V ~ 1.6A, 50-60Hz
-• Salida: 19V ⎓ 3.42A, 65W (centro positivo)
-• Fecha de fabricación: 2008/06
-• Etiqueta de serie: 8616796906 · AC · Rev: A06
-• Código de barras ADT: AP06503016824OB7E6P606
-
-Compatibilidad: el notebook requiere 19V ⎓ 2.1A; este cargador entrega el mismo voltaje con mayor corriente disponible (3.42A), por lo que es compatible. Por su fecha de fabricación (2008) no es el cargador de fábrica del notebook (2014).
-
-Equipo asociado: Acer Aspire E3-112-C6ME (dev-acer-e3-112).
-- **Fotografías:**
-  - Vista general con cable y conector: [`img/acer_e3-112_cargador_vista_general.jpg`](img/acer_e3-112_cargador_vista_general.jpg)
-  - Etiqueta Lite-On PA-1650-02: [`img/acer_e3-112_cargador_etiqueta_liteon_pa-1650-02.jpg`](img/acer_e3-112_cargador_etiqueta_liteon_pa-1650-02.jpg)
-  - Código de barras ADT (serie): [`img/acer_e3-112_cargador_serie_ap06503.jpg`](img/acer_e3-112_cargador_serie_ap06503.jpg)
-  - Etiqueta de advertencia de temperatura: [`img/acer_e3-112_cargador_advertencia_temperatura.jpg`](img/acer_e3-112_cargador_advertencia_temperatura.jpg)
-
-### 5. PC armado Core i5-12400F · MSI PRO H610M-G DDR4
+### 4. PC armado Core i5-12400F · MSI PRO H610M-G DDR4
 ![PC armado Core i5-12400F · MSI PRO H610M-G DDR4](img/intel_i5-12400f_caja.jpg)
 
 - **Tipo:** Desktop
@@ -256,15 +218,15 @@ Registro HomeInfra Collector (2026-10-31 19:21:12):
 • GPU: NVIDIA GeForce GTX 1660 SUPER 4 GB (NVIDIA)
 • Red: Intel(R) Ethernet Connection (17) I219-V (MAC 04:7C:16:05:0E:B3)
 • Placa base: Micro-Star International Co., Ltd. PRO H610M-G DDR4 (MS-7D46) (1.0) · S/N 07D4612_M21D142444
-- **Componentes:**
-  - *CPU:* 12th Gen Intel(R) Core(TM) i5-12400F (6 núcleos / 12 hilos socket U3E1) · 2022 · PassMark multi 19.524 / mono 3.483 · reemplazable
-  - *RAM:* Corsair CMK8GX4M1Z3600C18 8 GB (DDR4 DIMM 2667 MT/s [Controller0-DIMMA1] · módulo de 3600 MT/s funcionando a 2667 MT/s) · reemplazable
-  - *RAM:* Corsair CMK8GX4M1Z3600C18 8 GB (DDR4 DIMM 2667 MT/s [Controller1-DIMMB1] · módulo de 3600 MT/s funcionando a 2667 MT/s) · reemplazable
-  - *Almacenamiento:* WD Blue SN570 500GB 466 GB (SSD NVMe) · S/N E823_8FA6_BF53_0001_001B_448B_4569_B02C. · 2021 · reemplazable
-  - *Almacenamiento:* WDC WD800BD-22MRA1 75 GB (HDD SATA) · S/N WD-WMAM9AMY4260 · reemplazable
-  - *GPU:* NVIDIA GeForce GTX 1660 SUPER 4 GB (NVIDIA) · 2019 · reemplazable
-  - *Red:* Intel(R) Ethernet Connection (17) I219-V (MAC 04:7C:16:05:0E:B3) · integrado
-  - *Placa base:* Micro-Star International Co., Ltd. PRO H610M-G DDR4 (MS-7D46) (1.0) · S/N 07D4612_M21D142444 · 2022 · integrado
+- **Piezas instaladas:**
+  - *CPU:* 12th Gen Intel(R) Core(TM) i5-12400F (6 núcleos / 12 hilos socket U3E1) · 2022 · PassMark multi 19.524 / mono 3.483 · pieza `pz-pc-i5-12400f-h610m-cpu-1`
+  - *RAM:* Corsair CMK8GX4M1Z3600C18 8 GB (DDR4 DIMM 2667 MT/s [Controller0-DIMMA1] · módulo de 3600 MT/s funcionando a 2667 MT/s) · pieza `pz-pc-i5-12400f-h610m-ram-1`
+  - *RAM:* Corsair CMK8GX4M1Z3600C18 8 GB (DDR4 DIMM 2667 MT/s [Controller1-DIMMB1] · módulo de 3600 MT/s funcionando a 2667 MT/s) · pieza `pz-pc-i5-12400f-h610m-ram-2`
+  - *SSD:* Western Digital WD Blue SN570 500GB 466 GB (SSD NVMe) · S/N E823_8FA6_BF53_0001_001B_448B_4569_B02C. · 2021 · pieza `pz-pc-i5-12400f-h610m-ssd-1`
+  - *HDD:* Western Digital WDC WD800BD-22MRA1 75 GB (HDD SATA) · S/N WD-WMAM9AMY4260 · pieza `pz-pc-i5-12400f-h610m-hdd-1`
+  - *GPU:* NVIDIA GeForce GTX 1660 SUPER 4 GB (NVIDIA) · 2019 · pieza `pz-pc-i5-12400f-h610m-gpu-1`
+  - *Placa base:* MSI Micro-Star International Co., Ltd. PRO H610M-G DDR4 (MS-7D46) (1.0) · S/N 07D4612_M21D142444 · 2022 · pieza `pz-pc-i5-12400f-h610m-placabase-1`
+    - Integra: Intel(R) Ethernet Connection (17) I219-V
     - Formato: Micro-ATX
     - Socket / chipset: LGA 1700 · Intel H610 (procesadores Intel Core 12.ª, 13.ª y 14.ª gen.)
     - Memoria: 2 ranuras DDR4 · doble canal · hasta 64 GB · 2133 / 2666 / 2933 / 3200 MHz
@@ -279,7 +241,7 @@ Registro HomeInfra Collector (2026-10-31 19:21:12):
 - **Fotografías:**
   - Caja del Intel Core i5-12400F: [`img/intel_i5-12400f_caja.jpg`](img/intel_i5-12400f_caja.jpg)
 
-### 6. PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX
+### 5. PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX
 - **Tipo:** Desktop
 - **Marca:** PC armado
 - **Modelo:** Core 2 Quad Q6700 · ASUS P5G41T-M LX
@@ -312,13 +274,12 @@ Registro HomeInfra Collector (2026-11-01 21:02:05):
 • GPU: Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1) (Intel Corporation)
 • Red: Qualcomm Atheros AR8131 PCI-E Gigabit Ethernet Controller (NDIS 6.30) (MAC BC:AE:C5:28:68:F4)
 • Placa base: ASUSTeK Computer INC. P5G41T-M LX (Rev X.0x) · S/N 107933150000113
-- **Componentes:**
-  - *CPU:* Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz (4 núcleos / 4 hilos socket LGA775) · 2007 · PassMark multi 2.092 / mono 1.073 · reemplazable
-  - *RAM:* 4 GB (DDR3 DIMM [DIMM A1] · tipo deducido del modelo de placa) · reemplazable
-  - *RAM:* 4 GB (DDR3 DIMM [DIMM B1] · tipo deducido del modelo de placa) · reemplazable
-  - *GPU:* Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1) (Intel Corporation) · 2008 · integrado
-  - *Red:* Qualcomm Atheros AR8131 PCI-E Gigabit Ethernet Controller (NDIS 6.30) (MAC BC:AE:C5:28:68:F4) · integrado
-  - *Placa base:* ASUSTeK Computer INC. P5G41T-M LX (Rev X.0x) · S/N 107933150000113 · 2008 · integrado
+- **Piezas instaladas:**
+  - *CPU:* Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz (4 núcleos / 4 hilos socket LGA775) · 2007 · PassMark multi 2.092 / mono 1.073 · pieza `pz-pc-q6700-p5g41t-m-lx-cpu-1`
+  - *RAM:* Módulo RAM DDR3 4 GB (fabricante sin informar) 4 GB (DDR3 DIMM [DIMM A1] · tipo deducido del modelo de placa) · pieza `pz-pc-q6700-p5g41t-m-lx-ram-1`
+  - *RAM:* Módulo RAM DDR3 4 GB (fabricante sin informar) 4 GB (DDR3 DIMM [DIMM B1] · tipo deducido del modelo de placa) · pieza `pz-pc-q6700-p5g41t-m-lx-ram-2`
+  - *Placa base:* ASUSTeK Computer INC. P5G41T-M LX (Rev X.0x) · S/N 107933150000113 · 2008 · pieza `pz-pc-q6700-p5g41t-m-lx-placabase-1`
+    - Integra: Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1) · Qualcomm Atheros AR8131 PCI-E Gigabit Ethernet Controller (NDIS 6.30)
     - Formato: Micro-ATX
     - Socket / chipset: LGA 775 · Intel G41 / ICH7
     - Memoria: 2 ranuras DDR3 · doble canal · hasta 8 GB · 800 / 1066 / 1333 (OC) MHz · no ECC, sin búfer
@@ -330,7 +291,7 @@ Registro HomeInfra Collector (2026-11-01 21:02:05):
     - Salidas de video: VGA (D-Sub) · gráficos integrados Intel G41
     - Fuente: [especificaciones oficiales](https://origin-www.asus.com/Motherboards/P5G41TM_LX/specifications/) (2026-11-02)
 
-### 7. PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO
+### 6. PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO
 - **Tipo:** Desktop
 - **Marca:** PC armado
 - **Modelo:** Core 2 Duo E6750 · ASUS P5Q PRO TURBO
@@ -363,13 +324,13 @@ Registro HomeInfra Collector (2026-11-02 00:04:39):
 • GPU: NVIDIA GeForce 210 1 GB (NVIDIA)
 • Red: Atheros AR8121/AR8113/AR8114 PCI-E Ethernet Controller (MAC 00:24:8C:6B:E7:F6)
 • Placa base: ASUSTeK Computer INC. P5Q PRO TURBO (Rev 1.xx) · S/N MS1C93BC3400692
-- **Componentes:**
-  - *CPU:* Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz (2 núcleos / 2 hilos socket LGA 775) · 2007 · PassMark multi 1.031 / mono 1.030 · reemplazable
-  - *RAM:* 2 GB (DDR2 DIMM 800 MT/s [DIMM0] · tipo deducido del modelo de placa) · reemplazable
-  - *RAM:* 2 GB (DDR2 DIMM 800 MT/s [DIMM2] · tipo deducido del modelo de placa) · reemplazable
-  - *GPU:* NVIDIA GeForce 210 1 GB (NVIDIA) · 2009 · reemplazable
-  - *Red:* Atheros AR8121/AR8113/AR8114 PCI-E Ethernet Controller (MAC 00:24:8C:6B:E7:F6) · integrado
-  - *Placa base:* ASUSTeK Computer INC. P5Q PRO TURBO (Rev 1.xx) · S/N MS1C93BC3400692 · 2008 · integrado
+- **Piezas instaladas:**
+  - *CPU:* Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz (2 núcleos / 2 hilos socket LGA 775) · 2007 · PassMark multi 1.031 / mono 1.030 · pieza `pz-pc-e6750-p5q-pro-turbo-cpu-1`
+  - *RAM:* Módulo RAM DDR2 2 GB (fabricante sin informar) 2 GB (DDR2 DIMM 800 MT/s [DIMM0] · tipo deducido del modelo de placa) · pieza `pz-pc-e6750-p5q-pro-turbo-ram-1`
+  - *RAM:* Módulo RAM DDR2 2 GB (fabricante sin informar) 2 GB (DDR2 DIMM 800 MT/s [DIMM2] · tipo deducido del modelo de placa) · pieza `pz-pc-e6750-p5q-pro-turbo-ram-2`
+  - *GPU:* MSI N210-MD1G (NVIDIA GeForce 210) 1 GB (1 GB GDDR2 · PCIe 2.0 · VGA, DVI, HDMI) · S/N 602-V229-43SB1210038228 · 2009 · pieza `pz-pc-e6750-p5q-pro-turbo-gpu-1`
+  - *Placa base:* ASUSTeK Computer INC. P5Q PRO TURBO (Rev 1.xx) · S/N MS1C93BC3400692 · 2008 · pieza `pz-pc-e6750-p5q-pro-turbo-placabase-1`
+    - Integra: Atheros AR8121/AR8113/AR8114 PCI-E Ethernet Controller
     - Formato: ATX
     - Socket / chipset: LGA 775 · Intel P45 / ICH10R
     - Memoria: 4 ranuras DDR2 · doble canal · hasta 16 GB · 667 / 800 / 1066 / 1200 / 1300 MHz · no ECC, sin búfer
@@ -381,7 +342,7 @@ Registro HomeInfra Collector (2026-11-02 00:04:39):
     - Salidas de video: Sin gráficos integrados (chipset P45): requiere tarjeta de video
     - Fuente: [especificaciones oficiales](https://origin-www.asus.com/motherboards/p5q_pro_turbo/specifications/) (2026-11-02)
 
-### 8. PC armado Core i7-2600K · Gigabyte Z77-HD3
+### 7. PC armado Core i7-2600K · Gigabyte Z77-HD3
 ![PC armado Core i7-2600K · Gigabyte Z77-HD3](img/gigabyte_z77-hd3_gabinete_2022.jpg)
 
 - **Tipo:** Desktop
@@ -417,13 +378,13 @@ Registro HomeInfra Collector (2026-11-01 17:53:51):
 • GPU: Intel(R) HD Graphics 3000 (Intel Corporation)
 • Red: Realtek PCIe GbE Family Controller #2 (MAC 74:D4:35:11:F0:AC)
 • Placa base: Gigabyte Technology Co., Ltd. Z77-HD3
-- **Componentes:**
-  - *CPU:* Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz (4 núcleos / 8 hilos) · 2011 · PassMark multi 5.476 / mono 1.740 · reemplazable
-  - *RAM:* Kingston HX316C10F/8 8 GB (DDR3 DIMM 1600 MT/s [ChannelB-DIMM1]) · S/N 19FA6341 · reemplazable
-  - *RAM:* Kingston HX316C10F/8 8 GB (DDR3 DIMM 1600 MT/s [ChannelA-DIMM1]) · S/N 4C33D19F · reemplazable
-  - *GPU:* Intel(R) HD Graphics 3000 (Intel Corporation) · 2011 · integrado
-  - *Red:* Realtek PCIe GbE Family Controller #2 (MAC 74:D4:35:11:F0:AC) · integrado
-  - *Placa base:* Gigabyte Technology Co., Ltd. Z77-HD3 · 2012 · integrado
+- **Piezas instaladas:**
+  - *CPU:* Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz (4 núcleos / 8 hilos) · 2011 · PassMark multi 5.476 / mono 1.740 · pieza `pz-pc-i7-2600k-z77-hd3-cpu-1`
+    - Integra: Intel(R) HD Graphics 3000
+  - *RAM:* Kingston HX316C10F/8 8 GB (DDR3 DIMM 1600 MT/s [ChannelB-DIMM1]) · S/N 19FA6341 · pieza `pz-pc-i7-2600k-z77-hd3-ram-1`
+  - *RAM:* Kingston HX316C10F/8 8 GB (DDR3 DIMM 1600 MT/s [ChannelA-DIMM1]) · S/N 4C33D19F · pieza `pz-pc-i7-2600k-z77-hd3-ram-2`
+  - *Placa base:* Gigabyte Technology Co., Ltd. Z77-HD3 · 2012 · pieza `pz-pc-i7-2600k-z77-hd3-placabase-1`
+    - Integra: Realtek PCIe GbE Family Controller #2
     - Formato: ATX · 30,5 × 21,5 cm
     - Socket / chipset: LGA 1155 · Intel Z77
     - Memoria: 4 ranuras DDR3 1.5V · doble canal · hasta 32 GB · 1066 / 1333 / 1600 MHz (2800 OC); DDR3-1600 requiere CPU Ivy Bridge (22 nm)
@@ -439,7 +400,7 @@ Registro HomeInfra Collector (2026-11-01 17:53:51):
   - Placa GA-Z77-HD3 en el gabinete, disipador Thermaltake (2022): [`img/gigabyte_z77-hd3_gabinete_2022.jpg`](img/gigabyte_z77-hd3_gabinete_2022.jpg)
   - Placa GA-Z77-HD3 fuera del gabinete (2023): [`img/gigabyte_z77-hd3_placa_2023.jpg`](img/gigabyte_z77-hd3_placa_2023.jpg)
 
-### 9. LG TV (usado como monitor)
+### 8. LG TV (usado como monitor)
 - **Tipo:** Monitor
 - **Marca:** LG
 - **Modelo:** TV (usado como monitor)
@@ -458,42 +419,7 @@ Detectado conectado a:
 • Core 2 Duo E6750 · ASUS P5Q PRO TURBO (2026-11-02)
 • Core i7-2600K · Gigabyte Z77-HD3 (2026-11-01)
 
-### 10. Patriot Burst Elite 120GB (SSD de Windows compartido)
-- **Tipo:** Periférico
-- **Marca:** Patriot
-- **Modelo:** Burst Elite 120GB (SSD de Windows compartido)
-- **Número de Serie / Activo:** PBEIIBB21030118778
-- **Fecha de Fabricación / Lanzamiento:** No registrada
-- **Asignación / Ubicación:** Hogar
-- **Especificaciones de Hardware:**
-  - **Almacenamiento:** SSD SATA 120 GB
-- **Enlace de Drivers:** [Soporte Oficial Patriot Burst Elite 120GB (SSD de Windows compartido)](https://www.google.com/search?q=Patriot%20Burst%20Elite%20120GB%20SSD%20soporte)
-- **Notas:** SSD SATA 2.5" Patriot Burst Elite de 120 GB (111.8 GB útiles), firmware FW200918. Tiene instalado Windows 10 Pro 22H2 (10.0.19045), nombre de equipo "SERVER", instalado el 2025-01-28. Se mueve entre PCs para arrancarlos y registrarlos.
-- **Observaciones:** Dispositivo general, no forma parte de ningún equipo.
-
-En los PCs con Core 2 Quad Q6700 y Core i7-2600K, Windows informó menos núcleos de los que tiene el procesador. Probablemente este Windows tiene limitado el número de procesadores (msconfig → Arranque → Opciones avanzadas → Número de procesadores).
-
-Usado para arrancar:
-• Core 2 Quad Q6700 · ASUS P5G41T-M LX (2026-11-01)
-• Core 2 Duo E6750 · ASUS P5Q PRO TURBO (2026-11-02)
-• Core i7-2600K · Gigabyte Z77-HD3 (2026-11-01)
-
-### 11. Patriot Burst Elite 120GB (segunda unidad)
-- **Tipo:** Periférico
-- **Marca:** Patriot
-- **Modelo:** Burst Elite 120GB (segunda unidad)
-- **Número de Serie / Activo:** No registrado
-- **Fecha de Fabricación / Lanzamiento:** No registrada
-- **Asignación / Ubicación:** Hogar
-- **Especificaciones de Hardware:**
-  - **Almacenamiento:** SSD SATA 120 GB
-- **Enlace de Drivers:** [Soporte Oficial Patriot Burst Elite 120GB (segunda unidad)](https://www.google.com/search?q=Patriot%20Burst%20Elite%20120GB%20SSD%20soporte)
-- **Notas:** SSD SATA 2.5" Patriot Burst Elite de 120 GB, mismo modelo que el SSD de Windows compartido (S/N PBEIIBB21030118778).
-- **Observaciones:** Dispositivo general, no forma parte de ningún equipo.
-
-Número de serie, firmware y contenido pendientes: conectarlo a un PC y ejecutar el HomeInfra Collector, o leer la etiqueta del disco.
-
-### 12. Sony Pendrive USB 4 GB (HomeInfra Collector)
+### 9. Sony Pendrive USB 4 GB (HomeInfra Collector)
 - **Tipo:** Periférico
 - **Marca:** Sony
 - **Modelo:** Pendrive USB 4 GB (HomeInfra Collector)
@@ -512,35 +438,7 @@ Detectado en:
 • Core 2 Duo E6750 · ASUS P5Q PRO TURBO (2026-11-02)
 • Core i7-2600K · Gigabyte Z77-HD3 (2026-11-01)
 
-### 13. ZOTAC GeForce 8400 GS GEN2 512MB DDR2
-![ZOTAC GeForce 8400 GS GEN2 512MB DDR2](img/zotac_8400gs_etiqueta.jpg)
-
-- **Tipo:** Periférico
-- **Marca:** ZOTAC
-- **Modelo:** GeForce 8400 GS GEN2 512MB DDR2
-- **Número de Serie / Activo:** N103100027911
-- **Fecha de Fabricación / Lanzamiento:** 2007 (lanzamiento de la GeForce 8400 GS)
-- **Asignación / Ubicación:** Hogar
-- **Especificaciones de Hardware:**
-  - **Tarjeta Gráfica (GPU):** NVIDIA GeForce 8400 GS
-    - *Tipo:* **Dedicada**
-    - *Características:* 512 MB DDR2 · bus de 64 bits · PCIe (GEN2)
-- **Enlace de Drivers:** [Soporte Oficial ZOTAC GeForce 8400 GS GEN2 512MB DDR2](https://www.nvidia.com/Download/index.aspx?lang=es)
-- **Notas:** Tarjeta de video ZOTAC NVIDIA GeForce 8400 GS GEN2, 512 MB DDR2, bus de memoria de 64 bits, PCI Express.
-- **Observaciones:** Datos de la etiqueta:
-• Modelo: ZOTAC 8400GS GEN2 512MB 64BIT DDR2
-• PN: 288-90N44-040ZT
-• S/N: N103100027911
-• Cumple ICES-003 Class B · RoHS
-
-Dispositivo general: no está registrada como componente de ningún equipo.
-
-Año: lanzamiento de la GeForce 8400 GS (2007); la etiqueta no indica fecha de fabricación de esta unidad. Sin imagen comercial disponible (no está en Icecat); se usa la foto local de la etiqueta.
-- **Fotografías:**
-  - Etiqueta modelo / PN / S/N: [`img/zotac_8400gs_etiqueta.jpg`](img/zotac_8400gs_etiqueta.jpg)
-  - Etiqueta (vista cercana): [`img/zotac_8400gs_etiqueta_cercana.jpg`](img/zotac_8400gs_etiqueta_cercana.jpg)
-
-### 14. PC armado MSI A68HM-E33 V2 (CPU AMD por identificar)
+### 10. PC armado MSI A68HM-E33 V2 (CPU AMD por identificar)
 ![PC armado MSI A68HM-E33 V2 (CPU AMD por identificar)](img/msi_a68hm-e33_v2_placa.jpg)
 
 - **Tipo:** Desktop
@@ -561,8 +459,8 @@ Datos legibles en la foto:
 • Tarjeta de video dedicada instalada; modelo no identificable en la foto.
 
 Año del equipo: lanzamiento del chipset AMD A68H (2014).
-- **Componentes:**
-  - *Placa base:* MSI A68HM-E33 V2 (MS-7721) (VER 9.0 · chipset AMD A68H · socket FM2+) · S/N G716320033 33004 · 2014 · integrado
+- **Piezas instaladas:**
+  - *Placa base:* MSI A68HM-E33 V2 (MS-7721) (VER 9.0 · chipset AMD A68H · socket FM2+) · S/N G716320033 33004 · 2014 · pieza `pz-pc-msi-a68hm-e33-v2-placabase-1`
     - Formato: Micro-ATX
     - Socket / chipset: FM2+ · AMD A68H
     - Memoria: 2 ranuras DDR3 · doble canal · hasta 32 GB · 1333 / 1600 / 1866 / 2133 (OC) MHz
@@ -574,170 +472,191 @@ Año del equipo: lanzamiento del chipset AMD A68H (2014).
     - Salidas de video: VGA (hasta 1920 × 1200 a 60 Hz) · HDMI (gráficos integrados del procesador)
     - Otros: PS/2 teclado y ratón · conector serie interno
     - Fuente: [especificaciones oficiales](https://www.msi.com/Motherboard/a68hm-e33-v2/Specification) (2026-11-02)
-  - *RAM:* Kingston HyperX Fury HX318C10FR/4 4 GB (DDR3-1866 CL10 · 1.5V · rojo) · 2016 · reemplazable
-  - *RAM:* Kingston HyperX Fury (rojo, etiqueta no legible) (DDR3 · visto en la foto) · reemplazable
-  - *GPU:* Tarjeta de video dedicada (por identificar) (Instalada en la ranura PCIe x16) · reemplazable
+  - *RAM:* Kingston HyperX Fury HX318C10FR/4 4 GB (DDR3-1866 CL10 · 1.5V · rojo) · 2016 · pieza `pz-pc-msi-a68hm-e33-v2-ram-1`
+  - *RAM:* Kingston HyperX Fury (rojo, etiqueta no legible) (DDR3 · visto en la foto) · pieza `pz-pc-msi-a68hm-e33-v2-ram-2`
+  - *GPU:* Tarjeta de video dedicada (por identificar) (Instalada en la ranura PCIe x16) · pieza `pz-pc-msi-a68hm-e33-v2-gpu-1`
 - **Fotografías:**
   - Placa MSI A68HM-E33 V2 con RAM HyperX Fury (2024): [`img/msi_a68hm-e33_v2_placa.jpg`](img/msi_a68hm-e33_v2_placa.jpg)
 
-### 15. Western Digital WD Blue 1TB WD10SPZX (marcado 1)
-![Western Digital WD Blue 1TB WD10SPZX (marcado 1)](img/hdd_wd10spzx_1tb_etiqueta.jpg)
+---
 
-- **Tipo:** Periférico
-- **Marca:** Western Digital
-- **Modelo:** WD Blue 1TB WD10SPZX (marcado 1)
-- **Número de Serie / Activo:** WXN1AA821XCH
-- **Fecha de Fabricación / Lanzamiento:** 2018-12-14
-- **Asignación / Ubicación:** Hogar
-- **Especificaciones de Hardware:**
-  - **Almacenamiento:** HDD SATA 6 Gb/s 1 TB 2.5" 5400 rpm
-- **Enlace de Drivers:** [Soporte Oficial Western Digital WD Blue 1TB WD10SPZX (marcado 1)](https://www.westerndigital.com/support)
-- **Notas:** Disco duro 2.5" WD Blue de 1 TB, SATA 6 Gb/s, 5400 rpm (Advanced Format). Marcado a mano con "1".
-- **Observaciones:** Datos de la etiqueta:
-• MDL: WD10SPZX-60Z10T0 · S/N: WXN1AA821XCH
-• Fecha: 14 DEC 2018 · FW: 04.01A04 · R/N: 800066
-• HP P/N: L24400-001 (disco de un equipo HP)
+## 🧩 Piezas (estado, ubicación e historial)
 
-Dispositivo general: no está registrado como componente de ningún equipo.
-- **Fotografías:**
-  - Etiqueta: [`img/hdd_wd10spzx_1tb_etiqueta.jpg`](img/hdd_wd10spzx_1tb_etiqueta.jpg)
-  - Etiqueta (otra toma): [`img/hdd_wd10spzx_1tb_etiqueta_b.jpg`](img/hdd_wd10spzx_1tb_etiqueta_b.jpg)
+| Tipo | Pieza | N.º de serie | Estado | Equipo | Año |
+|------|-------|--------------|--------|--------|-----|
+| Red | Qualcomm Atheros WLAN + Bluetooth combo QCWB335 | N/A | Instalada | Acer Aspire E3-112-C6ME | 2012 |
+| Cargador | Lite-On PA-1650-02 (Adaptador AC 65W) 65 W | AP06503016824OB7E6P606 | Instalada | Acer Aspire E3-112-C6ME | 2008 |
+| CPU | 12th Gen Intel(R) Core(TM) i5-12400F | N/A | Instalada | PC armado Core i5-12400F · MSI PRO H610M-G DDR4 | 2022 |
+| RAM | Corsair CMK8GX4M1Z3600C18 8 GB | N/A | Instalada | PC armado Core i5-12400F · MSI PRO H610M-G DDR4 |  |
+| RAM | Corsair CMK8GX4M1Z3600C18 8 GB | N/A | Instalada | PC armado Core i5-12400F · MSI PRO H610M-G DDR4 |  |
+| SSD | Western Digital WD Blue SN570 500GB 466 GB | E823_8FA6_BF53_0001_001B_448B_4569_B02C. | Instalada | PC armado Core i5-12400F · MSI PRO H610M-G DDR4 | 2021 |
+| HDD | Western Digital WDC WD800BD-22MRA1 75 GB | WD-WMAM9AMY4260 | Instalada | PC armado Core i5-12400F · MSI PRO H610M-G DDR4 |  |
+| GPU | NVIDIA GeForce GTX 1660 SUPER 4 GB | N/A | Instalada | PC armado Core i5-12400F · MSI PRO H610M-G DDR4 | 2019 |
+| Placa base | MSI Micro-Star International Co., Ltd. PRO H610M-G DDR4 (MS-7D46) | 07D4612_M21D142444 | Instalada | PC armado Core i5-12400F · MSI PRO H610M-G DDR4 | 2022 |
+| CPU | Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz | N/A | Instalada | PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX | 2007 |
+| RAM | Módulo RAM DDR3 4 GB (fabricante sin informar) 4 GB | N/A | Instalada | PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX |  |
+| RAM | Módulo RAM DDR3 4 GB (fabricante sin informar) 4 GB | N/A | Instalada | PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX |  |
+| Placa base | ASUSTeK Computer INC. P5G41T-M LX | 107933150000113 | Instalada | PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX | 2008 |
+| CPU | Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz | N/A | Instalada | PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO | 2007 |
+| RAM | Módulo RAM DDR2 2 GB (fabricante sin informar) 2 GB | N/A | Instalada | PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO |  |
+| RAM | Módulo RAM DDR2 2 GB (fabricante sin informar) 2 GB | N/A | Instalada | PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO |  |
+| GPU | MSI N210-MD1G (NVIDIA GeForce 210) 1 GB | 602-V229-43SB1210038228 | Instalada | PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO | 2009 |
+| Placa base | ASUSTeK Computer INC. P5Q PRO TURBO | MS1C93BC3400692 | Instalada | PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO | 2008 |
+| CPU | Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz | N/A | Instalada | PC armado Core i7-2600K · Gigabyte Z77-HD3 | 2011 |
+| RAM | Kingston HX316C10F/8 8 GB | 19FA6341 | Instalada | PC armado Core i7-2600K · Gigabyte Z77-HD3 |  |
+| RAM | Kingston HX316C10F/8 8 GB | 4C33D19F | Instalada | PC armado Core i7-2600K · Gigabyte Z77-HD3 |  |
+| Placa base | Gigabyte Technology Co., Ltd. Z77-HD3 | N/A | Instalada | PC armado Core i7-2600K · Gigabyte Z77-HD3 | 2012 |
+| SSD | Patriot Burst Elite 120GB (SSD de Windows compartido) | PBEIIBB21030118778 | En stock | — |  |
+| SSD | Patriot Burst Elite 120GB (segunda unidad) | N/A | En stock | — |  |
+| GPU | ZOTAC GeForce 8400 GS GEN2 512MB DDR2 | N103100027911 | En stock | — | 2007 |
+| Placa base | MSI A68HM-E33 V2 (MS-7721) | G716320033 33004 | Instalada | PC armado MSI A68HM-E33 V2 (CPU AMD por identificar) | 2014 |
+| RAM | Kingston HyperX Fury HX318C10FR/4 4 GB | N/A | Instalada | PC armado MSI A68HM-E33 V2 (CPU AMD por identificar) | 2016 |
+| RAM | Kingston HyperX Fury (rojo, etiqueta no legible) | N/A | Instalada | PC armado MSI A68HM-E33 V2 (CPU AMD por identificar) |  |
+| GPU | Tarjeta de video dedicada (por identificar) | N/A | Instalada | PC armado MSI A68HM-E33 V2 (CPU AMD por identificar) |  |
+| HDD | Western Digital WD Blue 1TB WD10SPZX (marcado 1) | WXN1AA821XCH | En stock | — | 2018 |
+| HDD | Western Digital WD Blue 1TB WD10JPVX (marcado 2) | WX31A177YXJU | En stock | — | 2017 |
+| HDD | Seagate (Samsung) Spinpoint M8 1TB ST1000LM024 (marcado 3) | S32HJ9HF204858 | En stock | — | 2011 |
+| HDD | Toshiba MQ01ACF050 500GB | 54O9C6M8T | En stock | — | 2014 |
+| HDD | Western Digital WD Blue 750GB WD7500BPVT | WXD1E72EHP04 | En stock | — | 2012 |
+| SSD | Samsung SSD 850 EVO 500GB | S21HNXAGA21889H | En stock | — | 2014 |
+| RAID | Inspur Tarjeta RAID/HBA SAS 6Gb/s YZCA-00019-101 (chip LSI) | QTE227E00948A07 | En stock | — |  |
+| Cargador | Delta (MSI) ADP-65GD D 65 W | 6KJW131009B | Instalada | MSI Modern 14 B5M-011CL |  |
+| RAM | Crucial CT51264BA160BJ 4 GB | N/A | En stock | — | 2015 |
+| SSD | Kingston OM8PDP3256B-AI1 256 GB | 50026B7684C27C10 | En stock | — | 2021 |
+| SSD | Samsung PM981a MZVLB256HBHQ-000L2 256 GB | S4DXNF1MC57340 | En stock | — | 2019 |
+| RAM | Samsung M471B5173DB0-YK0 4 GB | N/A | En stock | — | 2015 |
+| HDD | Western Digital WD Blue WD5000LPVT 500 GB | WX51AC352188 | En stock | — | 2014 |
+| HDD | Western Digital WD Blue WD5000LPVX 500 GB | WX41E34EVT17 | En stock | — | 2014 |
+| HDD | Hitachi Travelstar 5K750 HTS547550A9E384 500 GB | 50G8837C | En stock | — | 2011 |
+| HDD | Toshiba (Fujitsu) MJA2500BH G2 500 GB | K90DTA12NDY1 | En stock | — | 2010 |
+| HDD | Western Digital WD Caviar Green WD30EZRX 3 TB | WCAWZ2212479 | En stock | — | 2012 |
+| HDD | Western Digital WD Caviar Green WD30EZRX 3 TB | WCAWZ2268707 | En stock | — | 2012 |
+| HDD | Western Digital WD Caviar Green WD20EARX 2 TB | WMAZA8396409 | En stock | — | 2012 |
+| HDD | Western Digital WD Caviar Green WD20EARS (Respaldos) 2 TB | WMAZA3635000 | En stock | — | 2011 |
+| HDD | Western Digital WD Caviar Black WD1001FALS (Trabajo 1) 1 TB | WMATV2575104 | En stock | — | 2009 |
+| HDD | Western Digital WD Caviar Black WD1001FALS 1 TB | WMATV1245731 | En stock | — | 2009 |
+| Fuente | Cooler Master RS-460-PSAR-J3 460 W | N/A | En stock | — |  |
+| Fuente | Deepcool DA600 600 W | N/A | En stock | — |  |
+| Fuente | Thermaltake TR2-430W (TR2-430NP) 430 W | N/A | En stock | — |  |
+| GPU | ASUS GTX650TI-DC2O-1GD5 (GeForce GTX 650 Ti DirectCU II OC) 1 GB | D1C0YZ393584 | En stock | — | 2012 |
+| GPU | EVGA e-GeForce 7800 GTX ACS3 (256-P2-N527-AX) 256 MB | 68527003770 | En stock | — | 2005 |
 
-### 16. Western Digital WD Blue 1TB WD10JPVX (marcado 2)
-![Western Digital WD Blue 1TB WD10JPVX (marcado 2)](img/hdd_wd10jpvx_1tb_etiqueta.jpg)
-
-- **Tipo:** Periférico
-- **Marca:** Western Digital
-- **Modelo:** WD Blue 1TB WD10JPVX (marcado 2)
-- **Número de Serie / Activo:** WX31A177YXJU
-- **Fecha de Fabricación / Lanzamiento:** 2017-02-10
-- **Asignación / Ubicación:** Hogar
-- **Especificaciones de Hardware:**
-  - **Almacenamiento:** HDD SATA 6 Gb/s 1 TB 2.5" 5400 rpm
-- **Enlace de Drivers:** [Soporte Oficial Western Digital WD Blue 1TB WD10JPVX (marcado 2)](https://www.westerndigital.com/support)
-- **Notas:** Disco duro 2.5" WD Blue de 1 TB, SATA 6 Gb/s, 5400 rpm (Advanced Format). Marcado a mano con "2".
-- **Observaciones:** Datos de la etiqueta:
-• MDL: WD10JPVX-60JC3T0 · S/N: WX31A177YXJU
-• Fecha: 10 FEB 2017 · FW: 01.01A01 · DCM: HHNTJHN
-• HP P/N: 726834-001 (disco de un equipo HP)
-
-Dispositivo general: no está registrado como componente de ningún equipo.
-- **Fotografías:**
-  - Etiqueta: [`img/hdd_wd10jpvx_1tb_etiqueta.jpg`](img/hdd_wd10jpvx_1tb_etiqueta.jpg)
-
-### 17. Seagate (Samsung) Spinpoint M8 1TB ST1000LM024 (marcado 3)
-![Seagate (Samsung) Spinpoint M8 1TB ST1000LM024 (marcado 3)](img/hdd_st1000lm024_1tb_etiqueta.jpg)
-
-- **Tipo:** Periférico
-- **Marca:** Seagate (Samsung)
-- **Modelo:** Spinpoint M8 1TB ST1000LM024 (marcado 3)
-- **Número de Serie / Activo:** S32HJ9HF204858
-- **Fecha de Fabricación / Lanzamiento:** 2011 (lanzamiento de la serie Spinpoint M8)
-- **Asignación / Ubicación:** Hogar
-- **Especificaciones de Hardware:**
-  - **Almacenamiento:** HDD SATA 3 Gb/s 1 TB 2.5" 5400 rpm
-- **Enlace de Drivers:** [Soporte Oficial Seagate (Samsung) Spinpoint M8 1TB ST1000LM024 (marcado 3)](https://www.seagate.com/support/)
-- **Notas:** Disco duro 2.5" Samsung Spinpoint M8 de 1 TB (fabricado por Seagate tras comprar la división de discos de Samsung), SATA 3 Gb/s, 5400 rpm. Marcado a mano con "3".
-- **Observaciones:** Datos de la etiqueta:
-• Model: ST1000LM024 · HDD P/N: HN-M101MBB/SC3 · S/N: S32HJ9HF204858
-• REV. A · F/W: 2BA30001 · LBA 1.953.525.168 (1000.0 GB)
-• Etiqueta Samsung: MODEL NP870Z5G-X01CL 1TB · SEC S/N CN02BA5903851AC540F2D0996 (disco de un laptop Samsung NP870Z5G)
-
-Sin imagen comercial que lo identifique; se usa la foto de la etiqueta.
-
-Dispositivo general: no está registrado como componente de ningún equipo.
-- **Fotografías:**
-  - Etiqueta: [`img/hdd_st1000lm024_1tb_etiqueta.jpg`](img/hdd_st1000lm024_1tb_etiqueta.jpg)
-
-### 18. Toshiba MQ01ACF050 500GB
-![Toshiba MQ01ACF050 500GB](img/hdd_toshiba_mq01acf050_500gb_etiqueta.jpg)
-
-- **Tipo:** Periférico
-- **Marca:** Toshiba
-- **Modelo:** MQ01ACF050 500GB
-- **Número de Serie / Activo:** 54O9C6M8T
-- **Fecha de Fabricación / Lanzamiento:** 2014-05-24
-- **Asignación / Ubicación:** Hogar
-- **Especificaciones de Hardware:**
-  - **Almacenamiento:** HDD SATA 6 Gb/s 500 GB 2.5" 7200 rpm
-- **Enlace de Drivers:** [Soporte Oficial Toshiba MQ01ACF050 500GB](https://www.toshiba-storage.com/)
-- **Notas:** Disco duro 2.5" Toshiba de 500 GB, SATA 6 Gb/s, 7200 rpm, 7 mm (Advanced Format).
-- **Observaciones:** Datos de la etiqueta:
-• Disk drive: MQ01ACF050 · Drive rev: AAH AA00/AV0A1C · DC+5V 1.1A
-• Fecha: 24 MAY 2014 · S/N: 54O9C6M8T (lectura de la foto; confirmar O/0) · YR9 HDKCC00H2A01 T
-• HP P/N: 724967-001 · HP SPS: 703267-001 (disco de un equipo HP)
-
-Dispositivo general: no está registrado como componente de ningún equipo.
-- **Fotografías:**
-  - Etiqueta: [`img/hdd_toshiba_mq01acf050_500gb_etiqueta.jpg`](img/hdd_toshiba_mq01acf050_500gb_etiqueta.jpg)
-
-### 19. Western Digital WD Blue 750GB WD7500BPVT
-![Western Digital WD Blue 750GB WD7500BPVT](img/hdd_wd7500bpvt_750gb_etiqueta.jpg)
-
-- **Tipo:** Periférico
-- **Marca:** Western Digital
-- **Modelo:** WD Blue 750GB WD7500BPVT
-- **Número de Serie / Activo:** WXD1E72EHP04
-- **Fecha de Fabricación / Lanzamiento:** 2012-11-04
-- **Asignación / Ubicación:** Hogar
-- **Especificaciones de Hardware:**
-  - **Almacenamiento:** HDD SATA 3 Gb/s 750 GB 2.5" 5400 rpm
-- **Enlace de Drivers:** [Soporte Oficial Western Digital WD Blue 750GB WD7500BPVT](https://www.westerndigital.com/support)
-- **Notas:** Disco duro 2.5" WD Blue de 750 GB, SATA 3 Gb/s, 5400 rpm (Advanced Format). Marcado a mano con "750".
-- **Observaciones:** Datos de la etiqueta:
-• MDL: WD7500BPVT-24HXZT3 · S/N: WXD1E72EHP04
-• Fecha: 04 NOV 2012 · DCM: SHOT2HN · DCX: EH30X7TZH
-• Lenovo LI P/N: 0B47496 · LC P/N: 16-004848 (disco de un equipo Lenovo)
-
-Dispositivo general: no está registrado como componente de ningún equipo.
-- **Fotografías:**
-  - Etiqueta: [`img/hdd_wd7500bpvt_750gb_etiqueta.jpg`](img/hdd_wd7500bpvt_750gb_etiqueta.jpg)
-
-### 20. Samsung SSD 850 EVO 500GB
-![Samsung SSD 850 EVO 500GB](img/componente_ssd_samsung_850evo_500gb.jpg)
-
-- **Tipo:** Periférico
-- **Marca:** Samsung
-- **Modelo:** SSD 850 EVO 500GB
-- **Número de Serie / Activo:** S21HNXAGA21889H
-- **Fecha de Fabricación / Lanzamiento:** 2014 (lanzamiento del 850 EVO)
-- **Asignación / Ubicación:** Hogar
-- **Especificaciones de Hardware:**
-  - **Almacenamiento:** SSD SATA 6 Gb/s 500 GB 2.5"
-- **Enlace de Drivers:** [Soporte Oficial Samsung SSD 850 EVO 500GB](https://semiconductor.samsung.com/consumer-storage/support/tools/)
-- **Notas:** SSD SATA 2.5" Samsung 850 EVO de 500 GB (V-NAND), SATA 6 Gb/s.
-- **Observaciones:** Datos de la etiqueta:
-• Model: MZ-75E500 · P/N: MZ7LN500 · S/N: S21HNXAGA21889H
-• WWN: 5002538D4067BD4x (último carácter no legible)
-
-Imagen principal: comercial (Icecat, 850 EVO 500GB); la foto de la etiqueta está en la galería.
-
-Dispositivo general: no está registrado como componente de ningún equipo.
-- **Fotografías:**
-  - Imagen comercial (Icecat): [`img/componente_ssd_samsung_850evo_500gb.jpg`](img/componente_ssd_samsung_850evo_500gb.jpg)
-  - Etiqueta: [`img/ssd_samsung_850evo_500gb_etiqueta.jpg`](img/ssd_samsung_850evo_500gb_etiqueta.jpg)
-
-### 21. Inspur Tarjeta RAID/HBA SAS 6Gb/s YZCA-00019-101 (chip LSI)
-![Inspur Tarjeta RAID/HBA SAS 6Gb/s YZCA-00019-101 (chip LSI)](img/raid_inspur_yzca-00019-101_tarjeta.jpg)
-
-- **Tipo:** Periférico
-- **Marca:** Inspur
-- **Modelo:** Tarjeta RAID/HBA SAS 6Gb/s YZCA-00019-101 (chip LSI)
-- **Número de Serie / Activo:** QTE227E00948A07
-- **Fecha de Fabricación / Lanzamiento:** No registrada
-- **Asignación / Ubicación:** Hogar
-- **Enlace de Drivers:** [Soporte Oficial Inspur Tarjeta RAID/HBA SAS 6Gb/s YZCA-00019-101 (chip LSI)](https://www.broadcom.com/support/download-search)
-- **Notas:** Controladora PCIe SAS/SATA de 6 Gb/s y 8 puertos, con chip LSI, para servidores Inspur (ej. NF5240M3). Perfil bajo, con disipador.
-- **Observaciones:** Datos de la etiqueta:
-• PN: (Y)ZCA-00019-101 · QN: QTE227E00948A07 (se usa como número de serie)
-• Dirección SAS: 56C92BF000040116
-
-Identificación según vendedores (no hay documentación oficial de Inspur): controladora LSI de 8 puertos SAS/SATA a 6 Gb/s, vendida como LSI 9240-8i (RAID 0/1/5, firmware IR) o como 9211-8i (HBA, firmware IT). El modo depende del firmware instalado; confirmarlo al conectarla.
-
-Dispositivo general: no está registrado como componente de ningún equipo.
-- **Fotografías:**
-  - Vista de la tarjeta: [`img/raid_inspur_yzca-00019-101_tarjeta.jpg`](img/raid_inspur_yzca-00019-101_tarjeta.jpg)
-  - Etiquetas PN / QN / SAS: [`img/raid_inspur_yzca-00019-101_etiqueta.jpg`](img/raid_inspur_yzca-00019-101_etiqueta.jpg)
+### Historial de movimientos
+- **Red WLAN + Bluetooth combo QCWB335** (`pz-acer-e3-112-nic-1`):
+  - 2026-10-31 · Instalada · Acer Aspire E3-112-C6ME · Registrada desde las etiquetas del equipo
+- **Cargador PA-1650-02 (Adaptador AC 65W)** (`dev-acer-e3-112-cargador`):
+  - 2026-10-31 · Instalada · Acer Aspire E3-112-C6ME · Cargador asignado al Acer E3-112
+- **CPU 12th Gen Intel(R) Core(TM) i5-12400F** (`pz-pc-i5-12400f-h610m-cpu-1`):
+  - 2026-10-31 · Instalada · PC armado Core i5-12400F · MSI PRO H610M-G DDR4 · Detectada por el HomeInfra Collector
+- **RAM Corsair CMK8GX4M1Z3600C18** (`pz-pc-i5-12400f-h610m-ram-1`):
+  - 2026-10-31 · Instalada · PC armado Core i5-12400F · MSI PRO H610M-G DDR4 · Detectada por el HomeInfra Collector
+- **RAM Corsair CMK8GX4M1Z3600C18** (`pz-pc-i5-12400f-h610m-ram-2`):
+  - 2026-10-31 · Instalada · PC armado Core i5-12400F · MSI PRO H610M-G DDR4 · Detectada por el HomeInfra Collector
+- **SSD WD Blue SN570 500GB** (`pz-pc-i5-12400f-h610m-ssd-1`):
+  - 2026-10-31 · Instalada · PC armado Core i5-12400F · MSI PRO H610M-G DDR4 · Detectada por el HomeInfra Collector
+- **HDD WDC WD800BD-22MRA1** (`pz-pc-i5-12400f-h610m-hdd-1`):
+  - 2026-10-31 · Instalada · PC armado Core i5-12400F · MSI PRO H610M-G DDR4 · Detectada por el HomeInfra Collector
+- **GPU NVIDIA GeForce GTX 1660 SUPER** (`pz-pc-i5-12400f-h610m-gpu-1`):
+  - 2026-10-31 · Instalada · PC armado Core i5-12400F · MSI PRO H610M-G DDR4 · Detectada por el HomeInfra Collector
+- **Placa base Micro-Star International Co., Ltd. PRO H610M-G DDR4 (MS-7D46)** (`pz-pc-i5-12400f-h610m-placabase-1`):
+  - 2026-10-31 · Instalada · PC armado Core i5-12400F · MSI PRO H610M-G DDR4 · Detectada por el HomeInfra Collector
+- **CPU Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz** (`pz-pc-q6700-p5g41t-m-lx-cpu-1`):
+  - 2026-11-01 · Instalada · PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX · Detectada por el HomeInfra Collector
+- **RAM Módulo RAM DDR3 4 GB (fabricante sin informar)** (`pz-pc-q6700-p5g41t-m-lx-ram-1`):
+  - 2026-11-01 · Instalada · PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX · Detectada por el HomeInfra Collector
+- **RAM Módulo RAM DDR3 4 GB (fabricante sin informar)** (`pz-pc-q6700-p5g41t-m-lx-ram-2`):
+  - 2026-11-01 · Instalada · PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX · Detectada por el HomeInfra Collector
+- **Placa base ASUSTeK Computer INC. P5G41T-M LX** (`pz-pc-q6700-p5g41t-m-lx-placabase-1`):
+  - 2026-11-01 · Instalada · PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX · Detectada por el HomeInfra Collector
+- **CPU Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz** (`pz-pc-e6750-p5q-pro-turbo-cpu-1`):
+  - 2026-11-02 · Instalada · PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO · Detectada por el HomeInfra Collector
+- **RAM Módulo RAM DDR2 2 GB (fabricante sin informar)** (`pz-pc-e6750-p5q-pro-turbo-ram-1`):
+  - 2026-11-02 · Instalada · PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO · Detectada por el HomeInfra Collector
+- **RAM Módulo RAM DDR2 2 GB (fabricante sin informar)** (`pz-pc-e6750-p5q-pro-turbo-ram-2`):
+  - 2026-11-02 · Instalada · PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO · Detectada por el HomeInfra Collector
+- **GPU N210-MD1G (NVIDIA GeForce 210)** (`pz-pc-e6750-p5q-pro-turbo-gpu-1`):
+  - 2026-11-02 · Instalada · PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO · Detectada por el HomeInfra Collector
+  - 2026-11-02 · Identificada · PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO · Modelo y serie leídos de la etiqueta (MSI N210-MD1G)
+- **Placa base ASUSTeK Computer INC. P5Q PRO TURBO** (`pz-pc-e6750-p5q-pro-turbo-placabase-1`):
+  - 2026-11-02 · Instalada · PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO · Detectada por el HomeInfra Collector
+- **CPU Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz** (`pz-pc-i7-2600k-z77-hd3-cpu-1`):
+  - 2026-11-01 · Instalada · PC armado Core i7-2600K · Gigabyte Z77-HD3 · Detectada por el HomeInfra Collector
+- **RAM Kingston HX316C10F/8** (`pz-pc-i7-2600k-z77-hd3-ram-1`):
+  - 2026-11-01 · Instalada · PC armado Core i7-2600K · Gigabyte Z77-HD3 · Detectada por el HomeInfra Collector
+- **RAM Kingston HX316C10F/8** (`pz-pc-i7-2600k-z77-hd3-ram-2`):
+  - 2026-11-01 · Instalada · PC armado Core i7-2600K · Gigabyte Z77-HD3 · Detectada por el HomeInfra Collector
+- **Placa base Gigabyte Technology Co., Ltd. Z77-HD3** (`pz-pc-i7-2600k-z77-hd3-placabase-1`):
+  - 2026-11-01 · Instalada · PC armado Core i7-2600K · Gigabyte Z77-HD3 · Detectada por el HomeInfra Collector
+- **SSD Burst Elite 120GB (SSD de Windows compartido)** (`dev-ssd-patriot-burst-elite-120gb`):
+  - 2026-11-01 · Detectada · PC armado Core i7-2600K · Gigabyte Z77-HD3 · Disco de arranque al pasar el Collector
+  - 2026-11-01 · Detectada · PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX · Disco de arranque al pasar el Collector
+  - 2026-11-02 · Detectada · PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO · Disco de arranque al pasar el Collector
+- **SSD Burst Elite 120GB (segunda unidad)** (`dev-ssd-patriot-burst-elite-120gb-2`):
+  - 2026-11-02 · En stock · Registrada como pieza suelta
+- **GPU GeForce 8400 GS GEN2 512MB DDR2** (`dev-gpu-zotac-8400gs`):
+  - 2026-11-02 · En stock · Registrada como pieza suelta
+- **Placa base MSI A68HM-E33 V2 (MS-7721)** (`pz-pc-msi-a68hm-e33-v2-placabase-1`):
+  - 2024-05-11 · Instalada · PC armado MSI A68HM-E33 V2 (CPU AMD por identificar) · Vista en una foto del equipo
+- **RAM Kingston HyperX Fury HX318C10FR/4** (`pz-pc-msi-a68hm-e33-v2-ram-1`):
+  - 2024-05-11 · Instalada · PC armado MSI A68HM-E33 V2 (CPU AMD por identificar) · Vista en una foto del equipo
+- **RAM Kingston HyperX Fury (rojo, etiqueta no legible)** (`pz-pc-msi-a68hm-e33-v2-ram-2`):
+  - 2024-05-11 · Instalada · PC armado MSI A68HM-E33 V2 (CPU AMD por identificar) · Vista en una foto del equipo
+- **GPU Tarjeta de video dedicada (por identificar)** (`pz-pc-msi-a68hm-e33-v2-gpu-1`):
+  - 2024-05-11 · Instalada · PC armado MSI A68HM-E33 V2 (CPU AMD por identificar) · Vista en una foto del equipo
+- **HDD WD Blue 1TB WD10SPZX (marcado 1)** (`dev-hdd-wd10spzx-1tb`):
+  - 2026-11-02 · En stock · Registrada como pieza suelta
+- **HDD WD Blue 1TB WD10JPVX (marcado 2)** (`dev-hdd-wd10jpvx-1tb`):
+  - 2026-11-02 · En stock · Registrada como pieza suelta
+- **HDD Spinpoint M8 1TB ST1000LM024 (marcado 3)** (`dev-hdd-st1000lm024-1tb`):
+  - 2026-11-02 · En stock · Registrada como pieza suelta
+- **HDD MQ01ACF050 500GB** (`dev-hdd-toshiba-mq01acf050-500gb`):
+  - 2026-11-02 · En stock · Registrada como pieza suelta
+- **HDD WD Blue 750GB WD7500BPVT** (`dev-hdd-wd7500bpvt-750gb`):
+  - 2026-11-02 · En stock · Registrada como pieza suelta
+- **SSD SSD 850 EVO 500GB** (`dev-ssd-samsung-850evo-500gb`):
+  - 2026-11-02 · En stock · Registrada como pieza suelta
+- **RAID Tarjeta RAID/HBA SAS 6Gb/s YZCA-00019-101 (chip LSI)** (`dev-raid-inspur-yzca-00019-101`):
+  - 2026-11-02 · En stock · Registrada como pieza suelta
+- **Cargador ADP-65GD D** (`pz-cargador-msi-delta-adp-65gd`):
+  - 2026-11-02 · Instalada · MSI Modern 14 B5M-011CL · Asignado por número de parte MSI y alimentación 19V ⎓ 3.42A
+- **RAM CT51264BA160BJ** (`pz-ram-crucial-ct51264ba160bj`):
+  - 2026-11-02 · En stock · Registrada desde fotos de la etiqueta
+- **SSD OM8PDP3256B-AI1** (`pz-ssd-kingston-om8pdp3256b`):
+  - 2026-11-02 · En stock · Registrada desde fotos de la etiqueta
+- **SSD PM981a MZVLB256HBHQ-000L2** (`pz-ssd-samsung-pm981a-256gb`):
+  - 2026-11-02 · En stock · Registrada desde fotos de la etiqueta
+- **RAM M471B5173DB0-YK0** (`pz-ram-samsung-m471b5173db0`):
+  - 2026-11-02 · En stock · Registrada desde fotos de la etiqueta
+- **HDD WD Blue WD5000LPVT** (`pz-hdd-wd5000lpvt`):
+  - 2026-11-02 · En stock · Registrada desde fotos de la etiqueta
+- **HDD WD Blue WD5000LPVX** (`pz-hdd-wd5000lpvx`):
+  - 2026-11-02 · En stock · Registrada desde fotos de la etiqueta
+- **HDD Travelstar 5K750 HTS547550A9E384** (`pz-hdd-hitachi-hts547550a9e384`):
+  - 2026-11-02 · En stock · Registrada desde fotos de la etiqueta
+- **HDD MJA2500BH G2** (`pz-hdd-toshiba-mja2500bh`):
+  - 2026-11-02 · En stock · Registrada desde fotos de la etiqueta
+- **HDD WD Caviar Green WD30EZRX** (`pz-hdd-wd30ezrx-wcawz2212479`):
+  - 2026-11-02 · En stock · Registrada desde fotos de la etiqueta
+- **HDD WD Caviar Green WD30EZRX** (`pz-hdd-wd30ezrx-wcawz2268707`):
+  - 2026-11-02 · En stock · Registrada desde fotos de la etiqueta
+- **HDD WD Caviar Green WD20EARX** (`pz-hdd-wd20earx-wmaza8396409`):
+  - 2026-11-02 · En stock · Registrada desde fotos de la etiqueta
+- **HDD WD Caviar Green WD20EARS (Respaldos)** (`pz-hdd-wd20ears-wmaza3635000`):
+  - 2026-11-02 · En stock · Registrada desde fotos de la etiqueta
+- **HDD WD Caviar Black WD1001FALS (Trabajo 1)** (`pz-hdd-wd1001fals-wmatv2575104`):
+  - 2026-11-02 · En stock · Registrada desde fotos de la etiqueta
+- **HDD WD Caviar Black WD1001FALS** (`pz-hdd-wd1001fals-wmatv1245731`):
+  - 2026-11-02 · En stock · Registrada desde fotos de la etiqueta
+- **Fuente RS-460-PSAR-J3** (`pz-fuente-coolermaster-rs-460-psar-j3`):
+  - 2026-11-02 · En stock · Registrada desde fotos de la etiqueta
+- **Fuente DA600** (`pz-fuente-deepcool-da600`):
+  - 2026-11-02 · En stock · Registrada desde fotos de la etiqueta
+- **Fuente TR2-430W (TR2-430NP)** (`pz-fuente-thermaltake-tr2-430w`):
+  - 2026-11-02 · En stock · Registrada desde fotos de la etiqueta
+- **GPU GTX650TI-DC2O-1GD5 (GeForce GTX 650 Ti DirectCU II OC)** (`pz-gpu-asus-gtx650ti-dc2o-1gd5`):
+  - 2026-11-02 · En stock · Registrada desde fotos de la etiqueta
+- **GPU e-GeForce 7800 GTX ACS3 (256-P2-N527-AX)** (`pz-gpu-evga-7800gtx-256-p2-n527-ax`):
+  - 2026-11-02 · En stock · Registrada desde fotos de la etiqueta
 
 ---
 

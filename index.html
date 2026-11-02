@@ -14,7 +14,7 @@
   <!-- Header & Navigation -->
   <header class="app-header">
     <div class="header-container">
-      <div class="brand-group">
+      <a class="brand-group" href="./" title="Recargar HomeInfra" aria-label="HomeInfra Hub: recargar el sitio" onclick="event.preventDefault(); window.location.reload();">
         <div class="brand-logo">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
@@ -27,7 +27,7 @@
           <div class="brand-eyebrow">EQUIPOS PERSONALES</div>
           <h1 class="brand-title">HomeInfra <span>Hub</span></h1>
         </div>
-      </div>
+      </a>
 
       <div class="header-actions">
         <button id="btn-copy-md" class="btn btn-outline" title="Copiar reporte Markdown al portapapeles">
@@ -142,7 +142,7 @@
     <!-- Selector de vista: equipos completos o componentes por separado -->
     <div class="view-switcher" role="tablist" aria-label="Vista del inventario">
       <button type="button" class="view-tab active" data-view="devices" role="tab">💻 Equipos completos</button>
-      <button type="button" class="view-tab" data-view="components" role="tab">🧩 Componentes</button>
+      <button type="button" class="view-tab" data-view="components" role="tab">🧩 Piezas</button>
       <div class="layout-switch" role="group" aria-label="Modo de visualización">
         <button type="button" class="layout-btn" data-layout="cards" title="Ver como tarjetas">▦ Tarjetas</button>
         <button type="button" class="layout-btn" data-layout="list" title="Ver como lista">☰ Lista</button>
@@ -164,6 +164,13 @@
         <label for="component-category-filter" class="filter-label">Tipo:</label>
         <select id="component-category-filter" class="select-input">
           <option value="ALL">Todos los tipos</option>
+        </select>
+      </div>
+
+      <div class="filter-group components-only" style="display: none;">
+        <label for="piece-status-filter" class="filter-label">Estado:</label>
+        <select id="piece-status-filter" class="select-input">
+          <option value="ALL">Todos los estados</option>
         </select>
       </div>
 
@@ -238,8 +245,8 @@
     <!-- Vista de componentes por separado -->
     <div class="devices-grid" id="components-grid" style="display: none;"></div>
     <div class="empty-state" id="components-empty-state" style="display: none;">
-      <h3>No se encontraron componentes</h3>
-      <p>Los componentes se registran al importar un registro del HomeInfra Collector o al agregarlos a un equipo.</p>
+      <h3>No se encontraron piezas</h3>
+      <p>Las piezas se registran al importar un registro del HomeInfra Collector o desde sus fotos.</p>
     </div>
 
     <!-- Empty State Message -->
@@ -299,6 +306,7 @@
               <option value="Monitor">Monitor / Pantalla</option>
               <option value="Servidor / Red">Servidor / Router / Switch</option>
               <option value="Periférico">Periférico / Accesorio</option>
+              <option value="Pieza">Pieza / Componente</option>
             </select>
           </div>
         </div>

@@ -155,27 +155,6 @@ const DEFAULT_DEVICES = [
     windowsPassword: "",
     notes: "Notebook Acer Aspire E3-112 series (RMN ZHK). Wi-Fi + Bluetooth combo QCWB335. Alimentación DC 19V ⎓ 2.1A.",
     observaciones: "Datos de la etiqueta inferior:\n• Modelo: E3-112-C6ME (E3-112 series)\n• S/N: NXMRLAL004434177F97600\n• SNID: 43409624976\n• MFG Date: 2014/08/23\n• RMN: ZHK\n• DC Rating: 19V ⎓ 2.1A\n• WLAN + Bluetooth: QCWB335 (FCC ID PPD-QCWB335)\n\nCargador asignado: Lite-On PA-1650-02 (19V ⎓ 3.42A, 65W), S/N AP06503016824OB7E6P606. Registrado como equipo aparte (dev-acer-e3-112-cargador).\n\nCPU, RAM y almacenamiento no figuran en las etiquetas; pendiente registrarlos con el HomeInfra Collector.",
-    components: [
-      {
-        category: "Red",
-        model: "WLAN + Bluetooth combo QCWB335",
-        serial: "",
-        capacity: "",
-        details: "FCC ID PPD-QCWB335",
-        replaceable: true,
-        year: "2012",
-        yearNote: "Año de certificación según la etiqueta"
-      },
-      {
-        category: "Cargador",
-        model: "Lite-On PA-1650-02",
-        serial: "AP06503016824OB7E6P606",
-        capacity: "65 W",
-        details: "19V ⎓ 3.42A",
-        replaceable: true,
-        deviceId: "dev-acer-e3-112-cargador"
-      }
-    ],
     images: [
       {
         id: "img-acer-comercial",
@@ -204,13 +183,47 @@ const DEFAULT_DEVICES = [
       }
     ],
     mfgDate: "2014-08-23",
-    updatedAt: "2026-10-31"
+    updatedAt: "2026-11-02"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-acer-e3-112-nic-1",
+    hardwareType: "NIC",
+    brand: "Qualcomm Atheros",
+    model: "WLAN + Bluetooth combo QCWB335",
+    serial: "",
+    capacity: "",
+    details: "FCC ID PPD-QCWB335",
+    replaceable: true,
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=WLAN%20%2B%20Bluetooth%20combo%20QCWB335%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "2012",
+    status: "Instalada",
+    installedIn: "dev-acer-e3-112",
+    history: [
+      {
+        date: "2026-10-31",
+        action: "Instalada",
+        deviceId: "dev-acer-e3-112",
+        note: "Registrada desde las etiquetas del equipo"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    year: "2012",
+    yearNote: "Año de certificación según la etiqueta"
   },
   {
     id: "dev-acer-e3-112-cargador",
     brand: "Lite-On",
     model: "PA-1650-02 (Adaptador AC 65W)",
-    type: "Periférico",
+    type: "Pieza",
     serial: "AP06503016824OB7E6P606",
     assignedUser: "",
     location: "Hogar",
@@ -244,7 +257,21 @@ const DEFAULT_DEVICES = [
     ],
     mfgDate: "2008-06",
     updatedAt: "2026-11-02",
-    hardwareType: "Cargador"
+    hardwareType: "Cargador",
+    kind: "pieza",
+    replaceable: true,
+    status: "Instalada",
+    installedIn: "dev-acer-e3-112",
+    history: [
+      {
+        date: "2026-10-31",
+        action: "Instalada",
+        deviceId: "dev-acer-e3-112",
+        note: "Cargador asignado al Acer E3-112"
+      }
+    ],
+    capacity: "65 W",
+    details: "19V ⎓ 3.42A"
   },
   {
     id: "dev-pc-i5-12400f-h610m",
@@ -288,137 +315,6 @@ const DEFAULT_DEVICES = [
       },
       storage: "SSD NVMe 466 GB + HDD SATA 75 GB"
     },
-    components: [
-      {
-        category: "CPU",
-        model: "12th Gen Intel(R) Core(TM) i5-12400F",
-        serial: "",
-        capacity: "",
-        details: "6 núcleos / 12 hilos socket U3E1",
-        replaceable: true,
-        imageUrl: "img/componente_cpu_intel_core_i5.png",
-        benchmark: {
-          source: "PassMark",
-          multi: 19524,
-          single: 3483,
-          url: "https://www.cpubenchmark.net/cpu.php?id=4681",
-          date: "2026-11-01"
-        },
-        year: "2022",
-        yearNote: "Año de lanzamiento"
-      },
-      {
-        category: "RAM",
-        model: "Corsair CMK8GX4M1Z3600C18",
-        serial: "",
-        capacity: "8 GB",
-        details: "DDR4 DIMM 2667 MT/s [Controller0-DIMMA1] · módulo de 3600 MT/s funcionando a 2667 MT/s",
-        replaceable: true,
-        imageUrl: "img/componente_ram_corsair_vengeance_lpx.png"
-      },
-      {
-        category: "RAM",
-        model: "Corsair CMK8GX4M1Z3600C18",
-        serial: "",
-        capacity: "8 GB",
-        details: "DDR4 DIMM 2667 MT/s [Controller1-DIMMB1] · módulo de 3600 MT/s funcionando a 2667 MT/s",
-        replaceable: true,
-        imageUrl: "img/componente_ram_corsair_vengeance_lpx.png"
-      },
-      {
-        category: "Almacenamiento",
-        model: "WD Blue SN570 500GB",
-        serial: "E823_8FA6_BF53_0001_001B_448B_4569_B02C.",
-        capacity: "466 GB",
-        details: "SSD NVMe",
-        replaceable: true,
-        year: "2021",
-        yearNote: "Año de lanzamiento"
-      },
-      {
-        category: "Almacenamiento",
-        model: "WDC WD800BD-22MRA1",
-        serial: "WD-WMAM9AMY4260",
-        capacity: "75 GB",
-        details: "HDD SATA",
-        replaceable: true
-      },
-      {
-        category: "GPU",
-        model: "NVIDIA GeForce GTX 1660 SUPER",
-        serial: "",
-        capacity: "4 GB",
-        details: "NVIDIA",
-        replaceable: true,
-        year: "2019",
-        yearNote: "Año de lanzamiento"
-      },
-      {
-        category: "Red",
-        model: "Intel(R) Ethernet Connection (17) I219-V",
-        serial: "",
-        capacity: "",
-        details: "MAC 04:7C:16:05:0E:B3",
-        replaceable: false
-      },
-      {
-        category: "Placa base",
-        model: "Micro-Star International Co., Ltd. PRO H610M-G DDR4 (MS-7D46)",
-        serial: "07D4612_M21D142444",
-        capacity: "",
-        details: "1.0",
-        replaceable: false,
-        imageUrl: "img/componente_placa_msi_pro_h610m-g_ddr4.jpg",
-        year: "2022",
-        yearNote: "Año de lanzamiento",
-        features: [
-          {
-            label: "Formato",
-            value: "Micro-ATX"
-          },
-          {
-            label: "Socket / chipset",
-            value: "LGA 1700 · Intel H610 (procesadores Intel Core 12.ª, 13.ª y 14.ª gen.)"
-          },
-          {
-            label: "Memoria",
-            value: "2 ranuras DDR4 · doble canal · hasta 64 GB · 2133 / 2666 / 2933 / 3200 MHz"
-          },
-          {
-            label: "Expansión",
-            value: "1 × PCIe 4.0 x16 (desde la CPU) · 1 × PCIe 3.0 x1"
-          },
-          {
-            label: "Almacenamiento",
-            value: "4 × SATA 6 Gb/s · 1 × M.2 Key M PCIe 3.0 x4 (2242 / 2260 / 2280; un SSD M.2 SATA desactiva SATA7)"
-          },
-          {
-            label: "USB",
-            value: "4 × USB 3.2 Gen 1 5 Gb/s (2 traseros, 2 por conector interno) · 6 × USB 2.0 (4 traseros, 2 internos)"
-          },
-          {
-            label: "Red",
-            value: "Intel I219-V · 1 Gb/s"
-          },
-          {
-            label: "Audio",
-            value: "Realtek ALC892 / ALC897 · 7.1 canales HD"
-          },
-          {
-            label: "Salidas de video",
-            value: "HDMI · VGA · DisplayPort (no funcionan con el i5-12400F, que no tiene gráficos integrados)"
-          },
-          {
-            label: "Panel trasero",
-            value: "PS/2 teclado/ratón · HDMI · VGA · DisplayPort · 2 × USB 3.2 Gen 1 · 4 × USB 2.0 · LAN · audio"
-          }
-        ],
-        featuresSource: {
-          url: "https://www.msi.com/Motherboard/PRO-H610M-G-DDR4/Specification",
-          date: "2026-11-02"
-        }
-      }
-    ],
     mfgDate: "2022 (lanzamiento de la plataforma Intel H610)",
     updatedAt: "2026-11-02",
     images: [
@@ -426,6 +322,299 @@ const DEFAULT_DEVICES = [
         id: "img-i5-caja",
         name: "Caja del Intel Core i5-12400F",
         url: "img/intel_i5-12400f_caja.jpg"
+      }
+    ]
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-i5-12400f-h610m-cpu-1",
+    hardwareType: "CPU",
+    brand: "Intel",
+    model: "12th Gen Intel(R) Core(TM) i5-12400F",
+    serial: "",
+    capacity: "",
+    details: "6 núcleos / 12 hilos socket U3E1",
+    replaceable: true,
+    imageUrl: "img/componente_cpu_intel_core_i5.png",
+    driverUrl: "https://www.google.com/search?q=12th%20Gen%20Intel(R)%20Core(TM)%20i5-12400F%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "2022",
+    status: "Instalada",
+    installedIn: "dev-pc-i5-12400f-h610m",
+    history: [
+      {
+        date: "2026-10-31",
+        action: "Instalada",
+        deviceId: "dev-pc-i5-12400f-h610m",
+        note: "Detectada por el HomeInfra Collector"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    year: "2022",
+    yearNote: "Año de lanzamiento",
+    benchmark: {
+      source: "PassMark",
+      multi: 19524,
+      single: 3483,
+      url: "https://www.cpubenchmark.net/cpu.php?id=4681",
+      date: "2026-11-01"
+    }
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-i5-12400f-h610m-ram-1",
+    hardwareType: "RAM",
+    brand: "Corsair",
+    model: "Corsair CMK8GX4M1Z3600C18",
+    serial: "",
+    capacity: "8 GB",
+    details: "DDR4 DIMM 2667 MT/s [Controller0-DIMMA1] · módulo de 3600 MT/s funcionando a 2667 MT/s",
+    replaceable: true,
+    imageUrl: "img/componente_ram_corsair_vengeance_lpx.png",
+    driverUrl: "https://www.google.com/search?q=Corsair%20CMK8GX4M1Z3600C18%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "",
+    status: "Instalada",
+    installedIn: "dev-pc-i5-12400f-h610m",
+    history: [
+      {
+        date: "2026-10-31",
+        action: "Instalada",
+        deviceId: "dev-pc-i5-12400f-h610m",
+        note: "Detectada por el HomeInfra Collector"
+      }
+    ],
+    updatedAt: "2026-11-02"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-i5-12400f-h610m-ram-2",
+    hardwareType: "RAM",
+    brand: "Corsair",
+    model: "Corsair CMK8GX4M1Z3600C18",
+    serial: "",
+    capacity: "8 GB",
+    details: "DDR4 DIMM 2667 MT/s [Controller1-DIMMB1] · módulo de 3600 MT/s funcionando a 2667 MT/s",
+    replaceable: true,
+    imageUrl: "img/componente_ram_corsair_vengeance_lpx.png",
+    driverUrl: "https://www.google.com/search?q=Corsair%20CMK8GX4M1Z3600C18%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "",
+    status: "Instalada",
+    installedIn: "dev-pc-i5-12400f-h610m",
+    history: [
+      {
+        date: "2026-10-31",
+        action: "Instalada",
+        deviceId: "dev-pc-i5-12400f-h610m",
+        note: "Detectada por el HomeInfra Collector"
+      }
+    ],
+    updatedAt: "2026-11-02"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-i5-12400f-h610m-ssd-1",
+    hardwareType: "SSD",
+    brand: "Western Digital",
+    model: "WD Blue SN570 500GB",
+    serial: "E823_8FA6_BF53_0001_001B_448B_4569_B02C.",
+    capacity: "466 GB",
+    details: "SSD NVMe",
+    replaceable: true,
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=WD%20Blue%20SN570%20500GB%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "2021",
+    status: "Instalada",
+    installedIn: "dev-pc-i5-12400f-h610m",
+    history: [
+      {
+        date: "2026-10-31",
+        action: "Instalada",
+        deviceId: "dev-pc-i5-12400f-h610m",
+        note: "Detectada por el HomeInfra Collector"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    year: "2021",
+    yearNote: "Año de lanzamiento"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-i5-12400f-h610m-hdd-1",
+    hardwareType: "HDD",
+    brand: "Western Digital",
+    model: "WDC WD800BD-22MRA1",
+    serial: "WD-WMAM9AMY4260",
+    capacity: "75 GB",
+    details: "HDD SATA",
+    replaceable: true,
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=WDC%20WD800BD-22MRA1%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "",
+    status: "Instalada",
+    installedIn: "dev-pc-i5-12400f-h610m",
+    history: [
+      {
+        date: "2026-10-31",
+        action: "Instalada",
+        deviceId: "dev-pc-i5-12400f-h610m",
+        note: "Detectada por el HomeInfra Collector"
+      }
+    ],
+    updatedAt: "2026-11-02"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-i5-12400f-h610m-gpu-1",
+    hardwareType: "GPU",
+    brand: "NVIDIA",
+    model: "NVIDIA GeForce GTX 1660 SUPER",
+    serial: "",
+    capacity: "4 GB",
+    details: "NVIDIA",
+    replaceable: true,
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=NVIDIA%20GeForce%20GTX%201660%20SUPER%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "2019",
+    status: "Instalada",
+    installedIn: "dev-pc-i5-12400f-h610m",
+    history: [
+      {
+        date: "2026-10-31",
+        action: "Instalada",
+        deviceId: "dev-pc-i5-12400f-h610m",
+        note: "Detectada por el HomeInfra Collector"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    year: "2019",
+    yearNote: "Año de lanzamiento"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-i5-12400f-h610m-placabase-1",
+    hardwareType: "PlacaBase",
+    brand: "MSI",
+    model: "Micro-Star International Co., Ltd. PRO H610M-G DDR4 (MS-7D46)",
+    serial: "07D4612_M21D142444",
+    capacity: "",
+    details: "1.0",
+    replaceable: true,
+    imageUrl: "img/componente_placa_msi_pro_h610m-g_ddr4.jpg",
+    driverUrl: "https://www.google.com/search?q=Micro-Star%20International%20Co.%2C%20Ltd.%20PRO%20H610M-G%20DDR4%20(MS-7D46)%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "2022",
+    status: "Instalada",
+    installedIn: "dev-pc-i5-12400f-h610m",
+    history: [
+      {
+        date: "2026-10-31",
+        action: "Instalada",
+        deviceId: "dev-pc-i5-12400f-h610m",
+        note: "Detectada por el HomeInfra Collector"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    year: "2022",
+    yearNote: "Año de lanzamiento",
+    features: [
+      {
+        label: "Formato",
+        value: "Micro-ATX"
+      },
+      {
+        label: "Socket / chipset",
+        value: "LGA 1700 · Intel H610 (procesadores Intel Core 12.ª, 13.ª y 14.ª gen.)"
+      },
+      {
+        label: "Memoria",
+        value: "2 ranuras DDR4 · doble canal · hasta 64 GB · 2133 / 2666 / 2933 / 3200 MHz"
+      },
+      {
+        label: "Expansión",
+        value: "1 × PCIe 4.0 x16 (desde la CPU) · 1 × PCIe 3.0 x1"
+      },
+      {
+        label: "Almacenamiento",
+        value: "4 × SATA 6 Gb/s · 1 × M.2 Key M PCIe 3.0 x4 (2242 / 2260 / 2280; un SSD M.2 SATA desactiva SATA7)"
+      },
+      {
+        label: "USB",
+        value: "4 × USB 3.2 Gen 1 5 Gb/s (2 traseros, 2 por conector interno) · 6 × USB 2.0 (4 traseros, 2 internos)"
+      },
+      {
+        label: "Red",
+        value: "Intel I219-V · 1 Gb/s"
+      },
+      {
+        label: "Audio",
+        value: "Realtek ALC892 / ALC897 · 7.1 canales HD"
+      },
+      {
+        label: "Salidas de video",
+        value: "HDMI · VGA · DisplayPort (no funcionan con el i5-12400F, que no tiene gráficos integrados)"
+      },
+      {
+        label: "Panel trasero",
+        value: "PS/2 teclado/ratón · HDMI · VGA · DisplayPort · 2 × USB 3.2 Gen 1 · 4 × USB 2.0 · LAN · audio"
+      }
+    ],
+    featuresSource: {
+      url: "https://www.msi.com/Motherboard/PRO-H610M-G-DDR4/Specification",
+      date: "2026-11-02"
+    },
+    integrated: [
+      {
+        hardwareType: "NIC",
+        brand: "Intel",
+        model: "Intel(R) Ethernet Connection (17) I219-V",
+        details: "MAC 04:7C:16:05:0E:B3"
       }
     ]
   },
@@ -471,113 +660,205 @@ const DEFAULT_DEVICES = [
       },
       storage: "Sin disco propio (usa el SSD de Windows compartido)"
     },
-    components: [
+    mfgDate: "2008 (lanzamiento del chipset Intel G41)",
+    updatedAt: "2026-11-02"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-q6700-p5g41t-m-lx-cpu-1",
+    hardwareType: "CPU",
+    brand: "Intel",
+    model: "Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz",
+    serial: "",
+    capacity: "",
+    details: "4 núcleos / 4 hilos socket LGA775",
+    replaceable: true,
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=Intel(R)%20Core(TM)2%20Quad%20CPU%20Q6700%20%40%202.66GHz%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "2007",
+    status: "Instalada",
+    installedIn: "dev-pc-q6700-p5g41t-m-lx",
+    history: [
       {
-        category: "CPU",
-        model: "Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz",
-        serial: "",
-        capacity: "",
-        details: "4 núcleos / 4 hilos socket LGA775",
-        replaceable: true,
-        benchmark: {
-          source: "PassMark",
-          multi: 2092,
-          single: 1073,
-          url: "https://www.cpubenchmark.net/cpu.php?id=1039",
-          date: "2026-11-01"
-        },
-        year: "2007",
-        yearNote: "Año de lanzamiento"
+        date: "2026-11-01",
+        action: "Instalada",
+        deviceId: "dev-pc-q6700-p5g41t-m-lx",
+        note: "Detectada por el HomeInfra Collector"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    year: "2007",
+    yearNote: "Año de lanzamiento",
+    benchmark: {
+      source: "PassMark",
+      multi: 2092,
+      single: 1073,
+      url: "https://www.cpubenchmark.net/cpu.php?id=1039",
+      date: "2026-11-01"
+    }
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-q6700-p5g41t-m-lx-ram-1",
+    hardwareType: "RAM",
+    brand: "",
+    model: "Módulo RAM DDR3 4 GB (fabricante sin informar)",
+    serial: "",
+    capacity: "4 GB",
+    details: "DDR3 DIMM [DIMM A1] · tipo deducido del modelo de placa",
+    replaceable: true,
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "",
+    status: "Instalada",
+    installedIn: "dev-pc-q6700-p5g41t-m-lx",
+    history: [
+      {
+        date: "2026-11-01",
+        action: "Instalada",
+        deviceId: "dev-pc-q6700-p5g41t-m-lx",
+        note: "Detectada por el HomeInfra Collector"
+      }
+    ],
+    updatedAt: "2026-11-02"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-q6700-p5g41t-m-lx-ram-2",
+    hardwareType: "RAM",
+    brand: "",
+    model: "Módulo RAM DDR3 4 GB (fabricante sin informar)",
+    serial: "",
+    capacity: "4 GB",
+    details: "DDR3 DIMM [DIMM B1] · tipo deducido del modelo de placa",
+    replaceable: true,
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "",
+    status: "Instalada",
+    installedIn: "dev-pc-q6700-p5g41t-m-lx",
+    history: [
+      {
+        date: "2026-11-01",
+        action: "Instalada",
+        deviceId: "dev-pc-q6700-p5g41t-m-lx",
+        note: "Detectada por el HomeInfra Collector"
+      }
+    ],
+    updatedAt: "2026-11-02"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-q6700-p5g41t-m-lx-placabase-1",
+    hardwareType: "PlacaBase",
+    brand: "ASUS",
+    model: "ASUSTeK Computer INC. P5G41T-M LX",
+    serial: "107933150000113",
+    capacity: "",
+    details: "Rev X.0x",
+    replaceable: true,
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=ASUSTeK%20Computer%20INC.%20P5G41T-M%20LX%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "2008",
+    status: "Instalada",
+    installedIn: "dev-pc-q6700-p5g41t-m-lx",
+    history: [
+      {
+        date: "2026-11-01",
+        action: "Instalada",
+        deviceId: "dev-pc-q6700-p5g41t-m-lx",
+        note: "Detectada por el HomeInfra Collector"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    year: "2008",
+    yearNote: "Año de lanzamiento del chipset Intel G41",
+    features: [
+      {
+        label: "Formato",
+        value: "Micro-ATX"
       },
       {
-        category: "RAM",
-        model: "",
-        serial: "",
-        capacity: "4 GB",
-        details: "DDR3 DIMM [DIMM A1] · tipo deducido del modelo de placa",
-        replaceable: true
+        label: "Socket / chipset",
+        value: "LGA 775 · Intel G41 / ICH7"
       },
       {
-        category: "RAM",
-        model: "",
-        serial: "",
-        capacity: "4 GB",
-        details: "DDR3 DIMM [DIMM B1] · tipo deducido del modelo de placa",
-        replaceable: true
+        label: "Memoria",
+        value: "2 ranuras DDR3 · doble canal · hasta 8 GB · 800 / 1066 / 1333 (OC) MHz · no ECC, sin búfer"
       },
       {
-        category: "GPU",
+        label: "Expansión",
+        value: "1 × PCIe x16 · 1 × PCIe x1 · 2 × PCI"
+      },
+      {
+        label: "Almacenamiento",
+        value: "4 × SATA 3 Gb/s · 1 × IDE UltraDMA 100/66/33"
+      },
+      {
+        label: "USB",
+        value: "8 × USB 2.0 (4 traseros, 4 internos)"
+      },
+      {
+        label: "Red",
+        value: "Qualcomm Atheros Gigabit (Windows informó AR8131)"
+      },
+      {
+        label: "Audio",
+        value: "Realtek ALC887 · 8 canales · S/PDIF Out"
+      },
+      {
+        label: "Salidas de video",
+        value: "VGA (D-Sub) · gráficos integrados Intel G41"
+      }
+    ],
+    featuresSource: {
+      url: "https://origin-www.asus.com/Motherboards/P5G41TM_LX/specifications/",
+      date: "2026-11-02"
+    },
+    integrated: [
+      {
+        hardwareType: "GPU",
+        brand: "Intel",
         model: "Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1)",
-        serial: "",
-        capacity: "",
         details: "Intel Corporation",
-        replaceable: false,
         year: "2008",
         yearNote: "Año de lanzamiento del chipset Intel G41"
       },
       {
-        category: "Red",
+        hardwareType: "NIC",
+        brand: "Qualcomm Atheros",
         model: "Qualcomm Atheros AR8131 PCI-E Gigabit Ethernet Controller (NDIS 6.30)",
-        serial: "",
-        capacity: "",
-        details: "MAC BC:AE:C5:28:68:F4",
-        replaceable: false
-      },
-      {
-        category: "Placa base",
-        model: "ASUSTeK Computer INC. P5G41T-M LX",
-        serial: "107933150000113",
-        capacity: "",
-        details: "Rev X.0x",
-        replaceable: false,
-        year: "2008",
-        yearNote: "Año de lanzamiento del chipset Intel G41",
-        features: [
-          {
-            label: "Formato",
-            value: "Micro-ATX"
-          },
-          {
-            label: "Socket / chipset",
-            value: "LGA 775 · Intel G41 / ICH7"
-          },
-          {
-            label: "Memoria",
-            value: "2 ranuras DDR3 · doble canal · hasta 8 GB · 800 / 1066 / 1333 (OC) MHz · no ECC, sin búfer"
-          },
-          {
-            label: "Expansión",
-            value: "1 × PCIe x16 · 1 × PCIe x1 · 2 × PCI"
-          },
-          {
-            label: "Almacenamiento",
-            value: "4 × SATA 3 Gb/s · 1 × IDE UltraDMA 100/66/33"
-          },
-          {
-            label: "USB",
-            value: "8 × USB 2.0 (4 traseros, 4 internos)"
-          },
-          {
-            label: "Red",
-            value: "Qualcomm Atheros Gigabit (Windows informó AR8131)"
-          },
-          {
-            label: "Audio",
-            value: "Realtek ALC887 · 8 canales · S/PDIF Out"
-          },
-          {
-            label: "Salidas de video",
-            value: "VGA (D-Sub) · gráficos integrados Intel G41"
-          }
-        ],
-        featuresSource: {
-          url: "https://origin-www.asus.com/Motherboards/P5G41TM_LX/specifications/",
-          date: "2026-11-02"
-        }
+        details: "MAC BC:AE:C5:28:68:F4"
       }
-    ],
-    mfgDate: "2008 (lanzamiento del chipset Intel G41)",
-    updatedAt: "2026-11-02"
+    ]
   },
   {
     id: "dev-pc-e6750-p5q-pro-turbo",
@@ -621,113 +902,254 @@ const DEFAULT_DEVICES = [
       },
       storage: "Sin disco propio (usa el SSD de Windows compartido)"
     },
-    components: [
-      {
-        category: "CPU",
-        model: "Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz",
-        serial: "",
-        capacity: "",
-        details: "2 núcleos / 2 hilos socket LGA 775",
-        replaceable: true,
-        benchmark: {
-          source: "PassMark",
-          multi: 1031,
-          single: 1030,
-          url: "https://www.cpubenchmark.net/cpu.php?id=942",
-          date: "2026-11-01"
-        },
-        year: "2007",
-        yearNote: "Año de lanzamiento"
-      },
-      {
-        category: "RAM",
-        model: "",
-        serial: "",
-        capacity: "2 GB",
-        details: "DDR2 DIMM 800 MT/s [DIMM0] · tipo deducido del modelo de placa",
-        replaceable: true
-      },
-      {
-        category: "RAM",
-        model: "",
-        serial: "",
-        capacity: "2 GB",
-        details: "DDR2 DIMM 800 MT/s [DIMM2] · tipo deducido del modelo de placa",
-        replaceable: true
-      },
-      {
-        category: "GPU",
-        model: "NVIDIA GeForce 210",
-        serial: "",
-        capacity: "1 GB",
-        details: "NVIDIA",
-        replaceable: true,
-        year: "2009",
-        yearNote: "Año de lanzamiento"
-      },
-      {
-        category: "Red",
-        model: "Atheros AR8121/AR8113/AR8114 PCI-E Ethernet Controller",
-        serial: "",
-        capacity: "",
-        details: "MAC 00:24:8C:6B:E7:F6",
-        replaceable: false
-      },
-      {
-        category: "Placa base",
-        model: "ASUSTeK Computer INC. P5Q PRO TURBO",
-        serial: "MS1C93BC3400692",
-        capacity: "",
-        details: "Rev 1.xx",
-        replaceable: false,
-        year: "2008",
-        yearNote: "Año de lanzamiento del chipset Intel P45",
-        features: [
-          {
-            label: "Formato",
-            value: "ATX"
-          },
-          {
-            label: "Socket / chipset",
-            value: "LGA 775 · Intel P45 / ICH10R"
-          },
-          {
-            label: "Memoria",
-            value: "4 ranuras DDR2 · doble canal · hasta 16 GB · 667 / 800 / 1066 / 1200 / 1300 MHz · no ECC, sin búfer"
-          },
-          {
-            label: "Expansión",
-            value: "2 × PCIe 2.0 x16 (CrossFireX a x8) · 3 × PCIe x1 · 2 × PCI"
-          },
-          {
-            label: "Almacenamiento",
-            value: "5 × SATA 3 Gb/s (Intel) · 2 × SATA 3 Gb/s (Silicon Image) · 1 × eSATA y 2 × PATA (JMicron)"
-          },
-          {
-            label: "USB",
-            value: "12 × USB 2.0 (6 traseros, 6 internos)"
-          },
-          {
-            label: "Red",
-            value: "1 × RJ45 Gigabit (Windows informó Atheros AR8121/AR8113/AR8114)"
-          },
-          {
-            label: "Audio",
-            value: "VIA VT1708S · 8 canales HD · S/PDIF óptico trasero"
-          },
-          {
-            label: "Salidas de video",
-            value: "Sin gráficos integrados (chipset P45): requiere tarjeta de video"
-          }
-        ],
-        featuresSource: {
-          url: "https://origin-www.asus.com/motherboards/p5q_pro_turbo/specifications/",
-          date: "2026-11-02"
-        }
-      }
-    ],
     mfgDate: "2008 (lanzamiento del chipset Intel P45)",
     updatedAt: "2026-11-02"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-e6750-p5q-pro-turbo-cpu-1",
+    hardwareType: "CPU",
+    brand: "Intel",
+    model: "Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz",
+    serial: "",
+    capacity: "",
+    details: "2 núcleos / 2 hilos socket LGA 775",
+    replaceable: true,
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=Intel(R)%20Core(TM)2%20Duo%20CPU%20E6750%20%40%202.66GHz%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "2007",
+    status: "Instalada",
+    installedIn: "dev-pc-e6750-p5q-pro-turbo",
+    history: [
+      {
+        date: "2026-11-02",
+        action: "Instalada",
+        deviceId: "dev-pc-e6750-p5q-pro-turbo",
+        note: "Detectada por el HomeInfra Collector"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    year: "2007",
+    yearNote: "Año de lanzamiento",
+    benchmark: {
+      source: "PassMark",
+      multi: 1031,
+      single: 1030,
+      url: "https://www.cpubenchmark.net/cpu.php?id=942",
+      date: "2026-11-01"
+    }
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-e6750-p5q-pro-turbo-ram-1",
+    hardwareType: "RAM",
+    brand: "",
+    model: "Módulo RAM DDR2 2 GB (fabricante sin informar)",
+    serial: "",
+    capacity: "2 GB",
+    details: "DDR2 DIMM 800 MT/s [DIMM0] · tipo deducido del modelo de placa",
+    replaceable: true,
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "",
+    status: "Instalada",
+    installedIn: "dev-pc-e6750-p5q-pro-turbo",
+    history: [
+      {
+        date: "2026-11-02",
+        action: "Instalada",
+        deviceId: "dev-pc-e6750-p5q-pro-turbo",
+        note: "Detectada por el HomeInfra Collector"
+      }
+    ],
+    updatedAt: "2026-11-02"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-e6750-p5q-pro-turbo-ram-2",
+    hardwareType: "RAM",
+    brand: "",
+    model: "Módulo RAM DDR2 2 GB (fabricante sin informar)",
+    serial: "",
+    capacity: "2 GB",
+    details: "DDR2 DIMM 800 MT/s [DIMM2] · tipo deducido del modelo de placa",
+    replaceable: true,
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "",
+    status: "Instalada",
+    installedIn: "dev-pc-e6750-p5q-pro-turbo",
+    history: [
+      {
+        date: "2026-11-02",
+        action: "Instalada",
+        deviceId: "dev-pc-e6750-p5q-pro-turbo",
+        note: "Detectada por el HomeInfra Collector"
+      }
+    ],
+    updatedAt: "2026-11-02"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-e6750-p5q-pro-turbo-gpu-1",
+    hardwareType: "GPU",
+    brand: "MSI",
+    model: "N210-MD1G (NVIDIA GeForce 210)",
+    serial: "602-V229-43SB1210038228",
+    capacity: "1 GB",
+    details: "1 GB GDDR2 · PCIe 2.0 · VGA, DVI, HDMI",
+    replaceable: true,
+    imageUrl: "img/componente_gpu_msi_n210-md1g.jpg",
+    driverUrl: "https://www.msi.com/Graphics-Card/N210-MD1G/support",
+    notes: "",
+    observaciones: "Identificada por foto como MSI N210-MD1G (Model V229, S/N 602-V229-43SB1210038228, EAN 4719072175504). Se asume que es la GeForce 210 de 1 GB que detectó el Collector en este PC, porque es la única GeForce 210 del inventario; confirmar.",
+    mfgDate: "2009",
+    status: "Instalada",
+    installedIn: "dev-pc-e6750-p5q-pro-turbo",
+    history: [
+      {
+        date: "2026-11-02",
+        action: "Instalada",
+        deviceId: "dev-pc-e6750-p5q-pro-turbo",
+        note: "Detectada por el HomeInfra Collector"
+      },
+      {
+        date: "2026-11-02",
+        action: "Identificada",
+        deviceId: "dev-pc-e6750-p5q-pro-turbo",
+        note: "Modelo y serie leídos de la etiqueta (MSI N210-MD1G)"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    year: "2009",
+    yearNote: "Año de lanzamiento",
+    images: [
+      {
+        id: "img-n210-comercial",
+        name: "Imagen comercial (Icecat)",
+        url: "img/componente_gpu_msi_n210-md1g.jpg"
+      },
+      {
+        id: "img-n210-etiqueta",
+        name: "Etiqueta",
+        url: "img/gpu_msi_n210-md1g_etiqueta.jpg"
+      },
+      {
+        id: "img-n210-etiqueta-b",
+        name: "Etiqueta (otra toma)",
+        url: "img/gpu_msi_n210-md1g_etiqueta_b.jpg"
+      }
+    ]
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-e6750-p5q-pro-turbo-placabase-1",
+    hardwareType: "PlacaBase",
+    brand: "ASUS",
+    model: "ASUSTeK Computer INC. P5Q PRO TURBO",
+    serial: "MS1C93BC3400692",
+    capacity: "",
+    details: "Rev 1.xx",
+    replaceable: true,
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=ASUSTeK%20Computer%20INC.%20P5Q%20PRO%20TURBO%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "2008",
+    status: "Instalada",
+    installedIn: "dev-pc-e6750-p5q-pro-turbo",
+    history: [
+      {
+        date: "2026-11-02",
+        action: "Instalada",
+        deviceId: "dev-pc-e6750-p5q-pro-turbo",
+        note: "Detectada por el HomeInfra Collector"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    year: "2008",
+    yearNote: "Año de lanzamiento del chipset Intel P45",
+    features: [
+      {
+        label: "Formato",
+        value: "ATX"
+      },
+      {
+        label: "Socket / chipset",
+        value: "LGA 775 · Intel P45 / ICH10R"
+      },
+      {
+        label: "Memoria",
+        value: "4 ranuras DDR2 · doble canal · hasta 16 GB · 667 / 800 / 1066 / 1200 / 1300 MHz · no ECC, sin búfer"
+      },
+      {
+        label: "Expansión",
+        value: "2 × PCIe 2.0 x16 (CrossFireX a x8) · 3 × PCIe x1 · 2 × PCI"
+      },
+      {
+        label: "Almacenamiento",
+        value: "5 × SATA 3 Gb/s (Intel) · 2 × SATA 3 Gb/s (Silicon Image) · 1 × eSATA y 2 × PATA (JMicron)"
+      },
+      {
+        label: "USB",
+        value: "12 × USB 2.0 (6 traseros, 6 internos)"
+      },
+      {
+        label: "Red",
+        value: "1 × RJ45 Gigabit (Windows informó Atheros AR8121/AR8113/AR8114)"
+      },
+      {
+        label: "Audio",
+        value: "VIA VT1708S · 8 canales HD · S/PDIF óptico trasero"
+      },
+      {
+        label: "Salidas de video",
+        value: "Sin gráficos integrados (chipset P45): requiere tarjeta de video"
+      }
+    ],
+    featuresSource: {
+      url: "https://origin-www.asus.com/motherboards/p5q_pro_turbo/specifications/",
+      date: "2026-11-02"
+    },
+    integrated: [
+      {
+        hardwareType: "NIC",
+        brand: "Qualcomm Atheros",
+        model: "Atheros AR8121/AR8113/AR8114 PCI-E Ethernet Controller",
+        details: "MAC 00:24:8C:6B:E7:F6"
+      }
+    ]
   },
   {
     id: "dev-pc-i7-2600k-z77-hd3",
@@ -771,116 +1193,6 @@ const DEFAULT_DEVICES = [
       },
       storage: "Sin disco propio (usa el SSD de Windows compartido)"
     },
-    components: [
-      {
-        category: "CPU",
-        model: "Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz",
-        serial: "",
-        capacity: "",
-        details: "4 núcleos / 8 hilos",
-        replaceable: true,
-        benchmark: {
-          source: "PassMark",
-          multi: 5476,
-          single: 1740,
-          url: "https://www.cpubenchmark.net/cpu.php?id=868",
-          date: "2026-11-01"
-        },
-        year: "2011",
-        yearNote: "Año de lanzamiento"
-      },
-      {
-        category: "RAM",
-        model: "Kingston HX316C10F/8",
-        serial: "19FA6341",
-        capacity: "8 GB",
-        details: "DDR3 DIMM 1600 MT/s [ChannelB-DIMM1]",
-        replaceable: true
-      },
-      {
-        category: "RAM",
-        model: "Kingston HX316C10F/8",
-        serial: "4C33D19F",
-        capacity: "8 GB",
-        details: "DDR3 DIMM 1600 MT/s [ChannelA-DIMM1]",
-        replaceable: true
-      },
-      {
-        category: "GPU",
-        model: "Intel(R) HD Graphics 3000",
-        serial: "",
-        capacity: "",
-        details: "Intel Corporation",
-        replaceable: false,
-        year: "2011",
-        yearNote: "Año de lanzamiento (integrada en Core 2.ª gen.)"
-      },
-      {
-        category: "Red",
-        model: "Realtek PCIe GbE Family Controller #2",
-        serial: "",
-        capacity: "",
-        details: "MAC 74:D4:35:11:F0:AC",
-        replaceable: false
-      },
-      {
-        category: "Placa base",
-        model: "Gigabyte Technology Co., Ltd. Z77-HD3",
-        serial: "",
-        capacity: "",
-        details: "",
-        replaceable: false,
-        year: "2012",
-        yearNote: "Año de lanzamiento del chipset Intel Z77",
-        imageUrl: "img/gigabyte_z77-hd3_placa_2023.jpg",
-        features: [
-          {
-            label: "Formato",
-            value: "ATX · 30,5 × 21,5 cm"
-          },
-          {
-            label: "Socket / chipset",
-            value: "LGA 1155 · Intel Z77"
-          },
-          {
-            label: "Memoria",
-            value: "4 ranuras DDR3 1.5V · doble canal · hasta 32 GB · 1066 / 1333 / 1600 MHz (2800 OC); DDR3-1600 requiere CPU Ivy Bridge (22 nm)"
-          },
-          {
-            label: "Expansión",
-            value: "1 × PCIe 3.0 x16 · 2 × PCIe x1 · 2 × PCI · AMD CrossFire"
-          },
-          {
-            label: "Almacenamiento",
-            value: "2 × SATA 6 Gb/s (SATA3 0/1) · 4 × SATA 3 Gb/s (SATA2 2–5) · RAID 0 / 1 / 5 / 10"
-          },
-          {
-            label: "USB",
-            value: "Hasta 4 × USB 3.0 (2 traseros, 2 por conector interno) · hasta 8 × USB 2.0"
-          },
-          {
-            label: "Red",
-            value: "Realtek GbE · 10/100/1000 Mb/s"
-          },
-          {
-            label: "Audio",
-            value: "Realtek ALC887 · 2 / 4 / 5.1 / 7.1 canales · S/PDIF Out"
-          },
-          {
-            label: "Salidas de video",
-            value: "D-Sub (VGA) · DVI-D · HDMI (gráficos integrados del procesador)"
-          },
-          {
-            label: "Otros",
-            value: "DualBIOS"
-          }
-        ],
-        featuresSource: {
-          url: "https://www.gigabyte.com/Motherboard/GA-Z77-HD3-rev-10/sp",
-          date: "2026-11-02"
-        }
-      }
-    ],
     mfgDate: "2012 (lanzamiento del chipset Intel Z77)",
     updatedAt: "2026-11-02",
     images: [
@@ -893,6 +1205,209 @@ const DEFAULT_DEVICES = [
         id: "img-z77-placa-2023",
         name: "Placa GA-Z77-HD3 fuera del gabinete (2023)",
         url: "img/gigabyte_z77-hd3_placa_2023.jpg"
+      }
+    ]
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-i7-2600k-z77-hd3-cpu-1",
+    hardwareType: "CPU",
+    brand: "Intel",
+    model: "Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz",
+    serial: "",
+    capacity: "",
+    details: "4 núcleos / 8 hilos",
+    replaceable: true,
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=Intel(R)%20Core(TM)%20i7-2600K%20CPU%20%40%203.40GHz%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "2011",
+    status: "Instalada",
+    installedIn: "dev-pc-i7-2600k-z77-hd3",
+    history: [
+      {
+        date: "2026-11-01",
+        action: "Instalada",
+        deviceId: "dev-pc-i7-2600k-z77-hd3",
+        note: "Detectada por el HomeInfra Collector"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    year: "2011",
+    yearNote: "Año de lanzamiento",
+    benchmark: {
+      source: "PassMark",
+      multi: 5476,
+      single: 1740,
+      url: "https://www.cpubenchmark.net/cpu.php?id=868",
+      date: "2026-11-01"
+    },
+    integrated: [
+      {
+        hardwareType: "GPU",
+        brand: "Intel",
+        model: "Intel(R) HD Graphics 3000",
+        details: "Gráficos integrados del procesador",
+        year: "2011",
+        yearNote: "Año de lanzamiento (integrada en Core 2.ª gen.)"
+      }
+    ]
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-i7-2600k-z77-hd3-ram-1",
+    hardwareType: "RAM",
+    brand: "Kingston",
+    model: "Kingston HX316C10F/8",
+    serial: "19FA6341",
+    capacity: "8 GB",
+    details: "DDR3 DIMM 1600 MT/s [ChannelB-DIMM1]",
+    replaceable: true,
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=Kingston%20HX316C10F%2F8%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "",
+    status: "Instalada",
+    installedIn: "dev-pc-i7-2600k-z77-hd3",
+    history: [
+      {
+        date: "2026-11-01",
+        action: "Instalada",
+        deviceId: "dev-pc-i7-2600k-z77-hd3",
+        note: "Detectada por el HomeInfra Collector"
+      }
+    ],
+    updatedAt: "2026-11-02"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-i7-2600k-z77-hd3-ram-2",
+    hardwareType: "RAM",
+    brand: "Kingston",
+    model: "Kingston HX316C10F/8",
+    serial: "4C33D19F",
+    capacity: "8 GB",
+    details: "DDR3 DIMM 1600 MT/s [ChannelA-DIMM1]",
+    replaceable: true,
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=Kingston%20HX316C10F%2F8%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "",
+    status: "Instalada",
+    installedIn: "dev-pc-i7-2600k-z77-hd3",
+    history: [
+      {
+        date: "2026-11-01",
+        action: "Instalada",
+        deviceId: "dev-pc-i7-2600k-z77-hd3",
+        note: "Detectada por el HomeInfra Collector"
+      }
+    ],
+    updatedAt: "2026-11-02"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-i7-2600k-z77-hd3-placabase-1",
+    hardwareType: "PlacaBase",
+    brand: "Gigabyte",
+    model: "Gigabyte Technology Co., Ltd. Z77-HD3",
+    serial: "",
+    capacity: "",
+    details: "",
+    replaceable: true,
+    imageUrl: "img/gigabyte_z77-hd3_placa_2023.jpg",
+    driverUrl: "https://www.google.com/search?q=Gigabyte%20Technology%20Co.%2C%20Ltd.%20Z77-HD3%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "2012",
+    status: "Instalada",
+    installedIn: "dev-pc-i7-2600k-z77-hd3",
+    history: [
+      {
+        date: "2026-11-01",
+        action: "Instalada",
+        deviceId: "dev-pc-i7-2600k-z77-hd3",
+        note: "Detectada por el HomeInfra Collector"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    year: "2012",
+    yearNote: "Año de lanzamiento del chipset Intel Z77",
+    features: [
+      {
+        label: "Formato",
+        value: "ATX · 30,5 × 21,5 cm"
+      },
+      {
+        label: "Socket / chipset",
+        value: "LGA 1155 · Intel Z77"
+      },
+      {
+        label: "Memoria",
+        value: "4 ranuras DDR3 1.5V · doble canal · hasta 32 GB · 1066 / 1333 / 1600 MHz (2800 OC); DDR3-1600 requiere CPU Ivy Bridge (22 nm)"
+      },
+      {
+        label: "Expansión",
+        value: "1 × PCIe 3.0 x16 · 2 × PCIe x1 · 2 × PCI · AMD CrossFire"
+      },
+      {
+        label: "Almacenamiento",
+        value: "2 × SATA 6 Gb/s (SATA3 0/1) · 4 × SATA 3 Gb/s (SATA2 2–5) · RAID 0 / 1 / 5 / 10"
+      },
+      {
+        label: "USB",
+        value: "Hasta 4 × USB 3.0 (2 traseros, 2 por conector interno) · hasta 8 × USB 2.0"
+      },
+      {
+        label: "Red",
+        value: "Realtek GbE · 10/100/1000 Mb/s"
+      },
+      {
+        label: "Audio",
+        value: "Realtek ALC887 · 2 / 4 / 5.1 / 7.1 canales · S/PDIF Out"
+      },
+      {
+        label: "Salidas de video",
+        value: "D-Sub (VGA) · DVI-D · HDMI (gráficos integrados del procesador)"
+      },
+      {
+        label: "Otros",
+        value: "DualBIOS"
+      }
+    ],
+    featuresSource: {
+      url: "https://www.gigabyte.com/Motherboard/GA-Z77-HD3-rev-10/sp",
+      date: "2026-11-02"
+    },
+    integrated: [
+      {
+        hardwareType: "NIC",
+        brand: "Realtek",
+        model: "Realtek PCIe GbE Family Controller #2",
+        details: "MAC 74:D4:35:11:F0:AC"
       }
     ]
   },
@@ -917,43 +1432,123 @@ const DEFAULT_DEVICES = [
     id: "dev-ssd-patriot-burst-elite-120gb",
     brand: "Patriot",
     model: "Burst Elite 120GB (SSD de Windows compartido)",
-    type: "Periférico",
+    type: "Pieza",
     serial: "PBEIIBB21030118778",
     assignedUser: "",
     location: "Hogar",
-    imageUrl: "",
+    imageUrl: "img/ssd_patriot_burst_elite_120gb_a.jpg",
     driverUrl: "https://www.google.com/search?q=Patriot%20Burst%20Elite%20120GB%20SSD%20soporte",
     windowsUser: "",
     windowsPassword: "",
     notes: "SSD SATA 2.5\" Patriot Burst Elite de 120 GB (111.8 GB útiles), firmware FW200918. Tiene instalado Windows 10 Pro 22H2 (10.0.19045), nombre de equipo \"SERVER\", instalado el 2025-01-28. Se mueve entre PCs para arrancarlos y registrarlos.",
-    observaciones: "Dispositivo general, no forma parte de ningún equipo.\n\nEn los PCs con Core 2 Quad Q6700 y Core i7-2600K, Windows informó menos núcleos de los que tiene el procesador. Probablemente este Windows tiene limitado el número de procesadores (msconfig → Arranque → Opciones avanzadas → Número de procesadores).\n\nUsado para arrancar:\n• Core 2 Quad Q6700 · ASUS P5G41T-M LX (2026-11-01)\n• Core 2 Duo E6750 · ASUS P5Q PRO TURBO (2026-11-02)\n• Core i7-2600K · Gigabyte Z77-HD3 (2026-11-01)",
+    observaciones: "Dispositivo general, no forma parte de ningún equipo.\n\nEn los PCs con Core 2 Quad Q6700 y Core i7-2600K, Windows informó menos núcleos de los que tiene el procesador. Probablemente este Windows tiene limitado el número de procesadores (msconfig → Arranque → Opciones avanzadas → Número de procesadores).\n\nUsado para arrancar:\n• Core 2 Quad Q6700 · ASUS P5G41T-M LX (2026-11-01)\n• Core 2 Duo E6750 · ASUS P5Q PRO TURBO (2026-11-02)\n• Core i7-2600K · Gigabyte Z77-HD3 (2026-11-01)\n\nFotos del 2026-11-02: la etiqueta frontal (PBE120GS25SSDR · PE000775 · P-2111 · IIBB2111) no muestra número de serie, así que no se puede saber qué foto corresponde a cada unidad.",
     specs: {
       storage: "SSD SATA 120 GB"
     },
     mfgDate: "",
     updatedAt: "2026-11-02",
-    hardwareType: "SSD"
+    hardwareType: "SSD",
+    kind: "pieza",
+    replaceable: true,
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-01",
+        action: "Detectada",
+        deviceId: "dev-pc-i7-2600k-z77-hd3",
+        note: "Disco de arranque al pasar el Collector"
+      },
+      {
+        date: "2026-11-01",
+        action: "Detectada",
+        deviceId: "dev-pc-q6700-p5g41t-m-lx",
+        note: "Disco de arranque al pasar el Collector"
+      },
+      {
+        date: "2026-11-02",
+        action: "Detectada",
+        deviceId: "dev-pc-e6750-p5q-pro-turbo",
+        note: "Disco de arranque al pasar el Collector"
+      }
+    ],
+    images: [
+      {
+        id: "img-patriot-a",
+        name: "Etiqueta (foto 1)",
+        url: "img/ssd_patriot_burst_elite_120gb_a.jpg"
+      },
+      {
+        id: "img-patriot-b",
+        name: "Etiqueta (foto 2)",
+        url: "img/ssd_patriot_burst_elite_120gb_b.jpg"
+      },
+      {
+        id: "img-patriot-c",
+        name: "Etiqueta (foto 3)",
+        url: "img/ssd_patriot_burst_elite_120gb_c.jpg"
+      },
+      {
+        id: "img-patriot-d",
+        name: "Etiqueta (foto 4)",
+        url: "img/ssd_patriot_burst_elite_120gb_d.jpg"
+      }
+    ]
   },
   {
     id: "dev-ssd-patriot-burst-elite-120gb-2",
     brand: "Patriot",
     model: "Burst Elite 120GB (segunda unidad)",
-    type: "Periférico",
+    type: "Pieza",
     serial: "",
     assignedUser: "",
     location: "Hogar",
-    imageUrl: "",
+    imageUrl: "img/ssd_patriot_burst_elite_120gb_a.jpg",
     driverUrl: "https://www.google.com/search?q=Patriot%20Burst%20Elite%20120GB%20SSD%20soporte",
     windowsUser: "",
     windowsPassword: "",
     notes: "SSD SATA 2.5\" Patriot Burst Elite de 120 GB, mismo modelo que el SSD de Windows compartido (S/N PBEIIBB21030118778).",
-    observaciones: "Dispositivo general, no forma parte de ningún equipo.\n\nNúmero de serie, firmware y contenido pendientes: conectarlo a un PC y ejecutar el HomeInfra Collector, o leer la etiqueta del disco.",
+    observaciones: "Dispositivo general, no forma parte de ningún equipo.\n\nNúmero de serie, firmware y contenido pendientes: conectarlo a un PC y ejecutar el HomeInfra Collector, o leer la etiqueta del disco.\n\nFotos del 2026-11-02: la etiqueta frontal (PBE120GS25SSDR · PE000775 · P-2111 · IIBB2111) no muestra número de serie, así que no se puede saber qué foto corresponde a cada unidad.",
     specs: {
       storage: "SSD SATA 120 GB"
     },
     mfgDate: "",
     updatedAt: "2026-11-02",
-    hardwareType: "SSD"
+    hardwareType: "SSD",
+    kind: "pieza",
+    replaceable: true,
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada como pieza suelta"
+      }
+    ],
+    images: [
+      {
+        id: "img-patriot-a",
+        name: "Etiqueta (foto 1)",
+        url: "img/ssd_patriot_burst_elite_120gb_a.jpg"
+      },
+      {
+        id: "img-patriot-b",
+        name: "Etiqueta (foto 2)",
+        url: "img/ssd_patriot_burst_elite_120gb_b.jpg"
+      },
+      {
+        id: "img-patriot-c",
+        name: "Etiqueta (foto 3)",
+        url: "img/ssd_patriot_burst_elite_120gb_c.jpg"
+      },
+      {
+        id: "img-patriot-d",
+        name: "Etiqueta (foto 4)",
+        url: "img/ssd_patriot_burst_elite_120gb_d.jpg"
+      }
+    ]
   },
   {
     id: "dev-pendrive-sony-4gb",
@@ -980,7 +1575,7 @@ const DEFAULT_DEVICES = [
     id: "dev-gpu-zotac-8400gs",
     brand: "ZOTAC",
     model: "GeForce 8400 GS GEN2 512MB DDR2",
-    type: "Periférico",
+    type: "Pieza",
     serial: "N103100027911",
     assignedUser: "",
     location: "Hogar",
@@ -1011,7 +1606,19 @@ const DEFAULT_DEVICES = [
     ],
     mfgDate: "2007 (lanzamiento de la GeForce 8400 GS)",
     updatedAt: "2026-11-02",
-    hardwareType: "GPU"
+    hardwareType: "GPU",
+    kind: "pieza",
+    replaceable: true,
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada como pieza suelta"
+      }
+    ]
   },
   {
     id: "dev-pc-msi-a68hm-e33-v2",
@@ -1047,91 +1654,6 @@ const DEFAULT_DEVICES = [
       },
       storage: ""
     },
-    components: [
-      {
-        category: "Placa base",
-        model: "MSI A68HM-E33 V2 (MS-7721)",
-        serial: "G716320033 33004",
-        capacity: "",
-        details: "VER 9.0 · chipset AMD A68H · socket FM2+",
-        replaceable: false,
-        imageUrl: "img/msi_a68hm-e33_v2_placa.jpg",
-        year: "2014",
-        yearNote: "Año de lanzamiento del chipset AMD A68H",
-        features: [
-          {
-            label: "Formato",
-            value: "Micro-ATX"
-          },
-          {
-            label: "Socket / chipset",
-            value: "FM2+ · AMD A68H"
-          },
-          {
-            label: "Memoria",
-            value: "2 ranuras DDR3 · doble canal · hasta 32 GB · 1333 / 1600 / 1866 / 2133 (OC) MHz"
-          },
-          {
-            label: "Expansión",
-            value: "1 × PCIe 3.0 x16 · 1 × PCIe x1 (2.0 según algunas páginas regionales) · 1 × PCI"
-          },
-          {
-            label: "Almacenamiento",
-            value: "4 × SATA 6 Gb/s · RAID 0 / 1 / 10"
-          },
-          {
-            label: "USB",
-            value: "2 × USB 3.0 traseros · 6 × USB 2.0 (2 traseros, 4 internos)"
-          },
-          {
-            label: "Red",
-            value: "Realtek RTL8111G · 10/100/1000 Mb/s"
-          },
-          {
-            label: "Audio",
-            value: "Realtek ALC887 · 3 conectores traseros"
-          },
-          {
-            label: "Salidas de video",
-            value: "VGA (hasta 1920 × 1200 a 60 Hz) · HDMI (gráficos integrados del procesador)"
-          },
-          {
-            label: "Otros",
-            value: "PS/2 teclado y ratón · conector serie interno"
-          }
-        ],
-        featuresSource: {
-          url: "https://www.msi.com/Motherboard/a68hm-e33-v2/Specification",
-          date: "2026-11-02"
-        }
-      },
-      {
-        category: "RAM",
-        model: "Kingston HyperX Fury HX318C10FR/4",
-        serial: "",
-        capacity: "4 GB",
-        details: "DDR3-1866 CL10 · 1.5V · rojo",
-        replaceable: true,
-        year: "2016",
-        yearNote: "Fabricación según código 1646 de la etiqueta (probable)"
-      },
-      {
-        category: "RAM",
-        model: "Kingston HyperX Fury (rojo, etiqueta no legible)",
-        serial: "",
-        capacity: "",
-        details: "DDR3 · visto en la foto",
-        replaceable: true
-      },
-      {
-        category: "GPU",
-        model: "Tarjeta de video dedicada (por identificar)",
-        serial: "",
-        capacity: "",
-        details: "Instalada en la ranura PCIe x16",
-        replaceable: true
-      }
-    ],
     images: [
       {
         id: "img-a68hm-placa",
@@ -1143,6 +1665,184 @@ const DEFAULT_DEVICES = [
     updatedAt: "2026-11-02"
   },
   {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-msi-a68hm-e33-v2-placabase-1",
+    hardwareType: "PlacaBase",
+    brand: "MSI",
+    model: "MSI A68HM-E33 V2 (MS-7721)",
+    serial: "G716320033 33004",
+    capacity: "",
+    details: "VER 9.0 · chipset AMD A68H · socket FM2+",
+    replaceable: true,
+    imageUrl: "img/msi_a68hm-e33_v2_placa.jpg",
+    driverUrl: "https://www.google.com/search?q=MSI%20A68HM-E33%20V2%20(MS-7721)%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "2014",
+    status: "Instalada",
+    installedIn: "dev-pc-msi-a68hm-e33-v2",
+    history: [
+      {
+        date: "2024-05-11",
+        action: "Instalada",
+        deviceId: "dev-pc-msi-a68hm-e33-v2",
+        note: "Vista en una foto del equipo"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    year: "2014",
+    yearNote: "Año de lanzamiento del chipset AMD A68H",
+    features: [
+      {
+        label: "Formato",
+        value: "Micro-ATX"
+      },
+      {
+        label: "Socket / chipset",
+        value: "FM2+ · AMD A68H"
+      },
+      {
+        label: "Memoria",
+        value: "2 ranuras DDR3 · doble canal · hasta 32 GB · 1333 / 1600 / 1866 / 2133 (OC) MHz"
+      },
+      {
+        label: "Expansión",
+        value: "1 × PCIe 3.0 x16 · 1 × PCIe x1 (2.0 según algunas páginas regionales) · 1 × PCI"
+      },
+      {
+        label: "Almacenamiento",
+        value: "4 × SATA 6 Gb/s · RAID 0 / 1 / 10"
+      },
+      {
+        label: "USB",
+        value: "2 × USB 3.0 traseros · 6 × USB 2.0 (2 traseros, 4 internos)"
+      },
+      {
+        label: "Red",
+        value: "Realtek RTL8111G · 10/100/1000 Mb/s"
+      },
+      {
+        label: "Audio",
+        value: "Realtek ALC887 · 3 conectores traseros"
+      },
+      {
+        label: "Salidas de video",
+        value: "VGA (hasta 1920 × 1200 a 60 Hz) · HDMI (gráficos integrados del procesador)"
+      },
+      {
+        label: "Otros",
+        value: "PS/2 teclado y ratón · conector serie interno"
+      }
+    ],
+    featuresSource: {
+      url: "https://www.msi.com/Motherboard/a68hm-e33-v2/Specification",
+      date: "2026-11-02"
+    }
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-msi-a68hm-e33-v2-ram-1",
+    hardwareType: "RAM",
+    brand: "Kingston",
+    model: "Kingston HyperX Fury HX318C10FR/4",
+    serial: "",
+    capacity: "4 GB",
+    details: "DDR3-1866 CL10 · 1.5V · rojo",
+    replaceable: true,
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=Kingston%20HyperX%20Fury%20HX318C10FR%2F4%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "2016",
+    status: "Instalada",
+    installedIn: "dev-pc-msi-a68hm-e33-v2",
+    history: [
+      {
+        date: "2024-05-11",
+        action: "Instalada",
+        deviceId: "dev-pc-msi-a68hm-e33-v2",
+        note: "Vista en una foto del equipo"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    year: "2016",
+    yearNote: "Fabricación según código 1646 de la etiqueta (probable)"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-msi-a68hm-e33-v2-ram-2",
+    hardwareType: "RAM",
+    brand: "Kingston",
+    model: "Kingston HyperX Fury (rojo, etiqueta no legible)",
+    serial: "",
+    capacity: "",
+    details: "DDR3 · visto en la foto",
+    replaceable: true,
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=Kingston%20HyperX%20Fury%20(rojo%2C%20etiqueta%20no%20legible)%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "",
+    status: "Instalada",
+    installedIn: "dev-pc-msi-a68hm-e33-v2",
+    history: [
+      {
+        date: "2024-05-11",
+        action: "Instalada",
+        deviceId: "dev-pc-msi-a68hm-e33-v2",
+        note: "Vista en una foto del equipo"
+      }
+    ],
+    updatedAt: "2026-11-02"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    id: "pz-pc-msi-a68hm-e33-v2-gpu-1",
+    hardwareType: "GPU",
+    brand: "",
+    model: "Tarjeta de video dedicada (por identificar)",
+    serial: "",
+    capacity: "",
+    details: "Instalada en la ranura PCIe x16",
+    replaceable: true,
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=Tarjeta%20de%20video%20dedicada%20(por%20identificar)%20drivers%20soporte",
+    notes: "",
+    observaciones: "",
+    mfgDate: "",
+    status: "Instalada",
+    installedIn: "dev-pc-msi-a68hm-e33-v2",
+    history: [
+      {
+        date: "2024-05-11",
+        action: "Instalada",
+        deviceId: "dev-pc-msi-a68hm-e33-v2",
+        note: "Vista en una foto del equipo"
+      }
+    ],
+    updatedAt: "2026-11-02"
+  },
+  {
     assignedUser: "",
     location: "Hogar",
     windowsUser: "",
@@ -1151,7 +1851,7 @@ const DEFAULT_DEVICES = [
     id: "dev-hdd-wd10spzx-1tb",
     brand: "Western Digital",
     model: "WD Blue 1TB WD10SPZX (marcado 1)",
-    type: "Periférico",
+    type: "Pieza",
     serial: "WXN1AA821XCH",
     imageUrl: "img/hdd_wd10spzx_1tb_etiqueta.jpg",
     driverUrl: "https://www.westerndigital.com/support",
@@ -1173,7 +1873,19 @@ const DEFAULT_DEVICES = [
       }
     ],
     mfgDate: "2018-12-14",
-    hardwareType: "HDD"
+    hardwareType: "HDD",
+    kind: "pieza",
+    replaceable: true,
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada como pieza suelta"
+      }
+    ]
   },
   {
     assignedUser: "",
@@ -1184,7 +1896,7 @@ const DEFAULT_DEVICES = [
     id: "dev-hdd-wd10jpvx-1tb",
     brand: "Western Digital",
     model: "WD Blue 1TB WD10JPVX (marcado 2)",
-    type: "Periférico",
+    type: "Pieza",
     serial: "WX31A177YXJU",
     imageUrl: "img/hdd_wd10jpvx_1tb_etiqueta.jpg",
     driverUrl: "https://www.westerndigital.com/support",
@@ -1201,7 +1913,19 @@ const DEFAULT_DEVICES = [
       }
     ],
     mfgDate: "2017-02-10",
-    hardwareType: "HDD"
+    hardwareType: "HDD",
+    kind: "pieza",
+    replaceable: true,
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada como pieza suelta"
+      }
+    ]
   },
   {
     assignedUser: "",
@@ -1212,7 +1936,7 @@ const DEFAULT_DEVICES = [
     id: "dev-hdd-st1000lm024-1tb",
     brand: "Seagate (Samsung)",
     model: "Spinpoint M8 1TB ST1000LM024 (marcado 3)",
-    type: "Periférico",
+    type: "Pieza",
     serial: "S32HJ9HF204858",
     imageUrl: "img/hdd_st1000lm024_1tb_etiqueta.jpg",
     driverUrl: "https://www.seagate.com/support/",
@@ -1229,7 +1953,19 @@ const DEFAULT_DEVICES = [
       }
     ],
     mfgDate: "2011 (lanzamiento de la serie Spinpoint M8)",
-    hardwareType: "HDD"
+    hardwareType: "HDD",
+    kind: "pieza",
+    replaceable: true,
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada como pieza suelta"
+      }
+    ]
   },
   {
     assignedUser: "",
@@ -1240,7 +1976,7 @@ const DEFAULT_DEVICES = [
     id: "dev-hdd-toshiba-mq01acf050-500gb",
     brand: "Toshiba",
     model: "MQ01ACF050 500GB",
-    type: "Periférico",
+    type: "Pieza",
     serial: "54O9C6M8T",
     imageUrl: "img/hdd_toshiba_mq01acf050_500gb_etiqueta.jpg",
     driverUrl: "https://www.toshiba-storage.com/",
@@ -1257,7 +1993,19 @@ const DEFAULT_DEVICES = [
       }
     ],
     mfgDate: "2014-05-24",
-    hardwareType: "HDD"
+    hardwareType: "HDD",
+    kind: "pieza",
+    replaceable: true,
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada como pieza suelta"
+      }
+    ]
   },
   {
     assignedUser: "",
@@ -1268,7 +2016,7 @@ const DEFAULT_DEVICES = [
     id: "dev-hdd-wd7500bpvt-750gb",
     brand: "Western Digital",
     model: "WD Blue 750GB WD7500BPVT",
-    type: "Periférico",
+    type: "Pieza",
     serial: "WXD1E72EHP04",
     imageUrl: "img/hdd_wd7500bpvt_750gb_etiqueta.jpg",
     driverUrl: "https://www.westerndigital.com/support",
@@ -1285,7 +2033,19 @@ const DEFAULT_DEVICES = [
       }
     ],
     mfgDate: "2012-11-04",
-    hardwareType: "HDD"
+    hardwareType: "HDD",
+    kind: "pieza",
+    replaceable: true,
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada como pieza suelta"
+      }
+    ]
   },
   {
     assignedUser: "",
@@ -1296,7 +2056,7 @@ const DEFAULT_DEVICES = [
     id: "dev-ssd-samsung-850evo-500gb",
     brand: "Samsung",
     model: "SSD 850 EVO 500GB",
-    type: "Periférico",
+    type: "Pieza",
     serial: "S21HNXAGA21889H",
     imageUrl: "img/componente_ssd_samsung_850evo_500gb.jpg",
     driverUrl: "https://semiconductor.samsung.com/consumer-storage/support/tools/",
@@ -1315,10 +2075,27 @@ const DEFAULT_DEVICES = [
         id: "img-ssd-850evo-etiqueta",
         name: "Etiqueta",
         url: "img/ssd_samsung_850evo_500gb_etiqueta.jpg"
+      },
+      {
+        id: "img-ssd-850evo-etiqueta-b",
+        name: "Etiqueta (otra toma)",
+        url: "img/ssd_samsung_850evo_500gb_etiqueta_b.jpg"
       }
     ],
     mfgDate: "2014 (lanzamiento del 850 EVO)",
-    hardwareType: "SSD"
+    hardwareType: "SSD",
+    kind: "pieza",
+    replaceable: true,
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada como pieza suelta"
+      }
+    ]
   },
   {
     assignedUser: "",
@@ -1329,7 +2106,7 @@ const DEFAULT_DEVICES = [
     id: "dev-raid-inspur-yzca-00019-101",
     brand: "Inspur",
     model: "Tarjeta RAID/HBA SAS 6Gb/s YZCA-00019-101 (chip LSI)",
-    type: "Periférico",
+    type: "Pieza",
     serial: "QTE227E00948A07",
     imageUrl: "img/raid_inspur_yzca-00019-101_tarjeta.jpg",
     driverUrl: "https://www.broadcom.com/support/download-search",
@@ -1348,7 +2125,847 @@ const DEFAULT_DEVICES = [
       }
     ],
     mfgDate: "",
-    hardwareType: "RAID"
+    hardwareType: "RAID",
+    kind: "pieza",
+    replaceable: true,
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada como pieza suelta"
+      }
+    ]
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "65 W",
+    details: "19V ⎓ 3.42A",
+    notes: "",
+    mfgDate: "",
+    status: "Instalada",
+    installedIn: "dev-msi-modern14-b5m",
+    history: [
+      {
+        date: "2026-11-02",
+        action: "Instalada",
+        deviceId: "dev-msi-modern14-b5m",
+        note: "Asignado por número de parte MSI y alimentación 19V ⎓ 3.42A"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-cargador-msi-delta-adp-65gd",
+    hardwareType: "Cargador",
+    brand: "Delta (MSI)",
+    model: "ADP-65GD D",
+    serial: "6KJW131009B",
+    imageUrl: "img/msi_modern14_cargador_delta_adp-65gd.jpg",
+    driverUrl: "https://www.msi.com/support",
+    observaciones: "Datos de la etiqueta:\n• Modelo: ADP-65GD D (Delta Electronics)\n• Entrada: 100-240V ~ 1.5A, 50-60Hz · Salida: 19V ⎓ 3.42A, 65W\n• P/N MSI: S93-0401921-D04 · 20L10000308 · C.C.: 2L · REV: 02\n\nAsignado al MSI Modern 14 por su número de parte MSI (S93-…) y porque coincide con su alimentación (19V ⎓ 3.42A).",
+    images: [
+      {
+        id: "img-cargador-msi",
+        name: "Etiqueta",
+        url: "img/msi_modern14_cargador_delta_adp-65gd.jpg"
+      }
+    ]
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "4 GB",
+    details: "DDR3-1600 UDIMM (escritorio) · 1.5V",
+    notes: "",
+    mfgDate: "2015-12",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-ram-crucial-ct51264ba160bj",
+    hardwareType: "RAM",
+    brand: "Crucial",
+    model: "CT51264BA160BJ",
+    serial: "",
+    imageUrl: "img/ram_crucial_ct51264ba160bj_4gb.jpg",
+    driverUrl: "https://www.crucial.com/support",
+    observaciones: "Datos de la etiqueta:\n• CT51264BA160BJ.M8FED · 4GB DDR3-1600 UDIMM 1.5V\n• Lote: BL111PY.XT · fecha 201512 · 222995\n\nSin número de serie visible en la etiqueta.",
+    images: [
+      {
+        id: "img-ram-crucial",
+        name: "Etiqueta",
+        url: "img/ram_crucial_ct51264ba160bj_4gb.jpg"
+      }
+    ],
+    year: "2015"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "256 GB",
+    details: "NVMe PCIe M.2 2280",
+    notes: "",
+    mfgDate: "",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-ssd-kingston-om8pdp3256b",
+    hardwareType: "SSD",
+    brand: "Kingston",
+    model: "OM8PDP3256B-AI1",
+    serial: "50026B7684C27C10",
+    imageUrl: "img/ssd_kingston_om8pdp3256b_256gb.jpg",
+    driverUrl: "https://www.kingston.com/support",
+    observaciones: "Datos de la etiqueta:\n• OM8PDP3256B-AI1 · MN: OS20001 · EDFK0S03 · 9997366-910.A00GS0\n• 50026B7684C27C10 (se usa como número de serie) · código 2116 (probablemente semana 16 de 2021)\n• PSID: 50026B7684C27C10D584B232D55529AC\n\nModelo OEM de Kingston que se instala de fábrica en algunos laptops; podría ser el SSD original del MSI Modern 14 (confirmar).",
+    images: [
+      {
+        id: "img-ssd-kingston",
+        name: "Etiqueta",
+        url: "img/ssd_kingston_om8pdp3256b_256gb.jpg"
+      }
+    ],
+    year: "2021"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "256 GB",
+    details: "NVMe PCIe 3.0 x4 M.2 2280",
+    notes: "",
+    mfgDate: "2019-12-18",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-ssd-samsung-pm981a-256gb",
+    hardwareType: "SSD",
+    brand: "Samsung",
+    model: "PM981a MZVLB256HBHQ-000L2",
+    serial: "S4DXNF1MC57340",
+    imageUrl: "img/componente_ssd_samsung_pm981a_256gb.jpg",
+    driverUrl: "https://semiconductor.samsung.com/consumer-storage/support/tools/",
+    observaciones: "Datos de la etiqueta:\n• PN: MZVLB256HBHQ-000L2 · Model: MZ-VLB256B · SN: S4DXNF1MC57340\n• Fecha: 18DEC2019 · FW: 3L1QEXH7 · EUI64: 0025388C91D1E92E\n• Lenovo PN: SSS0T22292 (disco de un equipo Lenovo)\n\nImagen principal: comercial (Icecat); las fotos de la etiqueta están en la galería.",
+    images: [
+      {
+        id: "img-ssd-pm981a-comercial",
+        name: "Imagen comercial (Icecat)",
+        url: "img/componente_ssd_samsung_pm981a_256gb.jpg"
+      },
+      {
+        id: "img-ssd-pm981a-a",
+        name: "Etiqueta",
+        url: "img/ssd_samsung_pm981a_256gb_etiqueta.jpg"
+      },
+      {
+        id: "img-ssd-pm981a-b",
+        name: "Etiqueta (otra toma)",
+        url: "img/ssd_samsung_pm981a_256gb_etiqueta_b.jpg"
+      }
+    ],
+    year: "2019"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "4 GB",
+    details: "DDR3L-1600 SO-DIMM (laptop) · 1Rx8 · PC3L-12800S",
+    notes: "",
+    mfgDate: "",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-ram-samsung-m471b5173db0",
+    hardwareType: "RAM",
+    brand: "Samsung",
+    model: "M471B5173DB0-YK0",
+    serial: "",
+    imageUrl: "img/componente_ram_samsung_m471b5173db0.jpg",
+    driverUrl: "https://semiconductor.samsung.com/dram/module/",
+    observaciones: "Datos de la etiqueta:\n• 4GB 1Rx8 PC3L-12800S-11-13-B4 · M471B5173DB0-YK0 · código 1532 (semana 32 de 2015)\n\nLas dos fotos son del mismo módulo (anverso girado). Sin número de serie legible.\n\nImagen principal: comercial (Icecat).",
+    images: [
+      {
+        id: "img-ram-samsung-comercial",
+        name: "Imagen comercial (Icecat)",
+        url: "img/componente_ram_samsung_m471b5173db0.jpg"
+      },
+      {
+        id: "img-ram-samsung-a",
+        name: "Etiqueta",
+        url: "img/ram_samsung_m471b5173db0_4gb.jpg"
+      },
+      {
+        id: "img-ram-samsung-b",
+        name: "Etiqueta (otra toma)",
+        url: "img/ram_samsung_m471b5173db0_4gb_b.jpg"
+      }
+    ],
+    year: "2015"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "500 GB",
+    details: "2.5\" SATA 3 Gb/s · 5400 rpm",
+    notes: "",
+    mfgDate: "2014-01-16",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-hdd-wd5000lpvt",
+    hardwareType: "HDD",
+    brand: "Western Digital",
+    model: "WD Blue WD5000LPVT",
+    serial: "WX51AC352188",
+    imageUrl: "img/hdd_wd5000lpvt_500gb_etiqueta.jpg",
+    driverUrl: "https://www.google.com/search?q=Western%20Digital%20WD%20Blue%20WD5000LPVT%20support",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD5000LPVT-24G33T1 · S/N: WX51AC352188 · FW: 02.01A02\n• Fecha: 16 JAN 2014\n• Lenovo LI P/N: SH20D70211 · LC P/N: 16-200523 (disco de un equipo Lenovo)",
+    images: [
+      {
+        id: "img-pz-hdd-wd5000lpvt",
+        name: "Etiqueta",
+        url: "img/hdd_wd5000lpvt_500gb_etiqueta.jpg"
+      }
+    ],
+    year: "2014"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "500 GB",
+    details: "2.5\" SATA 6 Gb/s · 5400 rpm",
+    notes: "",
+    mfgDate: "2014-05-14",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-hdd-wd5000lpvx",
+    hardwareType: "HDD",
+    brand: "Western Digital",
+    model: "WD Blue WD5000LPVX",
+    serial: "WX41E34EVT17",
+    imageUrl: "img/hdd_wd5000lpvx_500gb_etiqueta.jpg",
+    driverUrl: "https://www.google.com/search?q=Western%20Digital%20WD%20Blue%20WD5000LPVX%20support",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD5000LPVX-22V0TT0 · S/N: WX41E34EVT17\n• Fecha: 14 MAY 2014 · DCM: EHKTJHN",
+    images: [
+      {
+        id: "img-pz-hdd-wd5000lpvx",
+        name: "Etiqueta",
+        url: "img/hdd_wd5000lpvx_500gb_etiqueta.jpg"
+      }
+    ],
+    year: "2014"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "500 GB",
+    details: "2.5\" SATA 3 Gb/s · 5400 rpm",
+    notes: "",
+    mfgDate: "2011-05-18",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-hdd-hitachi-hts547550a9e384",
+    hardwareType: "HDD",
+    brand: "Hitachi",
+    model: "Travelstar 5K750 HTS547550A9E384",
+    serial: "50G8837C",
+    imageUrl: "img/hdd_hitachi_hts547550a9e384_500gb_etiqueta.jpg",
+    driverUrl: "https://www.google.com/search?q=Hitachi%20Travelstar%205K750%20HTS547550A9E384%20support",
+    observaciones: "Datos de la etiqueta:\n• HTS547550A9E384 · P/N: 0J15081 · S/N: 50G8837C\n• Fecha: 18 MAY 2011\n• Etiqueta Samsung: MODEL NP-RV411-S06CL (disco de un laptop Samsung RV411)",
+    images: [
+      {
+        id: "img-pz-hdd-hitachi-hts547550a9e384",
+        name: "Etiqueta",
+        url: "img/hdd_hitachi_hts547550a9e384_500gb_etiqueta.jpg"
+      }
+    ],
+    year: "2011"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "500 GB",
+    details: "2.5\" SATA 3 Gb/s · 5400 rpm",
+    notes: "",
+    mfgDate: "2010-01-24",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-hdd-toshiba-mja2500bh",
+    hardwareType: "HDD",
+    brand: "Toshiba (Fujitsu)",
+    model: "MJA2500BH G2",
+    serial: "K90DTA12NDY1",
+    imageUrl: "img/hdd_toshiba_mja2500bh_500gb_etiqueta.jpg",
+    driverUrl: "https://www.google.com/search?q=Toshiba%20(Fujitsu)%20MJA2500BH%20G2%20support",
+    observaciones: "Datos de la etiqueta:\n• MODEL: MJA2500BH · TYPE: G2 · PART NO: CA07083-B341 · SER. NO: K90DTA12NDY1\n• Fecha: 2010-01-24 (marca Fujitsu, fabricado por Toshiba)",
+    images: [
+      {
+        id: "img-pz-hdd-toshiba-mja2500bh",
+        name: "Etiqueta",
+        url: "img/hdd_toshiba_mja2500bh_500gb_etiqueta.jpg"
+      }
+    ],
+    year: "2010"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "3 TB",
+    details: "3.5\" SATA 6 Gb/s · 64 MB caché",
+    notes: "",
+    mfgDate: "2012-06-07",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-hdd-wd30ezrx-wcawz2212479",
+    hardwareType: "HDD",
+    brand: "Western Digital",
+    model: "WD Caviar Green WD30EZRX",
+    serial: "WCAWZ2212479",
+    imageUrl: "img/hdd_wd30ezrx_3tb_wcawz2212479.jpg",
+    driverUrl: "https://www.google.com/search?q=Western%20Digital%20WD%20Caviar%20Green%20WD30EZRX%20support",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD30EZRX-00MMMB0 · S/N: WCAWZ2212479\n• Fecha: 07 JUN 2012 · DCM: HANCHV2AAB",
+    images: [
+      {
+        id: "img-wd30ezrx-2212479-a",
+        name: "Etiqueta",
+        url: "img/hdd_wd30ezrx_3tb_wcawz2212479.jpg"
+      },
+      {
+        id: "img-wd30ezrx-2212479-b",
+        name: "Etiqueta (otra toma)",
+        url: "img/hdd_wd30ezrx_3tb_wcawz2212479_b.jpg"
+      }
+    ],
+    year: "2012"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "3 TB",
+    details: "3.5\" SATA 6 Gb/s · 64 MB caché",
+    notes: "",
+    mfgDate: "2012-07-26",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-hdd-wd30ezrx-wcawz2268707",
+    hardwareType: "HDD",
+    brand: "Western Digital",
+    model: "WD Caviar Green WD30EZRX",
+    serial: "WCAWZ2268707",
+    imageUrl: "img/hdd_wd30ezrx_3tb_wcawz2268707.jpg",
+    driverUrl: "https://www.google.com/search?q=Western%20Digital%20WD%20Caviar%20Green%20WD30EZRX%20support",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD30EZRX-00MMMB0 · S/N: WCAWZ2268707 (lectura de la foto; confirmar)\n• Fecha: 26 JUL 2012 · DCM: HARCNT2AAB",
+    images: [
+      {
+        id: "img-pz-hdd-wd30ezrx-wcawz2268707",
+        name: "Etiqueta",
+        url: "img/hdd_wd30ezrx_3tb_wcawz2268707.jpg"
+      }
+    ],
+    year: "2012"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "2 TB",
+    details: "3.5\" SATA 6 Gb/s · 64 MB caché",
+    notes: "",
+    mfgDate: "2012-04-20",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-hdd-wd20earx-wmaza8396409",
+    hardwareType: "HDD",
+    brand: "Western Digital",
+    model: "WD Caviar Green WD20EARX",
+    serial: "WMAZA8396409",
+    imageUrl: "img/hdd_wd20earx_2tb_etiqueta.jpg",
+    driverUrl: "https://www.google.com/search?q=Western%20Digital%20WD%20Caviar%20Green%20WD20EARX%20support",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD20EARX-00PASB0 · S/N: WMAZA8396409\n• Fecha: 20 APR 2012 · DCM: HARNNT2CAB",
+    images: [
+      {
+        id: "img-pz-hdd-wd20earx-wmaza8396409",
+        name: "Etiqueta",
+        url: "img/hdd_wd20earx_2tb_etiqueta.jpg"
+      }
+    ],
+    year: "2012"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "2 TB",
+    details: "3.5\" SATA 3 Gb/s · 64 MB caché",
+    notes: "",
+    mfgDate: "2011-01-11",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-hdd-wd20ears-wmaza3635000",
+    hardwareType: "HDD",
+    brand: "Western Digital",
+    model: "WD Caviar Green WD20EARS (Respaldos)",
+    serial: "WMAZA3635000",
+    imageUrl: "img/hdd_wd20ears_2tb_etiqueta.jpg",
+    driverUrl: "https://www.google.com/search?q=Western%20Digital%20WD%20Caviar%20Green%20WD20EARS%20(Respaldos)%20support",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD20EARS-00MVWB0 · S/N: WMAZA3635000\n• Fecha: 11 JAN 2011 · DCM: HBRNHTJCB\n• Rotulado a mano: \"Respaldos\"",
+    images: [
+      {
+        id: "img-pz-hdd-wd20ears-wmaza3635000",
+        name: "Etiqueta",
+        url: "img/hdd_wd20ears_2tb_etiqueta.jpg"
+      }
+    ],
+    year: "2011"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "1 TB",
+    details: "3.5\" SATA 3 Gb/s · 32 MB caché · 7200 rpm",
+    notes: "",
+    mfgDate: "2009-07-19",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-hdd-wd1001fals-wmatv2575104",
+    hardwareType: "HDD",
+    brand: "Western Digital",
+    model: "WD Caviar Black WD1001FALS (Trabajo 1)",
+    serial: "WMATV2575104",
+    imageUrl: "img/hdd_wd1001fals_1tb_wmatv2575104.jpg",
+    driverUrl: "https://www.google.com/search?q=Western%20Digital%20WD%20Caviar%20Black%20WD1001FALS%20(Trabajo%201)%20support",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD1001FALS-00J7B1 · S/N: WMATV2575104\n• Fecha: 19 JUL 2009 · DCM: HBNNHV2AB\n• Rotulado a mano: \"Trabajo 1\"",
+    images: [
+      {
+        id: "img-pz-hdd-wd1001fals-wmatv2575104",
+        name: "Etiqueta",
+        url: "img/hdd_wd1001fals_1tb_wmatv2575104.jpg"
+      }
+    ],
+    year: "2009"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "1 TB",
+    details: "3.5\" SATA 3 Gb/s · 32 MB caché · 7200 rpm",
+    notes: "",
+    mfgDate: "2009-03-16",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-hdd-wd1001fals-wmatv1245731",
+    hardwareType: "HDD",
+    brand: "Western Digital",
+    model: "WD Caviar Black WD1001FALS",
+    serial: "WMATV1245731",
+    imageUrl: "img/hdd_wd1001fals_1tb_wmatv1245731.jpg",
+    driverUrl: "https://www.google.com/search?q=Western%20Digital%20WD%20Caviar%20Black%20WD1001FALS%20support",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD1001FALS-00J7B0 · S/N: WMATV1245731\n• Fecha: 16 MAR 2009 · DCM: HBNNNV2AB",
+    images: [
+      {
+        id: "img-pz-hdd-wd1001fals-wmatv1245731",
+        name: "Etiqueta",
+        url: "img/hdd_wd1001fals_1tb_wmatv1245731.jpg"
+      }
+    ],
+    year: "2009"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "460 W",
+    details: "ATX12V 2.3 · sin PFC activo · +12V: 18A + 18A",
+    notes: "",
+    mfgDate: "",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-fuente-coolermaster-rs-460-psar-j3",
+    hardwareType: "Fuente",
+    brand: "Cooler Master",
+    model: "RS-460-PSAR-J3",
+    serial: "",
+    imageUrl: "img/fuente_coolermaster_rs-460-psar-j3_etiqueta.jpg",
+    driverUrl: "https://www.google.com/search?q=Cooler%20Master%20RS-460-PSAR-J3",
+    observaciones: "Datos de la etiqueta:\n• Product No.: RS-460-PSAR-J3 · ATX 12V V2.3 · W/o PFC\n• Entrada: 110-120/220-240V~ 8.5/5A 60/50Hz\n• Salida: +3.3V 20A · +5V 20A · +12V1 18A · +12V2 18A · -12V 0.8A · +5VSB 2.5A · máx. 324W en +12V\n\nLa foto la muestra montada en un gabinete; queda En stock hasta saber en qué PC está. Sin número de serie visible.",
+    images: [
+      {
+        id: "img-pz-fuente-coolermaster-rs-460-psar-j3",
+        name: "Etiqueta",
+        url: "img/fuente_coolermaster_rs-460-psar-j3_etiqueta.jpg"
+      }
+    ]
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "600 W",
+    details: "80 PLUS Bronze · +12V: 46A (552W)",
+    notes: "",
+    mfgDate: "",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-fuente-deepcool-da600",
+    hardwareType: "Fuente",
+    brand: "Deepcool",
+    model: "DA600",
+    serial: "",
+    imageUrl: "img/fuente_deepcool_da600_etiqueta.jpg",
+    driverUrl: "https://www.google.com/search?q=Deepcool%20DA600",
+    observaciones: "Datos de la etiqueta:\n• Modelo: DA600 · 80 PLUS Bronze\n• Entrada: 100-240Vac 4.5-9A 47-63Hz\n• Salida: +3.3V 20A · +5V 17A · +12V 46A (552W) · -12V 0.3A · +5VSB 2.5A · total 600W\n\nLa foto la muestra montada en un gabinete; queda En stock hasta saber en qué PC está. Sin número de serie visible.",
+    images: [
+      {
+        id: "img-pz-fuente-deepcool-da600",
+        name: "Etiqueta",
+        url: "img/fuente_deepcool_da600_etiqueta.jpg"
+      }
+    ]
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "430 W",
+    details: "+12V: 18A · P/N W0070RU",
+    notes: "",
+    mfgDate: "",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-fuente-thermaltake-tr2-430w",
+    hardwareType: "Fuente",
+    brand: "Thermaltake",
+    model: "TR2-430W (TR2-430NP)",
+    serial: "",
+    imageUrl: "img/fuente_thermaltake_tr2-430w_etiqueta.jpg",
+    driverUrl: "https://www.google.com/search?q=Thermaltake%20TR2-430W%20(TR2-430NP)",
+    observaciones: "Datos de la etiqueta:\n• TR2-430NP · P/N W0070RU · Model: XP550NP\n• Entrada: 115V/10A, 230V/5A, 47-63Hz\n• Salida: +3.3V 28A · +5V 30A · +12V 18A · -5V 0.5A · -12V 0.8A · +5VSB 2A\n\nLa foto la muestra montada en un gabinete; queda En stock hasta saber en qué PC está. Sin número de serie visible.",
+    images: [
+      {
+        id: "img-pz-fuente-thermaltake-tr2-430w",
+        name: "Etiqueta",
+        url: "img/fuente_thermaltake_tr2-430w_etiqueta.jpg"
+      }
+    ]
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    hardwareType: "GPU",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    notes: "",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-gpu-asus-gtx650ti-dc2o-1gd5",
+    brand: "ASUS",
+    model: "GTX650TI-DC2O-1GD5 (GeForce GTX 650 Ti DirectCU II OC)",
+    serial: "D1C0YZ393584",
+    capacity: "1 GB",
+    details: "GDDR5 · 128 bits · PCIe 3.0 x16 · 2× DVI, HDMI",
+    imageUrl: "img/componente_gpu_asus_gtx650ti-dc2o.jpg",
+    driverUrl: "https://www.asus.com/supportonly/gtx650ti-dc2o-1gd5/helpdesk_download/",
+    observaciones: "Datos de la etiqueta:\n• GTX650TI-DC2O-1GD5 · S/N: D1C0YZ393584\n• Etiqueta de placa: GTX650 · 033085-02984 · YV03B1-A05 · Z38036\n\nCaracterísticas según tiendas y reseñas: 1 GB GDDR5 de 128 bits, núcleo a 954 MHz (OC de fábrica), PCIe 3.0 x16, salidas 2× DVI-D dual-link y HDMI.\n\nImagen principal: comercial (Icecat).",
+    images: [
+      {
+        id: "img-gtx650ti-comercial",
+        name: "Imagen comercial (Icecat)",
+        url: "img/componente_gpu_asus_gtx650ti-dc2o.jpg"
+      },
+      {
+        id: "img-gtx650ti-etiqueta",
+        name: "Etiqueta",
+        url: "img/gpu_asus_gtx650ti-dc2o-1gd5_etiqueta.jpg"
+      }
+    ],
+    mfgDate: "2012 (lanzamiento de la GTX 650 Ti)",
+    year: "2012",
+    yearNote: "Año de lanzamiento"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    hardwareType: "GPU",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    notes: "",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-gpu-evga-7800gtx-256-p2-n527-ax",
+    brand: "EVGA",
+    model: "e-GeForce 7800 GTX ACS3 (256-P2-N527-AX)",
+    serial: "68527003770",
+    capacity: "256 MB",
+    details: "GDDR3 · 256 bits · PCIe x16 · 2× DVI",
+    imageUrl: "img/gpu_evga_7800gtx_256-p2-n527-ax_etiqueta.jpg",
+    driverUrl: "https://www.nvidia.com/Download/index.aspx?lang=es",
+    observaciones: "Datos de la etiqueta:\n• e-GeForce 7800 GTX ACS3 · P/N: 256-P2-N527-AX · 256MB PCI-E · S/N: 68527003770\n• La etiqueta tiene los códigos de barras tachados con X.\n\nCaracterísticas según tiendas: núcleo a 470 MHz, 256 MB GDDR3 de 256 bits a 1200 MHz efectivos (38,4 GB/s), 2× DVI, PCIe x16.\n\nSin imagen comercial disponible (no está en Icecat); se usa la foto de la etiqueta. Drivers: NVIDIA ya no da soporte a la serie 7 en Windows actuales (último driver Legacy 307.83).",
+    images: [
+      {
+        id: "img-7800gtx-etiqueta",
+        name: "Etiqueta",
+        url: "img/gpu_evga_7800gtx_256-p2-n527-ax_etiqueta.jpg"
+      }
+    ],
+    mfgDate: "2005 (lanzamiento de la GeForce 7800 GTX)",
+    year: "2005",
+    yearNote: "Año de lanzamiento"
   }
 ];
 
@@ -1368,6 +2985,7 @@ let searchQuery = "";
 let currentView = localStorage.getItem("homeinfra_view") === "components" ? "components" : "devices";
 let currentComponentCategory = "ALL";
 let currentComponentSort = "default";
+let currentPieceStatus = "ALL";
 let currentLayout = localStorage.getItem("homeinfra_layout") === "list" ? "list" : "cards";
 const revealedPasswords = {};
 
@@ -1376,6 +2994,7 @@ const devicesGrid = document.getElementById("devices-grid");
 const componentsGrid = document.getElementById("components-grid");
 const componentsEmptyState = document.getElementById("components-empty-state");
 const componentCategoryFilter = document.getElementById("component-category-filter");
+const pieceStatusFilter = document.getElementById("piece-status-filter");
 const emptyState = document.getElementById("empty-state");
 const resultsCount = document.getElementById("results-count");
 const searchInput = document.getElementById("search-input");
@@ -1694,6 +3313,12 @@ function bindEvents() {
       render();
     });
   }
+  if (pieceStatusFilter) {
+    pieceStatusFilter.addEventListener("change", (e) => {
+      currentPieceStatus = e.target.value;
+      render();
+    });
+  }
   const componentSortSelect = document.getElementById("component-sort-select");
   if (componentSortSelect) {
     componentSortSelect.addEventListener("change", (e) => {
@@ -1835,6 +3460,7 @@ const HARDWARE_TYPES = {
   GPU: { emoji: "🎮", short: "GPU", label: "Tarjeta de video (GPU)" },
   RAID: { emoji: "🎛️", short: "RAID", label: "Controladora RAID / HBA" },
   Cargador: { emoji: "🔌", short: "Cargador", label: "Cargador" },
+  Fuente: { emoji: "⚡", short: "Fuente", label: "Fuente de poder" },
   CPU: { emoji: "⚙️", short: "CPU", label: "Procesador (CPU)" },
   RAM: { emoji: "🧠", short: "RAM", label: "Memoria RAM" },
   PlacaBase: { emoji: "🔲", short: "Placa base", label: "Placa base" },
@@ -1867,6 +3493,7 @@ function getDeviceHwType(dev) {
  * Tipo de hardware de un componente según su categoría (almacenamiento se separa en HDD y SSD)
  */
 function getComponentHwType(comp) {
+  if (comp.hardwareType && HARDWARE_TYPES[comp.hardwareType]) return comp.hardwareType;
   switch (comp.category) {
     case "CPU": return "CPU";
     case "RAM": return "RAM";
@@ -1955,19 +3582,19 @@ function buildComponentsTable(list) {
     const detail = [c.capacity, c.details].filter(Boolean).join(" · ");
     const year = getComponentYear(c);
     return `
-      <tr onclick="openDeviceDetailModal('${escapeHtml(c.parent.id)}')" title="Ver ficha de ${escapeHtml(c.parent.brand)} ${escapeHtml(c.parent.model)}">
+      <tr onclick="openDeviceDetailModal('${escapeHtml(c.id)}')" title="Ver ficha de la pieza">
         <td class="col-type"><span class="list-emoji">${hw.emoji}</span> ${escapeHtml(key === "Otro" ? c.category : hw.short)}</td>
-        <td class="col-name">${escapeHtml(c.model || "Sin modelo")}${c.benchmark ? `<div class="list-sub">🏁 Multi ${formatBenchmark(c.benchmark.multi)} · Mono ${formatBenchmark(c.benchmark.single)}</div>` : ""}</td>
+        <td class="col-name">${c.brand && !(c.model || "").toLowerCase().includes(c.brand.toLowerCase()) ? `<strong>${escapeHtml(c.brand)}</strong> ` : ""}${escapeHtml(c.model || "Sin modelo")}${c.benchmark ? `<div class="list-sub">🏁 Multi ${formatBenchmark(c.benchmark.multi)} · Mono ${formatBenchmark(c.benchmark.single)}</div>` : ""}</td>
         <td class="col-specs">${escapeHtml(detail) || "—"}</td>
         <td class="col-serial">${escapeHtml(c.serial || "—")}</td>
         <td class="col-year">${year || "—"}</td>
-        <td class="col-place">${escapeHtml(c.parent.brand)} ${escapeHtml(c.parent.model)}<div class="list-sub">${c.replaceable ? "Reemplazable" : "Integrado"}</div></td>
+        <td class="col-place"><span class="piece-status status-${statusSlug(c.status)}">${escapeHtml(c.status || "Sin estado")}</span>${c.parent ? `<div>${escapeHtml(c.parent.brand)} ${escapeHtml(c.parent.model)}</div>` : ""}</td>
       </tr>`;
   }).join("");
   return `
     <div class="inventory-table-wrap">
       <table class="inventory-table">
-        <thead><tr><th>Tipo</th><th>Componente</th><th>Capacidad / detalles</th><th>N.º de serie</th><th>Año</th><th>Instalado en</th></tr></thead>
+        <thead><tr><th>Tipo</th><th>Pieza</th><th>Capacidad / detalles</th><th>N.º de serie</th><th>Año</th><th>Estado / equipo</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
     </div>`;
@@ -2036,14 +3663,14 @@ function compareBenchmarks(benchA, benchB, [key, dir]) {
  * Benchmark de CPU de un equipo (especificaciones o componente CPU)
  */
 function getCpuBenchmark(dev) {
-  return dev.specs?.cpu?.benchmark || (dev.components || []).find((c) => c.category === "CPU" && c.benchmark)?.benchmark || null;
+  return dev.specs?.cpu?.benchmark || getPiecesOf(dev).find((p) => p.hardwareType === "CPU" && p.benchmark)?.benchmark || null;
 }
 
 /**
  * Año de lanzamiento o fabricación de un componente (o del equipo enlazado, ej. un cargador)
  */
 function getComponentYear(comp) {
-  const source = comp.year || (comp.deviceId ? devices.find((d) => d.id === comp.deviceId)?.mfgDate : "") || "";
+  const source = comp.year || comp.mfgDate || "";
   const match = String(source).match(/\b(19\d\d|20\d\d)\b/);
   return match ? parseInt(match[1], 10) : null;
 }
@@ -2185,19 +3812,35 @@ function getDeviceUsers(dev) {
   return users;
 }
 
+// Estados del ciclo de vida de una pieza
+const PIECE_STATUSES = ["Instalada", "En stock", "En reparación", "Retirada", "Dada de baja"];
+
 /**
- * Accesorios enlazados a otro equipo (ej. el cargador de un laptop): se ven dentro de ese equipo
- * y en la vista de componentes, no como equipo completo aparte
+ * Las piezas (CPU, RAM, discos, GPU, cargadores...) son registros propios con kind "pieza"
  */
-function isLinkedAccessory(dev) {
-  return devices.some((owner) => (owner.components || []).some((c) => c.deviceId === dev.id));
+function isPiece(dev) {
+  return dev.kind === "pieza";
 }
 
 /**
- * Equipos completos: todos menos los accesorios enlazados
+ * Equipos completos: todo lo que no es pieza
  */
 function getCompleteDevices() {
-  return devices.filter((dev) => !isLinkedAccessory(dev));
+  return devices.filter((dev) => !isPiece(dev));
+}
+
+/**
+ * Piezas instaladas actualmente en un equipo
+ */
+function getPiecesOf(dev) {
+  return devices.filter((p) => isPiece(p) && p.installedIn === dev.id);
+}
+
+/**
+ * Piezas que estuvieron en un equipo y ya no lo están (según su historial)
+ */
+function getFormerPiecesOf(dev) {
+  return devices.filter((p) => isPiece(p) && p.installedIn !== dev.id && (p.history || []).some((h) => h.deviceId === dev.id));
 }
 
 /**
@@ -2254,7 +3897,7 @@ function applyViewVisibility() {
   document.querySelectorAll(".devices-only").forEach((el) => { el.style.display = isComponents ? "none" : ""; });
   document.querySelectorAll(".components-only").forEach((el) => { el.style.display = isComponents ? "" : "none"; });
   searchInput.placeholder = isComponents
-    ? "Buscar componente por modelo, serie, categoría o equipo..."
+    ? "Buscar pieza por modelo, serie, tipo, estado o equipo..."
     : "Buscar por marca, modelo, serie o asignado...";
   if (isComponents) {
     devicesGrid.style.display = "none";
@@ -2266,14 +3909,14 @@ function applyViewVisibility() {
 }
 
 /**
- * Lista plana de componentes de todos los equipos, con su equipo de origen
+ * Lista de piezas con su categoría legible y el equipo donde están instaladas (o null)
  */
 function getAllComponents() {
-  const list = [];
-  devices.forEach((dev) => {
-    (dev.components || []).forEach((comp) => list.push({ ...comp, parent: dev }));
-  });
-  return list;
+  return devices.filter(isPiece).map((p) => ({
+    ...p,
+    category: HARDWARE_TYPES[p.hardwareType]?.short || p.type,
+    parent: p.installedIn ? devices.find((d) => d.id === p.installedIn) || null : null
+  }));
 }
 
 /**
@@ -2290,29 +3933,26 @@ function updateComponentCategoryOptions() {
       typeFilter, getCompleteDevices().map(getDeviceHwType), "Todos los tipos", currentFilterType
     );
   }
+  if (pieceStatusFilter) {
+    const counts = {};
+    getAllComponents().forEach((p) => { counts[p.status] = (counts[p.status] || 0) + 1; });
+    pieceStatusFilter.innerHTML = '<option value="ALL">Todos los estados</option>'
+      + PIECE_STATUSES.filter((s) => counts[s]).map((s) => `<option value="${s}">${s} (${counts[s]})</option>`).join("");
+    if (!counts[currentPieceStatus]) currentPieceStatus = "ALL";
+    pieceStatusFilter.value = currentPieceStatus;
+  }
 }
 
 /**
- * Componentes relacionados por deviceId: cargador de un laptop, o laptop de un cargador
+ * Piezas destacadas en la tarjeta de un equipo (ej. el cargador de un laptop)
  */
 function getLinkedRows(dev) {
-  const rows = [];
-  (dev.components || []).filter((c) => c.category === "Cargador").forEach((c) => {
-    rows.push({
-      icon: "🔌",
-      label: "Cargador",
-      text: [c.model, c.capacity, c.details].filter(Boolean).join(" · "),
-      targetId: devices.some((d) => d.id === c.deviceId) ? c.deviceId : null
-    });
-  });
-  devices.forEach((owner) => {
-    (owner.components || []).forEach((c) => {
-      if (c.deviceId === dev.id) {
-        rows.push({ icon: "💻", label: `${c.category} de`, text: `${owner.brand} ${owner.model}`, targetId: owner.id });
-      }
-    });
-  });
-  return rows;
+  return getPiecesOf(dev).filter((p) => p.hardwareType === "Cargador").map((p) => ({
+    icon: "🔌",
+    label: "Cargador",
+    text: [p.brand, p.model.replace(/\s*\(.*\)$/, ""), p.capacity, p.details].filter(Boolean).join(" · "),
+    targetId: p.id
+  }));
 }
 
 /**
@@ -2322,8 +3962,9 @@ function renderComponentsGrid() {
   const all = getAllComponents();
   const filtered = all.filter((c) => {
     if (currentComponentCategory !== "ALL" && getComponentHwType(c) !== currentComponentCategory) return false;
+    if (currentPieceStatus !== "ALL" && c.status !== currentPieceStatus) return false;
     if (searchQuery) {
-      const target = `${c.category} ${c.model} ${c.serial || ""} ${c.capacity || ""} ${c.details || ""} ${c.parent.brand} ${c.parent.model}`.toLowerCase();
+      const target = `${c.category} ${c.brand || ""} ${c.model} ${c.serial || ""} ${c.capacity || ""} ${c.details || ""} ${c.status || ""} ${c.parent ? `${c.parent.brand} ${c.parent.model}` : ""}`.toLowerCase();
       if (!target.includes(searchQuery)) return false;
     }
     return true;
@@ -2339,7 +3980,7 @@ function renderComponentsGrid() {
     ));
   }
 
-  resultsCount.textContent = `Mostrando ${filtered.length} de ${all.length} componente${all.length === 1 ? "" : "s"}`;
+  resultsCount.textContent = `Mostrando ${filtered.length} de ${all.length} pieza${all.length === 1 ? "" : "s"}`;
   componentsGrid.innerHTML = "";
 
   if (filtered.length === 0) {
@@ -2356,61 +3997,86 @@ function renderComponentsGrid() {
     return;
   }
 
-  filtered.forEach((c) => {
-    const card = document.createElement("div");
-    card.className = "device-card device-card-compact component-card";
-    card.style.setProperty("--card-accent-color", c.replaceable ? "#fbbf24" : "#94a3b8");
-    card.title = `Instalado en ${c.parent.brand} ${c.parent.model}`;
-    card.addEventListener("click", () => openDeviceDetailModal(c.parent.id));
+  filtered.forEach((c) => componentsGrid.appendChild(createComponentCard(c)));
+}
 
-    const linked = c.deviceId && devices.some((d) => d.id === c.deviceId)
-      ? `<button type="button" class="card-linked-row" onclick="event.stopPropagation(); openDeviceDetailModal('${escapeHtml(c.deviceId)}')">📄 Ver ficha del ${escapeHtml(c.category.toLowerCase())} ➔</button>`
-      : "";
+/**
+ * Clase CSS de un estado de pieza
+ */
+function statusSlug(status) {
+  return String(status || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/s+/g, "-");
+}
 
-    // Imagen propia del componente, o la del equipo enlazado (ej. un cargador registrado aparte)
-    const linkedDevice = c.deviceId ? devices.find((d) => d.id === c.deviceId) : null;
-    const compImage = c.imageUrl || linkedDevice?.imageUrl || "";
-    const compYear = getComponentYear(c);
-    // Características oficiales (puertos, tasas de transferencia, etc.) en un desplegable
-    const featuresHtml = Array.isArray(c.features) && c.features.length > 0
-      ? `<details class="component-features" onclick="event.stopPropagation()">
-           <summary>📋 Características (${c.features.length})</summary>
-           <dl>${c.features.map((ft) => `<dt>${escapeHtml(ft.label)}</dt><dd>${escapeHtml(ft.value)}</dd>`).join("")}</dl>
-           ${c.featuresSource ? `<a href="${escapeHtml(c.featuresSource.url)}" target="_blank" rel="noopener">Fuente oficial${c.featuresSource.date ? ` (${escapeHtml(c.featuresSource.date)})` : ""}</a>` : ""}
-         </details>`
-      : "";
-    const thumbHtml = compImage
-      ? `<div class="card-thumbnail-wrap">
-           <img src="${escapeHtml(compImage)}" alt="${escapeHtml(c.model)}" class="card-thumbnail" loading="lazy" onerror="this.parentElement.style.display='none'">
-         </div>`
-      : "";
+/**
+ * Elementos integrados que viven dentro de una pieza o equipo (no se gestionan por separado)
+ */
+function integratedListHtml(list) {
+  if (!Array.isArray(list) || list.length === 0) return "";
+  const items = list.map((x) => `${HARDWARE_TYPES[x.hardwareType]?.emoji || "📦"} ${escapeHtml(x.model)}`).join(" · ");
+  return `<div class="integrated-list" title="Integrado: vive dentro de esta pieza y no se gestiona por separado"><strong>Integra:</strong> ${items}</div>`;
+}
 
-    card.innerHTML = `
-      <div class="card-main-body">
-        ${thumbHtml}
-        <div class="card-headings">
-          <div class="card-type-row">
-            <span class="device-badge badge-other">${HARDWARE_TYPES[getComponentHwType(c)].emoji} ${escapeHtml(getComponentHwType(c) === "Otro" ? c.category : HARDWARE_TYPES[getComponentHwType(c)].short)}</span>
-            <span class="spec-pill ${c.replaceable ? "pill-replaceable" : "pill-integrated"}">${c.replaceable ? "Reemplazable" : "Integrado"}</span>
-            ${compYear ? `<span class="spec-pill pill-year" title="${escapeHtml(c.yearNote || "Año de lanzamiento o fabricación")}">${compYear}</span>` : ""}
-          </div>
-          <h3 class="card-model-title" title="${escapeHtml(c.model)}">${escapeHtml(c.model || "Sin modelo")}</h3>
+/**
+ * Estado de una pieza y, si está instalada, enlace al equipo
+ */
+function pieceLocationHtml(p) {
+  const status = `<span class="piece-status status-${statusSlug(p.status)}">${escapeHtml(p.status || "Sin estado")}</span>`;
+  if (!p.parent) return `<div class="card-linked-row piece-location">${status}</div>`;
+  return `<button type="button" class="card-linked-row piece-location" title="Abrir ficha del equipo" onclick="event.stopPropagation(); openDeviceDetailModal('${escapeHtml(p.parent.id)}')">${status}<span>en <strong>${escapeHtml(p.parent.brand)} ${escapeHtml(p.parent.model)}</strong></span><span class="linked-arrow">➔</span></button>`;
+}
+
+/**
+ * Tarjeta de una pieza (vista Piezas)
+ */
+function createComponentCard(c) {
+  const card = document.createElement("div");
+  card.className = "device-card device-card-compact component-card";
+  card.style.setProperty("--card-accent-color", c.status === "Instalada" ? "#34d399" : "#fbbf24");
+  card.title = "Ver ficha de la pieza";
+  card.addEventListener("click", () => openDeviceDetailModal(c.id));
+
+  const compImage = c.imageUrl || "";
+  const compYear = getComponentYear(c);
+  // Características oficiales (puertos, tasas de transferencia, etc.) en un desplegable
+  const featuresHtml = Array.isArray(c.features) && c.features.length > 0
+    ? `<details class="component-features" onclick="event.stopPropagation()">
+         <summary>📋 Características (${c.features.length})</summary>
+         <dl>${c.features.map((ft) => `<dt>${escapeHtml(ft.label)}</dt><dd>${escapeHtml(ft.value)}</dd>`).join("")}</dl>
+         ${c.featuresSource ? `<a href="${escapeHtml(c.featuresSource.url)}" target="_blank" rel="noopener">Fuente oficial${c.featuresSource.date ? ` (${escapeHtml(c.featuresSource.date)})` : ""}</a>` : ""}
+       </details>`
+    : "";
+  const thumbHtml = compImage
+    ? `<div class="card-thumbnail-wrap">
+         <img src="${escapeHtml(compImage)}" alt="${escapeHtml(c.model)}" class="card-thumbnail" loading="lazy" onerror="this.parentElement.style.display='none'">
+       </div>`
+    : "";
+
+  card.innerHTML = `
+    <div class="card-main-body">
+      ${thumbHtml}
+      <div class="card-headings">
+        <div class="card-type-row">
+          <span class="device-badge badge-other">${HARDWARE_TYPES[getComponentHwType(c)].emoji} ${escapeHtml(getComponentHwType(c) === "Otro" ? c.category : HARDWARE_TYPES[getComponentHwType(c)].short)}</span>
+          ${compYear ? `<span class="spec-pill pill-year" title="${escapeHtml(c.yearNote || "Año de lanzamiento o fabricación")}">${compYear}</span>` : ""}
         </div>
+        ${c.brand && !(c.model || "").toLowerCase().includes(c.brand.toLowerCase()) ? `<div class="card-brand-label">${escapeHtml(c.brand)}</div>` : ""}
+        <h3 class="card-model-title" title="${escapeHtml(c.model)}">${escapeHtml(c.model || "Sin modelo")}</h3>
       </div>
-      <div class="card-specs-summary">
-        ${c.capacity ? `<span class="compact-spec-pill">${escapeHtml(c.capacity)}</span>` : ""}
-        ${c.details ? `<span class="compact-spec-pill">${escapeHtml(c.details)}</span>` : ""}
-        ${c.benchmark ? `<span class="compact-spec-pill pill-benchmark" title="${escapeHtml(c.benchmark.source || "Benchmark")}: multinúcleo / mononúcleo">🏁 Multi ${formatBenchmark(c.benchmark.multi)} · Mono ${formatBenchmark(c.benchmark.single)}</span>` : ""}
-      </div>
-      ${linked}
-      ${featuresHtml}
-      <div class="card-compact-footer">
-        <span class="card-serial-text" title="Número de serie">${c.serial ? `S/N ${escapeHtml(c.serial)}` : "Sin S/N"}</span>
-        <span class="btn-card-detail-hint" title="Equipo donde está instalado">${escapeHtml(c.parent.brand)} ${escapeHtml(c.parent.model)} ➔</span>
-      </div>
-    `;
-    componentsGrid.appendChild(card);
-  });
+    </div>
+    <div class="card-specs-summary">
+      ${c.capacity ? `<span class="compact-spec-pill">${escapeHtml(c.capacity)}</span>` : ""}
+      ${c.details ? `<span class="compact-spec-pill">${escapeHtml(c.details)}</span>` : ""}
+      ${c.benchmark ? `<span class="compact-spec-pill pill-benchmark" title="${escapeHtml(c.benchmark.source || "Benchmark")}: multinúcleo / mononúcleo">🏁 Multi ${formatBenchmark(c.benchmark.multi)} · Mono ${formatBenchmark(c.benchmark.single)}</span>` : ""}
+    </div>
+    ${integratedListHtml(c.integrated)}
+    ${pieceLocationHtml(c)}
+    ${featuresHtml}
+    <div class="card-compact-footer">
+      <span class="card-serial-text" title="Número de serie">${c.serial ? `S/N ${escapeHtml(c.serial)}` : "Sin S/N"}</span>
+      <span class="btn-card-detail-hint">Ver ficha ➔</span>
+    </div>
+  `;
+  return card;
 }
 
 /**
@@ -3412,6 +5078,7 @@ window.openDeviceDetailModal = function (deviceId) {
       ${officeHtml}
       ${suppliesHtml}
       ${specsHtml}
+      ${isPiece(dev) ? buildPieceRelationHtml(dev) : buildInstalledPiecesHtml(dev)}
       ${dev.imageUrl ? metaGridHtml : ""}
       ${notesHtml}
       ${obsHtml}
@@ -3423,6 +5090,170 @@ window.openDeviceDetailModal = function (deviceId) {
     deviceDetailModal.classList.add("active");
     deviceDetailModal.scrollTop = 0;
   }
+};
+
+/**
+ * Nombre corto de un equipo por id
+ */
+function deviceName(id) {
+  const d = devices.find((x) => x.id === id);
+  return d ? `${d.brand} ${d.model}` : (id || "—");
+}
+
+/**
+ * Ficha de una pieza: estado, equipo, integrados, características, acciones e historial
+ */
+function buildPieceRelationHtml(p) {
+  const parent = p.installedIn ? devices.find((d) => d.id === p.installedIn) : null;
+  const today = new Date().toISOString().split("T")[0];
+  const targets = getCompleteDevices().filter((d) => d.id !== p.installedIn);
+  const history = (p.history || []).slice().sort((x, y) => (y.date || "").localeCompare(x.date || ""));
+  const info = [p.capacity, p.details].filter(Boolean).join(" · ");
+  const features = Array.isArray(p.features) && p.features.length
+    ? `<dl class="piece-features">${p.features.map((ft) => `<dt>${escapeHtml(ft.label)}</dt><dd>${escapeHtml(ft.value)}</dd>`).join("")}</dl>
+       ${p.featuresSource ? `<a href="${escapeHtml(p.featuresSource.url)}" target="_blank" rel="noopener">Fuente oficial (${escapeHtml(p.featuresSource.date || "")})</a>` : ""}`
+    : "";
+  const historyRows = history.map((h) => `
+    <tr>
+      <td>${escapeHtml(h.date || "—")}</td>
+      <td>${escapeHtml(h.action)}</td>
+      <td>${h.deviceId ? `<button type="button" class="link-btn" onclick="openDeviceDetailModal('${escapeHtml(h.deviceId)}')">${escapeHtml(deviceName(h.deviceId))}</button>` : "—"}</td>
+      <td>${escapeHtml(h.note || "")}</td>
+    </tr>`).join("");
+
+  return `
+    <div class="piece-relation">
+      <div class="observaciones-title">🔗 Relación con equipos</div>
+      <div class="piece-relation-status">
+        <span class="piece-status status-${statusSlug(p.status)}">${escapeHtml(p.status || "Sin estado")}</span>
+        ${parent ? `<span>en <button type="button" class="link-btn" onclick="openDeviceDetailModal('${escapeHtml(parent.id)}')">${escapeHtml(parent.brand)} ${escapeHtml(parent.model)} ➔</button></span>` : ""}
+      </div>
+      ${info ? `<div class="piece-info">${escapeHtml(info)}</div>` : ""}
+      ${p.benchmark ? `<div class="piece-info">🏁 ${escapeHtml(p.benchmark.source)}: multinúcleo <strong>${formatBenchmark(p.benchmark.multi)}</strong> · mononúcleo <strong>${formatBenchmark(p.benchmark.single)}</strong></div>` : ""}
+      ${integratedListHtml(p.integrated)}
+      ${features}
+
+      <div class="piece-actions">
+        <div class="piece-action-row">
+          <label>Fecha <input type="date" id="piece-action-date" value="${today}"></label>
+          <label class="piece-note">Nota <input type="text" id="piece-action-note" placeholder="Motivo o detalle (opcional)"></label>
+        </div>
+        <div class="piece-action-row">
+          <select id="piece-install-target">
+            <option value="">Elegir equipo…</option>
+            ${targets.map((d) => `<option value="${escapeHtml(d.id)}">${HARDWARE_TYPES[getDeviceHwType(d)].emoji} ${escapeHtml(d.brand)} ${escapeHtml(d.model)}</option>`).join("")}
+          </select>
+          <button type="button" class="btn btn-primary" onclick="installPiece('${escapeHtml(p.id)}')">${parent ? "Mover a este equipo" : "Instalar"}</button>
+        </div>
+        <div class="piece-action-row">
+          <select id="piece-new-status">
+            ${PIECE_STATUSES.filter((s) => s !== "Instalada").map((s) => `<option value="${s}">${s}</option>`).join("")}
+          </select>
+          <button type="button" class="btn btn-secondary" onclick="changePieceStatus('${escapeHtml(p.id)}')">${parent ? "Retirar del equipo" : "Cambiar estado"}</button>
+        </div>
+      </div>
+
+      <div class="observaciones-title" style="margin-top: 1rem;">🕓 Historial</div>
+      ${history.length
+        ? `<table class="piece-history"><thead><tr><th>Fecha</th><th>Movimiento</th><th>Equipo</th><th>Nota</th></tr></thead><tbody>${historyRows}</tbody></table>`
+        : `<p class="piece-info">Sin movimientos registrados.</p>`}
+    </div>`;
+}
+
+/**
+ * Ficha de un equipo: piezas instaladas, integrados y piezas que estuvieron antes
+ */
+function buildInstalledPiecesHtml(dev) {
+  const pieces = getPiecesOf(dev);
+  const former = getFormerPiecesOf(dev);
+  const integratedHost = integratedListHtml(dev.integrated);
+  if (!pieces.length && !former.length && !integratedHost) return "";
+  const hwOf = (p) => HARDWARE_TYPES[p.hardwareType] || HARDWARE_TYPES.Otro;
+  const nameOf = (p) => `${p.brand && !(p.model || "").toLowerCase().includes(p.brand.toLowerCase()) ? `<strong>${escapeHtml(p.brand)}</strong> ` : ""}${escapeHtml(p.model)}`;
+  const rows = pieces.map((p) => {
+    const detail = [p.capacity, p.details].filter(Boolean).join(" · ");
+    const integrated = (p.integrated || []).map((x) => `${HARDWARE_TYPES[x.hardwareType]?.emoji || "📦"} ${escapeHtml(x.model)}`).join(" · ");
+    return `<tr onclick="openDeviceDetailModal('${escapeHtml(p.id)}')" title="Ver ficha de la pieza">
+      <td class="col-type"><span class="list-emoji">${hwOf(p).emoji}</span> ${escapeHtml(hwOf(p).short)}</td>
+      <td>${nameOf(p)}${integrated ? `<div class="list-sub">Integra: ${integrated}</div>` : ""}</td>
+      <td>${escapeHtml(detail) || "—"}</td>
+      <td class="col-serial">${escapeHtml(p.serial || "—")}</td>
+    </tr>`;
+  }).join("");
+  const formerRows = former.map((p) => {
+    const last = (p.history || []).filter((h) => h.deviceId === dev.id).pop();
+    return `<tr onclick="openDeviceDetailModal('${escapeHtml(p.id)}')" title="Ver ficha de la pieza">
+      <td class="col-type"><span class="list-emoji">${hwOf(p).emoji}</span> ${escapeHtml(hwOf(p).short)}</td>
+      <td>${nameOf(p)}</td>
+      <td>${escapeHtml(last ? `${last.action} · ${last.date}` : "")}</td>
+      <td><span class="piece-status status-${statusSlug(p.status)}">${escapeHtml(p.status)}</span></td>
+    </tr>`;
+  }).join("");
+
+  return `
+    <div class="piece-relation">
+      <div class="observaciones-title">🧩 Piezas instaladas (${pieces.length})</div>
+      ${integratedHost}
+      ${pieces.length
+        ? `<table class="piece-history"><thead><tr><th>Tipo</th><th>Pieza</th><th>Detalles</th><th>N.º de serie</th></tr></thead><tbody>${rows}</tbody></table>`
+        : `<p class="piece-info">Sin piezas registradas por separado.</p>`}
+      ${former.length
+        ? `<div class="observaciones-title" style="margin-top: 1rem;">🕓 Piezas que estuvieron en este equipo</div>
+           <table class="piece-history"><thead><tr><th>Tipo</th><th>Pieza</th><th>Último movimiento aquí</th><th>Estado actual</th></tr></thead><tbody>${formerRows}</tbody></table>`
+        : ""}
+    </div>`;
+}
+
+/**
+ * Registrar un movimiento en el historial de una pieza
+ */
+function recordPieceMovement(piece, entry) {
+  piece.history = [...(piece.history || []), entry];
+  piece.updatedAt = new Date().toISOString().split("T")[0];
+}
+
+/**
+ * Instalar una pieza en un equipo (o moverla desde otro)
+ */
+window.installPiece = function (pieceId) {
+  const piece = devices.find((d) => d.id === pieceId);
+  const target = document.getElementById("piece-install-target")?.value;
+  if (!piece || !target) {
+    showToast("Elige el equipo donde se instalará la pieza");
+    return;
+  }
+  const date = document.getElementById("piece-action-date")?.value || new Date().toISOString().split("T")[0];
+  const note = document.getElementById("piece-action-note")?.value.trim() || "";
+  if (piece.installedIn && piece.installedIn !== target) {
+    recordPieceMovement(piece, { date, action: "Retirada", deviceId: piece.installedIn, note: `Movida a ${deviceName(target)}` });
+  }
+  piece.installedIn = target;
+  piece.status = "Instalada";
+  recordPieceMovement(piece, { date, action: "Instalada", deviceId: target, note });
+  saveDevices();
+  render();
+  openDeviceDetailModal(pieceId);
+  showToast(`Pieza instalada en ${deviceName(target)}`);
+};
+
+/**
+ * Retirar una pieza de su equipo o cambiar su estado (en stock, reparación, retirada, baja)
+ */
+window.changePieceStatus = function (pieceId) {
+  const piece = devices.find((d) => d.id === pieceId);
+  const status = document.getElementById("piece-new-status")?.value;
+  if (!piece || !status) return;
+  const date = document.getElementById("piece-action-date")?.value || new Date().toISOString().split("T")[0];
+  const note = document.getElementById("piece-action-note")?.value.trim() || "";
+  if (status === "Dada de baja" && !confirm(`¿Dar de baja "${piece.brand} ${piece.model}"? Lo que tenga integrado se da de baja con ella.`)) return;
+  const previous = piece.installedIn;
+  piece.installedIn = null;
+  piece.status = status;
+  recordPieceMovement(piece, { date, action: previous ? `Retirada → ${status}` : status, deviceId: previous || null, note });
+  saveDevices();
+  render();
+  openDeviceDetailModal(pieceId);
+  showToast(`Estado actualizado: ${status}`);
 };
 
 /**
@@ -3796,7 +5627,11 @@ function generateMarkdownContent() {
   md += `## 📌 Descripción General\n`;
   md += `Este archivo documenta el registro y contexto de los equipos tecnológicos personales de **HomeInfra**, incluyendo especificaciones clave (marca, modelo, tipo de equipo), número de serie o activo, responsable o ubicación física, imágenes de referencia de los equipos, especificaciones técnicas de hardware (**CPU**, **RAM**, **GPU**), **credenciales de acceso de Windows (Usuario y Contraseña)**, **observaciones técnicas e historial**, y enlaces directos para la descarga de controladores (drivers) oficiales.\n\n`;
   md += `La base de datos principal estructurada reside en el archivo [\`equipos.json\`](equipos.json) y se administra interactivamente a través de la aplicación web local \`HomeInfra\` (\`index.html\`, \`style.css\`, \`app.js\`).\n\n`;
-  md += `*Última actualización sincronizada:* \`${dateStr}\` | *Total de equipos:* **${devices.length}**\n\n`;
+  const equipos = devices.filter((d) => d.kind !== "pieza");
+  const piezas = devices.filter((d) => d.kind === "pieza");
+  const hwShort = (p) => (HARDWARE_TYPES[p.hardwareType] || HARDWARE_TYPES.Otro).short;
+  const nameById = (id) => { const d = devices.find((x) => x.id === id); return d ? `${d.brand} ${d.model}` : id; };
+  md += `*Última actualización sincronizada:* \`${dateStr}\` | *Equipos:* **${equipos.length}** | *Piezas:* **${piezas.length}**\n\n`;
   md += `---\n\n`;
 
   md += `## ⚠️ Directiva de Desarrollo y Alcance (Regla Estricta)\n`;
@@ -3809,7 +5644,7 @@ function generateMarkdownContent() {
 
   md += `## 🧩 Visión: Gestión de Infraestructura basada en ITIL (Planificado)\n`;
   md += `\n`;
-  md += `> **Estado:** Implementación parcial. Los equipos ya guardan sus piezas en el campo \`components\` (categoría, modelo, serie, capacidad, si es reemplazable y, para accesorios registrados aparte como un cargador, el \`deviceId\` del equipo relacionado). Faltan la vista de componentes en la interfaz, los estados del ciclo de vida y el historial de cambios.\n`;
+  md += `> **Estado:** Implementado. Cada pieza reemplazable (CPU, RAM, placa base, GPU, discos, tarjetas, cargadores) es un registro propio en \`equipos.json\` con \`kind: "pieza"\`, un estado (Instalada, En stock, En reparación, Retirada, Dada de baja), el equipo donde está instalada (\`installedIn\`) y su historial de movimientos (\`history\`). Lo integrado (por ejemplo, el video o la red de una placa base, o los gráficos de un procesador) vive dentro de su pieza anfitriona (\`integrated\`) y no se gestiona por separado. La app permite instalar, mover y retirar piezas desde su ficha.\n`;
   md += `\n`;
   md += `HomeInfra evolucionará de un inventario de equipos a un sistema de gestión de infraestructura alineado con las prácticas de **ITIL** (Gestión de Activos y de la Configuración). Además de equipos completos, registrará **partes de computadores** (RAM, HDD/SSD, fuentes, tarjetas), **equipos de red** (routers, switches, puntos de acceso), **módulos** y otros elementos de infraestructura.\n`;
   md += `\n`;
@@ -3843,7 +5678,7 @@ function generateMarkdownContent() {
   md += `| # | Tipo | Marca | Modelo | Fabricación / Lanzamiento | CPU | RAM | GPU | Usuario Windows | Serie / Activo | Enlace a Drivers / Soporte |\n`;
   md += `|---|------|-------|--------|---------------------------|-----|-----|-----|-----------------|----------------|----------------------------|\n`;
 
-  devices.forEach((dev, idx) => {
+  equipos.forEach((dev, idx) => {
     const serial = dev.serial ? dev.serial : "N/A";
     const mfgStr = dev.mfgDate ? dev.mfgDate : "N/A";
     const driverText = `Soporte Oficial ${dev.brand} ${dev.model}`;
@@ -3864,7 +5699,7 @@ function generateMarkdownContent() {
   md += `\n---\n\n`;
   md += `## 📋 Fichas Técnicas Detalladas de Equipos\n\n`;
 
-  devices.forEach((dev, idx) => {
+  equipos.forEach((dev, idx) => {
     md += `### ${idx + 1}. ${dev.brand} ${dev.model}\n`;
     if (dev.imageUrl) {
       md += `![${dev.brand} ${dev.model}](${dev.imageUrl})\n\n`;
@@ -3933,19 +5768,24 @@ function generateMarkdownContent() {
     if (dev.observaciones) {
       md += `- **Observaciones:** ${dev.observaciones}\n`;
     }
-    if (Array.isArray(dev.components) && dev.components.length > 0) {
-      md += `- **Componentes:**\n`;
-      dev.components.forEach((c) => {
-        const parts = [c.model, c.capacity, c.details ? `(${c.details})` : ""].filter(Boolean).join(" ");
-        const serialStr = c.serial ? ` · S/N ${c.serial}` : "";
-        const replaceStr = c.replaceable ? "reemplazable" : "integrado";
-        const linkStr = c.deviceId ? ` · equipo relacionado: \`${c.deviceId}\`` : "";
-        const yearStr = c.year ? ` · ${c.year}` : "";
-        const benchStr = c.benchmark ? ` · ${c.benchmark.source} multi ${formatBenchmark(c.benchmark.multi)} / mono ${formatBenchmark(c.benchmark.single)}` : "";
-        md += `  - *${c.category}:* ${parts}${serialStr}${yearStr}${benchStr} · ${replaceStr}${linkStr}\n`;
-        if (Array.isArray(c.features)) {
-          c.features.forEach((ft) => { md += `    - ${ft.label}: ${ft.value}\n`; });
-          if (c.featuresSource) md += `    - Fuente: [especificaciones oficiales](${c.featuresSource.url}) (${c.featuresSource.date})\n`;
+    if (Array.isArray(dev.integrated) && dev.integrated.length > 0) {
+      md += `- **Integrado en el equipo:** ${dev.integrated.map((x) => x.model).join(" · ")}\n`;
+    }
+    const devPieces = piezas.filter((p) => p.installedIn === dev.id);
+    if (devPieces.length > 0) {
+      md += `- **Piezas instaladas:**\n`;
+      devPieces.forEach((p) => {
+        const parts = [p.brand && !(p.model || "").includes(p.brand) ? p.brand : "", p.model, p.capacity, p.details ? `(${p.details})` : ""].filter(Boolean).join(" ");
+        const serialStr = p.serial ? ` · S/N ${p.serial}` : "";
+        const yearStr = p.year ? ` · ${p.year}` : "";
+        const benchStr = p.benchmark ? ` · ${p.benchmark.source} multi ${formatBenchmark(p.benchmark.multi)} / mono ${formatBenchmark(p.benchmark.single)}` : "";
+        md += `  - *${hwShort(p)}:* ${parts}${serialStr}${yearStr}${benchStr} · pieza \`${p.id}\`\n`;
+        if (Array.isArray(p.integrated) && p.integrated.length > 0) {
+          md += `    - Integra: ${p.integrated.map((x) => x.model).join(" · ")}\n`;
+        }
+        if (Array.isArray(p.features)) {
+          p.features.forEach((ft) => { md += `    - ${ft.label}: ${ft.value}\n`; });
+          if (p.featuresSource) md += `    - Fuente: [especificaciones oficiales](${p.featuresSource.url}) (${p.featuresSource.date})\n`;
         }
       });
     }
@@ -3972,6 +5812,22 @@ function generateMarkdownContent() {
   });
 
   md += `---\n\n`;
+  md += `## 🧩 Piezas (estado, ubicación e historial)\n\n`;
+  md += `| Tipo | Pieza | N.º de serie | Estado | Equipo | Año |\n`;
+  md += `|------|-------|--------------|--------|--------|-----|\n`;
+  piezas.forEach((p) => {
+    const name = [p.brand && !(p.model || "").includes(p.brand) ? p.brand : "", p.model, p.capacity].filter(Boolean).join(" ");
+    const year = String(p.year || p.mfgDate || "").match(/\b(19\d\d|20\d\d)\b/)?.[1] || "";
+    md += `| ${hwShort(p)} | ${name} | ${p.serial || "N/A"} | ${p.status || ""} | ${p.installedIn ? nameById(p.installedIn) : "—"} | ${year} |\n`;
+  });
+  md += `\n### Historial de movimientos\n`;
+  piezas.filter((p) => (p.history || []).length > 0).forEach((p) => {
+    md += `- **${hwShort(p)} ${p.model}** (\`${p.id}\`):\n`;
+    p.history.forEach((h) => {
+      md += `  - ${h.date || ""} · ${h.action}${h.deviceId ? ` · ${nameById(h.deviceId)}` : ""}${h.note ? ` · ${h.note}` : ""}\n`;
+    });
+  });
+  md += `\n---\n\n`;
   md += `## 🛠️ Guía de Uso del Inventario y Driver Hub\n`;
   md += `1. **Base de Datos:** El archivo [\`equipos.json\`](equipos.json) almacena los registros de los equipos, imágenes de referencia, especificaciones de hardware, credenciales y observaciones.\n`;
   md += `2. **Abrir la Aplicación:** Abre \`index.html\` en cualquier navegador web.\n`;
@@ -4366,6 +6222,64 @@ function collectorReportToDevice(report) {
 }
 
 /**
+ * Crear o relacionar las piezas detectadas por el Collector con un equipo:
+ * - piezas reemplazables: registro propio instalado en el equipo; si ya existe una pieza con
+ *   el mismo número de serie, solo se anota en su historial que se detectó en este equipo
+ * - integrados (red o video de la placa): quedan dentro de la placa base detectada
+ */
+function linkCollectorPieces(components, deviceId, collectedAt, fileName) {
+  const date = (collectedAt || new Date().toISOString()).slice(0, 10);
+  const note = `Detectada por el HomeInfra Collector (${fileName})`;
+  const created = [];
+  const integrated = [];
+  (components || []).forEach((c, i) => {
+    const hw = getComponentHwType(c);
+    if (!c.replaceable && hw !== "PlacaBase") {
+      integrated.push({ hardwareType: hw, model: c.model, details: c.details || "" });
+      return;
+    }
+    const existing = c.serial ? devices.find((p) => isPiece(p) && (p.serial || "").toLowerCase() === c.serial.toLowerCase()) : null;
+    if (existing) {
+      recordPieceMovement(existing, { date, action: "Detectada", deviceId, note });
+      return;
+    }
+    const piece = {
+      id: `pz-${Date.now()}-${i}`,
+      kind: "pieza",
+      type: "Pieza",
+      hardwareType: hw,
+      brand: "",
+      model: c.model,
+      serial: c.serial || "",
+      capacity: c.capacity || "",
+      details: c.details || "",
+      replaceable: true,
+      imageUrl: "",
+      driverUrl: `https://www.google.com/search?q=${encodeURIComponent(`${c.model} drivers soporte`)}`,
+      assignedUser: "",
+      location: "Hogar",
+      windowsUser: "",
+      windowsPassword: "",
+      notes: "",
+      observaciones: "",
+      mfgDate: "",
+      status: "Instalada",
+      installedIn: deviceId,
+      history: [{ date, action: "Instalada", deviceId, note }],
+      updatedAt: date
+    };
+    if (c.benchmark) piece.benchmark = c.benchmark;
+    devices.push(piece);
+    created.push(piece);
+  });
+  if (integrated.length) {
+    const board = created.find((p) => p.hardwareType === "PlacaBase");
+    const host = board || devices.find((d) => d.id === deviceId);
+    host.integrated = [...(host.integrated || []), ...integrated];
+  }
+}
+
+/**
  * Importar uno o varios registros del HomeInfra Collector
  */
 async function handleImportCollector(e) {
@@ -4401,13 +6315,14 @@ async function handleImportCollector(e) {
         continue;
       }
       existing.specs = data.specs;
-      existing.components = data.components;
+      linkCollectorPieces(data.components, existing.id, report.collectedAt, file.name);
       existing.observaciones = [existing.observaciones, data.observaciones].filter(Boolean).join("\n\n");
       existing.updatedAt = today;
       updated++;
     } else {
+      const newId = "dev-" + Date.now() + "-" + created;
       devices.push({
-        id: "dev-" + Date.now() + "-" + created,
+        id: newId,
         brand: data.brand,
         type: data.type,
         model: data.model,
@@ -4422,9 +6337,9 @@ async function handleImportCollector(e) {
         notes: "",
         observaciones: data.observaciones,
         specs: data.specs,
-        components: data.components,
         updatedAt: today
       });
+      linkCollectorPieces(data.components, newId, report.collectedAt, file.name);
       created++;
     }
   }
