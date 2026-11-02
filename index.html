@@ -796,6 +796,9 @@
           <p class="settings-desc">
             Prueba la integridad de varios discos al mismo tiempo: reporte SMART inicial, revisión completa de la superficie con <code>badblocks</code>, prueba larga del SMART y reporte SMART final. Todo funciona desde un mismo pendrive y sin intervención: arrancas el equipo con él, la prueba empieza sola, los reportes quedan guardados en ese mismo pendrive y al final aparece un mensaje con el resultado (o uno de error, si algo falla).
           </p>
+          <p class="settings-desc">
+            Además, cada vez que arranca guarda un <strong>inventario de todos los discos conectados</strong>, se prueben o no: modelo, número de serie, firmware, capacidad, velocidad, formato, horas de uso, salud SMART y particiones. Es solo lectura y sirve para comparar los discos con los registrados en HomeInfra y agregar los que falten. Para hacer solo el inventario, sin borrar nada, arranca el pendrive sin <code>discos-autorizados.txt</code>.
+          </p>
           <p class="disk-test-warning">
             ⚠️ La prueba <strong>borra por completo</strong> los discos probados. Solo se tocan los discos cuyo número de serie anotaste en <code>discos-autorizados.txt</code> (paso 5); cualquier otro disco conectado se ignora. Aun así, desconecta los discos con datos que no vas a probar.
           </p>
@@ -864,7 +867,7 @@
           <ul class="disk-test-list">
             <li>Con el Bloc de notas crea en la raíz del pendrive el archivo <code>discos-autorizados.txt</code>: un número de serie por línea, tal como aparece en la etiqueta del disco (S/N). Después del número puedes escribir una descripción, y las líneas que empiezan con <code>#</code> se ignoran.</li>
             <li>El script prueba solo esos discos, sin preguntar nada. Un disco que no está en la lista nunca se toca, aunque esté conectado, así que arrancar el pendrive por error en otro equipo no borra nada.</li>
-            <li>Cada vez que vayas a probar otros discos, actualiza la lista. Para usar SystemRescue para otra cosa sin probar discos, cambia el nombre del archivo o déjalo vacío.</li>
+            <li>Cada vez que vayas a probar otros discos, actualiza la lista. Sin el archivo (o con el archivo vacío) no se prueba ni se borra ningún disco: solo se guarda el inventario. Así también puedes usar SystemRescue para otra cosa.</li>
           </ul>
           <div class="collector-command-box">
             <code># discos-autorizados.txt (ejemplo)
@@ -887,9 +890,10 @@ Y457MMEFS      Toshiba DT01ACA100 1 TB</code>
             <li>Con el equipo apagado, conecta por SATA los discos a probar, con su cable de energía, y luego el pendrive.</li>
             <li>Enciende y abre el menú de arranque con la tecla que indique la pantalla de inicio: <strong>F12</strong> en Gigabyte, <strong>F8</strong> en ASUS, <strong>F11</strong> en MSI. Elige el pendrive; si aparece dos veces, la opción que empieza con «UEFI:» arranca en modo UEFI y la otra en modo BIOS: ambas sirven.</li>
             <li>En el menú de SystemRescue elige la primera opción: <em>Boot SystemRescue using default options</em>. Si en modo UEFI no arranca, desactiva <em>Secure Boot</em> en la BIOS o usa la opción sin «UEFI:».</li>
-            <li>Al terminar de cargar, la prueba se inicia sola con los discos autorizados que estén conectados. No hay que escribir nada.</li>
+            <li>Al terminar de cargar, el script guarda el inventario de todos los discos conectados y luego inicia la prueba con los discos autorizados. No hay que escribir nada.</li>
             <li>El script encuentra el pendrive solo, sin importar la letra de unidad que tenga en Windows: usa el dispositivo desde el que arrancó SystemRescue.</li>
-            <li>Si algo impide la prueba, aparece <strong>ERROR: no se probó ningún disco</strong> con el motivo, que también queda guardado en el pendrive como <code>ERROR.txt</code>. Por ejemplo: falta <code>discos-autorizados.txt</code>, ningún disco conectado está en la lista, o no se puede escribir en el pendrive. En esos casos no se toca ningún disco.</li>
+            <li>Si algo impide la prueba, aparece <strong>ERROR: no se probó ningún disco</strong> con el motivo, que también queda guardado en el pendrive como <code>ERROR.txt</code>. Por ejemplo, si no se puede escribir en el pendrive. En ese caso no se toca ningún disco.</li>
+            <li>Si falta <code>discos-autorizados.txt</code> o ningún disco conectado está en la lista, no es un error: aparece <strong>TERMINADO: inventario de N disco(s) guardado</strong> con el motivo por el que no se probó ninguno.</li>
           </ul>
 
           <p class="collector-step"><span class="collector-step-num">7</span> Déjalo trabajar</p>
@@ -906,13 +910,16 @@ Y457MMEFS      Toshiba DT01ACA100 1 TB</code>
             <li>Cada ejecución crea en el pendrive la carpeta <code>HomeInfra-Discos\&lt;placa&gt;_&lt;fecha&gt;\</code>, así las pruebas de distintos equipos no se mezclan. Dentro quedan:
               <ul>
                 <li><code>RESUMEN.txt</code>: valores SMART iniciales y finales, sectores malos, resultado de la prueba larga y veredicto de cada disco; también los discos de la lista que no estaban conectados y los conectados que se ignoraron.</li>
+                <li><code>INVENTARIO.txt</code>: todos los discos conectados, con modelo, número de serie, firmware, capacidad, velocidad, formato, interfaz, horas de uso, salud SMART, particiones y si se probó o no.</li>
+                <li><code>inventario\</code>: por cada disco conectado, su reporte SMART completo (<code>_smart.txt</code> y <code>_smart.json</code>) y sus particiones (<code>_particiones.txt</code>).</li>
+                <li><code>SIN_PRUEBA.txt</code>: solo si no se probó ningún disco, con el motivo.</li>
                 <li><code>ERROR.txt</code>: solo si la prueba no pudo empezar, con el motivo.</li>
                 <li><code>&lt;serie&gt;_0_estado.txt</code>: registro de las etapas con fecha y hora.</li>
                 <li><code>&lt;serie&gt;_1_smart_inicial.txt</code> y <code>&lt;serie&gt;_3_smart_final.txt</code>: reportes SMART completos.</li>
                 <li><code>&lt;serie&gt;_2_badblocks.log</code> y <code>&lt;serie&gt;_2_sectores_malos.txt</code>: si este último está vacío, no hubo sectores malos.</li>
               </ul>
             </li>
-            <li>Conecta el pendrive a tu PC y copia la carpeta <code>HomeInfra-Discos</code> al proyecto, en <code>Collector/Registros/Discos/</code>. El resultado de cada disco se registra en su ficha (vista <em>Piezas</em>, búsqueda por número de serie).</li>
+            <li>Conecta el pendrive a tu PC y copia la carpeta <code>HomeInfra-Discos</code> al proyecto, en <code>Collector/Registros/Discos/</code>. El resultado de cada disco se registra en su ficha (vista <em>Piezas</em>, búsqueda por número de serie), y los discos del inventario que no estén registrados se agregan como piezas nuevas.</li>
             <li>El pendrive sirve para siempre: para probar otros discos, actualiza la lista (paso 5) y vuelve al paso 6.</li>
           </ul>
           <p class="field-hint">

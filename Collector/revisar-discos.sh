@@ -17,6 +17,11 @@
 # en la raíz del pendrive (uno por línea; lo que va después del número o tras #
 # se ignora). Cualquier otro disco conectado no se toca.
 #
+# Además, de todos los discos conectados (se prueben o no) se guarda un
+# inventario de solo lectura: INVENTARIO.txt y, en inventario/, el reporte SMART
+# (texto y JSON) y las particiones de cada disco. Sin lista o sin discos
+# autorizados conectados, se guarda solo el inventario.
+#
 # Uso:  bash revisar-discos.sh            (discos de la lista, sin preguntar)
 #       bash revisar-discos.sh sda sdb    (discos indicados, pide escribir BORRAR)
 
@@ -175,16 +180,16 @@ if [ $# -gt 0 ]; then
     exit 0
   fi
 else
-  # Uso automático: solo los discos de la lista autorizada, sin preguntar
+  # Uso automático: solo los discos de la lista autorizada, sin preguntar.
+  # Sin lista o sin coincidencias no se prueba nada, pero el inventario se guarda igual.
   LISTA="$BASE_DIR/discos-autorizados.txt"
-  [ -f "$LISTA" ] || error_fatal "Falta el archivo discos-autorizados.txt en la raíz del pendrive." \
-    "Crea ese archivo con los números de serie de los discos que se pueden borrar, uno por línea."
   AUTORIZADOS=()
-  while IFS= read -r linea; do
-    s="$(normalizar "$(echo "$linea" | sed 's/^\xEF\xBB\xBF//; s/#.*//' | awk '{print $1}')")"
-    [ ${#s} -ge 6 ] && AUTORIZADOS+=("$s")
-  done < <(tr -d '\r' < "$LISTA")
-  [ ${#AUTORIZADOS[@]} -eq 0 ] && error_fatal "discos-autorizados.txt no tiene números de serie válidos (mínimo 6 caracteres)."
+  if [ -f "$LISTA" ]; then
+    while IFS= read -r linea; do
+      s="$(normalizar "$(echo "$linea" | sed 's/^\xEF\xBB\xBF//; s/#.*//' | awk '{print $1}')")"
+      [ ${#s} -ge 6 ] && AUTORIZADOS+=("$s")
+    done < <(tr -d '\r' < "$LISTA")
+  fi
 
   # Un disco coincide si su número de serie es igual o termina en el de la lista
   # (algunos discos informan un prefijo, ej. WD-WCC6Y3JZFCPE para WCC6Y3JZFCPE)
@@ -201,11 +206,73 @@ else
   done
   for a in "${AUTORIZADOS[@]}"; do [ -z "${ENCONTRADO[$a]}" ] && NO_CONECTADOS+=("$a"); done
 
-  if [ ${#DISCOS[@]} -eq 0 ]; then
-    error_fatal "Ningún disco conectado está en discos-autorizados.txt." \
-      "Autorizados: ${AUTORIZADOS[*]}" \
-      "Conectados y no autorizados (no se tocaron):" "${IGNORADOS[@]:-ninguno}"
+  if [ ! -f "$LISTA" ]; then
+    SIN_PRUEBA="no hay archivo discos-autorizados.txt en la raíz del pendrive"
+  elif [ ${#AUTORIZADOS[@]} -eq 0 ]; then
+    SIN_PRUEBA="discos-autorizados.txt no tiene números de serie válidos (mínimo 6 caracteres)"
+  elif [ ${#DISCOS[@]} -eq 0 ]; then
+    SIN_PRUEBA="ningún disco conectado está en discos-autorizados.txt (autorizados: ${AUTORIZADOS[*]})"
   fi
+fi
+
+# --------------------------------------------------------------------------
+# Inventario: datos de todos los discos conectados, se prueben o no (solo lectura)
+# --------------------------------------------------------------------------
+INV_DIR="$RUN_DIR/inventario"
+mkdir -p "$INV_DIR"
+
+# Valor de un campo de un reporte de smartctl ("Campo: valor")
+campo() { grep -m1 -E "^($1):" "$2" 2>/dev/null | sed 's/^[^:]*: *//; s/ *$//'; }
+
+inventariar() {
+  local d s f tran estado horas n=0
+  {
+    echo "HomeInfra - Inventario de discos v$VERSION"
+    echo "Placa: ${PLACA:-desconocida} · Fecha: $(ahora)"
+    echo ""
+    for d in $(lsblk -dno NAME); do
+      [ "$(lsblk -dno TYPE "/dev/$d")" = "disk" ] || continue
+      case "$d" in loop*|zram*|ram*) continue ;; esac
+      [ "$d" = "$DISCO_PENDRIVE" ] && continue
+      s="$(serial_de "$d")"
+      f="$INV_DIR/${s}_smart.txt"
+      smartctl -x "/dev/$d" > "$f" 2>&1
+      smartctl -x -j "/dev/$d" > "$INV_DIR/${s}_smart.json" 2>/dev/null
+      lsblk -o NAME,SIZE,FSTYPE,LABEL,PARTLABEL,UUID "/dev/$d" > "$INV_DIR/${s}_particiones.txt" 2>&1
+      tran="$(lsblk -dno TRAN "/dev/$d" | tr -d ' ')"
+      estado="no se prueba"
+      [[ " ${DISCOS[*]} " == *" $d "* ]] && estado="SE PRUEBA (autorizado; se borra)"
+      horas="$(atributo 9 "$f")"; [ -z "$horas" ] && horas="$(campo 'Power On Hours' "$f")"
+      echo "== /dev/$d · ${tran:-?} · $estado"
+      echo "   Modelo: $(campo 'Device Model|Model Number|Product' "$f")$( [ -n "$(campo 'Model Family' "$f")" ] && echo " (familia: $(campo 'Model Family' "$f"))")"
+      echo "   S/N: $(campo 'Serial Number' "$f") · Firmware: $(campo 'Firmware Version' "$f")"
+      echo "   Capacidad: $(campo 'User Capacity|Total NVM Capacity|Namespace 1 Size/Capacity' "$f" | sed 's/^[^[]*\[//; s/\]//') · Velocidad: $(campo 'Rotation Rate' "$f") · Formato: $(campo 'Form Factor' "$f")"
+      echo "   Interfaz: $(campo 'SATA Version is|Transport protocol' "$f")"
+      echo "   Horas de uso: ${horas:--} · Salud SMART: $(campo 'SMART overall-health self-assessment test result' "$f")"
+      lsblk -nro NAME,FSTYPE,LABEL,SIZE "/dev/$d" | awk 'NR>1 {printf "   Partición: %s %s %s %s\n", $1, $2, $3, $4}'
+      echo ""
+      n=$((n + 1))
+    done
+  } > "$RUN_DIR/INVENTARIO.txt"
+  sync
+  INVENTARIO_N=$n
+}
+
+inventariar
+
+# Sin discos para probar: queda solo el inventario
+if [ ${#DISCOS[@]} -eq 0 ]; then
+  [ -n "$SIN_PRUEBA" ] && echo "No se probó ningún disco: $SIN_PRUEBA." > "$RUN_DIR/SIN_PRUEBA.txt"
+  sync
+  clear
+  cat "$RUN_DIR/INVENTARIO.txt"
+  echo "=============================================="
+  echo "  TERMINADO: inventario de $INVENTARIO_N disco(s) guardado."
+  echo "  No se probó ningún disco: $SIN_PRUEBA."
+  echo "  Reportes en el pendrive: HomeInfra-Discos/$(basename "$RUN_DIR")"
+  echo "  Para apagar el equipo escribe: poweroff"
+  echo "=============================================="
+  exit 0
 fi
 
 # --------------------------------------------------------------------------
@@ -353,6 +420,7 @@ else
   echo "  TERMINADO con observaciones: $REVISAR_N de ${#DISCOS[@]} discos para REVISAR."
 fi
 [ ${#NO_CONECTADOS[@]} -gt 0 ] && echo "  Aviso: ${#NO_CONECTADOS[@]} disco(s) de la lista no estaban conectados."
+echo "  Inventario de $INVENTARIO_N disco(s) conectados: INVENTARIO.txt"
 echo "  Reportes guardados en el pendrive: HomeInfra-Discos/$(basename "$RUN_DIR")"
 echo "  Para apagar el equipo escribe: poweroff"
 echo "=============================================="
