@@ -143,6 +143,10 @@
     <div class="view-switcher" role="tablist" aria-label="Vista del inventario">
       <button type="button" class="view-tab active" data-view="devices" role="tab">💻 Equipos completos</button>
       <button type="button" class="view-tab" data-view="components" role="tab">🧩 Componentes</button>
+      <div class="layout-switch" role="group" aria-label="Modo de visualización">
+        <button type="button" class="layout-btn" data-layout="cards" title="Ver como tarjetas">▦ Tarjetas</button>
+        <button type="button" class="layout-btn" data-layout="list" title="Ver como lista">☰ Lista</button>
+      </div>
     </div>
 
     <!-- Filter & Search Toolbar -->
@@ -157,9 +161,9 @@
       </div>
 
       <div class="filter-group components-only" style="display: none;">
-        <label for="component-category-filter" class="filter-label">Categoría:</label>
+        <label for="component-category-filter" class="filter-label">Tipo:</label>
         <select id="component-category-filter" class="select-input">
-          <option value="ALL">Todas las categorías</option>
+          <option value="ALL">Todos los tipos</option>
         </select>
       </div>
 
@@ -167,12 +171,6 @@
         <label for="type-filter" class="filter-label">Tipo:</label>
         <select id="type-filter" class="select-input">
           <option value="ALL">Todos los tipos</option>
-          <option value="Laptop">Laptops</option>
-          <option value="Desktop">Desktops / PCs</option>
-          <option value="Impresora">Impresoras</option>
-          <option value="Monitor">Monitores</option>
-          <option value="Servidor / Red">Servidores / Red</option>
-          <option value="Periférico">Periféricos / Otros</option>
         </select>
       </div>
 

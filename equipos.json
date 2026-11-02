@@ -238,7 +238,8 @@
       }
     ],
     "mfgDate": "2008-06",
-    "updatedAt": "2026-10-31"
+    "updatedAt": "2026-11-02",
+    "hardwareType": "Cargador"
   },
   {
     "id": "dev-pc-i5-12400f-h610m",
@@ -925,7 +926,8 @@
       "storage": "SSD SATA 120 GB"
     },
     "mfgDate": "",
-    "updatedAt": "2026-11-01"
+    "updatedAt": "2026-11-02",
+    "hardwareType": "SSD"
   },
   {
     "id": "dev-ssd-patriot-burst-elite-120gb-2",
@@ -945,7 +947,8 @@
       "storage": "SSD SATA 120 GB"
     },
     "mfgDate": "",
-    "updatedAt": "2026-11-02"
+    "updatedAt": "2026-11-02",
+    "hardwareType": "SSD"
   },
   {
     "id": "dev-pendrive-sony-4gb",
@@ -965,7 +968,8 @@
       "storage": "USB 4 GB"
     },
     "mfgDate": "",
-    "updatedAt": "2026-11-01"
+    "updatedAt": "2026-11-02",
+    "hardwareType": "Pendrive"
   },
   {
     "id": "dev-gpu-zotac-8400gs",
@@ -1001,7 +1005,8 @@
       }
     ],
     "mfgDate": "2007 (lanzamiento de la GeForce 8400 GS)",
-    "updatedAt": "2026-11-01"
+    "updatedAt": "2026-11-02",
+    "hardwareType": "GPU"
   },
   {
     "id": "dev-pc-msi-a68hm-e33-v2",
@@ -1162,7 +1167,8 @@
         "url": "img/hdd_wd10spzx_1tb_etiqueta_b.jpg"
       }
     ],
-    "mfgDate": "2018-12-14"
+    "mfgDate": "2018-12-14",
+    "hardwareType": "HDD"
   },
   {
     "assignedUser": "",
@@ -1189,7 +1195,8 @@
         "url": "img/hdd_wd10jpvx_1tb_etiqueta.jpg"
       }
     ],
-    "mfgDate": "2017-02-10"
+    "mfgDate": "2017-02-10",
+    "hardwareType": "HDD"
   },
   {
     "assignedUser": "",
@@ -1216,7 +1223,8 @@
         "url": "img/hdd_st1000lm024_1tb_etiqueta.jpg"
       }
     ],
-    "mfgDate": "2011 (lanzamiento de la serie Spinpoint M8)"
+    "mfgDate": "2011 (lanzamiento de la serie Spinpoint M8)",
+    "hardwareType": "HDD"
   },
   {
     "assignedUser": "",
@@ -1243,7 +1251,8 @@
         "url": "img/hdd_toshiba_mq01acf050_500gb_etiqueta.jpg"
       }
     ],
-    "mfgDate": "2014-05-24"
+    "mfgDate": "2014-05-24",
+    "hardwareType": "HDD"
   },
   {
     "assignedUser": "",
@@ -1270,7 +1279,8 @@
         "url": "img/hdd_wd7500bpvt_750gb_etiqueta.jpg"
       }
     ],
-    "mfgDate": "2012-11-04"
+    "mfgDate": "2012-11-04",
+    "hardwareType": "HDD"
   },
   {
     "assignedUser": "",
@@ -1302,7 +1312,8 @@
         "url": "img/ssd_samsung_850evo_500gb_etiqueta.jpg"
       }
     ],
-    "mfgDate": "2014 (lanzamiento del 850 EVO)"
+    "mfgDate": "2014 (lanzamiento del 850 EVO)",
+    "hardwareType": "SSD"
   },
   {
     "assignedUser": "",
@@ -1331,6 +1342,7 @@
         "url": "img/raid_inspur_yzca-00019-101_etiqueta.jpg"
       }
     ],
-    "mfgDate": ""
+    "mfgDate": "",
+    "hardwareType": "RAID"
   }
 ]

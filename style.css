@@ -2497,3 +2497,95 @@ button.card-linked-row:hover {
 .component-features a {
   color: var(--primary);
 }
+
+/* Selector de modo: tarjetas o lista */
+.layout-switch {
+  display: flex;
+  gap: 0.35rem;
+  margin-left: auto;
+}
+
+.layout-btn {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-muted);
+  border-radius: 8px;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.layout-btn.active {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.55);
+  color: var(--text-main);
+}
+
+/* Modo lista */
+.inventory-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.inventory-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+  color: #e2e8f0;
+}
+
+.inventory-table th {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
+}
+
+.inventory-table td {
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  vertical-align: top;
+}
+
+.inventory-table tbody tr {
+  cursor: pointer;
+}
+
+.inventory-table tbody tr:hover {
+  background: rgba(56, 189, 248, 0.08);
+}
+
+.inventory-table .col-type {
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.inventory-table .list-emoji {
+  font-size: 1.15rem;
+  margin-right: 0.2rem;
+}
+
+.inventory-table .col-serial {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  word-break: break-all;
+}
+
+.inventory-table .col-year {
+  white-space: nowrap;
+}
+
+.inventory-table .list-sub {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}

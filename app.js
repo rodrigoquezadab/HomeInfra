@@ -243,7 +243,8 @@ const DEFAULT_DEVICES = [
       }
     ],
     mfgDate: "2008-06",
-    updatedAt: "2026-10-31"
+    updatedAt: "2026-11-02",
+    hardwareType: "Cargador"
   },
   {
     id: "dev-pc-i5-12400f-h610m",
@@ -930,7 +931,8 @@ const DEFAULT_DEVICES = [
       storage: "SSD SATA 120 GB"
     },
     mfgDate: "",
-    updatedAt: "2026-11-01"
+    updatedAt: "2026-11-02",
+    hardwareType: "SSD"
   },
   {
     id: "dev-ssd-patriot-burst-elite-120gb-2",
@@ -950,7 +952,8 @@ const DEFAULT_DEVICES = [
       storage: "SSD SATA 120 GB"
     },
     mfgDate: "",
-    updatedAt: "2026-11-02"
+    updatedAt: "2026-11-02",
+    hardwareType: "SSD"
   },
   {
     id: "dev-pendrive-sony-4gb",
@@ -970,7 +973,8 @@ const DEFAULT_DEVICES = [
       storage: "USB 4 GB"
     },
     mfgDate: "",
-    updatedAt: "2026-11-01"
+    updatedAt: "2026-11-02",
+    hardwareType: "Pendrive"
   },
   {
     id: "dev-gpu-zotac-8400gs",
@@ -1006,7 +1010,8 @@ const DEFAULT_DEVICES = [
       }
     ],
     mfgDate: "2007 (lanzamiento de la GeForce 8400 GS)",
-    updatedAt: "2026-11-01"
+    updatedAt: "2026-11-02",
+    hardwareType: "GPU"
   },
   {
     id: "dev-pc-msi-a68hm-e33-v2",
@@ -1167,7 +1172,8 @@ const DEFAULT_DEVICES = [
         url: "img/hdd_wd10spzx_1tb_etiqueta_b.jpg"
       }
     ],
-    mfgDate: "2018-12-14"
+    mfgDate: "2018-12-14",
+    hardwareType: "HDD"
   },
   {
     assignedUser: "",
@@ -1194,7 +1200,8 @@ const DEFAULT_DEVICES = [
         url: "img/hdd_wd10jpvx_1tb_etiqueta.jpg"
       }
     ],
-    mfgDate: "2017-02-10"
+    mfgDate: "2017-02-10",
+    hardwareType: "HDD"
   },
   {
     assignedUser: "",
@@ -1221,7 +1228,8 @@ const DEFAULT_DEVICES = [
         url: "img/hdd_st1000lm024_1tb_etiqueta.jpg"
       }
     ],
-    mfgDate: "2011 (lanzamiento de la serie Spinpoint M8)"
+    mfgDate: "2011 (lanzamiento de la serie Spinpoint M8)",
+    hardwareType: "HDD"
   },
   {
     assignedUser: "",
@@ -1248,7 +1256,8 @@ const DEFAULT_DEVICES = [
         url: "img/hdd_toshiba_mq01acf050_500gb_etiqueta.jpg"
       }
     ],
-    mfgDate: "2014-05-24"
+    mfgDate: "2014-05-24",
+    hardwareType: "HDD"
   },
   {
     assignedUser: "",
@@ -1275,7 +1284,8 @@ const DEFAULT_DEVICES = [
         url: "img/hdd_wd7500bpvt_750gb_etiqueta.jpg"
       }
     ],
-    mfgDate: "2012-11-04"
+    mfgDate: "2012-11-04",
+    hardwareType: "HDD"
   },
   {
     assignedUser: "",
@@ -1307,7 +1317,8 @@ const DEFAULT_DEVICES = [
         url: "img/ssd_samsung_850evo_500gb_etiqueta.jpg"
       }
     ],
-    mfgDate: "2014 (lanzamiento del 850 EVO)"
+    mfgDate: "2014 (lanzamiento del 850 EVO)",
+    hardwareType: "SSD"
   },
   {
     assignedUser: "",
@@ -1336,7 +1347,8 @@ const DEFAULT_DEVICES = [
         url: "img/raid_inspur_yzca-00019-101_etiqueta.jpg"
       }
     ],
-    mfgDate: ""
+    mfgDate: "",
+    hardwareType: "RAID"
   }
 ];
 
@@ -1356,6 +1368,7 @@ let searchQuery = "";
 let currentView = localStorage.getItem("homeinfra_view") === "components" ? "components" : "devices";
 let currentComponentCategory = "ALL";
 let currentComponentSort = "default";
+let currentLayout = localStorage.getItem("homeinfra_layout") === "list" ? "list" : "cards";
 const revealedPasswords = {};
 
 // Elementos del DOM
@@ -1658,6 +1671,15 @@ function bindEvents() {
     render();
   });
 
+  // Modo de visualización: tarjetas o lista
+  document.querySelectorAll(".layout-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      currentLayout = btn.dataset.layout;
+      localStorage.setItem("homeinfra_layout", currentLayout);
+      render();
+    });
+  });
+
   // Vista: equipos completos o componentes por separado
   document.querySelectorAll(".view-tab").forEach((tab) => {
     tab.addEventListener("click", () => {
@@ -1796,6 +1818,159 @@ function bindEvents() {
       }
     }
   });
+}
+
+/**
+ * Tipos de hardware con emoji para reconocimiento rápido (filtro, tarjetas y lista)
+ */
+const HARDWARE_TYPES = {
+  Laptop: { emoji: "💻", short: "Laptop", label: "Laptop" },
+  Desktop: { emoji: "🖥️", short: "PC", label: "PC de escritorio" },
+  Impresora: { emoji: "🖨️", short: "Impresora", label: "Impresora" },
+  Monitor: { emoji: "📺", short: "Monitor", label: "Monitor" },
+  Red: { emoji: "📡", short: "Red", label: "Red / servidor" },
+  HDD: { emoji: "💽", short: "HDD", label: "Disco duro (HDD)" },
+  SSD: { emoji: "💾", short: "SSD", label: "SSD" },
+  Pendrive: { emoji: "🔑", short: "Pendrive", label: "Pendrive" },
+  GPU: { emoji: "🎮", short: "GPU", label: "Tarjeta de video (GPU)" },
+  RAID: { emoji: "🎛️", short: "RAID", label: "Controladora RAID / HBA" },
+  Cargador: { emoji: "🔌", short: "Cargador", label: "Cargador" },
+  CPU: { emoji: "⚙️", short: "CPU", label: "Procesador (CPU)" },
+  RAM: { emoji: "🧠", short: "RAM", label: "Memoria RAM" },
+  PlacaBase: { emoji: "🔲", short: "Placa base", label: "Placa base" },
+  NIC: { emoji: "🌐", short: "Red", label: "Tarjeta de red" },
+  Bateria: { emoji: "🔋", short: "Batería", label: "Batería" },
+  Otro: { emoji: "📦", short: "Otro", label: "Otro" }
+};
+
+/**
+ * Tipo de hardware de un equipo: campo hardwareType, o deducido del tipo y sus especificaciones
+ */
+function getDeviceHwType(dev) {
+  if (dev.hardwareType && HARDWARE_TYPES[dev.hardwareType]) return dev.hardwareType;
+  switch (dev.type) {
+    case "Laptop": return "Laptop";
+    case "Desktop": return "Desktop";
+    case "Impresora": return "Impresora";
+    case "Monitor": return "Monitor";
+    case "Servidor / Red": return "Red";
+  }
+  const storage = dev.specs?.storage || "";
+  if (/^HDD/i.test(storage)) return "HDD";
+  if (/^SSD/i.test(storage)) return "SSD";
+  if (/^USB/i.test(storage)) return "Pendrive";
+  if (dev.specs?.gpu?.model) return "GPU";
+  return "Otro";
+}
+
+/**
+ * Tipo de hardware de un componente según su categoría (almacenamiento se separa en HDD y SSD)
+ */
+function getComponentHwType(comp) {
+  switch (comp.category) {
+    case "CPU": return "CPU";
+    case "RAM": return "RAM";
+    case "GPU": return "GPU";
+    case "Placa base": return "PlacaBase";
+    case "Red": return "NIC";
+    case "Cargador": return "Cargador";
+    case "Batería": return "Bateria";
+    case "Monitor": return "Monitor";
+    case "Almacenamiento": {
+      const text = `${comp.details || ""} ${comp.model || ""}`;
+      if (/SSD|NVMe/i.test(text)) return "SSD";
+      if (/HDD/i.test(text)) return "HDD";
+      return "Otro";
+    }
+  }
+  return "Otro";
+}
+
+/**
+ * Opciones de un filtro de tipo de hardware, con emoji y cantidad
+ */
+function fillHwTypeOptions(select, keys, allLabel, current) {
+  const counts = {};
+  keys.forEach((k) => { counts[k] = (counts[k] || 0) + 1; });
+  select.innerHTML = `<option value="ALL">${allLabel}</option>`;
+  Object.keys(HARDWARE_TYPES).filter((k) => counts[k]).forEach((k) => {
+    const opt = document.createElement("option");
+    opt.value = k;
+    opt.textContent = `${HARDWARE_TYPES[k].emoji} ${HARDWARE_TYPES[k].label} (${counts[k]})`;
+    select.appendChild(opt);
+  });
+  const value = counts[current] ? current : "ALL";
+  select.value = value;
+  return value;
+}
+
+/**
+ * Año (4 dígitos) de un texto de fecha, o vacío
+ */
+function extractYear(text) {
+  const match = String(text || "").match(/\b(19\d\d|20\d\d)\b/);
+  return match ? match[1] : "";
+}
+
+/**
+ * Modo lista: tabla de equipos
+ */
+function buildDevicesTable(list) {
+  const rows = list.map((dev) => {
+    const hw = HARDWARE_TYPES[getDeviceHwType(dev)];
+    const s = dev.specs || {};
+    const specs = [
+      s.cpu?.model,
+      s.ram?.capacity ? `${s.ram.capacity} RAM` : "",
+      s.storage,
+      s.gpu?.model && /dedicada/i.test(s.gpu.type || "") ? s.gpu.model : ""
+    ].filter(Boolean).join(" · ");
+    const bench = getCpuBenchmark(dev);
+    return `
+      <tr onclick="openDeviceDetailModal('${escapeHtml(dev.id)}')" title="Ver ficha completa">
+        <td class="col-type"><span class="list-emoji">${hw.emoji}</span> ${escapeHtml(getDeviceHwType(dev) === "Otro" ? dev.type : hw.short)}</td>
+        <td class="col-name"><strong>${escapeHtml(dev.brand)}</strong> ${escapeHtml(dev.model)}</td>
+        <td class="col-specs">${escapeHtml(specs) || "—"}${bench ? `<div class="list-sub">🏁 Multi ${formatBenchmark(bench.multi)} · Mono ${formatBenchmark(bench.single)}</div>` : ""}</td>
+        <td class="col-serial">${escapeHtml(dev.serial || "—")}</td>
+        <td class="col-year">${extractYear(dev.mfgDate) || "—"}</td>
+        <td class="col-place">${escapeHtml(dev.assignedUser || dev.location || "—")}</td>
+      </tr>`;
+  }).join("");
+  return `
+    <div class="inventory-table-wrap">
+      <table class="inventory-table">
+        <thead><tr><th>Tipo</th><th>Equipo</th><th>Especificaciones</th><th>N.º de serie</th><th>Año</th><th>Ubicación</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+}
+
+/**
+ * Modo lista: tabla de componentes
+ */
+function buildComponentsTable(list) {
+  const rows = list.map((c) => {
+    const key = getComponentHwType(c);
+    const hw = HARDWARE_TYPES[key];
+    const detail = [c.capacity, c.details].filter(Boolean).join(" · ");
+    const year = getComponentYear(c);
+    return `
+      <tr onclick="openDeviceDetailModal('${escapeHtml(c.parent.id)}')" title="Ver ficha de ${escapeHtml(c.parent.brand)} ${escapeHtml(c.parent.model)}">
+        <td class="col-type"><span class="list-emoji">${hw.emoji}</span> ${escapeHtml(key === "Otro" ? c.category : hw.short)}</td>
+        <td class="col-name">${escapeHtml(c.model || "Sin modelo")}${c.benchmark ? `<div class="list-sub">🏁 Multi ${formatBenchmark(c.benchmark.multi)} · Mono ${formatBenchmark(c.benchmark.single)}</div>` : ""}</td>
+        <td class="col-specs">${escapeHtml(detail) || "—"}</td>
+        <td class="col-serial">${escapeHtml(c.serial || "—")}</td>
+        <td class="col-year">${year || "—"}</td>
+        <td class="col-place">${escapeHtml(c.parent.brand)} ${escapeHtml(c.parent.model)}<div class="list-sub">${c.replaceable ? "Reemplazable" : "Integrado"}</div></td>
+      </tr>`;
+  }).join("");
+  return `
+    <div class="inventory-table-wrap">
+      <table class="inventory-table">
+        <thead><tr><th>Tipo</th><th>Componente</th><th>Capacidad / detalles</th><th>N.º de serie</th><th>Año</th><th>Instalado en</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
 }
 
 /**
@@ -2030,7 +2205,7 @@ function getCompleteDevices() {
  */
 function getFilteredDevices() {
   const filtered = getCompleteDevices().filter((dev) => {
-    if (currentFilterType !== "ALL" && dev.type !== currentFilterType) {
+    if (currentFilterType !== "ALL" && getDeviceHwType(dev) !== currentFilterType) {
       return false;
     }
     if (currentFilterBrand !== "ALL" && dev.brand !== currentFilterBrand) {
@@ -2073,6 +2248,9 @@ function applyViewVisibility() {
   document.querySelectorAll(".view-tab").forEach((tab) => {
     tab.classList.toggle("active", tab.dataset.view === currentView);
   });
+  document.querySelectorAll(".layout-btn").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.layout === currentLayout);
+  });
   document.querySelectorAll(".devices-only").forEach((el) => { el.style.display = isComponents ? "none" : ""; });
   document.querySelectorAll(".components-only").forEach((el) => { el.style.display = isComponents ? "" : "none"; });
   searchInput.placeholder = isComponents
@@ -2102,17 +2280,16 @@ function getAllComponents() {
  * Actualizar dropdown de categorías de componentes
  */
 function updateComponentCategoryOptions() {
-  if (!componentCategoryFilter) return;
-  const categories = Array.from(new Set(getAllComponents().map((c) => c.category).filter(Boolean))).sort();
-  componentCategoryFilter.innerHTML = '<option value="ALL">Todas las categorías</option>';
-  categories.forEach((cat) => {
-    const opt = document.createElement("option");
-    opt.value = cat;
-    opt.textContent = cat;
-    componentCategoryFilter.appendChild(opt);
-  });
-  if (!categories.includes(currentComponentCategory)) currentComponentCategory = "ALL";
-  componentCategoryFilter.value = currentComponentCategory;
+  if (componentCategoryFilter) {
+    currentComponentCategory = fillHwTypeOptions(
+      componentCategoryFilter, getAllComponents().map(getComponentHwType), "Todos los tipos", currentComponentCategory
+    );
+  }
+  if (typeFilter) {
+    currentFilterType = fillHwTypeOptions(
+      typeFilter, getCompleteDevices().map(getDeviceHwType), "Todos los tipos", currentFilterType
+    );
+  }
 }
 
 /**
@@ -2144,7 +2321,7 @@ function getLinkedRows(dev) {
 function renderComponentsGrid() {
   const all = getAllComponents();
   const filtered = all.filter((c) => {
-    if (currentComponentCategory !== "ALL" && c.category !== currentComponentCategory) return false;
+    if (currentComponentCategory !== "ALL" && getComponentHwType(c) !== currentComponentCategory) return false;
     if (searchQuery) {
       const target = `${c.category} ${c.model} ${c.serial || ""} ${c.capacity || ""} ${c.details || ""} ${c.parent.brand} ${c.parent.model}`.toLowerCase();
       if (!target.includes(searchQuery)) return false;
@@ -2172,6 +2349,12 @@ function renderComponentsGrid() {
   }
   componentsGrid.style.display = "grid";
   componentsEmptyState.style.display = "none";
+
+  if (currentLayout === "list") {
+    componentsGrid.style.display = "block";
+    componentsGrid.innerHTML = buildComponentsTable(filtered);
+    return;
+  }
 
   filtered.forEach((c) => {
     const card = document.createElement("div");
@@ -2207,7 +2390,7 @@ function renderComponentsGrid() {
         ${thumbHtml}
         <div class="card-headings">
           <div class="card-type-row">
-            <span class="device-badge badge-other">${escapeHtml(c.category)}</span>
+            <span class="device-badge badge-other">${HARDWARE_TYPES[getComponentHwType(c)].emoji} ${escapeHtml(getComponentHwType(c) === "Otro" ? c.category : HARDWARE_TYPES[getComponentHwType(c)].short)}</span>
             <span class="spec-pill ${c.replaceable ? "pill-replaceable" : "pill-integrated"}">${c.replaceable ? "Reemplazable" : "Integrado"}</span>
             ${compYear ? `<span class="spec-pill pill-year" title="${escapeHtml(c.yearNote || "Año de lanzamiento o fabricación")}">${compYear}</span>` : ""}
           </div>
@@ -2915,6 +3098,12 @@ function renderGrid() {
   devicesGrid.style.display = "grid";
   emptyState.style.display = "none";
 
+  if (currentLayout === "list") {
+    devicesGrid.style.display = "block";
+    devicesGrid.innerHTML = buildDevicesTable(filtered);
+    return;
+  }
+
   filtered.forEach((dev) => {
     const card = document.createElement("div");
     card.className = "device-card device-card-compact";
@@ -3032,7 +3221,7 @@ function renderGrid() {
         ${thumbHtml}
         <div class="card-headings">
           <div class="card-type-row">
-            <span class="device-badge ${badgeClass}">${escapeHtml(dev.type)}</span>
+            <span class="device-badge ${badgeClass}">${HARDWARE_TYPES[getDeviceHwType(dev)].emoji} ${escapeHtml(getDeviceHwType(dev) === "Otro" ? dev.type : HARDWARE_TYPES[getDeviceHwType(dev)].short)}</span>
             ${yearBadge}
           </div>
           <div class="card-brand-label">
