@@ -2966,6 +2966,144 @@ const DEFAULT_DEVICES = [
     mfgDate: "2005 (lanzamiento de la GeForce 7800 GTX)",
     year: "2005",
     yearNote: "Año de lanzamiento"
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "",
+    details: "PCIe 2.0 x1 · 2 × SATA 6 Gb/s · chip ASMedia ASM1061",
+    notes: "",
+    mfgDate: "",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la tarjeta"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-sata-asm1061-pcie-x1",
+    hardwareType: "RAID",
+    brand: "Genérica (chip ASMedia)",
+    model: "Tarjeta SATA PCIe x1 ASM1061 (2 puertos)",
+    serial: "",
+    imageUrl: "img/sata_asm1061_pcie_x1_tarjeta.jpg",
+    driverUrl: "https://www.google.com/search?q=ASMedia%20ASM1061%20driver",
+    observaciones: "Datos de la tarjeta (serigrafía, sin etiqueta ni número de serie):\n• G536PCE1061V10 · IO-ASM1061-V1.0 · PL-1256DT2\n\nControladora SATA de 2 puertos internos a 6 Gb/s en ranura PCIe 2.0 x1 (chip ASMedia ASM1061, modo AHCI, sin RAID). Los conectores eSATA (CON3 y CON4) no vienen soldados. Soporte de perfil alto.\n\nLinux la reconoce con el controlador AHCI estándar; no requiere drivers.",
+    images: [
+      {
+        id: "img-asm1061-a",
+        name: "Vista de la tarjeta",
+        url: "img/sata_asm1061_pcie_x1_tarjeta.jpg"
+      },
+      {
+        id: "img-asm1061-b",
+        name: "Vista de la tarjeta (otra toma)",
+        url: "img/sata_asm1061_pcie_x1_tarjeta_b.jpg"
+      },
+      {
+        id: "img-asm1061-c",
+        name: "Vista de la tarjeta (otra toma)",
+        url: "img/sata_asm1061_pcie_x1_tarjeta_c.jpg"
+      }
+    ]
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "",
+    details: "M.2 M key (NVMe) · conector PCIe de largo x16 · hasta x4 carriles",
+    notes: "",
+    mfgDate: "",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos del adaptador"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-adaptador-m2-nvme-pcie-x16",
+    hardwareType: "Otro",
+    brand: "Genérica",
+    model: "Adaptador M.2 NVMe a PCIe x16",
+    serial: "",
+    imageUrl: "img/adaptador_m2_nvme_pcie_x16_bolsa.jpg",
+    driverUrl: "",
+    observaciones: "Datos de la etiqueta de la bolsa (código del vendedor, no es número de serie):\n• 68002B116237580 · \"NGFF NVME转接卡 M.2转 PCI…\" (adaptador NVMe M.2 a PCI…) · A43-01-02\n• Serigrafía: \"M.2 Mkey NVMe\" · 2 12 1\n\nConector de borde de largo x16: va en una ranura x16 (o de extremo abierto). Una unidad NVMe usa como máximo 4 carriles, por lo que funciona en x4 (deducido; el cableado de carriles no se ve en la foto). Incluye separador y tornillo para la unidad. Pasivo: no necesita drivers.",
+    images: [
+      {
+        id: "img-adaptador-nvme-bolsa",
+        name: "En su bolsa (etiqueta)",
+        url: "img/adaptador_m2_nvme_pcie_x16_bolsa.jpg"
+      },
+      {
+        id: "img-adaptador-nvme-reverso",
+        name: "Reverso y conector",
+        url: "img/adaptador_m2_nvme_pcie_x16_reverso.jpg"
+      }
+    ]
+  },
+  {
+    kind: "pieza",
+    type: "Pieza",
+    assignedUser: "",
+    location: "Hogar",
+    windowsUser: "",
+    windowsPassword: "",
+    replaceable: true,
+    capacity: "500 GB",
+    details: "2.5\" SATA 6 Gb/s · 5400 rpm",
+    notes: "Nuevo, sellado en su bolsa antiestática.",
+    mfgDate: "2018-01-03",
+    status: "En stock",
+    installedIn: null,
+    history: [
+      {
+        date: "2026-11-02",
+        action: "En stock",
+        deviceId: null,
+        note: "Registrada desde fotos de la etiqueta (nuevo, sellado)"
+      }
+    ],
+    updatedAt: "2026-11-02",
+    id: "pz-hdd-wd5000lpcx",
+    hardwareType: "HDD",
+    brand: "Western Digital",
+    model: "WD Blue WD5000LPCX",
+    serial: "WXG1AC75PY4Z",
+    imageUrl: "img/hdd_wd5000lpcx_500gb_etiqueta.jpg",
+    driverUrl: "https://www.google.com/search?q=Western%20Digital%20WD%20Blue%20WD5000LPCX%20support",
+    observaciones: "Datos de la etiqueta (leída a través de la bolsa sellada):\n• MDL: WD5000LPCX-00VHAT0 · S/N: WXG1AC75PY4Z\n• Fecha: 03 JAN 2018 · Producto de Malasia\n• DCM: HAMTJAB · DCX: 5V04HCBAP · R/N: 800025 · WWN: 50014EE608454F38 · 5VDC 0.55A",
+    images: [
+      {
+        id: "img-pz-hdd-wd5000lpcx-a",
+        name: "Etiqueta",
+        url: "img/hdd_wd5000lpcx_500gb_etiqueta.jpg"
+      },
+      {
+        id: "img-pz-hdd-wd5000lpcx-b",
+        name: "Etiqueta (otra toma)",
+        url: "img/hdd_wd5000lpcx_500gb_etiqueta_b.jpg"
+      }
+    ],
+    year: "2018"
   }
 ];
 

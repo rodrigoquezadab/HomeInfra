@@ -35,6 +35,9 @@ Registro de dónde quedó el trabajo y qué falta por hacer en la próxima sesi�
 | 19 | HDD WD Blue 750GB WD7500BPVT | Periférico (general) | Foto local | S/N WXD1E72EHP04 · 2012-11-04 · Lenovo FRU. |
 | 20 | SSD Samsung 850 EVO 500GB | Periférico (general) | Comercial (Icecat) | S/N S21HNXAGA21889H. |
 | 21 | Tarjeta RAID/HBA Inspur YZCA-00019-101 | Periférico (general) | Foto local | QN QTE227E00948A07 · LSI SAS 6 Gb/s 8 puertos (modelo 9240-8i / 9211-8i según firmware, por confirmar). |
+| 22 | Tarjeta SATA PCIe x1 ASM1061 (2 puertos) | Pieza (En stock) | Foto local | Genérica, chip ASMedia ASM1061, PCIe 2.0 x1, 2 × SATA 6 Gb/s. Sin número de serie. |
+| 23 | Adaptador M.2 NVMe a PCIe x16 | Pieza (En stock) | Foto local | Genérico; conector de largo x16, funciona en x4 (deducido). Código del vendedor 68002B116237580. |
+| 24 | HDD WD Blue 500GB WD5000LPCX | Pieza (En stock) | Foto local | Nuevo, sellado. S/N WXG1AC75PY4Z · 2018-01-03. |
 
 Fotos locales agregadas: PC i7-2600K (gabinete 2022 como principal y placa 2023) y PC i5-12400F (caja del procesador como principal). Carpeta `C:\Users\ThinkPad\Desktop\pcs` ordenada: una carpeta por equipo, fotos con nombres descriptivos.
 
@@ -78,11 +81,14 @@ Estado: **pendiente de que el usuario revise los detalles** (2026-11-02). Retoma
 
 Otras opciones evaluadas: A (medios 4,25 TB / datos 9 TB, plan anterior), C (medios 10,25 TB / datos 1 TB), D (medios 5,25 TB con paridad simple: no recomendada).
 
-Quedan libres: P5Q PRO TURBO + E6750 + 4 GB DDR2, Zotac 8400 GS, Samsung PM981a 256 GB, Patriot 120 GB ×2.
+Quedan libres: P5Q PRO TURBO + E6750 + 4 GB DDR2, Zotac 8400 GS, Samsung PM981a 256 GB, Patriot 120 GB ×2, tarjeta SATA ASM1061, HDD WD5000LPCX nuevo.
 
 ### Pendiente para decidir / antes de armar
 - [ ] Usuario confirma la opción B (o elige otra).
-- [ ] Confirmar que el adaptador es M.2 NVMe a PCIe x4 y si las ranuras x1 de la Z77 tienen el extremo abierto.
+- [x] Adaptador NVMe: conector de largo x16, funciona en x4 (2026-11-02). Va en la ranura x16 del P5G41T-M LX.
+- [x] Ranuras de la GA-Z77-HD3 (foto): PCIEX16 (x16, CPU) · 2 × PCIe x1 (extremo cerrado) · PCIEX4 (largo x16, x4 PCIe 2.0, chipset) · 2 × PCI. Confirmar en el manual si PCIEX4 baja a x1 al ocupar las ranuras x1.
+- [ ] Decidir el HDD nuevo WD5000LPCX: repuesto sellado (recomendado) o disco de datos del servidor de medios (6,75 TB).
+- [ ] Tarjeta SATA ASM1061 (2 puertos, PCIe x1): disponible para sumar puertos al servidor de datos si el P5G41T-M LX tiene ranura x1 libre.
 - [ ] Confirmar modelo de la TV Caixun (opcional).
 - [ ] Copiar el contenido de los discos "Respaldos" (WD20EARS) y "Trabajo 1" (WD1001FALS) antes de usarlos.
 - [ ] Revisar SMART y hacer prueba completa de cada disco; desactivar el estacionamiento agresivo de cabezales de los WD Green.
