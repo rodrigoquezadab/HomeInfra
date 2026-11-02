@@ -2,8 +2,8 @@
 
 Registro de dónde quedó el trabajo y qué falta por hacer en la próxima sesión. Actualizar al cerrar cada sesión.
 
-**Última sesión:** 2026-10-31
-**Último commit de código al cierre:** `a4e4a0f` (más el commit que actualiza este archivo)
+**Última sesión:** 2026-11-02
+**Último commit de código al cierre:** `d88eeb2` (más el commit que actualiza este archivo)
 **Sitio publicado:** https://rodrigoquezadab.github.io/HomeInfra/ (GitHub Pages, rama `main`)
 **Servidor local:** Live Server en `http://localhost:5500` (`.claude/launch.json`)
 
@@ -52,6 +52,43 @@ Fotos locales agregadas: PC i7-2600K (gabinete 2022 como principal y placa 2023)
 - Botón **Collector** en la app: pasos A/B/C, comando de una línea por sistema operativo, **carpeta de destino** en recuadro amarillo (resaltada dentro del comando) e importación de varios registros a la vez.
 - Lanzadores del pendrive con variable `DESTINO` marcada para cambiar la carpeta de destino. README con sección "Cambiar la carpeta de destino".
 - Probado: Windows en un ThinkPad T14 Gen 2a (PowerShell 5.1 y 7, local y desde GitHub) y en el PC armado (registro real importado). Linux solo sobre un sistema simulado; macOS solo revisión de sintaxis.
+
+---
+
+## 🖥️ En evaluación: servidores de medios y de datos
+
+Estado: **pendiente de que el usuario revise los detalles** (2026-11-02). Retomar desde aquí.
+
+### Decisiones tomadas
+- Software libre: **OpenMediaVault 8 + SnapRAID + mergerfs** (se descartaron Unraid por licencia, TrueNAS/ZFS y RAID 0/5/RAIDZ por discos de distinto tamaño y antiguos; RAIDZ desperdicia espacio y si fallan más discos de los tolerados se pierde todo).
+- Sin tarjeta de video para streaming: el **Chromecast con Google TV HD** (Amlogic S805X2: H.264, HEVC, VP9, AV1 hasta 1080p60) y la **TV Caixun con Google TV** decodifican con la app Jellyfin. Solo se transcodifica 4K→1080p, audio DTS/TrueHD o subtítulos de imagen; el i7-2600K alcanza para ~2 a la vez. Convertir DVDs a H.264/HEVC con subtítulos SRT al respaldarlos.
+- Immich (fotos) exige CPU x86-64-v2 y ≥ 6 GB RAM: solo el i7-2600K sirve.
+- La placa MSI A68HM-E33 V2 queda fuera (se usa en otro lugar). El usuario tiene cables SFF-8087 a SATA.
+
+### Propuesta vigente: opción B (con NVMe)
+| | Servidor de medios (fotos, video, audio) | Servidor de datos |
+|---|---|---|
+| Placa / CPU / RAM | Gigabyte Z77-HD3 · i7-2600K · 16 GB DDR3 | ASUS P5G41T-M LX · Core 2 Quad Q6700 · 8 GB DDR3 |
+| Sistema | Samsung 850 EVO 500 GB (SATA) | NVMe Kingston OM8PDP3256B 256 GB en adaptador PCIe x16 + pendrive para /boot (la BIOS no arranca NVMe) |
+| PCIe x16 | Tarjeta RAID Inspur YZCA-00019-101 flasheada a modo IT (9211-8i) | Adaptador NVMe |
+| Paridad SnapRAID | WD20EARX 2 TB + WD20EARS 2 TB (doble) | WD30EZRX 3 TB (simple) |
+| Datos | 9 discos de notebook = **6,25 TB** (WD10SPZX, WD10JPVX, ST1000LM024, WD7500BPVT, MQ01ACF050, WD5000LPVT, WD5000LPVX, Hitachi HTS547550A9E384, MJA2500BH) | WD30EZRX 3 TB + WD1001FALS ×2 = **5 TB** |
+| Fuente | Cooler Master RS-460-PSAR-J3 | Deepcool DA600 |
+| Apps | Jellyfin, Immich | Compartición SMB, respaldo de fotos del servidor de medios |
+
+Otras opciones evaluadas: A (medios 4,25 TB / datos 9 TB, plan anterior), C (medios 10,25 TB / datos 1 TB), D (medios 5,25 TB con paridad simple: no recomendada).
+
+Quedan libres: P5Q PRO TURBO + E6750 + 4 GB DDR2, Zotac 8400 GS, Samsung PM981a 256 GB, Patriot 120 GB ×2.
+
+### Pendiente para decidir / antes de armar
+- [ ] Usuario confirma la opción B (o elige otra).
+- [ ] Confirmar que el adaptador es M.2 NVMe a PCIe x4 y si las ranuras x1 de la Z77 tienen el extremo abierto.
+- [ ] Confirmar modelo de la TV Caixun (opcional).
+- [ ] Copiar el contenido de los discos "Respaldos" (WD20EARS) y "Trabajo 1" (WD1001FALS) antes de usarlos.
+- [ ] Revisar SMART y hacer prueba completa de cada disco; desactivar el estacionamiento agresivo de cabezales de los WD Green.
+- [ ] Flashear la tarjeta Inspur a modo IT (desde DOS o shell UEFI).
+- [ ] Verificar que los complementos SnapRAID y mergerfs de omv-extras estén publicados para OMV 8 (si no, instalar OMV 7).
+- [ ] Al confirmar: registrar los dos servidores en la app como equipos planificados con sus piezas asignadas.
 
 ---
 
