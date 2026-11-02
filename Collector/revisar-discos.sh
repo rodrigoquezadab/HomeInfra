@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # HomeInfra - Revisión de discos (Linux, pensado para SystemRescue desde USB).
 #
-# Prueba todos los discos SATA conectados al mismo tiempo, sin intervención:
+# Prueba los discos SATA autorizados al mismo tiempo, sin intervención:
 #   1. Reporte SMART inicial
 #   2. badblocks: escribe y lee toda la superficie  (BORRA TODO EL DISCO)
 #   3. Prueba larga del SMART
@@ -13,8 +13,12 @@
 # autorun/autorun (sin extensión). Se ejecuta solo al arrancar y guarda los
 # reportes en el mismo pendrive. Procedimiento completo en la app: Discos.
 #
-# Uso manual:  bash revisar-discos.sh            (detecta los discos y pide confirmación)
-#              bash revisar-discos.sh sda sdb    (solo los discos indicados)
+# Solo se prueban los discos cuyo número de serie está en discos-autorizados.txt,
+# en la raíz del pendrive (uno por línea; lo que va después del número o tras #
+# se ignora). Cualquier otro disco conectado no se toca.
+#
+# Uso:  bash revisar-discos.sh            (discos de la lista, sin preguntar)
+#       bash revisar-discos.sh sda sdb    (discos indicados, pide escribir BORRAR)
 
 VERSION="1.0.0"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -40,6 +44,23 @@ done
 # Utilidades
 # --------------------------------------------------------------------------
 ahora() { date '+%Y-%m-%d %H:%M:%S'; }
+
+# Error que detiene la revisión: se muestra y, si se puede, se guarda en el pendrive
+error_fatal() {
+  echo ""
+  echo "=============================================="
+  echo "  ERROR: no se probó ningún disco"
+  echo "=============================================="
+  printf '%s\n' "$@"
+  if [ -n "$RUN_DIR" ] && [ -d "$RUN_DIR" ]; then
+    { echo "$(ahora)  ERROR"; printf '%s\n' "$@"; } > "$RUN_DIR/ERROR.txt"
+    sync
+  fi
+  exit 1
+}
+
+# Número de serie normalizado para comparar: mayúsculas, solo letras y números
+normalizar() { echo "$1" | tr '[:lower:]' '[:upper:]' | tr -cd 'A-Z0-9'; }
 
 # Disco (sdX) que contiene una ruta montada; vacío si no aplica
 disco_de_ruta() {
@@ -89,15 +110,23 @@ carpeta_pendrive() {
 }
 
 BASE_DIR="$(carpeta_pendrive)"
+# Si no se encontró el pendrive, la carpeta del script puede estar en RAM
+# (copia temporal de autorun): los reportes se perderían al apagar
+case "$(findmnt -no FSTYPE --target "$BASE_DIR" 2>/dev/null)" in
+  tmpfs|ramfs|overlay|squashfs|"")
+    error_fatal "No se encontró el pendrive para guardar los reportes (destino: $BASE_DIR, en memoria)." \
+      "Arranca desde el pendrive creado con Rufus en modo ISO, o ejecuta el script desde un disco o pendrive con escritura." ;;
+esac
+DESTINO_INFO="$BASE_DIR ($(findmnt -no SOURCE --target "$BASE_DIR" 2>/dev/null), etiqueta $(lsblk -no LABEL "$(findmnt -no SOURCE --target "$BASE_DIR" 2>/dev/null)" 2>/dev/null))"
 PLACA="$(cat /sys/class/dmi/id/board_name 2>/dev/null | tr -c 'A-Za-z0-9_.\n-' '_')"
 RUN_DIR="$BASE_DIR/HomeInfra-Discos/${PLACA:-equipo}_$(date '+%Y%m%d-%H%M%S')"
 if ! mkdir -p "$RUN_DIR" 2>/dev/null || ! [ -w "$RUN_DIR" ]; then
-  echo "No se puede escribir en $BASE_DIR."
-  echo "El pendrive debe crearse con Rufus en modo ISO (FAT32), no en modo DD."
-  exit 1
+  RUN_DIR=""
+  error_fatal "No se puede escribir en $BASE_DIR." \
+    "El pendrive debe crearse con Rufus en modo ISO (FAT32), no en modo DD."
 fi
 mkdir -p "$TMP_DIR"
-rm -f "$TMP_DIR"/*.listo
+rm -f "$TMP_DIR"/*.listo "$TMP_DIR"/*.rc
 DISCO_PENDRIVE="$(disco_de_ruta "$BASE_DIR")"
 
 # --------------------------------------------------------------------------
@@ -115,43 +144,68 @@ es_apto() {
   return 0
 }
 
-DISCOS=()
-if [ $# -gt 0 ]; then
-  for d in "$@"; do
-    d="${d#/dev/}"
-    if motivo="$(es_apto "$d")"; then DISCOS+=("$d"); else echo "Se omite $d: $motivo"; fi
-  done
-else
-  for d in $(lsblk -dno NAME); do
-    es_apto "$d" >/dev/null && DISCOS+=("$d")
-  done
-fi
+descripcion_disco() {
+  printf "/dev/%-5s %8s  %-28s S/N %s" "$1" "$(lsblk -dno SIZE "/dev/$1" | tr -d ' ')" \
+    "$(lsblk -dno MODEL "/dev/$1" | sed 's/ *$//')" "$(serial_de "$1")"
+}
 
 echo ""
 echo "=============================================="
 echo "  HomeInfra - Revisión de discos v$VERSION"
 echo "=============================================="
-if [ ${#DISCOS[@]} -eq 0 ]; then
-  echo "No se encontraron discos SATA para probar."
-  rmdir "$RUN_DIR" 2>/dev/null
-  exit 1
-fi
 
-echo "Discos que se van a probar:"
-echo ""
-for d in "${DISCOS[@]}"; do
-  printf "  /dev/%-5s %8s  %-28s S/N %s\n" "$d" "$(lsblk -dno SIZE "/dev/$d" | tr -d ' ')" \
-    "$(lsblk -dno MODEL "/dev/$d" | sed 's/ *$//')" "$(serial_de "$d")"
-  contenido="$(lsblk -nro NAME,FSTYPE,LABEL,SIZE "/dev/$d" | awk 'NR>1 && $2!="" {printf "%s %s %s %s; ", $1, $2, $3, $4}')"
-  [ -n "$contenido" ] && echo "         TIENE DATOS: $contenido"
-done
-echo ""
-echo "ATENCIÓN: la prueba BORRA POR COMPLETO todos estos discos."
-read -r -p "Escribe BORRAR para continuar: " respuesta
-if [ "$respuesta" != "BORRAR" ]; then
-  echo "Cancelado. No se modificó ningún disco."
-  rmdir "$RUN_DIR" 2>/dev/null
-  exit 0
+DISCOS=()
+IGNORADOS=()
+NO_CONECTADOS=()
+if [ $# -gt 0 ]; then
+  # Uso manual: discos indicados, con confirmación
+  for d in "$@"; do
+    d="${d#/dev/}"
+    if motivo="$(es_apto "$d")"; then DISCOS+=("$d"); else echo "Se omite $d: $motivo"; fi
+  done
+  [ ${#DISCOS[@]} -eq 0 ] && error_fatal "Ninguno de los discos indicados se puede probar."
+  echo "Discos que se van a probar:"
+  for d in "${DISCOS[@]}"; do echo "  $(descripcion_disco "$d")"; done
+  echo "Los reportes se guardarán en: $DESTINO_INFO"
+  echo "ATENCIÓN: la prueba BORRA POR COMPLETO todos estos discos."
+  read -r -p "Escribe BORRAR para continuar: " respuesta
+  if [ "$respuesta" != "BORRAR" ]; then
+    echo "Cancelado. No se modificó ningún disco."
+    rmdir "$RUN_DIR" 2>/dev/null
+    exit 0
+  fi
+else
+  # Uso automático: solo los discos de la lista autorizada, sin preguntar
+  LISTA="$BASE_DIR/discos-autorizados.txt"
+  [ -f "$LISTA" ] || error_fatal "Falta el archivo discos-autorizados.txt en la raíz del pendrive." \
+    "Crea ese archivo con los números de serie de los discos que se pueden borrar, uno por línea."
+  AUTORIZADOS=()
+  while IFS= read -r linea; do
+    s="$(normalizar "$(echo "$linea" | sed 's/^\xEF\xBB\xBF//; s/#.*//' | awk '{print $1}')")"
+    [ ${#s} -ge 6 ] && AUTORIZADOS+=("$s")
+  done < <(tr -d '\r' < "$LISTA")
+  [ ${#AUTORIZADOS[@]} -eq 0 ] && error_fatal "discos-autorizados.txt no tiene números de serie válidos (mínimo 6 caracteres)."
+
+  # Un disco coincide si su número de serie es igual o termina en el de la lista
+  # (algunos discos informan un prefijo, ej. WD-WCC6Y3JZFCPE para WCC6Y3JZFCPE)
+  declare -A ENCONTRADO
+  for d in $(lsblk -dno NAME); do
+    es_apto "$d" >/dev/null || continue
+    sd="$(normalizar "$(serial_de "$d")")"
+    autorizado=""
+    for a in "${AUTORIZADOS[@]}"; do
+      if [ "$sd" = "$a" ] || [ "${sd: -${#a}}" = "$a" ]; then autorizado="$a"; break; fi
+    done
+    if [ -n "$autorizado" ]; then DISCOS+=("$d"); ENCONTRADO[$autorizado]=1
+    else IGNORADOS+=("$(descripcion_disco "$d")"); fi
+  done
+  for a in "${AUTORIZADOS[@]}"; do [ -z "${ENCONTRADO[$a]}" ] && NO_CONECTADOS+=("$a"); done
+
+  if [ ${#DISCOS[@]} -eq 0 ]; then
+    error_fatal "Ningún disco conectado está en discos-autorizados.txt." \
+      "Autorizados: ${AUTORIZADOS[*]}" \
+      "Conectados y no autorizados (no se tocaron):" "${IGNORADOS[@]:-ninguno}"
+  fi
 fi
 
 # --------------------------------------------------------------------------
@@ -175,6 +229,7 @@ revisar_disco() {
   paso "2/4 badblocks en curso (escribe y lee todo el disco)"
   badblocks -wsv -b 4096 -t random -o "$TMP_DIR/${s}_malos.txt" "/dev/$d" > "$TMP_DIR/${s}_badblocks.log" 2>&1
   rc=$?
+  echo "$rc" > "$TMP_DIR/${s}.rc"
   # Del avance (una línea por segundo) se guarda solo la última
   tr '\b' '\n' < "$TMP_DIR/${s}_badblocks.log" | grep -v '^[[:space:]]*$' | grep -v '% done' > "${p}_2_badblocks.log"
   tr '\b' '\n' < "$TMP_DIR/${s}_badblocks.log" | grep '% done' | tail -1 >> "${p}_2_badblocks.log"
@@ -210,7 +265,8 @@ revisar_disco() {
 # Resumen de todos los discos
 # --------------------------------------------------------------------------
 escribir_resumen() {
-  local r="$RUN_DIR/RESUMEN.txt" d s p ini fin malos prueba veredicto id nombre a b
+  local r="$RUN_DIR/RESUMEN.txt" d s p ini fin malos rc prueba veredicto id nombre a b
+  REVISAR_N=0
   {
     echo "HomeInfra - Revisión de discos v$VERSION"
     echo "Placa: ${PLACA:-desconocida} · Inicio: $INICIO · Fin: $(ahora)"
@@ -218,6 +274,7 @@ escribir_resumen() {
     for d in "${DISCOS[@]}"; do
       s="${SERIAL[$d]}"; p="$RUN_DIR/$s"; ini="${p}_1_smart_inicial.txt"; fin="${p}_3_smart_final.txt"
       malos=$(grep -c . "${p}_2_sectores_malos.txt" 2>/dev/null)
+      rc="$(cat "$TMP_DIR/${s}.rc" 2>/dev/null)"
       prueba="$(ultima_autoprueba "$fin")"
       echo "== /dev/$d · S/N $s · $(grep -m1 -E '^(Device Model|Model Number|Product)' "$ini" | sed 's/^[^:]*: *//')"
       echo "   Capacidad: $(grep -m1 '^User Capacity' "$ini" | sed 's/^[^[]*\[//; s/\]//')"
@@ -227,16 +284,26 @@ escribir_resumen() {
         printf "   %-15s inicial %-8s final %s\n" "$nombre" "${a:--}" "${b:--}"
       done
       echo "   Sectores malos (badblocks): ${malos:-?}"
+      [ "${rc:-1}" != "0" ] && echo "   badblocks terminó con error (código ${rc:-?}): revisar ${s}_2_badblocks.log"
       echo "   Prueba larga del SMART: ${prueba:-sin resultado}"
       veredicto="APTO"
       [ "${malos:-1}" != "0" ] && veredicto="REVISAR"
+      [ "${rc:-1}" != "0" ] && veredicto="REVISAR"
       for id in 197 198; do [ "$(atributo $id "$fin")" != "0" ] && [ -n "$(atributo $id "$fin")" ] && veredicto="REVISAR"; done
       a="$(atributo 5 "$ini")"; b="$(atributo 5 "$fin")"
       [ -n "$a" ] && [ -n "$b" ] && [ "$b" != "$a" ] && veredicto="REVISAR"
       echo "$prueba" | grep -q 'Completed without error' || veredicto="REVISAR"
       echo "   Veredicto preliminar: $veredicto"
       echo ""
+      [ "$veredicto" = "REVISAR" ] && REVISAR_N=$(( REVISAR_N + 1 ))
     done
+    if [ ${#NO_CONECTADOS[@]} -gt 0 ]; then
+      echo "En discos-autorizados.txt pero no conectados: ${NO_CONECTADOS[*]}"
+    fi
+    if [ ${#IGNORADOS[@]} -gt 0 ]; then
+      echo "Conectados y no autorizados (no se tocaron):"
+      printf '   %s\n' "${IGNORADOS[@]}"
+    fi
   } > "$r"
   sync
 }
@@ -278,7 +345,14 @@ wait
 escribir_resumen
 clear
 cat "$RUN_DIR/RESUMEN.txt"
+echo ""
 echo "=============================================="
-echo "  TERMINADO. Reportes guardados en el pendrive."
+if [ "$REVISAR_N" -eq 0 ]; then
+  echo "  TERMINADO: los ${#DISCOS[@]} discos están APTOS."
+else
+  echo "  TERMINADO con observaciones: $REVISAR_N de ${#DISCOS[@]} discos para REVISAR."
+fi
+[ ${#NO_CONECTADOS[@]} -gt 0 ] && echo "  Aviso: ${#NO_CONECTADOS[@]} disco(s) de la lista no estaban conectados."
+echo "  Reportes guardados en el pendrive: HomeInfra-Discos/$(basename "$RUN_DIR")"
 echo "  Para apagar el equipo escribe: poweroff"
 echo "=============================================="

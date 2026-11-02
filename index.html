@@ -794,10 +794,10 @@
             <span class="settings-block-title">🩺 Revisión de discos (pendrive de prueba)</span>
           </div>
           <p class="settings-desc">
-            Prueba la integridad de varios discos al mismo tiempo: reporte SMART inicial, revisión completa de la superficie con <code>badblocks</code>, prueba larga del SMART y reporte SMART final. Todo funciona desde un mismo pendrive: arrancas el equipo con él, la prueba empieza sola y los reportes quedan guardados en ese mismo pendrive.
+            Prueba la integridad de varios discos al mismo tiempo: reporte SMART inicial, revisión completa de la superficie con <code>badblocks</code>, prueba larga del SMART y reporte SMART final. Todo funciona desde un mismo pendrive y sin intervención: arrancas el equipo con él, la prueba empieza sola, los reportes quedan guardados en ese mismo pendrive y al final aparece un mensaje con el resultado (o uno de error, si algo falla).
           </p>
           <p class="disk-test-warning">
-            ⚠️ La prueba <strong>borra por completo</strong> los discos probados. Conecta solo los discos que quieras probar y desconecta los que tengan datos.
+            ⚠️ La prueba <strong>borra por completo</strong> los discos probados. Solo se tocan los discos cuyo número de serie anotaste en <code>discos-autorizados.txt</code> (paso 5); cualquier otro disco conectado se ignora. Aun así, desconecta los discos con datos que no vas a probar.
           </p>
 
           <p class="collector-step"><span class="collector-step-num">1</span> Qué necesitas</p>
@@ -807,6 +807,7 @@
             <li><a href="https://rufus.ie/es/" target="_blank" rel="noopener">Rufus</a>: usa la versión portable, no requiere instalación.</li>
             <li><strong>SystemRescue 13.02</strong>: sistema Linux gratuito que arranca desde el pendrive (paso 2).</li>
             <li>El script de revisión de HomeInfra (paso 4).</li>
+            <li>Los números de serie de los discos a probar, de su etiqueta o de su ficha en <em>Piezas</em> (paso 5).</li>
           </ul>
 
           <p class="collector-step"><span class="collector-step-num">2</span> Descarga SystemRescue</p>
@@ -857,46 +858,62 @@
             <li>El archivo debe llamarse exactamente <code>autorun</code>, sin extensión. Para comprobarlo activa <em>Vista → Mostrar → Extensiones de nombre de archivo</em>; si aparece como <code>autorun.sh</code> o <code>autorun.txt</code>, quítale la extensión.</li>
             <li>No abras ni guardes el script con el Bloc de notas: Windows puede cambiar sus saltos de línea y deja de funcionar.</li>
           </ul>
+
+          <p class="collector-step"><span class="collector-step-num">5</span> Autoriza los discos a probar</p>
+          <ul class="disk-test-list">
+            <li>Con el Bloc de notas crea en la raíz del pendrive el archivo <code>discos-autorizados.txt</code>: un número de serie por línea, tal como aparece en la etiqueta del disco (S/N). Después del número puedes escribir una descripción, y las líneas que empiezan con <code>#</code> se ignoran.</li>
+            <li>El script prueba solo esos discos, sin preguntar nada. Un disco que no está en la lista nunca se toca, aunque esté conectado, así que arrancar el pendrive por error en otro equipo no borra nada.</li>
+            <li>Cada vez que vayas a probar otros discos, actualiza la lista. Para usar SystemRescue para otra cosa sin probar discos, cambia el nombre del archivo o déjalo vacío.</li>
+          </ul>
+          <div class="collector-command-box">
+            <code># discos-autorizados.txt (ejemplo)
+WCC6Y3JZFCPE   WD Blue WD10EZEX 1 TB
+Y457MMEFS      Toshiba DT01ACA100 1 TB</code>
+          </div>
           <div class="collector-command-box">
             <code>RESCUE1302 (pendrive)
 ├── autorun\
-│   └── autorun             ← script de HomeInfra (lo copias tú)
+│   └── autorun             ← script de HomeInfra (paso 4)
+├── discos-autorizados.txt  ← discos que se pueden borrar (paso 5)
 ├── HomeInfra-Discos\       ← reportes (los crea el script)
 └── boot\, EFI\, sysresccd\ ← SystemRescue (no tocar)</code>
           </div>
 
-          <p class="collector-step"><span class="collector-step-num">5</span> Arranca el equipo de prueba</p>
+          <p class="collector-step"><span class="collector-step-num">6</span> Arranca el equipo de prueba</p>
           <ul class="disk-test-list">
             <li>Con el equipo apagado, conecta por SATA los discos a probar, con su cable de energía, y luego el pendrive.</li>
             <li>Enciende y abre el menú de arranque con la tecla que indique la pantalla de inicio: <strong>F12</strong> en Gigabyte, <strong>F8</strong> en ASUS, <strong>F11</strong> en MSI. Elige el pendrive; si aparece dos veces, la opción que empieza con «UEFI:» arranca en modo UEFI y la otra en modo BIOS: ambas sirven.</li>
             <li>En el menú de SystemRescue elige la primera opción: <em>Boot SystemRescue using default options</em>. Si en modo UEFI no arranca, desactiva <em>Secure Boot</em> en la BIOS o usa la opción sin «UEFI:».</li>
-            <li>Al terminar de cargar, la prueba se inicia sola y muestra los discos detectados con su modelo, tamaño y número de serie. Revisa que sean los correctos (si alguno dice <strong>TIENE DATOS</strong>, revísalo dos veces), escribe <code>BORRAR</code> y presiona Enter.</li>
-            <li>Para usar SystemRescue para otra cosa, presiona Enter sin escribir nada: la prueba se cancela sin tocar los discos.</li>
+            <li>Al terminar de cargar, la prueba se inicia sola con los discos autorizados que estén conectados. No hay que escribir nada.</li>
+            <li>El script encuentra el pendrive solo, sin importar la letra de unidad que tenga en Windows: usa el dispositivo desde el que arrancó SystemRescue.</li>
+            <li>Si algo impide la prueba, aparece <strong>ERROR: no se probó ningún disco</strong> con el motivo, que también queda guardado en el pendrive como <code>ERROR.txt</code>. Por ejemplo: falta <code>discos-autorizados.txt</code>, ningún disco conectado está en la lista, o no se puede escribir en el pendrive. En esos casos no se toca ningún disco.</li>
           </ul>
 
-          <p class="collector-step"><span class="collector-step-num">6</span> Déjalo trabajar</p>
+          <p class="collector-step"><span class="collector-step-num">7</span> Déjalo trabajar</p>
           <ul class="disk-test-list">
             <li>Todos los discos se prueban al mismo tiempo; la prueba dura lo que tarde el disco más lento. Aproximadamente: 500 GB, de 3 a 5 horas; 1 TB, de 6 a 9 horas; 2 TB, de 12 a 16 horas; 3 TB, de 18 a 24 horas.</li>
             <li>No hace falta mirar: cada reporte se guarda en el pendrive apenas termina su etapa. Si vuelves, la pantalla muestra la etapa y el avance de cada disco, y se actualiza cada minuto.</li>
-            <li>No retires el pendrive hasta ver <strong>TERMINADO</strong>. Aparece un resumen con un veredicto preliminar por disco: <strong>APTO</strong> (sin sectores malos, sin sectores pendientes ni incorregibles, sin nuevos sectores reasignados y prueba larga sin errores) o <strong>REVISAR</strong>.</li>
+            <li>No retires el pendrive hasta ver el mensaje final. Aparece un resumen con un veredicto preliminar por disco: <strong>APTO</strong> (sin sectores malos, sin sectores pendientes ni incorregibles, sin nuevos sectores reasignados y prueba larga sin errores) o <strong>REVISAR</strong>.</li>
+            <li>El mensaje final dice <strong>TERMINADO: los N discos están APTOS</strong> si todo salió bien, o <strong>TERMINADO con observaciones</strong> con cuántos discos hay que revisar. También avisa si algún disco de la lista no estaba conectado.</li>
             <li>Para apagar el equipo escribe <code>poweroff</code> y presiona Enter.</li>
           </ul>
 
-          <p class="collector-step"><span class="collector-step-num">7</span> Lleva los reportes a HomeInfra</p>
+          <p class="collector-step"><span class="collector-step-num">8</span> Lleva los reportes a HomeInfra</p>
           <ul class="disk-test-list">
             <li>Cada ejecución crea en el pendrive la carpeta <code>HomeInfra-Discos\&lt;placa&gt;_&lt;fecha&gt;\</code>, así las pruebas de distintos equipos no se mezclan. Dentro quedan:
               <ul>
-                <li><code>RESUMEN.txt</code>: valores SMART iniciales y finales, sectores malos, resultado de la prueba larga y veredicto de cada disco.</li>
+                <li><code>RESUMEN.txt</code>: valores SMART iniciales y finales, sectores malos, resultado de la prueba larga y veredicto de cada disco; también los discos de la lista que no estaban conectados y los conectados que se ignoraron.</li>
+                <li><code>ERROR.txt</code>: solo si la prueba no pudo empezar, con el motivo.</li>
                 <li><code>&lt;serie&gt;_0_estado.txt</code>: registro de las etapas con fecha y hora.</li>
                 <li><code>&lt;serie&gt;_1_smart_inicial.txt</code> y <code>&lt;serie&gt;_3_smart_final.txt</code>: reportes SMART completos.</li>
                 <li><code>&lt;serie&gt;_2_badblocks.log</code> y <code>&lt;serie&gt;_2_sectores_malos.txt</code>: si este último está vacío, no hubo sectores malos.</li>
               </ul>
             </li>
             <li>Conecta el pendrive a tu PC y copia la carpeta <code>HomeInfra-Discos</code> al proyecto, en <code>Collector/Registros/Discos/</code>. El resultado de cada disco se registra en su ficha (vista <em>Piezas</em>, búsqueda por número de serie).</li>
-            <li>El pendrive sirve para siempre: para probar otros discos, vuelve al paso 5.</li>
+            <li>El pendrive sirve para siempre: para probar otros discos, actualiza la lista (paso 5) y vuelve al paso 6.</li>
           </ul>
           <p class="field-hint">
-            Uso manual: tras cancelar con Enter, <code>bash /run/archiso/bootmnt/autorun/autorun sda sdb</code> prueba solo los discos indicados (los nombres se ven con <code>lsblk</code>). El script también está en la carpeta <a href="https://github.com/rodrigoquezadab/HomeInfra/tree/main/Collector" target="_blank" rel="noopener">Collector</a> como <code>revisar-discos.sh</code>.
+            Uso manual: <code>bash /run/archiso/bootmnt/autorun/autorun sda sdb</code> prueba solo los discos indicados (los nombres se ven con <code>lsblk</code>) y pide escribir <code>BORRAR</code> para confirmar. El script también está en la carpeta <a href="https://github.com/rodrigoquezadab/HomeInfra/tree/main/Collector" target="_blank" rel="noopener">Collector</a> como <code>revisar-discos.sh</code>.
           </p>
         </div>
 
