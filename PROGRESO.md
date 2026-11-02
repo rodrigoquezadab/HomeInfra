@@ -25,6 +25,11 @@ Registro de dónde quedó el trabajo y qué falta por hacer en la próxima sesi�
 | 9 | Monitor LG TV | Monitor (general) | Sin imagen | Dispositivo compartido entre PCs; no es componente de ningún equipo. EDID sin serie real ni modelo exacto. |
 | 10 | SSD Patriot Burst Elite 120GB | Periférico (general) | Sin imagen | SSD de Windows 10 Pro ("SERVER", instalado 2025-01-28) que se mueve entre PCs para arrancarlos; no es componente de ningún equipo. |
 | 11 | Pendrive Sony 4 GB | Periférico (general) | Sin imagen | Pendrive del Collector; no es componente de ningún equipo. |
+| 12 | Tarjeta de video ZOTAC GeForce 8400 GS GEN2 512MB DDR2 | Periférico (general) | Foto local (etiqueta) | PN 288-90N44-040ZT, S/N N103100027911. No es componente de ningún equipo. Sin imagen comercial (no está en Icecat). |
+| 13 | PC armado: MSI A68HM-E33 V2 (CPU AMD por identificar) | Desktop | Foto local (placa) | Registrado desde una foto: placa, RAM HyperX Fury HX318C10FR/4 y una GPU dedicada sin identificar. Pendiente pasarle el Collector. |
+| 14 | SSD Patriot Burst Elite 120GB (segunda unidad) | Periférico (general) | Sin imagen | Mismo modelo que el SSD de Windows compartido. Número de serie pendiente. |
+
+Fotos locales agregadas: PC i7-2600K (gabinete 2022 como principal y placa 2023) y PC i5-12400F (caja del procesador como principal). Carpeta `C:\Users\ThinkPad\Desktop\pcs` ordenada: una carpeta por equipo, fotos con nombres descriptivos.
 
 ### App
 - Dos vistas: **💻 Equipos completos** (principal) y **🧩 Componentes** (cada pieza por separado, filtro por categoría, búsqueda, imagen y equipo donde está instalada).
@@ -56,6 +61,8 @@ Registro de dónde quedó el trabajo y qué falta por hacer en la próxima sesi�
 - [ ] **SSD de Windows compartido:** revisar si tiene limitado el número de procesadores (msconfig → Arranque → Opciones avanzadas); en los PCs Q6700 e i7-2600K Windows informó menos núcleos de los reales.
 - [ ] **PCs Q6700, E6750 e i7-2600K:** fotos, modelo exacto de la RAM y si tienen disco propio.
 - [ ] **Monitor LG TV:** registrar el modelo exacto (etiqueta trasera).
+- [ ] **Segundo SSD Patriot Burst Elite 120GB:** registrar número de serie, firmware y contenido (Collector o etiqueta).
+- [ ] **PC MSI A68HM-E33 V2:** ejecutar el Collector (CPU, RAM total, GPU, almacenamiento) y confirmar la MAC 4C:CC:6A:5F:66:21.
 - [ ] Revisar la carpeta `C:\Users\ThinkPad\Desktop\pcs` por más equipos o accesorios por registrar.
 
 ### Imágenes

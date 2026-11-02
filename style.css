@@ -2461,3 +2461,39 @@ button.card-linked-row:hover {
   color: #6ee7b7;
   border-color: rgba(52, 211, 153, 0.35);
 }
+
+/* Características oficiales de un componente (placas base) */
+.component-features {
+  font-size: 0.76rem;
+  color: #cbd5e1;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 0.35rem 0.6rem;
+}
+
+.component-features summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.component-features dl {
+  margin: 0.45rem 0 0.35rem;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.25rem 0.6rem;
+}
+
+.component-features dt {
+  font-weight: 700;
+  color: #93c5fd;
+}
+
+.component-features dd {
+  margin: 0;
+}
+
+.component-features a {
+  color: var(--primary);
+}

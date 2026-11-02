@@ -5,7 +5,7 @@ Este archivo documenta el registro y contexto de los equipos tecnológicos perso
 
 La base de datos principal estructurada reside en el archivo [`equipos.json`](equipos.json) y se administra interactivamente a través de la aplicación web local `HomeInfra` (`index.html`, `style.css`, `app.js`).
 
-*Última actualización sincronizada:* `2026-11-02` | *Total de equipos:* **11**
+*Última actualización sincronizada:* `2026-11-02` | *Total de equipos:* **14**
 
 ---
 
@@ -65,7 +65,10 @@ HomeInfra evolucionará de un inventario de equipos a un sistema de gestión de 
 | 8 | Desktop | PC armado | Core i7-2600K · Gigabyte Z77-HD3 | 2012 (lanzamiento del chipset Intel Z77) | Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz [2011] | 16 GB DDR3 | Intel(R) HD Graphics 3000 (Integrada) | N/A | N/A | [Soporte Oficial PC armado Core i7-2600K · Gigabyte Z77-HD3](https://www.gigabyte.com/Motherboard/GA-Z77-HD3-rev-10/support) |
 | 9 | Monitor | LG | TV (usado como monitor) | 2010 | N/A | N/A | N/A | N/A | N/A | [Soporte Oficial LG TV (usado como monitor)](https://www.google.com/search?q=LG%20TV%20monitor%20soporte%20oficial) |
 | 10 | Periférico | Patriot | Burst Elite 120GB (SSD de Windows compartido) | N/A | N/A | N/A | N/A | N/A | PBEIIBB21030118778 | [Soporte Oficial Patriot Burst Elite 120GB (SSD de Windows compartido)](https://www.google.com/search?q=Patriot%20Burst%20Elite%20120GB%20SSD%20soporte) |
-| 11 | Periférico | Sony | Pendrive USB 4 GB (HomeInfra Collector) | N/A | N/A | N/A | N/A | N/A | 7B2211109146005852 | [Soporte Oficial Sony Pendrive USB 4 GB (HomeInfra Collector)](https://www.google.com/search?q=Sony%20USB%20flash%20drive%20soporte) |
+| 11 | Periférico | Patriot | Burst Elite 120GB (segunda unidad) | N/A | N/A | N/A | N/A | N/A | N/A | [Soporte Oficial Patriot Burst Elite 120GB (segunda unidad)](https://www.google.com/search?q=Patriot%20Burst%20Elite%20120GB%20SSD%20soporte) |
+| 12 | Periférico | Sony | Pendrive USB 4 GB (HomeInfra Collector) | N/A | N/A | N/A | N/A | N/A | 7B2211109146005852 | [Soporte Oficial Sony Pendrive USB 4 GB (HomeInfra Collector)](https://www.google.com/search?q=Sony%20USB%20flash%20drive%20soporte) |
+| 13 | Periférico | ZOTAC | GeForce 8400 GS GEN2 512MB DDR2 | 2007 (lanzamiento de la GeForce 8400 GS) | N/A | N/A | NVIDIA GeForce 8400 GS (Dedicada) | N/A | N103100027911 | [Soporte Oficial ZOTAC GeForce 8400 GS GEN2 512MB DDR2](https://www.nvidia.com/Download/index.aspx?lang=es) |
+| 14 | Desktop | PC armado | MSI A68HM-E33 V2 (CPU AMD por identificar) | 2014 (lanzamiento del chipset AMD A68H) | N/A | N/A | N/A | N/A | G716320033 33004 | [Soporte Oficial PC armado MSI A68HM-E33 V2 (CPU AMD por identificar)](https://www.msi.com/Motherboard/A68HM-E33-V2/support) |
 
 ---
 
@@ -210,6 +213,8 @@ Equipo asociado: Acer Aspire E3-112-C6ME (dev-acer-e3-112).
   - Etiqueta de advertencia de temperatura: [`img/acer_e3-112_cargador_advertencia_temperatura.jpg`](img/acer_e3-112_cargador_advertencia_temperatura.jpg)
 
 ### 5. PC armado Core i5-12400F · MSI PRO H610M-G DDR4
+![PC armado Core i5-12400F · MSI PRO H610M-G DDR4](img/intel_i5-12400f_caja.jpg)
+
 - **Tipo:** Desktop
 - **Marca:** PC armado
 - **Modelo:** Core i5-12400F · MSI PRO H610M-G DDR4
@@ -253,6 +258,19 @@ Registro HomeInfra Collector (2026-10-31 19:21:12):
   - *GPU:* NVIDIA GeForce GTX 1660 SUPER 4 GB (NVIDIA) · 2019 · reemplazable
   - *Red:* Intel(R) Ethernet Connection (17) I219-V (MAC 04:7C:16:05:0E:B3) · integrado
   - *Placa base:* Micro-Star International Co., Ltd. PRO H610M-G DDR4 (MS-7D46) (1.0) · S/N 07D4612_M21D142444 · 2022 · integrado
+    - Formato: Micro-ATX
+    - Socket / chipset: LGA 1700 · Intel H610 (procesadores Intel Core 12.ª, 13.ª y 14.ª gen.)
+    - Memoria: 2 ranuras DDR4 · doble canal · hasta 64 GB · 2133 / 2666 / 2933 / 3200 MHz
+    - Expansión: 1 × PCIe 4.0 x16 (desde la CPU) · 1 × PCIe 3.0 x1
+    - Almacenamiento: 4 × SATA 6 Gb/s · 1 × M.2 Key M PCIe 3.0 x4 (2242 / 2260 / 2280; un SSD M.2 SATA desactiva SATA7)
+    - USB: 4 × USB 3.2 Gen 1 5 Gb/s (2 traseros, 2 por conector interno) · 6 × USB 2.0 (4 traseros, 2 internos)
+    - Red: Intel I219-V · 1 Gb/s
+    - Audio: Realtek ALC892 / ALC897 · 7.1 canales HD
+    - Salidas de video: HDMI · VGA · DisplayPort (no funcionan con el i5-12400F, que no tiene gráficos integrados)
+    - Panel trasero: PS/2 teclado/ratón · HDMI · VGA · DisplayPort · 2 × USB 3.2 Gen 1 · 4 × USB 2.0 · LAN · audio
+    - Fuente: [especificaciones oficiales](https://www.msi.com/Motherboard/PRO-H610M-G-DDR4/Specification) (2026-11-02)
+- **Fotografías:**
+  - Caja del Intel Core i5-12400F: [`img/intel_i5-12400f_caja.jpg`](img/intel_i5-12400f_caja.jpg)
 
 ### 6. PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX
 - **Tipo:** Desktop
@@ -294,6 +312,16 @@ Registro HomeInfra Collector (2026-11-01 21:02:05):
   - *GPU:* Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1) (Intel Corporation) · 2008 · integrado
   - *Red:* Qualcomm Atheros AR8131 PCI-E Gigabit Ethernet Controller (NDIS 6.30) (MAC BC:AE:C5:28:68:F4) · integrado
   - *Placa base:* ASUSTeK Computer INC. P5G41T-M LX (Rev X.0x) · S/N 107933150000113 · 2008 · integrado
+    - Formato: Micro-ATX
+    - Socket / chipset: LGA 775 · Intel G41 / ICH7
+    - Memoria: 2 ranuras DDR3 · doble canal · hasta 8 GB · 800 / 1066 / 1333 (OC) MHz · no ECC, sin búfer
+    - Expansión: 1 × PCIe x16 · 1 × PCIe x1 · 2 × PCI
+    - Almacenamiento: 4 × SATA 3 Gb/s · 1 × IDE UltraDMA 100/66/33
+    - USB: 8 × USB 2.0 (4 traseros, 4 internos)
+    - Red: Qualcomm Atheros Gigabit (Windows informó AR8131)
+    - Audio: Realtek ALC887 · 8 canales · S/PDIF Out
+    - Salidas de video: VGA (D-Sub) · gráficos integrados Intel G41
+    - Fuente: [especificaciones oficiales](https://origin-www.asus.com/Motherboards/P5G41TM_LX/specifications/) (2026-11-02)
 
 ### 7. PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO
 - **Tipo:** Desktop
@@ -335,8 +363,20 @@ Registro HomeInfra Collector (2026-11-02 00:04:39):
   - *GPU:* NVIDIA GeForce 210 1 GB (NVIDIA) · 2009 · reemplazable
   - *Red:* Atheros AR8121/AR8113/AR8114 PCI-E Ethernet Controller (MAC 00:24:8C:6B:E7:F6) · integrado
   - *Placa base:* ASUSTeK Computer INC. P5Q PRO TURBO (Rev 1.xx) · S/N MS1C93BC3400692 · 2008 · integrado
+    - Formato: ATX
+    - Socket / chipset: LGA 775 · Intel P45 / ICH10R
+    - Memoria: 4 ranuras DDR2 · doble canal · hasta 16 GB · 667 / 800 / 1066 / 1200 / 1300 MHz · no ECC, sin búfer
+    - Expansión: 2 × PCIe 2.0 x16 (CrossFireX a x8) · 3 × PCIe x1 · 2 × PCI
+    - Almacenamiento: 5 × SATA 3 Gb/s (Intel) · 2 × SATA 3 Gb/s (Silicon Image) · 1 × eSATA y 2 × PATA (JMicron)
+    - USB: 12 × USB 2.0 (6 traseros, 6 internos)
+    - Red: 1 × RJ45 Gigabit (Windows informó Atheros AR8121/AR8113/AR8114)
+    - Audio: VIA VT1708S · 8 canales HD · S/PDIF óptico trasero
+    - Salidas de video: Sin gráficos integrados (chipset P45): requiere tarjeta de video
+    - Fuente: [especificaciones oficiales](https://origin-www.asus.com/motherboards/p5q_pro_turbo/specifications/) (2026-11-02)
 
 ### 8. PC armado Core i7-2600K · Gigabyte Z77-HD3
+![PC armado Core i7-2600K · Gigabyte Z77-HD3](img/gigabyte_z77-hd3_gabinete_2022.jpg)
+
 - **Tipo:** Desktop
 - **Marca:** PC armado
 - **Modelo:** Core i7-2600K · Gigabyte Z77-HD3
@@ -377,6 +417,20 @@ Registro HomeInfra Collector (2026-11-01 17:53:51):
   - *GPU:* Intel(R) HD Graphics 3000 (Intel Corporation) · 2011 · integrado
   - *Red:* Realtek PCIe GbE Family Controller #2 (MAC 74:D4:35:11:F0:AC) · integrado
   - *Placa base:* Gigabyte Technology Co., Ltd. Z77-HD3 · 2012 · integrado
+    - Formato: ATX · 30,5 × 21,5 cm
+    - Socket / chipset: LGA 1155 · Intel Z77
+    - Memoria: 4 ranuras DDR3 1.5V · doble canal · hasta 32 GB · 1066 / 1333 / 1600 MHz (2800 OC); DDR3-1600 requiere CPU Ivy Bridge (22 nm)
+    - Expansión: 1 × PCIe 3.0 x16 · 2 × PCIe x1 · 2 × PCI · AMD CrossFire
+    - Almacenamiento: 2 × SATA 6 Gb/s (SATA3 0/1) · 4 × SATA 3 Gb/s (SATA2 2–5) · RAID 0 / 1 / 5 / 10
+    - USB: Hasta 4 × USB 3.0 (2 traseros, 2 por conector interno) · hasta 8 × USB 2.0
+    - Red: Realtek GbE · 10/100/1000 Mb/s
+    - Audio: Realtek ALC887 · 2 / 4 / 5.1 / 7.1 canales · S/PDIF Out
+    - Salidas de video: D-Sub (VGA) · DVI-D · HDMI (gráficos integrados del procesador)
+    - Otros: DualBIOS
+    - Fuente: [especificaciones oficiales](https://www.gigabyte.com/Motherboard/GA-Z77-HD3-rev-10/sp) (2026-11-02)
+- **Fotografías:**
+  - Placa GA-Z77-HD3 en el gabinete, disipador Thermaltake (2022): [`img/gigabyte_z77-hd3_gabinete_2022.jpg`](img/gigabyte_z77-hd3_gabinete_2022.jpg)
+  - Placa GA-Z77-HD3 fuera del gabinete (2023): [`img/gigabyte_z77-hd3_placa_2023.jpg`](img/gigabyte_z77-hd3_placa_2023.jpg)
 
 ### 9. LG TV (usado como monitor)
 - **Tipo:** Monitor
@@ -417,7 +471,22 @@ Usado para arrancar:
 • Core 2 Duo E6750 · ASUS P5Q PRO TURBO (2026-11-02)
 • Core i7-2600K · Gigabyte Z77-HD3 (2026-11-01)
 
-### 11. Sony Pendrive USB 4 GB (HomeInfra Collector)
+### 11. Patriot Burst Elite 120GB (segunda unidad)
+- **Tipo:** Periférico
+- **Marca:** Patriot
+- **Modelo:** Burst Elite 120GB (segunda unidad)
+- **Número de Serie / Activo:** No registrado
+- **Fecha de Fabricación / Lanzamiento:** No registrada
+- **Asignación / Ubicación:** Hogar
+- **Especificaciones de Hardware:**
+  - **Almacenamiento:** SSD SATA 120 GB
+- **Enlace de Drivers:** [Soporte Oficial Patriot Burst Elite 120GB (segunda unidad)](https://www.google.com/search?q=Patriot%20Burst%20Elite%20120GB%20SSD%20soporte)
+- **Notas:** SSD SATA 2.5" Patriot Burst Elite de 120 GB, mismo modelo que el SSD de Windows compartido (S/N PBEIIBB21030118778).
+- **Observaciones:** Dispositivo general, no forma parte de ningún equipo.
+
+Número de serie, firmware y contenido pendientes: conectarlo a un PC y ejecutar el HomeInfra Collector, o leer la etiqueta del disco.
+
+### 12. Sony Pendrive USB 4 GB (HomeInfra Collector)
 - **Tipo:** Periférico
 - **Marca:** Sony
 - **Modelo:** Pendrive USB 4 GB (HomeInfra Collector)
@@ -435,6 +504,74 @@ Detectado en:
 • Core 2 Quad Q6700 · ASUS P5G41T-M LX (2026-11-01)
 • Core 2 Duo E6750 · ASUS P5Q PRO TURBO (2026-11-02)
 • Core i7-2600K · Gigabyte Z77-HD3 (2026-11-01)
+
+### 13. ZOTAC GeForce 8400 GS GEN2 512MB DDR2
+![ZOTAC GeForce 8400 GS GEN2 512MB DDR2](img/zotac_8400gs_etiqueta.jpg)
+
+- **Tipo:** Periférico
+- **Marca:** ZOTAC
+- **Modelo:** GeForce 8400 GS GEN2 512MB DDR2
+- **Número de Serie / Activo:** N103100027911
+- **Fecha de Fabricación / Lanzamiento:** 2007 (lanzamiento de la GeForce 8400 GS)
+- **Asignación / Ubicación:** Hogar
+- **Especificaciones de Hardware:**
+  - **Tarjeta Gráfica (GPU):** NVIDIA GeForce 8400 GS
+    - *Tipo:* **Dedicada**
+    - *Características:* 512 MB DDR2 · bus de 64 bits · PCIe (GEN2)
+- **Enlace de Drivers:** [Soporte Oficial ZOTAC GeForce 8400 GS GEN2 512MB DDR2](https://www.nvidia.com/Download/index.aspx?lang=es)
+- **Notas:** Tarjeta de video ZOTAC NVIDIA GeForce 8400 GS GEN2, 512 MB DDR2, bus de memoria de 64 bits, PCI Express.
+- **Observaciones:** Datos de la etiqueta:
+• Modelo: ZOTAC 8400GS GEN2 512MB 64BIT DDR2
+• PN: 288-90N44-040ZT
+• S/N: N103100027911
+• Cumple ICES-003 Class B · RoHS
+
+Dispositivo general: no está registrada como componente de ningún equipo.
+
+Año: lanzamiento de la GeForce 8400 GS (2007); la etiqueta no indica fecha de fabricación de esta unidad. Sin imagen comercial disponible (no está en Icecat); se usa la foto local de la etiqueta.
+- **Fotografías:**
+  - Etiqueta modelo / PN / S/N: [`img/zotac_8400gs_etiqueta.jpg`](img/zotac_8400gs_etiqueta.jpg)
+  - Etiqueta (vista cercana): [`img/zotac_8400gs_etiqueta_cercana.jpg`](img/zotac_8400gs_etiqueta_cercana.jpg)
+
+### 14. PC armado MSI A68HM-E33 V2 (CPU AMD por identificar)
+![PC armado MSI A68HM-E33 V2 (CPU AMD por identificar)](img/msi_a68hm-e33_v2_placa.jpg)
+
+- **Tipo:** Desktop
+- **Marca:** PC armado
+- **Modelo:** MSI A68HM-E33 V2 (CPU AMD por identificar)
+- **Número de Serie / Activo:** G716320033 33004
+- **Fecha de Fabricación / Lanzamiento:** 2014 (lanzamiento del chipset AMD A68H)
+- **Asignación / Ubicación:** Hogar
+- **Especificaciones de Hardware:**
+- **Enlace de Drivers:** [Soporte Oficial PC armado MSI A68HM-E33 V2 (CPU AMD por identificar)](https://www.msi.com/Motherboard/A68HM-E33-V2/support)
+- **Notas:** PC de escritorio armado con placa base MSI A68HM-E33 V2 (MS-7721 VER 9.0, chipset AMD A68H, socket FM2+), RAM Kingston HyperX Fury DDR3 (rojo) y una tarjeta de video dedicada.
+- **Observaciones:** Registrado desde una foto (2024-05-11); pendiente ejecutar el HomeInfra Collector para registrar CPU, RAM total, tarjeta de video y almacenamiento.
+
+Datos legibles en la foto:
+• Placa: MSI A68HM-E33 V2 · MS-7721 VER 9.0 · etiqueta G716320033 33004 (se usa como número de serie)
+• Etiqueta del puerto de red: 4CCC6A5F6621 (probable MAC 4C:CC:6A:5F:66:21)
+• RAM: Kingston HyperX Fury HX318C10FR/4 · 4 GB DDR3-1866 · 1.5V · 9905402-471.A00LF · código 1646 (probablemente semana 46 de 2016). Se ve un segundo módulo HyperX Fury rojo cuya etiqueta no es legible.
+• Tarjeta de video dedicada instalada; modelo no identificable en la foto.
+
+Año del equipo: lanzamiento del chipset AMD A68H (2014).
+- **Componentes:**
+  - *Placa base:* MSI A68HM-E33 V2 (MS-7721) (VER 9.0 · chipset AMD A68H · socket FM2+) · S/N G716320033 33004 · 2014 · integrado
+    - Formato: Micro-ATX
+    - Socket / chipset: FM2+ · AMD A68H
+    - Memoria: 2 ranuras DDR3 · doble canal · hasta 32 GB · 1333 / 1600 / 1866 / 2133 (OC) MHz
+    - Expansión: 1 × PCIe 3.0 x16 · 1 × PCIe x1 (2.0 según algunas páginas regionales) · 1 × PCI
+    - Almacenamiento: 4 × SATA 6 Gb/s · RAID 0 / 1 / 10
+    - USB: 2 × USB 3.0 traseros · 6 × USB 2.0 (2 traseros, 4 internos)
+    - Red: Realtek RTL8111G · 10/100/1000 Mb/s
+    - Audio: Realtek ALC887 · 3 conectores traseros
+    - Salidas de video: VGA (hasta 1920 × 1200 a 60 Hz) · HDMI (gráficos integrados del procesador)
+    - Otros: PS/2 teclado y ratón · conector serie interno
+    - Fuente: [especificaciones oficiales](https://www.msi.com/Motherboard/a68hm-e33-v2/Specification) (2026-11-02)
+  - *RAM:* Kingston HyperX Fury HX318C10FR/4 4 GB (DDR3-1866 CL10 · 1.5V · rojo) · 2016 · reemplazable
+  - *RAM:* Kingston HyperX Fury (rojo, etiqueta no legible) (DDR3 · visto en la foto) · reemplazable
+  - *GPU:* Tarjeta de video dedicada (por identificar) (Instalada en la ranura PCIe x16) · reemplazable
+- **Fotografías:**
+  - Placa MSI A68HM-E33 V2 con RAM HyperX Fury (2024): [`img/msi_a68hm-e33_v2_placa.jpg`](img/msi_a68hm-e33_v2_placa.jpg)
 
 ---
 

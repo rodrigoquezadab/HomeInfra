@@ -248,7 +248,7 @@
     "serial": "07D4612_M21D142444",
     "assignedUser": "",
     "location": "Hogar",
-    "imageUrl": "",
+    "imageUrl": "img/intel_i5-12400f_caja.jpg",
     "driverUrl": "https://www.msi.com/Motherboard/PRO-H610M-G-DDR4/support",
     "windowsUser": "",
     "windowsPassword": "",
@@ -364,11 +364,64 @@
         "replaceable": false,
         "imageUrl": "img/componente_placa_msi_pro_h610m-g_ddr4.jpg",
         "year": "2022",
-        "yearNote": "Año de lanzamiento"
+        "yearNote": "Año de lanzamiento",
+        "features": [
+          {
+            "label": "Formato",
+            "value": "Micro-ATX"
+          },
+          {
+            "label": "Socket / chipset",
+            "value": "LGA 1700 · Intel H610 (procesadores Intel Core 12.ª, 13.ª y 14.ª gen.)"
+          },
+          {
+            "label": "Memoria",
+            "value": "2 ranuras DDR4 · doble canal · hasta 64 GB · 2133 / 2666 / 2933 / 3200 MHz"
+          },
+          {
+            "label": "Expansión",
+            "value": "1 × PCIe 4.0 x16 (desde la CPU) · 1 × PCIe 3.0 x1"
+          },
+          {
+            "label": "Almacenamiento",
+            "value": "4 × SATA 6 Gb/s · 1 × M.2 Key M PCIe 3.0 x4 (2242 / 2260 / 2280; un SSD M.2 SATA desactiva SATA7)"
+          },
+          {
+            "label": "USB",
+            "value": "4 × USB 3.2 Gen 1 5 Gb/s (2 traseros, 2 por conector interno) · 6 × USB 2.0 (4 traseros, 2 internos)"
+          },
+          {
+            "label": "Red",
+            "value": "Intel I219-V · 1 Gb/s"
+          },
+          {
+            "label": "Audio",
+            "value": "Realtek ALC892 / ALC897 · 7.1 canales HD"
+          },
+          {
+            "label": "Salidas de video",
+            "value": "HDMI · VGA · DisplayPort (no funcionan con el i5-12400F, que no tiene gráficos integrados)"
+          },
+          {
+            "label": "Panel trasero",
+            "value": "PS/2 teclado/ratón · HDMI · VGA · DisplayPort · 2 × USB 3.2 Gen 1 · 4 × USB 2.0 · LAN · audio"
+          }
+        ],
+        "featuresSource": {
+          "url": "https://www.msi.com/Motherboard/PRO-H610M-G-DDR4/Specification",
+          "date": "2026-11-02"
+        }
       }
     ],
     "mfgDate": "2022 (lanzamiento de la plataforma Intel H610)",
-    "updatedAt": "2026-11-01"
+    "updatedAt": "2026-11-02",
+    "images": [
+      {
+        "id": "img-i5-caja",
+        "name": "Caja del Intel Core i5-12400F",
+        "url": "img/intel_i5-12400f_caja.jpg"
+      }
+    ]
   },
   {
     "id": "dev-pc-q6700-p5g41t-m-lx",
@@ -472,11 +525,53 @@
         "details": "Rev X.0x",
         "replaceable": false,
         "year": "2008",
-        "yearNote": "Año de lanzamiento del chipset Intel G41"
+        "yearNote": "Año de lanzamiento del chipset Intel G41",
+        "features": [
+          {
+            "label": "Formato",
+            "value": "Micro-ATX"
+          },
+          {
+            "label": "Socket / chipset",
+            "value": "LGA 775 · Intel G41 / ICH7"
+          },
+          {
+            "label": "Memoria",
+            "value": "2 ranuras DDR3 · doble canal · hasta 8 GB · 800 / 1066 / 1333 (OC) MHz · no ECC, sin búfer"
+          },
+          {
+            "label": "Expansión",
+            "value": "1 × PCIe x16 · 1 × PCIe x1 · 2 × PCI"
+          },
+          {
+            "label": "Almacenamiento",
+            "value": "4 × SATA 3 Gb/s · 1 × IDE UltraDMA 100/66/33"
+          },
+          {
+            "label": "USB",
+            "value": "8 × USB 2.0 (4 traseros, 4 internos)"
+          },
+          {
+            "label": "Red",
+            "value": "Qualcomm Atheros Gigabit (Windows informó AR8131)"
+          },
+          {
+            "label": "Audio",
+            "value": "Realtek ALC887 · 8 canales · S/PDIF Out"
+          },
+          {
+            "label": "Salidas de video",
+            "value": "VGA (D-Sub) · gráficos integrados Intel G41"
+          }
+        ],
+        "featuresSource": {
+          "url": "https://origin-www.asus.com/Motherboards/P5G41TM_LX/specifications/",
+          "date": "2026-11-02"
+        }
       }
     ],
     "mfgDate": "2008 (lanzamiento del chipset Intel G41)",
-    "updatedAt": "2026-11-01"
+    "updatedAt": "2026-11-02"
   },
   {
     "id": "dev-pc-e6750-p5q-pro-turbo",
@@ -580,11 +675,53 @@
         "details": "Rev 1.xx",
         "replaceable": false,
         "year": "2008",
-        "yearNote": "Año de lanzamiento del chipset Intel P45"
+        "yearNote": "Año de lanzamiento del chipset Intel P45",
+        "features": [
+          {
+            "label": "Formato",
+            "value": "ATX"
+          },
+          {
+            "label": "Socket / chipset",
+            "value": "LGA 775 · Intel P45 / ICH10R"
+          },
+          {
+            "label": "Memoria",
+            "value": "4 ranuras DDR2 · doble canal · hasta 16 GB · 667 / 800 / 1066 / 1200 / 1300 MHz · no ECC, sin búfer"
+          },
+          {
+            "label": "Expansión",
+            "value": "2 × PCIe 2.0 x16 (CrossFireX a x8) · 3 × PCIe x1 · 2 × PCI"
+          },
+          {
+            "label": "Almacenamiento",
+            "value": "5 × SATA 3 Gb/s (Intel) · 2 × SATA 3 Gb/s (Silicon Image) · 1 × eSATA y 2 × PATA (JMicron)"
+          },
+          {
+            "label": "USB",
+            "value": "12 × USB 2.0 (6 traseros, 6 internos)"
+          },
+          {
+            "label": "Red",
+            "value": "1 × RJ45 Gigabit (Windows informó Atheros AR8121/AR8113/AR8114)"
+          },
+          {
+            "label": "Audio",
+            "value": "VIA VT1708S · 8 canales HD · S/PDIF óptico trasero"
+          },
+          {
+            "label": "Salidas de video",
+            "value": "Sin gráficos integrados (chipset P45): requiere tarjeta de video"
+          }
+        ],
+        "featuresSource": {
+          "url": "https://origin-www.asus.com/motherboards/p5q_pro_turbo/specifications/",
+          "date": "2026-11-02"
+        }
       }
     ],
     "mfgDate": "2008 (lanzamiento del chipset Intel P45)",
-    "updatedAt": "2026-11-01"
+    "updatedAt": "2026-11-02"
   },
   {
     "id": "dev-pc-i7-2600k-z77-hd3",
@@ -594,7 +731,7 @@
     "serial": "",
     "assignedUser": "",
     "location": "Hogar",
-    "imageUrl": "",
+    "imageUrl": "img/gigabyte_z77-hd3_gabinete_2022.jpg",
     "driverUrl": "https://www.gigabyte.com/Motherboard/GA-Z77-HD3-rev-10/support",
     "windowsUser": "",
     "windowsPassword": "",
@@ -688,11 +825,70 @@
         "details": "",
         "replaceable": false,
         "year": "2012",
-        "yearNote": "Año de lanzamiento del chipset Intel Z77"
+        "yearNote": "Año de lanzamiento del chipset Intel Z77",
+        "imageUrl": "img/gigabyte_z77-hd3_placa_2023.jpg",
+        "features": [
+          {
+            "label": "Formato",
+            "value": "ATX · 30,5 × 21,5 cm"
+          },
+          {
+            "label": "Socket / chipset",
+            "value": "LGA 1155 · Intel Z77"
+          },
+          {
+            "label": "Memoria",
+            "value": "4 ranuras DDR3 1.5V · doble canal · hasta 32 GB · 1066 / 1333 / 1600 MHz (2800 OC); DDR3-1600 requiere CPU Ivy Bridge (22 nm)"
+          },
+          {
+            "label": "Expansión",
+            "value": "1 × PCIe 3.0 x16 · 2 × PCIe x1 · 2 × PCI · AMD CrossFire"
+          },
+          {
+            "label": "Almacenamiento",
+            "value": "2 × SATA 6 Gb/s (SATA3 0/1) · 4 × SATA 3 Gb/s (SATA2 2–5) · RAID 0 / 1 / 5 / 10"
+          },
+          {
+            "label": "USB",
+            "value": "Hasta 4 × USB 3.0 (2 traseros, 2 por conector interno) · hasta 8 × USB 2.0"
+          },
+          {
+            "label": "Red",
+            "value": "Realtek GbE · 10/100/1000 Mb/s"
+          },
+          {
+            "label": "Audio",
+            "value": "Realtek ALC887 · 2 / 4 / 5.1 / 7.1 canales · S/PDIF Out"
+          },
+          {
+            "label": "Salidas de video",
+            "value": "D-Sub (VGA) · DVI-D · HDMI (gráficos integrados del procesador)"
+          },
+          {
+            "label": "Otros",
+            "value": "DualBIOS"
+          }
+        ],
+        "featuresSource": {
+          "url": "https://www.gigabyte.com/Motherboard/GA-Z77-HD3-rev-10/sp",
+          "date": "2026-11-02"
+        }
       }
     ],
     "mfgDate": "2012 (lanzamiento del chipset Intel Z77)",
-    "updatedAt": "2026-11-01"
+    "updatedAt": "2026-11-02",
+    "images": [
+      {
+        "id": "img-z77-gabinete-2022",
+        "name": "Placa GA-Z77-HD3 en el gabinete, disipador Thermaltake (2022)",
+        "url": "img/gigabyte_z77-hd3_gabinete_2022.jpg"
+      },
+      {
+        "id": "img-z77-placa-2023",
+        "name": "Placa GA-Z77-HD3 fuera del gabinete (2023)",
+        "url": "img/gigabyte_z77-hd3_placa_2023.jpg"
+      }
+    ]
   },
   {
     "id": "dev-monitor-lg-tv",
@@ -732,6 +928,26 @@
     "updatedAt": "2026-11-01"
   },
   {
+    "id": "dev-ssd-patriot-burst-elite-120gb-2",
+    "brand": "Patriot",
+    "model": "Burst Elite 120GB (segunda unidad)",
+    "type": "Periférico",
+    "serial": "",
+    "assignedUser": "",
+    "location": "Hogar",
+    "imageUrl": "",
+    "driverUrl": "https://www.google.com/search?q=Patriot%20Burst%20Elite%20120GB%20SSD%20soporte",
+    "windowsUser": "",
+    "windowsPassword": "",
+    "notes": "SSD SATA 2.5\" Patriot Burst Elite de 120 GB, mismo modelo que el SSD de Windows compartido (S/N PBEIIBB21030118778).",
+    "observaciones": "Dispositivo general, no forma parte de ningún equipo.\n\nNúmero de serie, firmware y contenido pendientes: conectarlo a un PC y ejecutar el HomeInfra Collector, o leer la etiqueta del disco.",
+    "specs": {
+      "storage": "SSD SATA 120 GB"
+    },
+    "mfgDate": "",
+    "updatedAt": "2026-11-02"
+  },
+  {
     "id": "dev-pendrive-sony-4gb",
     "brand": "Sony",
     "model": "Pendrive USB 4 GB (HomeInfra Collector)",
@@ -750,5 +966,170 @@
     },
     "mfgDate": "",
     "updatedAt": "2026-11-01"
+  },
+  {
+    "id": "dev-gpu-zotac-8400gs",
+    "brand": "ZOTAC",
+    "model": "GeForce 8400 GS GEN2 512MB DDR2",
+    "type": "Periférico",
+    "serial": "N103100027911",
+    "assignedUser": "",
+    "location": "Hogar",
+    "imageUrl": "img/zotac_8400gs_etiqueta.jpg",
+    "driverUrl": "https://www.nvidia.com/Download/index.aspx?lang=es",
+    "windowsUser": "",
+    "windowsPassword": "",
+    "notes": "Tarjeta de video ZOTAC NVIDIA GeForce 8400 GS GEN2, 512 MB DDR2, bus de memoria de 64 bits, PCI Express.",
+    "observaciones": "Datos de la etiqueta:\n• Modelo: ZOTAC 8400GS GEN2 512MB 64BIT DDR2\n• PN: 288-90N44-040ZT\n• S/N: N103100027911\n• Cumple ICES-003 Class B · RoHS\n\nDispositivo general: no está registrada como componente de ningún equipo.\n\nAño: lanzamiento de la GeForce 8400 GS (2007); la etiqueta no indica fecha de fabricación de esta unidad. Sin imagen comercial disponible (no está en Icecat); se usa la foto local de la etiqueta.",
+    "specs": {
+      "gpu": {
+        "model": "NVIDIA GeForce 8400 GS",
+        "type": "Dedicada",
+        "details": "512 MB DDR2 · bus de 64 bits · PCIe (GEN2)"
+      }
+    },
+    "images": [
+      {
+        "id": "img-zotac-etiqueta",
+        "name": "Etiqueta modelo / PN / S/N",
+        "url": "img/zotac_8400gs_etiqueta.jpg"
+      },
+      {
+        "id": "img-zotac-etiqueta-cercana",
+        "name": "Etiqueta (vista cercana)",
+        "url": "img/zotac_8400gs_etiqueta_cercana.jpg"
+      }
+    ],
+    "mfgDate": "2007 (lanzamiento de la GeForce 8400 GS)",
+    "updatedAt": "2026-11-01"
+  },
+  {
+    "id": "dev-pc-msi-a68hm-e33-v2",
+    "brand": "PC armado",
+    "model": "MSI A68HM-E33 V2 (CPU AMD por identificar)",
+    "type": "Desktop",
+    "serial": "G716320033 33004",
+    "assignedUser": "",
+    "location": "Hogar",
+    "imageUrl": "img/msi_a68hm-e33_v2_placa.jpg",
+    "driverUrl": "https://www.msi.com/Motherboard/A68HM-E33-V2/support",
+    "windowsUser": "",
+    "windowsPassword": "",
+    "notes": "PC de escritorio armado con placa base MSI A68HM-E33 V2 (MS-7721 VER 9.0, chipset AMD A68H, socket FM2+), RAM Kingston HyperX Fury DDR3 (rojo) y una tarjeta de video dedicada.",
+    "observaciones": "Registrado desde una foto (2024-05-11); pendiente ejecutar el HomeInfra Collector para registrar CPU, RAM total, tarjeta de video y almacenamiento.\n\nDatos legibles en la foto:\n• Placa: MSI A68HM-E33 V2 · MS-7721 VER 9.0 · etiqueta G716320033 33004 (se usa como número de serie)\n• Etiqueta del puerto de red: 4CCC6A5F6621 (probable MAC 4C:CC:6A:5F:66:21)\n• RAM: Kingston HyperX Fury HX318C10FR/4 · 4 GB DDR3-1866 · 1.5V · 9905402-471.A00LF · código 1646 (probablemente semana 46 de 2016). Se ve un segundo módulo HyperX Fury rojo cuya etiqueta no es legible.\n• Tarjeta de video dedicada instalada; modelo no identificable en la foto.\n\nAño del equipo: lanzamiento del chipset AMD A68H (2014).",
+    "specs": {
+      "cpu": {
+        "model": "",
+        "cores": "",
+        "speed": "",
+        "details": ""
+      },
+      "ram": {
+        "capacity": "",
+        "type": "DDR3",
+        "speed": "1866 MT/s",
+        "details": "Kingston HyperX Fury; capacidad total pendiente (Collector)"
+      },
+      "gpu": {
+        "model": "",
+        "type": "Dedicada",
+        "details": "Modelo por identificar"
+      },
+      "storage": ""
+    },
+    "components": [
+      {
+        "category": "Placa base",
+        "model": "MSI A68HM-E33 V2 (MS-7721)",
+        "serial": "G716320033 33004",
+        "capacity": "",
+        "details": "VER 9.0 · chipset AMD A68H · socket FM2+",
+        "replaceable": false,
+        "imageUrl": "img/msi_a68hm-e33_v2_placa.jpg",
+        "year": "2014",
+        "yearNote": "Año de lanzamiento del chipset AMD A68H",
+        "features": [
+          {
+            "label": "Formato",
+            "value": "Micro-ATX"
+          },
+          {
+            "label": "Socket / chipset",
+            "value": "FM2+ · AMD A68H"
+          },
+          {
+            "label": "Memoria",
+            "value": "2 ranuras DDR3 · doble canal · hasta 32 GB · 1333 / 1600 / 1866 / 2133 (OC) MHz"
+          },
+          {
+            "label": "Expansión",
+            "value": "1 × PCIe 3.0 x16 · 1 × PCIe x1 (2.0 según algunas páginas regionales) · 1 × PCI"
+          },
+          {
+            "label": "Almacenamiento",
+            "value": "4 × SATA 6 Gb/s · RAID 0 / 1 / 10"
+          },
+          {
+            "label": "USB",
+            "value": "2 × USB 3.0 traseros · 6 × USB 2.0 (2 traseros, 4 internos)"
+          },
+          {
+            "label": "Red",
+            "value": "Realtek RTL8111G · 10/100/1000 Mb/s"
+          },
+          {
+            "label": "Audio",
+            "value": "Realtek ALC887 · 3 conectores traseros"
+          },
+          {
+            "label": "Salidas de video",
+            "value": "VGA (hasta 1920 × 1200 a 60 Hz) · HDMI (gráficos integrados del procesador)"
+          },
+          {
+            "label": "Otros",
+            "value": "PS/2 teclado y ratón · conector serie interno"
+          }
+        ],
+        "featuresSource": {
+          "url": "https://www.msi.com/Motherboard/a68hm-e33-v2/Specification",
+          "date": "2026-11-02"
+        }
+      },
+      {
+        "category": "RAM",
+        "model": "Kingston HyperX Fury HX318C10FR/4",
+        "serial": "",
+        "capacity": "4 GB",
+        "details": "DDR3-1866 CL10 · 1.5V · rojo",
+        "replaceable": true,
+        "year": "2016",
+        "yearNote": "Fabricación según código 1646 de la etiqueta (probable)"
+      },
+      {
+        "category": "RAM",
+        "model": "Kingston HyperX Fury (rojo, etiqueta no legible)",
+        "serial": "",
+        "capacity": "",
+        "details": "DDR3 · visto en la foto",
+        "replaceable": true
+      },
+      {
+        "category": "GPU",
+        "model": "Tarjeta de video dedicada (por identificar)",
+        "serial": "",
+        "capacity": "",
+        "details": "Instalada en la ranura PCIe x16",
+        "replaceable": true
+      }
+    ],
+    "images": [
+      {
+        "id": "img-a68hm-placa",
+        "name": "Placa MSI A68HM-E33 V2 con RAM HyperX Fury (2024)",
+        "url": "img/msi_a68hm-e33_v2_placa.jpg"
+      }
+    ],
+    "mfgDate": "2014 (lanzamiento del chipset AMD A68H)",
+    "updatedAt": "2026-11-02"
   }
 ]
