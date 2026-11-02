@@ -74,7 +74,14 @@
         "year": 2021,
         "cores": "6 núcleos / 12 hilos",
         "speed": "2.1 - 4.0 GHz",
-        "details": "Deducido del SKU (GGAR555U)"
+        "details": "Deducido del SKU (GGAR555U)",
+        "benchmark": {
+          "source": "PassMark",
+          "multi": 12574,
+          "single": 2385,
+          "url": "https://www.cpubenchmark.net/cpu.php?id=4141",
+          "date": "2026-11-01"
+        }
       },
       "ram": {
         "capacity": "8 GB",
@@ -127,7 +134,7 @@
       }
     ],
     "mfgDate": "2021-06",
-    "updatedAt": "2026-10-31"
+    "updatedAt": "2026-11-01"
   },
   {
     "id": "dev-acer-e3-112",
@@ -150,7 +157,9 @@
         "serial": "",
         "capacity": "",
         "details": "FCC ID PPD-QCWB335",
-        "replaceable": true
+        "replaceable": true,
+        "year": "2012",
+        "yearNote": "Año de certificación según la etiqueta"
       },
       {
         "category": "Cargador",
@@ -250,7 +259,15 @@
         "model": "12th Gen Intel(R) Core(TM) i5-12400F",
         "cores": "6 núcleos / 12 hilos",
         "speed": "2.5 GHz",
-        "details": ""
+        "details": "",
+        "benchmark": {
+          "source": "PassMark",
+          "multi": 19524,
+          "single": 3483,
+          "url": "https://www.cpubenchmark.net/cpu.php?id=4681",
+          "date": "2026-11-01"
+        },
+        "year": 2022
       },
       "ram": {
         "capacity": "16 GB",
@@ -273,7 +290,16 @@
         "capacity": "",
         "details": "6 núcleos / 12 hilos socket U3E1",
         "replaceable": true,
-        "imageUrl": "img/componente_cpu_intel_core_i5.png"
+        "imageUrl": "img/componente_cpu_intel_core_i5.png",
+        "benchmark": {
+          "source": "PassMark",
+          "multi": 19524,
+          "single": 3483,
+          "url": "https://www.cpubenchmark.net/cpu.php?id=4681",
+          "date": "2026-11-01"
+        },
+        "year": "2022",
+        "yearNote": "Año de lanzamiento"
       },
       {
         "category": "RAM",
@@ -299,7 +325,9 @@
         "serial": "E823_8FA6_BF53_0001_001B_448B_4569_B02C.",
         "capacity": "466 GB",
         "details": "SSD NVMe",
-        "replaceable": true
+        "replaceable": true,
+        "year": "2021",
+        "yearNote": "Año de lanzamiento"
       },
       {
         "category": "Almacenamiento",
@@ -315,7 +343,9 @@
         "serial": "",
         "capacity": "4 GB",
         "details": "NVIDIA",
-        "replaceable": true
+        "replaceable": true,
+        "year": "2019",
+        "yearNote": "Año de lanzamiento"
       },
       {
         "category": "Red",
@@ -332,10 +362,12 @@
         "capacity": "",
         "details": "1.0",
         "replaceable": false,
-        "imageUrl": "img/componente_placa_msi_pro_h610m-g_ddr4.jpg"
+        "imageUrl": "img/componente_placa_msi_pro_h610m-g_ddr4.jpg",
+        "year": "2022",
+        "yearNote": "Año de lanzamiento"
       }
     ],
-    "mfgDate": "",
+    "mfgDate": "2022 (lanzamiento de la plataforma Intel H610)",
     "updatedAt": "2026-11-01"
   },
   {
@@ -357,7 +389,15 @@
         "model": "Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz",
         "cores": "4 núcleos / 4 hilos",
         "speed": "2.7 GHz",
-        "details": "Windows informó 2 núcleos / 2 hilos"
+        "details": "Windows informó 2 núcleos / 2 hilos",
+        "benchmark": {
+          "source": "PassMark",
+          "multi": 2092,
+          "single": 1073,
+          "url": "https://www.cpubenchmark.net/cpu.php?id=1039",
+          "date": "2026-11-01"
+        },
+        "year": 2007
       },
       "ram": {
         "capacity": "8 GB",
@@ -379,7 +419,16 @@
         "serial": "",
         "capacity": "",
         "details": "4 núcleos / 4 hilos socket LGA775",
-        "replaceable": true
+        "replaceable": true,
+        "benchmark": {
+          "source": "PassMark",
+          "multi": 2092,
+          "single": 1073,
+          "url": "https://www.cpubenchmark.net/cpu.php?id=1039",
+          "date": "2026-11-01"
+        },
+        "year": "2007",
+        "yearNote": "Año de lanzamiento"
       },
       {
         "category": "RAM",
@@ -403,7 +452,9 @@
         "serial": "",
         "capacity": "",
         "details": "Intel Corporation",
-        "replaceable": false
+        "replaceable": false,
+        "year": "2008",
+        "yearNote": "Año de lanzamiento del chipset Intel G41"
       },
       {
         "category": "Red",
@@ -419,10 +470,12 @@
         "serial": "107933150000113",
         "capacity": "",
         "details": "Rev X.0x",
-        "replaceable": false
+        "replaceable": false,
+        "year": "2008",
+        "yearNote": "Año de lanzamiento del chipset Intel G41"
       }
     ],
-    "mfgDate": "",
+    "mfgDate": "2008 (lanzamiento del chipset Intel G41)",
     "updatedAt": "2026-11-01"
   },
   {
@@ -444,7 +497,15 @@
         "model": "Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz",
         "cores": "2 núcleos / 2 hilos",
         "speed": "2.7 GHz",
-        "details": ""
+        "details": "",
+        "benchmark": {
+          "source": "PassMark",
+          "multi": 1031,
+          "single": 1030,
+          "url": "https://www.cpubenchmark.net/cpu.php?id=942",
+          "date": "2026-11-01"
+        },
+        "year": 2007
       },
       "ram": {
         "capacity": "4 GB",
@@ -466,7 +527,16 @@
         "serial": "",
         "capacity": "",
         "details": "2 núcleos / 2 hilos socket LGA 775",
-        "replaceable": true
+        "replaceable": true,
+        "benchmark": {
+          "source": "PassMark",
+          "multi": 1031,
+          "single": 1030,
+          "url": "https://www.cpubenchmark.net/cpu.php?id=942",
+          "date": "2026-11-01"
+        },
+        "year": "2007",
+        "yearNote": "Año de lanzamiento"
       },
       {
         "category": "RAM",
@@ -490,7 +560,9 @@
         "serial": "",
         "capacity": "1 GB",
         "details": "NVIDIA",
-        "replaceable": true
+        "replaceable": true,
+        "year": "2009",
+        "yearNote": "Año de lanzamiento"
       },
       {
         "category": "Red",
@@ -506,10 +578,12 @@
         "serial": "MS1C93BC3400692",
         "capacity": "",
         "details": "Rev 1.xx",
-        "replaceable": false
+        "replaceable": false,
+        "year": "2008",
+        "yearNote": "Año de lanzamiento del chipset Intel P45"
       }
     ],
-    "mfgDate": "",
+    "mfgDate": "2008 (lanzamiento del chipset Intel P45)",
     "updatedAt": "2026-11-01"
   },
   {
@@ -531,7 +605,15 @@
         "model": "Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz",
         "cores": "4 núcleos / 8 hilos",
         "speed": "3.4 GHz",
-        "details": "Windows informó 1 núcleos / 2 hilos"
+        "details": "Windows informó 1 núcleos / 2 hilos",
+        "benchmark": {
+          "source": "PassMark",
+          "multi": 5476,
+          "single": 1740,
+          "url": "https://www.cpubenchmark.net/cpu.php?id=868",
+          "date": "2026-11-01"
+        },
+        "year": 2011
       },
       "ram": {
         "capacity": "16 GB",
@@ -553,7 +635,16 @@
         "serial": "",
         "capacity": "",
         "details": "4 núcleos / 8 hilos",
-        "replaceable": true
+        "replaceable": true,
+        "benchmark": {
+          "source": "PassMark",
+          "multi": 5476,
+          "single": 1740,
+          "url": "https://www.cpubenchmark.net/cpu.php?id=868",
+          "date": "2026-11-01"
+        },
+        "year": "2011",
+        "yearNote": "Año de lanzamiento"
       },
       {
         "category": "RAM",
@@ -577,7 +668,9 @@
         "serial": "",
         "capacity": "",
         "details": "Intel Corporation",
-        "replaceable": false
+        "replaceable": false,
+        "year": "2011",
+        "yearNote": "Año de lanzamiento (integrada en Core 2.ª gen.)"
       },
       {
         "category": "Red",
@@ -593,10 +686,12 @@
         "serial": "",
         "capacity": "",
         "details": "",
-        "replaceable": false
+        "replaceable": false,
+        "year": "2012",
+        "yearNote": "Año de lanzamiento del chipset Intel Z77"
       }
     ],
-    "mfgDate": "",
+    "mfgDate": "2012 (lanzamiento del chipset Intel Z77)",
     "updatedAt": "2026-11-01"
   },
   {

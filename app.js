@@ -79,7 +79,14 @@ const DEFAULT_DEVICES = [
         year: 2021,
         cores: "6 núcleos / 12 hilos",
         speed: "2.1 - 4.0 GHz",
-        details: "Deducido del SKU (GGAR555U)"
+        details: "Deducido del SKU (GGAR555U)",
+        benchmark: {
+          source: "PassMark",
+          multi: 12574,
+          single: 2385,
+          url: "https://www.cpubenchmark.net/cpu.php?id=4141",
+          date: "2026-11-01"
+        }
       },
       ram: {
         capacity: "8 GB",
@@ -132,7 +139,7 @@ const DEFAULT_DEVICES = [
       }
     ],
     mfgDate: "2021-06",
-    updatedAt: "2026-10-31"
+    updatedAt: "2026-11-01"
   },
   {
     id: "dev-acer-e3-112",
@@ -155,7 +162,9 @@ const DEFAULT_DEVICES = [
         serial: "",
         capacity: "",
         details: "FCC ID PPD-QCWB335",
-        replaceable: true
+        replaceable: true,
+        year: "2012",
+        yearNote: "Año de certificación según la etiqueta"
       },
       {
         category: "Cargador",
@@ -255,7 +264,15 @@ const DEFAULT_DEVICES = [
         model: "12th Gen Intel(R) Core(TM) i5-12400F",
         cores: "6 núcleos / 12 hilos",
         speed: "2.5 GHz",
-        details: ""
+        details: "",
+        benchmark: {
+          source: "PassMark",
+          multi: 19524,
+          single: 3483,
+          url: "https://www.cpubenchmark.net/cpu.php?id=4681",
+          date: "2026-11-01"
+        },
+        year: 2022
       },
       ram: {
         capacity: "16 GB",
@@ -278,7 +295,16 @@ const DEFAULT_DEVICES = [
         capacity: "",
         details: "6 núcleos / 12 hilos socket U3E1",
         replaceable: true,
-        imageUrl: "img/componente_cpu_intel_core_i5.png"
+        imageUrl: "img/componente_cpu_intel_core_i5.png",
+        benchmark: {
+          source: "PassMark",
+          multi: 19524,
+          single: 3483,
+          url: "https://www.cpubenchmark.net/cpu.php?id=4681",
+          date: "2026-11-01"
+        },
+        year: "2022",
+        yearNote: "Año de lanzamiento"
       },
       {
         category: "RAM",
@@ -304,7 +330,9 @@ const DEFAULT_DEVICES = [
         serial: "E823_8FA6_BF53_0001_001B_448B_4569_B02C.",
         capacity: "466 GB",
         details: "SSD NVMe",
-        replaceable: true
+        replaceable: true,
+        year: "2021",
+        yearNote: "Año de lanzamiento"
       },
       {
         category: "Almacenamiento",
@@ -320,7 +348,9 @@ const DEFAULT_DEVICES = [
         serial: "",
         capacity: "4 GB",
         details: "NVIDIA",
-        replaceable: true
+        replaceable: true,
+        year: "2019",
+        yearNote: "Año de lanzamiento"
       },
       {
         category: "Red",
@@ -337,10 +367,12 @@ const DEFAULT_DEVICES = [
         capacity: "",
         details: "1.0",
         replaceable: false,
-        imageUrl: "img/componente_placa_msi_pro_h610m-g_ddr4.jpg"
+        imageUrl: "img/componente_placa_msi_pro_h610m-g_ddr4.jpg",
+        year: "2022",
+        yearNote: "Año de lanzamiento"
       }
     ],
-    mfgDate: "",
+    mfgDate: "2022 (lanzamiento de la plataforma Intel H610)",
     updatedAt: "2026-11-01"
   },
   {
@@ -362,7 +394,15 @@ const DEFAULT_DEVICES = [
         model: "Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz",
         cores: "4 núcleos / 4 hilos",
         speed: "2.7 GHz",
-        details: "Windows informó 2 núcleos / 2 hilos"
+        details: "Windows informó 2 núcleos / 2 hilos",
+        benchmark: {
+          source: "PassMark",
+          multi: 2092,
+          single: 1073,
+          url: "https://www.cpubenchmark.net/cpu.php?id=1039",
+          date: "2026-11-01"
+        },
+        year: 2007
       },
       ram: {
         capacity: "8 GB",
@@ -384,7 +424,16 @@ const DEFAULT_DEVICES = [
         serial: "",
         capacity: "",
         details: "4 núcleos / 4 hilos socket LGA775",
-        replaceable: true
+        replaceable: true,
+        benchmark: {
+          source: "PassMark",
+          multi: 2092,
+          single: 1073,
+          url: "https://www.cpubenchmark.net/cpu.php?id=1039",
+          date: "2026-11-01"
+        },
+        year: "2007",
+        yearNote: "Año de lanzamiento"
       },
       {
         category: "RAM",
@@ -408,7 +457,9 @@ const DEFAULT_DEVICES = [
         serial: "",
         capacity: "",
         details: "Intel Corporation",
-        replaceable: false
+        replaceable: false,
+        year: "2008",
+        yearNote: "Año de lanzamiento del chipset Intel G41"
       },
       {
         category: "Red",
@@ -424,10 +475,12 @@ const DEFAULT_DEVICES = [
         serial: "107933150000113",
         capacity: "",
         details: "Rev X.0x",
-        replaceable: false
+        replaceable: false,
+        year: "2008",
+        yearNote: "Año de lanzamiento del chipset Intel G41"
       }
     ],
-    mfgDate: "",
+    mfgDate: "2008 (lanzamiento del chipset Intel G41)",
     updatedAt: "2026-11-01"
   },
   {
@@ -449,7 +502,15 @@ const DEFAULT_DEVICES = [
         model: "Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz",
         cores: "2 núcleos / 2 hilos",
         speed: "2.7 GHz",
-        details: ""
+        details: "",
+        benchmark: {
+          source: "PassMark",
+          multi: 1031,
+          single: 1030,
+          url: "https://www.cpubenchmark.net/cpu.php?id=942",
+          date: "2026-11-01"
+        },
+        year: 2007
       },
       ram: {
         capacity: "4 GB",
@@ -471,7 +532,16 @@ const DEFAULT_DEVICES = [
         serial: "",
         capacity: "",
         details: "2 núcleos / 2 hilos socket LGA 775",
-        replaceable: true
+        replaceable: true,
+        benchmark: {
+          source: "PassMark",
+          multi: 1031,
+          single: 1030,
+          url: "https://www.cpubenchmark.net/cpu.php?id=942",
+          date: "2026-11-01"
+        },
+        year: "2007",
+        yearNote: "Año de lanzamiento"
       },
       {
         category: "RAM",
@@ -495,7 +565,9 @@ const DEFAULT_DEVICES = [
         serial: "",
         capacity: "1 GB",
         details: "NVIDIA",
-        replaceable: true
+        replaceable: true,
+        year: "2009",
+        yearNote: "Año de lanzamiento"
       },
       {
         category: "Red",
@@ -511,10 +583,12 @@ const DEFAULT_DEVICES = [
         serial: "MS1C93BC3400692",
         capacity: "",
         details: "Rev 1.xx",
-        replaceable: false
+        replaceable: false,
+        year: "2008",
+        yearNote: "Año de lanzamiento del chipset Intel P45"
       }
     ],
-    mfgDate: "",
+    mfgDate: "2008 (lanzamiento del chipset Intel P45)",
     updatedAt: "2026-11-01"
   },
   {
@@ -536,7 +610,15 @@ const DEFAULT_DEVICES = [
         model: "Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz",
         cores: "4 núcleos / 8 hilos",
         speed: "3.4 GHz",
-        details: "Windows informó 1 núcleos / 2 hilos"
+        details: "Windows informó 1 núcleos / 2 hilos",
+        benchmark: {
+          source: "PassMark",
+          multi: 5476,
+          single: 1740,
+          url: "https://www.cpubenchmark.net/cpu.php?id=868",
+          date: "2026-11-01"
+        },
+        year: 2011
       },
       ram: {
         capacity: "16 GB",
@@ -558,7 +640,16 @@ const DEFAULT_DEVICES = [
         serial: "",
         capacity: "",
         details: "4 núcleos / 8 hilos",
-        replaceable: true
+        replaceable: true,
+        benchmark: {
+          source: "PassMark",
+          multi: 5476,
+          single: 1740,
+          url: "https://www.cpubenchmark.net/cpu.php?id=868",
+          date: "2026-11-01"
+        },
+        year: "2011",
+        yearNote: "Año de lanzamiento"
       },
       {
         category: "RAM",
@@ -582,7 +673,9 @@ const DEFAULT_DEVICES = [
         serial: "",
         capacity: "",
         details: "Intel Corporation",
-        replaceable: false
+        replaceable: false,
+        year: "2011",
+        yearNote: "Año de lanzamiento (integrada en Core 2.ª gen.)"
       },
       {
         category: "Red",
@@ -598,10 +691,12 @@ const DEFAULT_DEVICES = [
         serial: "",
         capacity: "",
         details: "",
-        replaceable: false
+        replaceable: false,
+        year: "2012",
+        yearNote: "Año de lanzamiento del chipset Intel Z77"
       }
     ],
-    mfgDate: "",
+    mfgDate: "2012 (lanzamiento del chipset Intel Z77)",
     updatedAt: "2026-11-01"
   },
   {
@@ -678,6 +773,7 @@ let currentSort = localStorage.getItem("homeinfra_devices_sort") || "category";
 let searchQuery = "";
 let currentView = localStorage.getItem("homeinfra_view") === "components" ? "components" : "devices";
 let currentComponentCategory = "ALL";
+let currentComponentSort = "default";
 const revealedPasswords = {};
 
 // Elementos del DOM
@@ -994,6 +1090,13 @@ function bindEvents() {
       render();
     });
   }
+  const componentSortSelect = document.getElementById("component-sort-select");
+  if (componentSortSelect) {
+    componentSortSelect.addEventListener("change", (e) => {
+      currentComponentSort = e.target.value;
+      render();
+    });
+  }
 
   // Filtros
   typeFilter.addEventListener("change", (e) => {
@@ -1152,8 +1255,56 @@ function getDeviceDateScore(dev) {
 /**
  * Ordenar lista de equipos según el criterio seleccionado
  */
+// Orden por potencia de CPU: [campo del benchmark, dirección]
+const POWER_SORTS = {
+  "cpu-multi-desc": ["multi", -1],
+  "cpu-multi-asc": ["multi", 1],
+  "cpu-single-desc": ["single", -1],
+  "cpu-single-asc": ["single", 1]
+};
+
+/**
+ * Comparar dos benchmarks de CPU; los que no tienen benchmark van al final
+ */
+function compareBenchmarks(benchA, benchB, [key, dir]) {
+  const va = benchA?.[key];
+  const vb = benchB?.[key];
+  if (va == null && vb == null) return 0;
+  if (va == null) return 1;
+  if (vb == null) return -1;
+  return (va - vb) * dir;
+}
+
+/**
+ * Benchmark de CPU de un equipo (especificaciones o componente CPU)
+ */
+function getCpuBenchmark(dev) {
+  return dev.specs?.cpu?.benchmark || (dev.components || []).find((c) => c.category === "CPU" && c.benchmark)?.benchmark || null;
+}
+
+/**
+ * Año de lanzamiento o fabricación de un componente (o del equipo enlazado, ej. un cargador)
+ */
+function getComponentYear(comp) {
+  const source = comp.year || (comp.deviceId ? devices.find((d) => d.id === comp.deviceId)?.mfgDate : "") || "";
+  const match = String(source).match(/\b(19\d\d|20\d\d)\b/);
+  return match ? parseInt(match[1], 10) : null;
+}
+
+/**
+ * Formatear un puntaje de benchmark con separador de miles
+ */
+function formatBenchmark(value) {
+  return value == null ? "—" : Number(value).toLocaleString("es-CL");
+}
+
 function sortDevices(list, sortType) {
   return list.slice().sort((a, b) => {
+    if (POWER_SORTS[sortType]) {
+      const cmp = compareBenchmarks(getCpuBenchmark(a), getCpuBenchmark(b), POWER_SORTS[sortType]);
+      if (cmp !== 0) return cmp;
+      return (a.model || "").localeCompare(b.model || "", "es", { sensitivity: "base" });
+    }
     switch (sortType) {
       case "category": {
         // Orden lógico por tipo de equipo
@@ -1419,6 +1570,16 @@ function renderComponentsGrid() {
     return true;
   });
 
+  // Orden por potencia de CPU o por año; los componentes sin dato van al final
+  if (POWER_SORTS[currentComponentSort]) {
+    filtered.sort((a, b) => compareBenchmarks(a.benchmark, b.benchmark, POWER_SORTS[currentComponentSort]));
+  } else if (currentComponentSort === "year-desc" || currentComponentSort === "year-asc") {
+    const dir = currentComponentSort === "year-desc" ? -1 : 1;
+    filtered.sort((a, b) => compareBenchmarks(
+      { year: getComponentYear(a) }, { year: getComponentYear(b) }, ["year", dir]
+    ));
+  }
+
   resultsCount.textContent = `Mostrando ${filtered.length} de ${all.length} componente${all.length === 1 ? "" : "s"}`;
   componentsGrid.innerHTML = "";
 
@@ -1444,6 +1605,7 @@ function renderComponentsGrid() {
     // Imagen propia del componente, o la del equipo enlazado (ej. un cargador registrado aparte)
     const linkedDevice = c.deviceId ? devices.find((d) => d.id === c.deviceId) : null;
     const compImage = c.imageUrl || linkedDevice?.imageUrl || "";
+    const compYear = getComponentYear(c);
     const thumbHtml = compImage
       ? `<div class="card-thumbnail-wrap">
            <img src="${escapeHtml(compImage)}" alt="${escapeHtml(c.model)}" class="card-thumbnail" loading="lazy" onerror="this.parentElement.style.display='none'">
@@ -1457,6 +1619,7 @@ function renderComponentsGrid() {
           <div class="card-type-row">
             <span class="device-badge badge-other">${escapeHtml(c.category)}</span>
             <span class="spec-pill ${c.replaceable ? "pill-replaceable" : "pill-integrated"}">${c.replaceable ? "Reemplazable" : "Integrado"}</span>
+            ${compYear ? `<span class="spec-pill pill-year" title="${escapeHtml(c.yearNote || "Año de lanzamiento o fabricación")}">${compYear}</span>` : ""}
           </div>
           <h3 class="card-model-title" title="${escapeHtml(c.model)}">${escapeHtml(c.model || "Sin modelo")}</h3>
         </div>
@@ -1464,6 +1627,7 @@ function renderComponentsGrid() {
       <div class="card-specs-summary">
         ${c.capacity ? `<span class="compact-spec-pill">${escapeHtml(c.capacity)}</span>` : ""}
         ${c.details ? `<span class="compact-spec-pill">${escapeHtml(c.details)}</span>` : ""}
+        ${c.benchmark ? `<span class="compact-spec-pill pill-benchmark" title="${escapeHtml(c.benchmark.source || "Benchmark")}: multinúcleo / mononúcleo">🏁 Multi ${formatBenchmark(c.benchmark.multi)} · Mono ${formatBenchmark(c.benchmark.single)}</span>` : ""}
       </div>
       ${linked}
       <div class="card-compact-footer">
@@ -1532,6 +1696,10 @@ function buildSpecsHtml(specs) {
     const speedInfo = specs.cpu.speed ? ` • ${escapeHtml(specs.cpu.speed)}` : "";
     const coresInfo = specs.cpu.cores ? ` (${escapeHtml(specs.cpu.cores)})` : "";
     const detailsInfo = specs.cpu.details ? `<div class="spec-details">${escapeHtml(specs.cpu.details)}</div>` : "";
+    const bench = specs.cpu.benchmark;
+    const benchInfo = bench
+      ? `<div class="spec-details">🏁 ${escapeHtml(bench.source || "Benchmark")}: multinúcleo <strong>${formatBenchmark(bench.multi)}</strong> · mononúcleo <strong>${formatBenchmark(bench.single)}</strong>${bench.url ? ` · <a href="${escapeHtml(bench.url)}" target="_blank" rel="noopener">ver fuente</a>` : ""}${bench.date ? ` (${escapeHtml(bench.date)})` : ""}</div>`
+      : "";
 
     html += `
       <div class="spec-item">
@@ -1552,6 +1720,7 @@ function buildSpecsHtml(specs) {
           </div>
           <div class="spec-details">${coresInfo}${speedInfo}</div>
           ${detailsInfo}
+          ${benchInfo}
         </div>
       </div>
     `;
@@ -2091,6 +2260,10 @@ function buildCompactSpecsHtml(dev) {
     // Procesador
     if (dev.specs?.cpu?.model) {
       pills.push(`<span class="compact-spec-pill pill-cpu" title="${escapeHtml(dev.specs.cpu.model)}">⚡ ${escapeHtml(dev.specs.cpu.model)}</span>`);
+    }
+    const bench = getCpuBenchmark(dev);
+    if (bench) {
+      pills.push(`<span class="compact-spec-pill pill-benchmark" title="${escapeHtml(bench.source || "Benchmark")}: multinúcleo / mononúcleo">🏁 Multi ${formatBenchmark(bench.multi)} · Mono ${formatBenchmark(bench.single)}</span>`);
     }
     // Memoria RAM
     if (dev.specs?.ram?.capacity) {
@@ -2940,6 +3113,10 @@ function generateMarkdownContent() {
         if (dev.specs.cpu.speed) md += `    - *Frecuencia:* ${dev.specs.cpu.speed}\n`;
         if (dev.specs.cpu.year) md += `    - *Año de salida:* ${dev.specs.cpu.year}\n`;
         if (dev.specs.cpu.details) md += `    - *Características:* ${dev.specs.cpu.details}\n`;
+        if (dev.specs.cpu.benchmark) {
+          const b = dev.specs.cpu.benchmark;
+          md += `    - *Benchmark ${b.source}:* multinúcleo ${formatBenchmark(b.multi)} · mononúcleo ${formatBenchmark(b.single)} ([fuente](${b.url}), ${b.date})\n`;
+        }
       }
       if (dev.specs.ram?.capacity) {
         md += `  - **Memoria RAM:** ${dev.specs.ram.capacity} ${dev.specs.ram.type || ''}\n`;
@@ -2983,7 +3160,9 @@ function generateMarkdownContent() {
         const serialStr = c.serial ? ` · S/N ${c.serial}` : "";
         const replaceStr = c.replaceable ? "reemplazable" : "integrado";
         const linkStr = c.deviceId ? ` · equipo relacionado: \`${c.deviceId}\`` : "";
-        md += `  - *${c.category}:* ${parts}${serialStr} · ${replaceStr}${linkStr}\n`;
+        const yearStr = c.year ? ` · ${c.year}` : "";
+        const benchStr = c.benchmark ? ` · ${c.benchmark.source} multi ${formatBenchmark(c.benchmark.multi)} / mono ${formatBenchmark(c.benchmark.single)}` : "";
+        md += `  - *${c.category}:* ${parts}${serialStr}${yearStr}${benchStr} · ${replaceStr}${linkStr}\n`;
       });
     }
     if (Array.isArray(dev.images) && dev.images.length > 0) {

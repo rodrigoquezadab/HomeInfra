@@ -59,10 +59,10 @@ HomeInfra evolucionará de un inventario de equipos a un sistema de gestión de 
 | 2 | Laptop | MSI | Modern 14 B5M-011CL | 2021-06 | AMD Ryzen 5 5500U [2021] | 8 GB | AMD Radeon Graphics (Integrada) | N/A | K2106N0089559 | [Soporte Oficial MSI Modern 14 B5M-011CL](https://www.msi.com/Business-Productivity/Modern-14-B5SX/support) |
 | 3 | Laptop | Acer | Aspire E3-112-C6ME | 2014-08-23 | N/A | N/A | N/A | N/A | NXMRLAL004434177F97600 | [Soporte Oficial Acer Aspire E3-112-C6ME](https://www.acer.com/latam-es/support/product-support/E3-112) |
 | 4 | Periférico | Lite-On | PA-1650-02 (Adaptador AC 65W) | 2008-06 | N/A | N/A | N/A | N/A | AP06503016824OB7E6P606 | [Soporte Oficial Lite-On PA-1650-02 (Adaptador AC 65W)](https://www.acer.com/latam-es/support/product-support/E3-112) |
-| 5 | Desktop | PC armado | Core i5-12400F · MSI PRO H610M-G DDR4 | N/A | 12th Gen Intel(R) Core(TM) i5-12400F | 16 GB DDR4 | NVIDIA GeForce GTX 1660 SUPER (Dedicada) | N/A | 07D4612_M21D142444 | [Soporte Oficial PC armado Core i5-12400F · MSI PRO H610M-G DDR4](https://www.msi.com/Motherboard/PRO-H610M-G-DDR4/support) |
-| 6 | Desktop | PC armado | Core 2 Quad Q6700 · ASUS P5G41T-M LX | N/A | Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz | 8 GB DDR3 | Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1) (Integrada) | N/A | 107933150000113 | [Soporte Oficial PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX](https://www.asus.com/supportonly/p5g41t-m%20lx/helpdesk_download/) |
-| 7 | Desktop | PC armado | Core 2 Duo E6750 · ASUS P5Q PRO TURBO | N/A | Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz | 4 GB DDR2 | NVIDIA GeForce 210 (Dedicada) | N/A | MS1C93BC3400692 | [Soporte Oficial PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO](https://www.asus.com/supportonly/p5q%20pro%20turbo/helpdesk_download/) |
-| 8 | Desktop | PC armado | Core i7-2600K · Gigabyte Z77-HD3 | N/A | Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz | 16 GB DDR3 | Intel(R) HD Graphics 3000 (Integrada) | N/A | N/A | [Soporte Oficial PC armado Core i7-2600K · Gigabyte Z77-HD3](https://www.gigabyte.com/Motherboard/GA-Z77-HD3-rev-10/support) |
+| 5 | Desktop | PC armado | Core i5-12400F · MSI PRO H610M-G DDR4 | 2022 (lanzamiento de la plataforma Intel H610) | 12th Gen Intel(R) Core(TM) i5-12400F [2022] | 16 GB DDR4 | NVIDIA GeForce GTX 1660 SUPER (Dedicada) | N/A | 07D4612_M21D142444 | [Soporte Oficial PC armado Core i5-12400F · MSI PRO H610M-G DDR4](https://www.msi.com/Motherboard/PRO-H610M-G-DDR4/support) |
+| 6 | Desktop | PC armado | Core 2 Quad Q6700 · ASUS P5G41T-M LX | 2008 (lanzamiento del chipset Intel G41) | Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz [2007] | 8 GB DDR3 | Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1) (Integrada) | N/A | 107933150000113 | [Soporte Oficial PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX](https://www.asus.com/supportonly/p5g41t-m%20lx/helpdesk_download/) |
+| 7 | Desktop | PC armado | Core 2 Duo E6750 · ASUS P5Q PRO TURBO | 2008 (lanzamiento del chipset Intel P45) | Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz [2007] | 4 GB DDR2 | NVIDIA GeForce 210 (Dedicada) | N/A | MS1C93BC3400692 | [Soporte Oficial PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO](https://www.asus.com/supportonly/p5q%20pro%20turbo/helpdesk_download/) |
+| 8 | Desktop | PC armado | Core i7-2600K · Gigabyte Z77-HD3 | 2012 (lanzamiento del chipset Intel Z77) | Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz [2011] | 16 GB DDR3 | Intel(R) HD Graphics 3000 (Integrada) | N/A | N/A | [Soporte Oficial PC armado Core i7-2600K · Gigabyte Z77-HD3](https://www.gigabyte.com/Motherboard/GA-Z77-HD3-rev-10/support) |
 | 9 | Monitor | LG | TV (usado como monitor) | 2010 | N/A | N/A | N/A | N/A | N/A | [Soporte Oficial LG TV (usado como monitor)](https://www.google.com/search?q=LG%20TV%20monitor%20soporte%20oficial) |
 | 10 | Periférico | Patriot | Burst Elite 120GB (SSD de Windows compartido) | N/A | N/A | N/A | N/A | N/A | PBEIIBB21030118778 | [Soporte Oficial Patriot Burst Elite 120GB (SSD de Windows compartido)](https://www.google.com/search?q=Patriot%20Burst%20Elite%20120GB%20SSD%20soporte) |
 | 11 | Periférico | Sony | Pendrive USB 4 GB (HomeInfra Collector) | N/A | N/A | N/A | N/A | N/A | 7B2211109146005852 | [Soporte Oficial Sony Pendrive USB 4 GB (HomeInfra Collector)](https://www.google.com/search?q=Sony%20USB%20flash%20drive%20soporte) |
@@ -118,6 +118,7 @@ Enlaces Oficiales Web (Respaldo en Línea):
     - *Frecuencia:* 2.1 - 4.0 GHz
     - *Año de salida:* 2021
     - *Características:* Deducido del SKU (GGAR555U)
+    - *Benchmark PassMark:* multinúcleo 12.574 · mononúcleo 2.385 ([fuente](https://www.cpubenchmark.net/cpu.php?id=4141), 2026-11-01)
   - **Memoria RAM:** 8 GB 
     - *Configuración:* Deducido del SKU (U8G)
   - **Tarjeta Gráfica (GPU):** AMD Radeon Graphics
@@ -170,7 +171,7 @@ Cargador asignado: Lite-On PA-1650-02 (19V ⎓ 3.42A, 65W), S/N AP06503016824OB7
 
 CPU, RAM y almacenamiento no figuran en las etiquetas; pendiente registrarlos con el HomeInfra Collector.
 - **Componentes:**
-  - *Red:* WLAN + Bluetooth combo QCWB335 (FCC ID PPD-QCWB335) · reemplazable
+  - *Red:* WLAN + Bluetooth combo QCWB335 (FCC ID PPD-QCWB335) · 2012 · reemplazable
   - *Cargador:* Lite-On PA-1650-02 65 W (19V ⎓ 3.42A) · S/N AP06503016824OB7E6P606 · reemplazable · equipo relacionado: `dev-acer-e3-112-cargador`
 - **Fotografías:**
   - Imagen comercial (Icecat, Aspire E3-112): [`img/acer_e3-112_comercial.jpg`](img/acer_e3-112_comercial.jpg)
@@ -213,12 +214,14 @@ Equipo asociado: Acer Aspire E3-112-C6ME (dev-acer-e3-112).
 - **Marca:** PC armado
 - **Modelo:** Core i5-12400F · MSI PRO H610M-G DDR4
 - **Número de Serie / Activo:** 07D4612_M21D142444
-- **Fecha de Fabricación / Lanzamiento:** No registrada
+- **Fecha de Fabricación / Lanzamiento:** 2022 (lanzamiento de la plataforma Intel H610)
 - **Asignación / Ubicación:** Hogar
 - **Especificaciones de Hardware:**
   - **Procesador (CPU):** 12th Gen Intel(R) Core(TM) i5-12400F
     - *Núcleos e Hilos:* 6 núcleos / 12 hilos
     - *Frecuencia:* 2.5 GHz
+    - *Año de salida:* 2022
+    - *Benchmark PassMark:* multinúcleo 19.524 · mononúcleo 3.483 ([fuente](https://www.cpubenchmark.net/cpu.php?id=4681), 2026-11-01)
   - **Memoria RAM:** 16 GB DDR4
     - *Frecuencia:* 2667 MT/s
     - *Configuración:* 2 de 2 ranuras usadas
@@ -242,27 +245,29 @@ Registro HomeInfra Collector (2026-10-31 19:21:12):
 • Red: Intel(R) Ethernet Connection (17) I219-V (MAC 04:7C:16:05:0E:B3)
 • Placa base: Micro-Star International Co., Ltd. PRO H610M-G DDR4 (MS-7D46) (1.0) · S/N 07D4612_M21D142444
 - **Componentes:**
-  - *CPU:* 12th Gen Intel(R) Core(TM) i5-12400F (6 núcleos / 12 hilos socket U3E1) · reemplazable
+  - *CPU:* 12th Gen Intel(R) Core(TM) i5-12400F (6 núcleos / 12 hilos socket U3E1) · 2022 · PassMark multi 19.524 / mono 3.483 · reemplazable
   - *RAM:* Corsair CMK8GX4M1Z3600C18 8 GB (DDR4 DIMM 2667 MT/s [Controller0-DIMMA1] · módulo de 3600 MT/s funcionando a 2667 MT/s) · reemplazable
   - *RAM:* Corsair CMK8GX4M1Z3600C18 8 GB (DDR4 DIMM 2667 MT/s [Controller1-DIMMB1] · módulo de 3600 MT/s funcionando a 2667 MT/s) · reemplazable
-  - *Almacenamiento:* WD Blue SN570 500GB 466 GB (SSD NVMe) · S/N E823_8FA6_BF53_0001_001B_448B_4569_B02C. · reemplazable
+  - *Almacenamiento:* WD Blue SN570 500GB 466 GB (SSD NVMe) · S/N E823_8FA6_BF53_0001_001B_448B_4569_B02C. · 2021 · reemplazable
   - *Almacenamiento:* WDC WD800BD-22MRA1 75 GB (HDD SATA) · S/N WD-WMAM9AMY4260 · reemplazable
-  - *GPU:* NVIDIA GeForce GTX 1660 SUPER 4 GB (NVIDIA) · reemplazable
+  - *GPU:* NVIDIA GeForce GTX 1660 SUPER 4 GB (NVIDIA) · 2019 · reemplazable
   - *Red:* Intel(R) Ethernet Connection (17) I219-V (MAC 04:7C:16:05:0E:B3) · integrado
-  - *Placa base:* Micro-Star International Co., Ltd. PRO H610M-G DDR4 (MS-7D46) (1.0) · S/N 07D4612_M21D142444 · integrado
+  - *Placa base:* Micro-Star International Co., Ltd. PRO H610M-G DDR4 (MS-7D46) (1.0) · S/N 07D4612_M21D142444 · 2022 · integrado
 
 ### 6. PC armado Core 2 Quad Q6700 · ASUS P5G41T-M LX
 - **Tipo:** Desktop
 - **Marca:** PC armado
 - **Modelo:** Core 2 Quad Q6700 · ASUS P5G41T-M LX
 - **Número de Serie / Activo:** 107933150000113
-- **Fecha de Fabricación / Lanzamiento:** No registrada
+- **Fecha de Fabricación / Lanzamiento:** 2008 (lanzamiento del chipset Intel G41)
 - **Asignación / Ubicación:** Hogar
 - **Especificaciones de Hardware:**
   - **Procesador (CPU):** Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz
     - *Núcleos e Hilos:* 4 núcleos / 4 hilos
     - *Frecuencia:* 2.7 GHz
+    - *Año de salida:* 2007
     - *Características:* Windows informó 2 núcleos / 2 hilos
+    - *Benchmark PassMark:* multinúcleo 2.092 · mononúcleo 1.073 ([fuente](https://www.cpubenchmark.net/cpu.php?id=1039), 2026-11-01)
   - **Memoria RAM:** 8 GB DDR3
     - *Configuración:* 2 de 2 ranuras usadas · tipo DDR3 deducido del modelo de placa
   - **Tarjeta Gráfica (GPU):** Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1)
@@ -283,24 +288,26 @@ Registro HomeInfra Collector (2026-11-01 21:02:05):
 • Red: Qualcomm Atheros AR8131 PCI-E Gigabit Ethernet Controller (NDIS 6.30) (MAC BC:AE:C5:28:68:F4)
 • Placa base: ASUSTeK Computer INC. P5G41T-M LX (Rev X.0x) · S/N 107933150000113
 - **Componentes:**
-  - *CPU:* Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz (4 núcleos / 4 hilos socket LGA775) · reemplazable
+  - *CPU:* Intel(R) Core(TM)2 Quad CPU Q6700 @ 2.66GHz (4 núcleos / 4 hilos socket LGA775) · 2007 · PassMark multi 2.092 / mono 1.073 · reemplazable
   - *RAM:* 4 GB (DDR3 DIMM [DIMM A1] · tipo deducido del modelo de placa) · reemplazable
   - *RAM:* 4 GB (DDR3 DIMM [DIMM B1] · tipo deducido del modelo de placa) · reemplazable
-  - *GPU:* Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1) (Intel Corporation) · integrado
+  - *GPU:* Intel(R) G41 Express Chipset (Microsoft Corporation - WDDM 1.1) (Intel Corporation) · 2008 · integrado
   - *Red:* Qualcomm Atheros AR8131 PCI-E Gigabit Ethernet Controller (NDIS 6.30) (MAC BC:AE:C5:28:68:F4) · integrado
-  - *Placa base:* ASUSTeK Computer INC. P5G41T-M LX (Rev X.0x) · S/N 107933150000113 · integrado
+  - *Placa base:* ASUSTeK Computer INC. P5G41T-M LX (Rev X.0x) · S/N 107933150000113 · 2008 · integrado
 
 ### 7. PC armado Core 2 Duo E6750 · ASUS P5Q PRO TURBO
 - **Tipo:** Desktop
 - **Marca:** PC armado
 - **Modelo:** Core 2 Duo E6750 · ASUS P5Q PRO TURBO
 - **Número de Serie / Activo:** MS1C93BC3400692
-- **Fecha de Fabricación / Lanzamiento:** No registrada
+- **Fecha de Fabricación / Lanzamiento:** 2008 (lanzamiento del chipset Intel P45)
 - **Asignación / Ubicación:** Hogar
 - **Especificaciones de Hardware:**
   - **Procesador (CPU):** Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz
     - *Núcleos e Hilos:* 2 núcleos / 2 hilos
     - *Frecuencia:* 2.7 GHz
+    - *Año de salida:* 2007
+    - *Benchmark PassMark:* multinúcleo 1.031 · mononúcleo 1.030 ([fuente](https://www.cpubenchmark.net/cpu.php?id=942), 2026-11-01)
   - **Memoria RAM:** 4 GB DDR2
     - *Frecuencia:* 800 MT/s
     - *Configuración:* 2 de 4 ranuras usadas · tipo DDR2 deducido del modelo de placa
@@ -322,25 +329,27 @@ Registro HomeInfra Collector (2026-11-02 00:04:39):
 • Red: Atheros AR8121/AR8113/AR8114 PCI-E Ethernet Controller (MAC 00:24:8C:6B:E7:F6)
 • Placa base: ASUSTeK Computer INC. P5Q PRO TURBO (Rev 1.xx) · S/N MS1C93BC3400692
 - **Componentes:**
-  - *CPU:* Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz (2 núcleos / 2 hilos socket LGA 775) · reemplazable
+  - *CPU:* Intel(R) Core(TM)2 Duo CPU E6750 @ 2.66GHz (2 núcleos / 2 hilos socket LGA 775) · 2007 · PassMark multi 1.031 / mono 1.030 · reemplazable
   - *RAM:* 2 GB (DDR2 DIMM 800 MT/s [DIMM0] · tipo deducido del modelo de placa) · reemplazable
   - *RAM:* 2 GB (DDR2 DIMM 800 MT/s [DIMM2] · tipo deducido del modelo de placa) · reemplazable
-  - *GPU:* NVIDIA GeForce 210 1 GB (NVIDIA) · reemplazable
+  - *GPU:* NVIDIA GeForce 210 1 GB (NVIDIA) · 2009 · reemplazable
   - *Red:* Atheros AR8121/AR8113/AR8114 PCI-E Ethernet Controller (MAC 00:24:8C:6B:E7:F6) · integrado
-  - *Placa base:* ASUSTeK Computer INC. P5Q PRO TURBO (Rev 1.xx) · S/N MS1C93BC3400692 · integrado
+  - *Placa base:* ASUSTeK Computer INC. P5Q PRO TURBO (Rev 1.xx) · S/N MS1C93BC3400692 · 2008 · integrado
 
 ### 8. PC armado Core i7-2600K · Gigabyte Z77-HD3
 - **Tipo:** Desktop
 - **Marca:** PC armado
 - **Modelo:** Core i7-2600K · Gigabyte Z77-HD3
 - **Número de Serie / Activo:** No registrado
-- **Fecha de Fabricación / Lanzamiento:** No registrada
+- **Fecha de Fabricación / Lanzamiento:** 2012 (lanzamiento del chipset Intel Z77)
 - **Asignación / Ubicación:** Hogar
 - **Especificaciones de Hardware:**
   - **Procesador (CPU):** Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz
     - *Núcleos e Hilos:* 4 núcleos / 8 hilos
     - *Frecuencia:* 3.4 GHz
+    - *Año de salida:* 2011
     - *Características:* Windows informó 1 núcleos / 2 hilos
+    - *Benchmark PassMark:* multinúcleo 5.476 · mononúcleo 1.740 ([fuente](https://www.cpubenchmark.net/cpu.php?id=868), 2026-11-01)
   - **Memoria RAM:** 16 GB DDR3
     - *Frecuencia:* 1600 MT/s
     - *Configuración:* 2 de 4 ranuras usadas
@@ -362,12 +371,12 @@ Registro HomeInfra Collector (2026-11-01 17:53:51):
 • Red: Realtek PCIe GbE Family Controller #2 (MAC 74:D4:35:11:F0:AC)
 • Placa base: Gigabyte Technology Co., Ltd. Z77-HD3
 - **Componentes:**
-  - *CPU:* Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz (4 núcleos / 8 hilos) · reemplazable
+  - *CPU:* Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz (4 núcleos / 8 hilos) · 2011 · PassMark multi 5.476 / mono 1.740 · reemplazable
   - *RAM:* Kingston HX316C10F/8 8 GB (DDR3 DIMM 1600 MT/s [ChannelB-DIMM1]) · S/N 19FA6341 · reemplazable
   - *RAM:* Kingston HX316C10F/8 8 GB (DDR3 DIMM 1600 MT/s [ChannelA-DIMM1]) · S/N 4C33D19F · reemplazable
-  - *GPU:* Intel(R) HD Graphics 3000 (Intel Corporation) · integrado
+  - *GPU:* Intel(R) HD Graphics 3000 (Intel Corporation) · 2011 · integrado
   - *Red:* Realtek PCIe GbE Family Controller #2 (MAC 74:D4:35:11:F0:AC) · integrado
-  - *Placa base:* Gigabyte Technology Co., Ltd. Z77-HD3 · integrado
+  - *Placa base:* Gigabyte Technology Co., Ltd. Z77-HD3 · 2012 · integrado
 
 ### 9. LG TV (usado como monitor)
 - **Tipo:** Monitor
