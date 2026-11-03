@@ -3258,7 +3258,13 @@
         "url": "img/hdd_seagate_st3320413as_320gb_etiqueta.jpg"
       }
     ],
-    "year": "2011"
+    "year": "2011",
+    "diskTest": {
+      "date": "2026-11-02",
+      "verdict": "REVISAR",
+      "summary": "Atributo 184 End-to-End_Error en FAIL NOW (240) · 0 sectores malos · 24.629 h de uso · no recomendado para datos",
+      "reports": "Collector/Registros/Discos/PRO_H610M-G_DDR4__MS-7D46__20261102-222309/"
+    }
   },
   {
     "kind": "pieza",
@@ -3285,7 +3291,7 @@
         "date": "2026-11-02",
         "action": "Revisada",
         "deviceId": null,
-        "note": "Revisión completa (badblocks + prueba larga SMART): APTO con reservas, 0 sectores malos; historia de calor y errores de cable. Disco borrado."
+        "note": "Revisión completa (badblocks + prueba larga SMART): APTO con observaciones, 0 sectores malos; historia de calor y errores de cable. Disco borrado."
       }
     ],
     "updatedAt": "2026-11-03",
@@ -3296,7 +3302,7 @@
     "serial": "6RY08XZ6",
     "imageUrl": "img/hdd_seagate_st3250410as_250gb_etiqueta.jpg",
     "driverUrl": "https://www.google.com/search?q=Seagate%20Barracuda%207200.10%20ST3250410AS%20support",
-    "observaciones": "Datos de la etiqueta:\n• ST3250410AS · S/N: 6RY08XZ6 · P/N: 9EU142-300 · Firmware: 3.AAA\n• Date Code: 08031 · Site Code: SU · Producto de China\n• Etiqueta adicional pegada: 412-3723 · 15-08-2007\n\nRevisión de disco (2026-11-02, PC Z77-HD3, SystemRescue + revisar-discos.sh): APTO con reservas\n• badblocks escritura y lectura completas: 0 sectores malos (1 h 40 min)\n• Prueba larga del SMART: Completed without error (56 min) · Salud SMART: PASSED\n• Reasignados 0 · Pendientes 0 · Incorregibles 0 (sin cambios tras la prueba)\n• Historia: 17.556 h de uso · 4.794 encendidos · 5.361 arranques del motor\n• Temperatura de flujo de aire «FAIL Past»: superó el límite del fabricante en el pasado (peor valor registrado ~61 °C). En la prueba: 41 °C (máx. 44 °C)\n• Errores CRC: 3.891 y 493 errores ATA registrados (ICRC/ABRT, fallas de cable o conexión, a las 10.966 h); 20 lecturas incorregibles informadas (187), antiguas. Ninguno aumentó en la prueba\n• Familia: Seagate Barracuda 7200.10 · Firmware 3.AAA · Sectores de 512 B\n• Contenía un Linux (ext4 232 GB + swap), borrado por la prueba\n• Uso recomendado: reserva o segunda copia de datos no críticos; no como única copia\nReportes: Collector/Registros/Discos/Z77-HD3_20261102-175250/",
+    "observaciones": "Datos de la etiqueta:\n• ST3250410AS · S/N: 6RY08XZ6 · P/N: 9EU142-300 · Firmware: 3.AAA\n• Date Code: 08031 · Site Code: SU · Producto de China\n• Etiqueta adicional pegada: 412-3723 · 15-08-2007\n\nRevisión de disco (2026-11-02, PC Z77-HD3, SystemRescue + revisar-discos.sh): APTO con observaciones\n• badblocks escritura y lectura completas: 0 sectores malos (1 h 40 min)\n• Prueba larga del SMART: Completed without error (56 min) · Salud SMART: PASSED\n• Reasignados 0 · Pendientes 0 · Incorregibles 0 (sin cambios tras la prueba)\n• Historia: 17.556 h de uso · 4.794 encendidos · 5.361 arranques del motor\n• Temperatura de flujo de aire «FAIL Past»: superó el límite del fabricante en el pasado (peor valor registrado ~61 °C). En la prueba: 41 °C (máx. 44 °C)\n• Errores CRC: 3.891 y 493 errores ATA registrados (ICRC/ABRT, fallas de cable o conexión, a las 10.966 h); 20 lecturas incorregibles informadas (187), antiguas. Ninguno aumentó en la prueba\n• Familia: Seagate Barracuda 7200.10 · Firmware 3.AAA · Sectores de 512 B\n• Contenía un Linux (ext4 232 GB + swap), borrado por la prueba\n• Uso recomendado: reserva o segunda copia de datos no críticos; no como única copia\nReportes: Collector/Registros/Discos/Z77-HD3_20261102-175250/",
     "images": [
       {
         "id": "img-pz-hdd-seagate-st3250410as",
@@ -3304,7 +3310,13 @@
         "url": "img/hdd_seagate_st3250410as_250gb_etiqueta.jpg"
       }
     ],
-    "year": "2007"
+    "year": "2007",
+    "diskTest": {
+      "date": "2026-11-02",
+      "verdict": "APTO con observaciones",
+      "summary": "0 sectores malos · prueba larga SMART sin errores · historia de sobrecalentamiento («FAIL Past») y 20 lecturas incorregibles · 17.556 h de uso",
+      "reports": "Collector/Registros/Discos/Z77-HD3_20261102-175250/"
+    }
   },
   {
     "kind": "pieza",
@@ -3350,7 +3362,13 @@
         "url": "img/hdd_wd5000azlx_500gb_etiqueta.jpg"
       }
     ],
-    "year": "2017"
+    "year": "2017",
+    "diskTest": {
+      "date": "2026-11-02",
+      "verdict": "APTO",
+      "summary": "0 sectores malos · prueba larga SMART sin errores · 216 h de uso",
+      "reports": "Collector/Registros/Discos/Z77-HD3_20261102-112605/"
+    }
   },
   {
     "kind": "pieza",

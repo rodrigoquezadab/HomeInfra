@@ -3263,7 +3263,13 @@ const DEFAULT_DEVICES = [
         url: "img/hdd_seagate_st3320413as_320gb_etiqueta.jpg"
       }
     ],
-    year: "2011"
+    year: "2011",
+    diskTest: {
+      date: "2026-11-02",
+      verdict: "REVISAR",
+      summary: "Atributo 184 End-to-End_Error en FAIL NOW (240) · 0 sectores malos · 24.629 h de uso · no recomendado para datos",
+      reports: "Collector/Registros/Discos/PRO_H610M-G_DDR4__MS-7D46__20261102-222309/"
+    }
   },
   {
     kind: "pieza",
@@ -3290,7 +3296,7 @@ const DEFAULT_DEVICES = [
         date: "2026-11-02",
         action: "Revisada",
         deviceId: null,
-        note: "Revisión completa (badblocks + prueba larga SMART): APTO con reservas, 0 sectores malos; historia de calor y errores de cable. Disco borrado."
+        note: "Revisión completa (badblocks + prueba larga SMART): APTO con observaciones, 0 sectores malos; historia de calor y errores de cable. Disco borrado."
       }
     ],
     updatedAt: "2026-11-03",
@@ -3301,7 +3307,7 @@ const DEFAULT_DEVICES = [
     serial: "6RY08XZ6",
     imageUrl: "img/hdd_seagate_st3250410as_250gb_etiqueta.jpg",
     driverUrl: "https://www.google.com/search?q=Seagate%20Barracuda%207200.10%20ST3250410AS%20support",
-    observaciones: "Datos de la etiqueta:\n• ST3250410AS · S/N: 6RY08XZ6 · P/N: 9EU142-300 · Firmware: 3.AAA\n• Date Code: 08031 · Site Code: SU · Producto de China\n• Etiqueta adicional pegada: 412-3723 · 15-08-2007\n\nRevisión de disco (2026-11-02, PC Z77-HD3, SystemRescue + revisar-discos.sh): APTO con reservas\n• badblocks escritura y lectura completas: 0 sectores malos (1 h 40 min)\n• Prueba larga del SMART: Completed without error (56 min) · Salud SMART: PASSED\n• Reasignados 0 · Pendientes 0 · Incorregibles 0 (sin cambios tras la prueba)\n• Historia: 17.556 h de uso · 4.794 encendidos · 5.361 arranques del motor\n• Temperatura de flujo de aire «FAIL Past»: superó el límite del fabricante en el pasado (peor valor registrado ~61 °C). En la prueba: 41 °C (máx. 44 °C)\n• Errores CRC: 3.891 y 493 errores ATA registrados (ICRC/ABRT, fallas de cable o conexión, a las 10.966 h); 20 lecturas incorregibles informadas (187), antiguas. Ninguno aumentó en la prueba\n• Familia: Seagate Barracuda 7200.10 · Firmware 3.AAA · Sectores de 512 B\n• Contenía un Linux (ext4 232 GB + swap), borrado por la prueba\n• Uso recomendado: reserva o segunda copia de datos no críticos; no como única copia\nReportes: Collector/Registros/Discos/Z77-HD3_20261102-175250/",
+    observaciones: "Datos de la etiqueta:\n• ST3250410AS · S/N: 6RY08XZ6 · P/N: 9EU142-300 · Firmware: 3.AAA\n• Date Code: 08031 · Site Code: SU · Producto de China\n• Etiqueta adicional pegada: 412-3723 · 15-08-2007\n\nRevisión de disco (2026-11-02, PC Z77-HD3, SystemRescue + revisar-discos.sh): APTO con observaciones\n• badblocks escritura y lectura completas: 0 sectores malos (1 h 40 min)\n• Prueba larga del SMART: Completed without error (56 min) · Salud SMART: PASSED\n• Reasignados 0 · Pendientes 0 · Incorregibles 0 (sin cambios tras la prueba)\n• Historia: 17.556 h de uso · 4.794 encendidos · 5.361 arranques del motor\n• Temperatura de flujo de aire «FAIL Past»: superó el límite del fabricante en el pasado (peor valor registrado ~61 °C). En la prueba: 41 °C (máx. 44 °C)\n• Errores CRC: 3.891 y 493 errores ATA registrados (ICRC/ABRT, fallas de cable o conexión, a las 10.966 h); 20 lecturas incorregibles informadas (187), antiguas. Ninguno aumentó en la prueba\n• Familia: Seagate Barracuda 7200.10 · Firmware 3.AAA · Sectores de 512 B\n• Contenía un Linux (ext4 232 GB + swap), borrado por la prueba\n• Uso recomendado: reserva o segunda copia de datos no críticos; no como única copia\nReportes: Collector/Registros/Discos/Z77-HD3_20261102-175250/",
     images: [
       {
         id: "img-pz-hdd-seagate-st3250410as",
@@ -3309,7 +3315,13 @@ const DEFAULT_DEVICES = [
         url: "img/hdd_seagate_st3250410as_250gb_etiqueta.jpg"
       }
     ],
-    year: "2007"
+    year: "2007",
+    diskTest: {
+      date: "2026-11-02",
+      verdict: "APTO con observaciones",
+      summary: "0 sectores malos · prueba larga SMART sin errores · historia de sobrecalentamiento («FAIL Past») y 20 lecturas incorregibles · 17.556 h de uso",
+      reports: "Collector/Registros/Discos/Z77-HD3_20261102-175250/"
+    }
   },
   {
     kind: "pieza",
@@ -3355,7 +3367,13 @@ const DEFAULT_DEVICES = [
         url: "img/hdd_wd5000azlx_500gb_etiqueta.jpg"
       }
     ],
-    year: "2017"
+    year: "2017",
+    diskTest: {
+      date: "2026-11-02",
+      verdict: "APTO",
+      summary: "0 sectores malos · prueba larga SMART sin errores · 216 h de uso",
+      reports: "Collector/Registros/Discos/Z77-HD3_20261102-112605/"
+    }
   },
   {
     kind: "pieza",
@@ -4061,12 +4079,13 @@ function buildComponentsTable(list) {
         <td class="col-serial">${escapeHtml(c.serial || "—")}</td>
         <td class="col-year">${year || "—"}</td>
         <td class="col-place"><span class="piece-status status-${statusSlug(c.status)}">${escapeHtml(c.status || "Sin estado")}</span>${c.parent ? `<div>${escapeHtml(c.parent.brand)} ${escapeHtml(c.parent.model)}</div>` : ""}</td>
+        <td class="col-test">${diskTestBadgeHtml(c) || "—"}</td>
       </tr>`;
   }).join("");
   return `
     <div class="inventory-table-wrap">
       <table class="inventory-table">
-        <thead><tr><th>Tipo</th><th>Pieza</th><th>Capacidad / detalles</th><th>N.º de serie</th><th>Año</th><th>Estado / equipo</th></tr></thead>
+        <thead><tr><th>Tipo</th><th>Pieza</th><th>Capacidad / detalles</th><th>N.º de serie</th><th>Año</th><th>Estado / equipo</th><th>Revisión</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
     </div>`;
@@ -4436,7 +4455,8 @@ function renderComponentsGrid() {
     if (currentComponentCategory !== "ALL" && getComponentHwType(c) !== currentComponentCategory) return false;
     if (currentPieceStatus !== "ALL" && c.status !== currentPieceStatus) return false;
     if (searchQuery) {
-      const target = `${c.category} ${c.brand || ""} ${c.model} ${c.serial || ""} ${c.capacity || ""} ${c.details || ""} ${c.status || ""} ${c.parent ? `${c.parent.brand} ${c.parent.model}` : ""}`.toLowerCase();
+      const testText = c.diskTest ? c.diskTest.verdict : (c.hardwareType === "HDD" ? "sin revisión sin revision" : "");
+      const target = `${c.category} ${c.brand || ""} ${c.model} ${c.serial || ""} ${c.capacity || ""} ${c.details || ""} ${c.status || ""} ${testText} ${c.parent ? `${c.parent.brand} ${c.parent.model}` : ""}`.toLowerCase();
       if (!target.includes(searchQuery)) return false;
     }
     return true;
@@ -4477,6 +4497,24 @@ function renderComponentsGrid() {
  */
 function statusSlug(status) {
   return String(status || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/s+/g, "-");
+}
+
+/**
+ * Resultado de la revisión de disco (pendrive de prueba, campo diskTest). Los discos duros
+ * sin revisión muestran "Sin revisión"; el resto de las piezas no muestra nada.
+ */
+const DISK_TEST_CLASSES = { "APTO": "apto", "APTO con observaciones": "observaciones", "REVISAR": "revisar" };
+
+function diskTestBadgeHtml(p) {
+  const t = p.diskTest;
+  if (t) {
+    const tip = `Revisión de disco ${t.date || ""}: ${t.summary || ""}`;
+    return `<span class="disk-test-badge disk-test-${DISK_TEST_CLASSES[t.verdict] || "revisar"}" title="${escapeHtml(tip)}">🩺 ${escapeHtml(t.verdict)}</span>`;
+  }
+  if (p.hardwareType === "HDD") {
+    return `<span class="disk-test-badge disk-test-pendiente" title="Aún no se revisa con el pendrive de prueba">🩺 Sin revisión</span>`;
+  }
+  return "";
 }
 
 /**
@@ -4530,6 +4568,7 @@ function createComponentCard(c) {
         <div class="card-type-row">
           <span class="device-badge badge-other">${HARDWARE_TYPES[getComponentHwType(c)].emoji} ${escapeHtml(getComponentHwType(c) === "Otro" ? c.category : HARDWARE_TYPES[getComponentHwType(c)].short)}</span>
           ${compYear ? `<span class="spec-pill pill-year" title="${escapeHtml(c.yearNote || "Año de lanzamiento o fabricación")}">${compYear}</span>` : ""}
+          ${diskTestBadgeHtml(c)}
         </div>
         ${c.brand && !(c.model || "").toLowerCase().includes(c.brand.toLowerCase()) ? `<div class="card-brand-label">${escapeHtml(c.brand)}</div>` : ""}
         <h3 class="card-model-title" title="${escapeHtml(c.model)}">${escapeHtml(c.model || "Sin modelo")}</h3>
@@ -5601,6 +5640,9 @@ function buildPieceRelationHtml(p) {
         ${parent ? `<span>en <button type="button" class="link-btn" onclick="openDeviceDetailModal('${escapeHtml(parent.id)}')">${escapeHtml(parent.brand)} ${escapeHtml(parent.model)} ➔</button></span>` : ""}
       </div>
       ${info ? `<div class="piece-info">${escapeHtml(info)}</div>` : ""}
+      ${p.diskTest
+        ? `<div class="piece-info">${diskTestBadgeHtml(p)} Revisión de disco ${escapeHtml(p.diskTest.date || "")}: ${escapeHtml(p.diskTest.summary || "")}${p.diskTest.reports ? `<div class="list-sub">Reportes: ${escapeHtml(p.diskTest.reports)}</div>` : ""}</div>`
+        : (p.hardwareType === "HDD" ? `<div class="piece-info">${diskTestBadgeHtml(p)} Aún no se revisa con el pendrive de prueba (Configuración → Revisión de discos).</div>` : "")}
       ${p.benchmark ? `<div class="piece-info">🏁 ${escapeHtml(p.benchmark.source)}: multinúcleo <strong>${formatBenchmark(p.benchmark.multi)}</strong> · mononúcleo <strong>${formatBenchmark(p.benchmark.single)}</strong></div>` : ""}
       ${integratedListHtml(p.integrated)}
       ${features}

@@ -103,7 +103,7 @@ Quedan libres: P5Q PRO TURBO + E6750 + 4 GB DDR2, Zotac 8400 GS, Samsung PM981a 
 - [ ] Revisar SMART y hacer prueba completa de cada disco; desactivar el estacionamiento agresivo de cabezales de los WD Green.
   - Herramienta: pendrive SystemRescue 13.02 (`RESCUE1302`) con `Collector/revisar-discos.sh` como `autorun/autorun` y `discos-autorizados.txt` (procedimiento en la app: botón **Discos**). Reportes en `Collector/Registros/Discos/`.
   - [x] WD5000AZLX (2026-11-02, 2600K): **APTO**, 0 sectores malos, 216 h, 2 h 53 min.
-  - [x] Seagate ST3250410AS (2026-11-02, 2600K): **APTO con reservas** (0 sectores malos; 17.556 h, calor «FAIL Past», errores de cable antiguos). Solo para reserva o segunda copia.
+  - [x] Seagate ST3250410AS (2026-11-02, 2600K): **APTO con observaciones** (0 sectores malos; 17.556 h, calor «FAIL Past», errores de cable antiguos). Solo para reserva o segunda copia.
   - [x] Seagate ST3320413AS (2026-11-02, PC MSI i5-12400F): **REVISAR / no recomendado para datos** (0 sectores malos, pero atributo 184 End-to-End_Error en FAIL NOW con 240 errores; 24.629 h).
   - [ ] Volver a activar Secure Boot en el PC MSI (se desactivó para arrancar SystemRescue).
   - [ ] Actualizar el script del otro pendrive (versión anterior al veredicto de tres niveles, commit 4f40674).
