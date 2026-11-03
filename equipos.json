@@ -3234,9 +3234,15 @@
         "action": "En stock",
         "deviceId": null,
         "note": "Registrada desde fotos de la etiqueta"
+      },
+      {
+        "date": "2026-11-02",
+        "action": "Revisada",
+        "deviceId": null,
+        "note": "Revisión completa (badblocks + prueba larga SMART): REVISAR, atributo 184 End-to-End_Error en FAIL NOW (240). 0 sectores malos. No recomendado para datos. Disco borrado."
       }
     ],
-    "updatedAt": "2026-11-02",
+    "updatedAt": "2026-11-03",
     "id": "pz-hdd-seagate-st3320413as",
     "hardwareType": "HDD",
     "brand": "Seagate",
@@ -3244,7 +3250,7 @@
     "serial": "Z2A0XF4D",
     "imageUrl": "img/hdd_seagate_st3320413as_320gb_etiqueta.jpg",
     "driverUrl": "https://www.google.com/search?q=Seagate%20Barracuda%207200.12%20ST3320413AS%20support",
-    "observaciones": "Datos de la etiqueta:\n• ST3320413AS · S/N: Z2A0XF4D · P/N: 9YP14C-303 · Firmware: JC45\n• Date Code: 11332 · Site Code: TK · Producto de Tailandia\n• Marcado a mano \"320GB\".",
+    "observaciones": "Datos de la etiqueta:\n• ST3320413AS · S/N: Z2A0XF4D · P/N: 9YP14C-303 · Firmware: JC45\n• Date Code: 11332 · Site Code: TK · Producto de Tailandia\n• Marcado a mano \"320GB\".\n\nRevisión de disco (2026-11-02, PC MSI PRO H610M-G DDR4 con i5-12400F, SystemRescue + revisar-discos.sh): REVISAR · no recomendado para datos\n• Atributo 184 End-to-End_Error: 240 errores, «FAIL NOW» (valor 1, umbral 99): el disco registró errores de integridad en su camino interno de datos. La salud global dice PASSED solo porque Seagate no marca ese atributo como pre-falla\n• No aumentó durante la prueba (240 → 240) y badblocks escribió y comparó todo el disco sin diferencias: 0 sectores malos (2 h 0 min)\n• Prueba larga del SMART: Completed without error (61 min) · Reasignados 0 · Pendientes 0 · Incorregibles 0\n• Historia: 24.629 h de uso · 12.179 arranques del motor · 3.528 encendidos · 12.686 errores CRC antiguos (cable o conexión) · 24 tiempos de espera de comandos (188)\n• Temperatura: 38 °C en la prueba; mínima y máxima de su vida: 7 / 52 °C\n• Familia: Seagate Barracuda 7200.12 · Firmware JC45 · Sectores de 512 B\n• Contenía una partición NTFS «300gb», borrada por la prueba\n• Uso recomendado: solo pruebas o datos desechables; no para respaldos\nReportes: Collector/Registros/Discos/PRO_H610M-G_DDR4__MS-7D46__20261102-222309/",
     "images": [
       {
         "id": "img-pz-hdd-seagate-st3320413as",

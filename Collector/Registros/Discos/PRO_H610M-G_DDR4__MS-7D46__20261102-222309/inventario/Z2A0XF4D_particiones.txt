@@ -1,0 +1,3 @@
+NAME     SIZE FSTYPE LABEL PARTLABEL UUID
+sda    298.1G                        
+└─sda1 298.1G ntfs   300gb           C26AE8E76AE8D965

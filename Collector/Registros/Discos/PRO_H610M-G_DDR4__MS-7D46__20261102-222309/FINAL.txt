@@ -1,0 +1,7 @@
+==============================================
+  TERMINADO: el disco está APTO.
+  Aviso: 14 disco(s) de la lista no estaban conectados.
+  Inventario de 1 disco(s) conectados: INVENTARIO.txt
+  Reportes guardados en el pendrive: HomeInfra-Discos/PRO_H610M-G_DDR4__MS-7D46__20261102-222309
+  Para apagar el equipo escribe: poweroff
+==============================================

@@ -1,0 +1,11 @@
+HomeInfra - Inventario de discos v1.0.0
+Placa: PRO_H610M-G_DDR4__MS-7D46_ · Fecha: 2026-11-02 22:23:09
+
+== /dev/sda · sata · SE PRUEBA (autorizado; se borra)
+   Modelo: ST3320413AS (familia: Seagate Barracuda 7200.12)
+   S/N: Z2A0XF4D · Firmware: JC45
+   Capacidad: 320 GB · Velocidad: 7200 rpm · Formato: 
+   Interfaz: SATA 2.6, 6.0 Gb/s (current: 6.0 Gb/s)
+   Horas de uso: 24626 · Salud SMART: PASSED
+   Partición: sda1 ntfs 300gb 298.1G
+
