@@ -29,6 +29,12 @@ VERSION="1.0.0"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 TMP_DIR="/tmp/homeinfra-discos"
 POLL_SEGUNDOS=300
+# Descarte automático: un disco se detiene (y los demás siguen) si, tras DESCARTE_MIN
+# minutos de badblocks, avanza a menos de DESCARTE_MBPS MB/s, o si acumula
+# DESCARTE_ERRORES errores de lectura, escritura o comparación
+DESCARTE_MIN="${DESCARTE_MIN:-15}"
+DESCARTE_MBPS="${DESCARTE_MBPS:-15}"
+DESCARTE_ERRORES="${DESCARTE_ERRORES:-10}"
 
 if [ "$(uname -s)" != "Linux" ]; then
   echo "Este script es para Linux (ej. SystemRescue desde un pendrive)."
@@ -146,7 +152,7 @@ if ! mkdir -p "$RUN_DIR" 2>/dev/null || ! [ -w "$RUN_DIR" ]; then
     "El pendrive debe crearse con Rufus en modo ISO (FAT32), no en modo DD."
 fi
 mkdir -p "$TMP_DIR"
-rm -f "$TMP_DIR"/*.listo "$TMP_DIR"/*.rc
+rm -f "$TMP_DIR"/*.listo "$TMP_DIR"/*.rc "$TMP_DIR"/*.inicio_bb "$TMP_DIR"/*.pid_bb "$TMP_DIR"/*.descartado
 DISCO_PENDRIVE="$(disco_de_ruta "$BASE_DIR")"
 
 # --------------------------------------------------------------------------
@@ -294,6 +300,22 @@ if [ ${#DISCOS[@]} -eq 0 ]; then
   exit 0
 fi
 
+# Velocidad media (MB/s), errores y minutos transcurridos de badblocks en un disco.
+# badblocks hace dos pasadas (escritura y luego lectura/comparación); su avance
+# indica el porcentaje de la pasada en curso y los errores como "(L/E/C errors)".
+medir_badblocks() {
+  local d="$1" s="$2" log="$TMP_DIR/$2_badblocks.log" inicio cap ult pct err fase=1
+  inicio="$(cat "$TMP_DIR/${s}.inicio_bb" 2>/dev/null)"
+  [ -z "$inicio" ] && { echo "0 0 0"; return; }
+  cap="$(lsblk -bdno SIZE "/dev/$d" 2>/dev/null | tr -d ' ')"
+  ult="$(tr '\b' '\n' < "$log" 2>/dev/null | grep '% done' | tail -1)"
+  pct="$(echo "$ult" | grep -o '[0-9.]*% done' | tr -dc '0-9.')"
+  err="$(echo "$ult" | grep -o '([0-9]*/[0-9]*/[0-9]* errors)' | tr -dc '0-9/' | awk -F/ '{print $1 + $2 + $3}')"
+  tr '\b' '\n' < "$log" 2>/dev/null | grep -q 'Reading and comparing' && fase=2
+  awk -v c="${cap:-0}" -v p="${pct:-0}" -v f="$fase" -v t="$(( $(date +%s) - inicio ))" -v e="${err:-0}" \
+    'BEGIN { b = c * (f - 1 + p / 100); printf "%d %d %d\n", (t > 0 ? b / t / 1000000 : 0), e, t / 60 }'
+}
+
 # --------------------------------------------------------------------------
 # Prueba de un disco (se ejecuta en segundo plano, uno por disco)
 # --------------------------------------------------------------------------
@@ -313,7 +335,10 @@ revisar_disco() {
 
   # 2. badblocks (escritura y lectura de toda la superficie)
   paso "2/4 badblocks en curso (escribe y lee todo el disco)"
-  badblocks -wsv -b 4096 -t random -o "$TMP_DIR/${s}_malos.txt" "/dev/$d" > "$TMP_DIR/${s}_badblocks.log" 2>&1
+  date +%s > "$TMP_DIR/${s}.inicio_bb"
+  badblocks -wsv -b 4096 -t random -o "$TMP_DIR/${s}_malos.txt" "/dev/$d" > "$TMP_DIR/${s}_badblocks.log" 2>&1 &
+  echo $! > "$TMP_DIR/${s}.pid_bb"
+  wait $!
   rc=$?
   echo "$rc" > "$TMP_DIR/${s}.rc"
   # badblocks reescribe el avance con retrocesos (\b) cada segundo: se quitan
@@ -325,10 +350,20 @@ revisar_disco() {
   cp "$TMP_DIR/${s}_malos.txt" "${p}_2_sectores_malos.txt" 2>/dev/null || : > "${p}_2_sectores_malos.txt"
   malos=$(grep -c . "${p}_2_sectores_malos.txt")
   sync
-  paso "2/4 badblocks terminado (código $rc, sectores malos: $malos)"
+
+  # Disco descartado por lento o con errores: se omite la prueba larga (en un disco
+  # que falla puede tardar horas) y se guarda igual el reporte SMART final
+  if [ -f "$TMP_DIR/${s}.descartado" ]; then
+    paso "2/4 badblocks detenido: disco descartado ($(cat "$TMP_DIR/${s}.descartado"); sectores malos hasta ese momento: $malos)"
+    paso "3/4 Prueba larga del SMART omitida (disco descartado)"
+  else
+    paso "2/4 badblocks terminado (código $rc, sectores malos: $malos)"
+  fi
 
   # 3. Prueba larga del SMART
-  if smartctl -t long "/dev/$d" > /dev/null 2>&1; then
+  if [ -f "$TMP_DIR/${s}.descartado" ]; then
+    :
+  elif smartctl -t long "/dev/$d" > /dev/null 2>&1; then
     minutos="$(smartctl -c "/dev/$d" | grep -A1 'Extended self-test routine' | grep -o '( *[0-9]*)' | tr -dc '0-9')"
     paso "3/4 Prueba larga del SMART en curso (estimado: ${minutos:-?} min)"
     limite=$(( ${minutos:-480} * 3 * 60 + 3600 ))
@@ -357,6 +392,7 @@ escribir_resumen() {
   local r="$RUN_DIR/RESUMEN.txt" d s p ini fin malos rc prueba veredicto id nombre a b salud fallados pasado inc
   REVISAR_N=0
   OBS_N=0
+  DESCARTADOS_N=0
   {
     echo "HomeInfra - Revisión de discos v$VERSION"
     echo "Placa: ${PLACA:-desconocida} · Inicio: $INICIO · Fin: $(ahora)"
@@ -366,6 +402,8 @@ escribir_resumen() {
       malos=$(grep -c . "${p}_2_sectores_malos.txt" 2>/dev/null)
       rc="$(cat "$TMP_DIR/${s}.rc" 2>/dev/null)"
       prueba="$(ultima_autoprueba "$fin")"
+      # Descartado: la última autoprueba del registro es antigua, no de esta revisión
+      [ -f "$TMP_DIR/${s}.descartado" ] && prueba="omitida (disco descartado)"
       echo "== /dev/$d · S/N $s · $(grep -m1 -E '^(Device Model|Model Number|Product)' "$ini" | sed 's/^[^:]*: *//')"
       echo "   Capacidad: $(grep -m1 '^User Capacity' "$ini" | sed 's/^[^[]*\[//; s/\]//')"
       echo "   Horas de uso: $(atributo 9 "$fin")"
@@ -374,7 +412,12 @@ escribir_resumen() {
         printf "   %-15s inicial %-8s final %s\n" "$nombre" "${a:--}" "${b:--}"
       done
       echo "   Sectores malos (badblocks): ${malos:-?}"
-      [ "${rc:-1}" != "0" ] && echo "   badblocks terminó con error (código ${rc:-?}): revisar ${s}_2_badblocks.log"
+      if [ -f "$TMP_DIR/${s}.descartado" ]; then
+        echo "   Prueba detenida automáticamente: $(cat "$TMP_DIR/${s}.descartado"). Sin prueba larga del SMART."
+        DESCARTADOS_N=$(( DESCARTADOS_N + 1 ))
+      elif [ "${rc:-1}" != "0" ]; then
+        echo "   badblocks terminó con error (código ${rc:-?}): revisar ${s}_2_badblocks.log"
+      fi
       echo "   Prueba larga del SMART: ${prueba:-sin resultado}"
       salud="$(campo 'SMART overall-health self-assessment test result' "$fin")"
       fallados="$(atributos_fallados NOW "$fin")"
@@ -394,6 +437,7 @@ escribir_resumen() {
       [ -n "$a" ] && [ -n "$b" ] && [ "$b" != "$a" ] && veredicto="REVISAR"
       echo "$prueba" | grep -q 'Completed without error' || veredicto="REVISAR"
       [ -n "$fallados" ] && veredicto="REVISAR"
+      [ -f "$TMP_DIR/${s}.descartado" ] && veredicto="REVISAR"
       [ -n "$salud" ] && [ "$salud" != "PASSED" ] && veredicto="REVISAR"
       if [ "$veredicto" = "APTO" ] && { [ -n "$pasado" ] || { [ -n "$inc" ] && [ "$inc" != "0" ]; }; }; then
         veredicto="APTO con observaciones"
@@ -439,7 +483,25 @@ while [ "$(ls "$TMP_DIR"/*.listo 2>/dev/null | wc -l)" -lt ${#DISCOS[@]} ]; do
     s="${SERIAL[$d]}"
     linea="$(tail -n1 "$RUN_DIR/${s}_0_estado.txt" 2>/dev/null | cut -c22-)"
     avance="$(tr '\b' '\n' < "$TMP_DIR/${s}_badblocks.log" 2>/dev/null | grep -o '[0-9.]*% done' | tail -1)"
-    case "$linea" in "2/4 badblocks en curso"*) linea="$linea · ${avance:-0% done}" ;; esac
+    case "$linea" in
+      "2/4 badblocks en curso"*)
+        read -r mbps errores minutos <<< "$(medir_badblocks "$d" "$s")"
+        linea="$linea · ${avance:-0% done} · ${mbps:-0} MB/s"
+        [ "${errores:-0}" -gt 0 ] && linea="$linea · $errores errores"
+        # Descarte automático: se detiene solo este disco
+        motivo=""
+        if [ "${errores:-0}" -ge "$DESCARTE_ERRORES" ]; then
+          motivo="$errores errores de lectura, escritura o comparación"
+        elif [ "${minutos:-0}" -ge "$DESCARTE_MIN" ] && [ "${mbps:-0}" -lt "$DESCARTE_MBPS" ]; then
+          motivo="demasiado lento: $mbps MB/s tras $minutos min (mínimo $DESCARTE_MBPS MB/s)"
+        fi
+        if [ -n "$motivo" ] && [ ! -f "$TMP_DIR/${s}.descartado" ]; then
+          echo "$motivo" > "$TMP_DIR/${s}.descartado"
+          kill "$(cat "$TMP_DIR/${s}.pid_bb" 2>/dev/null)" 2>/dev/null
+          linea="DESCARTADO: $motivo"
+        fi
+        ;;
+    esac
     printf "  /dev/%-5s %-16s %s\n" "$d" "$s" "$linea"
   done
   echo ""
@@ -456,6 +518,7 @@ echo ""
   echo "=============================================="
   if [ "$REVISAR_N" -gt 0 ]; then
     echo "  TERMINADO con observaciones: $REVISAR_N de ${#DISCOS[@]} disco(s) para REVISAR."
+    [ "$DESCARTADOS_N" -gt 0 ] && echo "  De ellos, $DESCARTADOS_N descartado(s) durante la prueba por lento o con errores."
     [ "$OBS_N" -gt 0 ] && echo "  Además, $OBS_N disco(s) APTO(S) con observaciones."
   elif [ "$OBS_N" -gt 0 ] && [ ${#DISCOS[@]} -eq 1 ]; then
     echo "  TERMINADO: el disco está APTO con observaciones (ver RESUMEN.txt)."

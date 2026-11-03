@@ -899,7 +899,8 @@ Y457MMEFS      Toshiba DT01ACA100 1 TB</code>
           <p class="collector-step"><span class="collector-step-num">7</span> Déjalo trabajar</p>
           <ul class="disk-test-list">
             <li>Todos los discos se prueban al mismo tiempo; la prueba dura lo que tarde el disco más lento. Aproximadamente: 500 GB, de 3 a 5 horas; 1 TB, de 6 a 9 horas; 2 TB, de 12 a 16 horas; 3 TB, de 18 a 24 horas.</li>
-            <li>No hace falta mirar: cada reporte se guarda en el pendrive apenas termina su etapa. Si vuelves, la pantalla muestra la etapa y el avance de cada disco, y se actualiza cada minuto.</li>
+            <li>No hace falta mirar: cada reporte se guarda en el pendrive apenas termina su etapa. Si vuelves, la pantalla muestra la etapa, el avance y la velocidad (MB/s) de cada disco, y se actualiza cada minuto.</li>
+            <li><strong>Descarte automático:</strong> si un disco avanza a menos de 15 MB/s después de 15 minutos (un disco sano de notebook va a 50 MB/s o más), o acumula 10 errores de lectura, escritura o comparación, el script detiene solo ese disco, omite su prueba larga del SMART (que en un disco que falla puede tardar horas), guarda su reporte SMART final y lo marca <strong>REVISAR</strong> con el motivo. Los demás discos siguen sin cambios.</li>
             <li>No retires el pendrive hasta ver el mensaje final. Aparece un resumen con un veredicto preliminar por disco:
               <ul>
                 <li><strong>APTO</strong>: sin sectores malos, sin sectores pendientes ni incorregibles, sin nuevos sectores reasignados, prueba larga sin errores y ningún atributo SMART fallado.</li>
