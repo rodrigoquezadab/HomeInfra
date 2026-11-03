@@ -1,0 +1,13 @@
+HomeInfra - Inventario de discos v1.0.0
+Placa: Z77-HD3 · Fecha: 2026-11-02 17:52:50
+
+== /dev/sda · sata · SE PRUEBA (autorizado; se borra)
+   Modelo: ST3250410AS (familia: Seagate Barracuda 7200.10)
+   S/N: 6RY08XZ6 · Firmware: 3.AAA
+   Capacidad: 250 GB · Velocidad:  · Formato: 
+   Interfaz: 
+   Horas de uso: 17553 · Salud SMART: PASSED
+   Partición: sda1 ext4 231.9G 
+   Partición: sda2 1K  
+   Partición: sda5 swap 976M 
+

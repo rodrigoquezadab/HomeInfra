@@ -1,0 +1,5 @@
+NAME     SIZE FSTYPE LABEL PARTLABEL UUID
+sda    232.9G                        
+├─sda1 231.9G ext4                   17d91c90-7f04-4145-8fc1-ce0373d94c77
+├─sda2     1K                        
+└─sda5   976M swap                   8d86d544-4834-44d2-b831-72a59e6a8e3e

@@ -1,0 +1,7 @@
+2026-11-02 17:52:51  Inicio: /dev/sda · ST3250410AS · 232.9G
+2026-11-02 17:52:51  1/4 Reporte SMART inicial guardado
+2026-11-02 17:52:51  2/4 badblocks en curso (escribe y lee todo el disco)
+2026-11-02 19:32:39  2/4 badblocks terminado (código 0, sectores malos: 0)
+2026-11-02 19:32:39  3/4 Prueba larga del SMART en curso (estimado: 92 min)
+2026-11-02 20:28:44  3/4 Prueba larga del SMART terminada
+2026-11-02 20:28:44  4/4 Reporte SMART final guardado · TERMINADO

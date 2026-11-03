@@ -103,6 +103,9 @@ Quedan libres: P5Q PRO TURBO + E6750 + 4 GB DDR2, Zotac 8400 GS, Samsung PM981a 
 - [ ] Revisar SMART y hacer prueba completa de cada disco; desactivar el estacionamiento agresivo de cabezales de los WD Green.
   - Herramienta: pendrive SystemRescue 13.02 (`RESCUE1302`) con `Collector/revisar-discos.sh` como `autorun/autorun` y `discos-autorizados.txt` (procedimiento en la app: botón **Discos**). Reportes en `Collector/Registros/Discos/`.
   - [x] WD5000AZLX (2026-11-02, 2600K): **APTO**, 0 sectores malos, 216 h, 2 h 53 min.
+  - [x] Seagate ST3250410AS (2026-11-02, 2600K): **APTO con reservas** (0 sectores malos; 17.556 h, calor «FAIL Past», errores de cable antiguos). Solo para reserva o segunda copia.
+  - [ ] Seagate ST3320413AS: probado en el PC MSI (i5-12400F), falta leer el reporte del otro pendrive. En ese PC hubo que desactivar Secure Boot (volver a activarlo después).
+  - Ambos pendrives tienen la misma lista común de 14 discos que se pueden borrar (sin los de datos ni los 3 TB). Al copiar el espejo a un disco, quitarlo de la lista de los dos pendrives.
   - [ ] Respaldo del espejo: WD10EZEX, DT01ACA100, WD10EARS (ya en `discos-autorizados.txt` del pendrive; ~9 h juntos). Luego copiar el espejo a esos discos desde el Q6700.
 - [ ] Flashear la tarjeta Inspur a modo IT (desde DOS o shell UEFI).
 - [ ] Verificar que los complementos SnapRAID y mergerfs de omv-extras estén publicados para OMV 8 (si no, instalar OMV 7).

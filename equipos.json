@@ -3274,9 +3274,15 @@
         "action": "En stock",
         "deviceId": null,
         "note": "Registrada desde fotos de la etiqueta"
+      },
+      {
+        "date": "2026-11-02",
+        "action": "Revisada",
+        "deviceId": null,
+        "note": "Revisión completa (badblocks + prueba larga SMART): APTO con reservas, 0 sectores malos; historia de calor y errores de cable. Disco borrado."
       }
     ],
-    "updatedAt": "2026-11-02",
+    "updatedAt": "2026-11-03",
     "id": "pz-hdd-seagate-st3250410as",
     "hardwareType": "HDD",
     "brand": "Seagate",
@@ -3284,7 +3290,7 @@
     "serial": "6RY08XZ6",
     "imageUrl": "img/hdd_seagate_st3250410as_250gb_etiqueta.jpg",
     "driverUrl": "https://www.google.com/search?q=Seagate%20Barracuda%207200.10%20ST3250410AS%20support",
-    "observaciones": "Datos de la etiqueta:\n• ST3250410AS · S/N: 6RY08XZ6 · P/N: 9EU142-300 · Firmware: 3.AAA\n• Date Code: 08031 · Site Code: SU · Producto de China\n• Etiqueta adicional pegada: 412-3723 · 15-08-2007",
+    "observaciones": "Datos de la etiqueta:\n• ST3250410AS · S/N: 6RY08XZ6 · P/N: 9EU142-300 · Firmware: 3.AAA\n• Date Code: 08031 · Site Code: SU · Producto de China\n• Etiqueta adicional pegada: 412-3723 · 15-08-2007\n\nRevisión de disco (2026-11-02, PC Z77-HD3, SystemRescue + revisar-discos.sh): APTO con reservas\n• badblocks escritura y lectura completas: 0 sectores malos (1 h 40 min)\n• Prueba larga del SMART: Completed without error (56 min) · Salud SMART: PASSED\n• Reasignados 0 · Pendientes 0 · Incorregibles 0 (sin cambios tras la prueba)\n• Historia: 17.556 h de uso · 4.794 encendidos · 5.361 arranques del motor\n• Temperatura de flujo de aire «FAIL Past»: superó el límite del fabricante en el pasado (peor valor registrado ~61 °C). En la prueba: 41 °C (máx. 44 °C)\n• Errores CRC: 3.891 y 493 errores ATA registrados (ICRC/ABRT, fallas de cable o conexión, a las 10.966 h); 20 lecturas incorregibles informadas (187), antiguas. Ninguno aumentó en la prueba\n• Familia: Seagate Barracuda 7200.10 · Firmware 3.AAA · Sectores de 512 B\n• Contenía un Linux (ext4 232 GB + swap), borrado por la prueba\n• Uso recomendado: reserva o segunda copia de datos no críticos; no como única copia\nReportes: Collector/Registros/Discos/Z77-HD3_20261102-175250/",
     "images": [
       {
         "id": "img-pz-hdd-seagate-st3250410as",

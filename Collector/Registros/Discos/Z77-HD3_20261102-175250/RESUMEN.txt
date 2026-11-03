@@ -1,0 +1,16 @@
+HomeInfra - Revisión de discos v1.0.0
+Placa: Z77-HD3 · Inicio: 2026-11-02 17:52:51 · Fin: 2026-11-02 20:28:55
+
+== /dev/sda · S/N 6RY08XZ6 · ST3250410AS
+   Capacidad: 250 GB
+   Horas de uso: 17556
+   Reasignados     inicial 0        final 0
+   Pendientes      inicial 0        final 0
+   Incorregibles   inicial 0        final 0
+   Errores_CRC     inicial 3891     final 3891
+   Ciclos_cabezal  inicial -        final -
+   Sectores malos (badblocks): 0
+   Prueba larga del SMART: Completed without error
+   Veredicto preliminar: APTO
+
+En discos-autorizados.txt pero no conectados: Z2A0XF4D 54O9C6M8T 5409C6M8T WX41E34EVT17 WX51AC352188 50G8837C WCC6Y3JZFCPE Y457MMEFS K90DTA12NDY1 WXD1E72EHP04 WCAZA1114403 WXN1AA821XCH WX31A177YXJU S32HJ9HF204858
