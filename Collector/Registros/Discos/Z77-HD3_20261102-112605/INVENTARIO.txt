@@ -1,0 +1,12 @@
+HomeInfra - Inventario de discos v1.0.0
+Placa: Z77-HD3 · Fecha: 2026-11-02 11:26:05
+
+== /dev/sda · sata · SE PRUEBA (autorizado; se borra)
+   Modelo: WDC WD5000AZLX-75K2TA0 (familia: Western Digital Blue (CMR))
+   S/N: WD-WCC6Z0VE64ZA · Firmware: 01.01A01
+   Capacidad: 500 GB · Velocidad: 7200 rpm · Formato: 3.5 inches
+   Interfaz: SATA 3.1, 6.0 Gb/s (current: 3.0 Gb/s)
+   Horas de uso: 213 · Salud SMART: PASSED
+   Partición: sda1 16M  
+   Partición: sda2 ntfs Descargas 465.7G
+

@@ -1,0 +1,16 @@
+HomeInfra - Revisión de discos v1.0.0
+Placa: Z77-HD3 · Inicio: 2026-11-02 11:26:05 · Fin: 2026-11-02 14:19:10
+
+== /dev/sda · S/N WD-WCC6Z0VE64ZA · WDC WD5000AZLX-75K2TA0
+   Capacidad: 500 GB
+   Horas de uso: 216
+   Reasignados     inicial 0        final 0
+   Pendientes      inicial 0        final 0
+   Incorregibles   inicial 0        final 0
+   Errores_CRC     inicial 7        final 7
+   Ciclos_cabezal  inicial 1177     final 1178
+   Sectores malos (badblocks): 0
+   Prueba larga del SMART: Completed without error
+   Veredicto preliminar: APTO
+
+En discos-autorizados.txt pero no conectados: WCC6Y3JZFCPE Y457MMEFS WCAZA1114403

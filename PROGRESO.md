@@ -101,6 +101,9 @@ Quedan libres: P5Q PRO TURBO + E6750 + 4 GB DDR2, Zotac 8400 GS, Samsung PM981a 
 - [ ] Copiar el contenido de los discos "Respaldos" (WD20EARS) y "Trabajo 1" (WD1001FALS) antes de usarlos.
 - [ ] **Replantear el servidor de datos:** la opción B usa los dos WD30EZRX como paridad y datos, pero forman un RAID espejo con datos (respaldo en un tercer WD30EZRX, WMAWZ0231988). Considerar también los discos nuevos: WD10EARS, WD10EZEX y DT01ACA100 (1 TB), WD5000AZLX (500 GB), ST3320413AS (320 GB) y ST3250410AS (250 GB).
 - [ ] Revisar SMART y hacer prueba completa de cada disco; desactivar el estacionamiento agresivo de cabezales de los WD Green.
+  - Herramienta: pendrive SystemRescue 13.02 (`RESCUE1302`) con `Collector/revisar-discos.sh` como `autorun/autorun` y `discos-autorizados.txt` (procedimiento en la app: botón **Discos**). Reportes en `Collector/Registros/Discos/`.
+  - [x] WD5000AZLX (2026-11-02, 2600K): **APTO**, 0 sectores malos, 216 h, 2 h 53 min.
+  - [ ] Respaldo del espejo: WD10EZEX, DT01ACA100, WD10EARS (ya en `discos-autorizados.txt` del pendrive; ~9 h juntos). Luego copiar el espejo a esos discos desde el Q6700.
 - [ ] Flashear la tarjeta Inspur a modo IT (desde DOS o shell UEFI).
 - [ ] Verificar que los complementos SnapRAID y mergerfs de omv-extras estén publicados para OMV 8 (si no, instalar OMV 7).
 - [ ] Al confirmar: registrar los dos servidores en la app como equipos planificados con sus piezas asignadas.

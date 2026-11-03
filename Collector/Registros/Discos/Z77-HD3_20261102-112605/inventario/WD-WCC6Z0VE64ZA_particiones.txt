@@ -1,0 +1,4 @@
+NAME     SIZE FSTYPE LABEL     PARTLABEL                    UUID
+sda    465.8G btrfs                                         850a7b90-141d-4b84-9048-fb3fe0002aae
+├─sda1    16M                  Microsoft reserved partition 
+└─sda2 465.7G ntfs   Descargas Basic data partition         343AFA303AF9EEAC

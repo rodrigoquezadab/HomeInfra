@@ -3314,6 +3314,12 @@
         "action": "En stock",
         "deviceId": null,
         "note": "Registrada desde fotos de la etiqueta"
+      },
+      {
+        "date": "2026-11-02",
+        "action": "Revisada",
+        "deviceId": null,
+        "note": "Revisión completa (badblocks + prueba larga SMART): APTO, 0 sectores malos. Disco borrado."
       }
     ],
     "updatedAt": "2026-11-02",
@@ -3324,7 +3330,7 @@
     "serial": "WCC6Z0VE64ZA",
     "imageUrl": "img/hdd_wd5000azlx_500gb_etiqueta.jpg",
     "driverUrl": "https://www.google.com/search?q=Western%20Digital%20WD%20Blue%20WD5000AZLX%20support",
-    "observaciones": "Datos de la etiqueta:\n• MDL: WD5000AZLX-75K2TA0 · S/N: WCC6Z0VE64ZA · Firmware: A0\n• Fecha: 11 JUL 2017 · Producto de Tailandia\n• DCM: HARNNT2CHB · DCX: EK0Z203T6 · R/N: 800039 · WWN: 50014EE20EFACE27 · LBA: 976773168\n• Dell: DP/N 0FY6CW (TH-0FY6CW-WDT00-77B-D0J7-A00) (disco de un equipo Dell)",
+    "observaciones": "Datos de la etiqueta:\n• MDL: WD5000AZLX-75K2TA0 · S/N: WCC6Z0VE64ZA · Firmware: A0\n• Fecha: 11 JUL 2017 · Producto de Tailandia\n• DCM: HARNNT2CHB · DCX: EK0Z203T6 · R/N: 800039 · WWN: 50014EE20EFACE27 · LBA: 976773168\n• Dell: DP/N 0FY6CW (TH-0FY6CW-WDT00-77B-D0J7-A00) (disco de un equipo Dell)\n\nRevisión de disco (2026-11-02, PC Z77-HD3, SystemRescue + revisar-discos.sh): APTO\n• badblocks escritura y lectura completas: 0 sectores malos (1 h 52 min)\n• Prueba larga del SMART: Completed without error (61 min) · Salud SMART: PASSED\n• Reasignados 0 · Pendientes 0 · Incorregibles 0 (sin cambios tras la prueba)\n• Errores CRC: 7, históricos (no aumentaron) · Horas de uso: 216 · Ciclos de cabezal: 1178 · Encendidos: 162\n• Temperatura: 35 °C en la prueba; mínima y máxima de su vida: 12 / 49 °C\n• Familia: Western Digital Blue (CMR) · Firmware 01.01A01 · Sectores 512 B lógicos / 4096 B físicos\n• El disco informa su número de serie como WD-WCC6Z0VE64ZA\n• Contenía una partición NTFS «Descargas» (465,7 GB), borrada por la prueba\nReportes: Collector/Registros/Discos/Z77-HD3_20261102-112605/",
     "images": [
       {
         "id": "img-pz-hdd-wd5000azlx",

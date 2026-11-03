@@ -1,0 +1,7 @@
+2026-11-02 11:26:06  Inicio: /dev/sda · WDC WD5000AZLX-75K2TA0 · 465.8G
+2026-11-02 11:26:06  1/4 Reporte SMART inicial guardado
+2026-11-02 11:26:06  2/4 badblocks en curso (escribe y lee todo el disco)
+2026-11-02 13:17:51  2/4 badblocks terminado (código 0, sectores malos: 0)
+2026-11-02 13:17:51  3/4 Prueba larga del SMART en curso (estimado: 60 min)
+2026-11-02 14:18:52  3/4 Prueba larga del SMART terminada
+2026-11-02 14:18:52  4/4 Reporte SMART final guardado · TERMINADO
