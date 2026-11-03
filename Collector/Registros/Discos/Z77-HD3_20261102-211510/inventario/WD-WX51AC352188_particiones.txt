@@ -1,0 +1,2 @@
+NAME   SIZE FSTYPE LABEL PARTLABEL UUID
+sdd  465.8G                        

@@ -1,0 +1,6 @@
+Checking for bad blocks in read-write mode
+From block 0 to 122096645
+Testing with random pattern: done
+Reading and comparing: done
+Pass completed, 0 bad blocks found. (0/0/0 errors)
+Último avance: 99.99% done, 3:59:03 elapsed. (0/0/0 errors)

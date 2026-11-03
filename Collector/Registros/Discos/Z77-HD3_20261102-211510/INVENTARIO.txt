@@ -1,0 +1,31 @@
+HomeInfra - Inventario de discos v1.0.0
+Placa: Z77-HD3 · Fecha: 2026-11-02 21:15:11
+
+== /dev/sda · sata · SE PRUEBA (autorizado; se borra)
+   Modelo: FUJITSU MJA2500BH G2 (familia: Fujitsu MJA BH)
+   S/N: K90DTA12NDY1 · Firmware: 00000018
+   Capacidad: 500 GB · Velocidad:  · Formato: 
+   Interfaz: SATA 2.6, 3.0 Gb/s
+   Horas de uso: 9524 · Salud SMART: PASSED
+
+== /dev/sdb · sata · SE PRUEBA (autorizado; se borra)
+   Modelo: Hitachi HTS547550A9E384 (familia: Hitachi/HGST Travelstar 5K750)
+   S/N: J2150050G8837C · Firmware: JE3OA50A
+   Capacidad: 500 GB · Velocidad: 5400 rpm · Formato: 2.5 inches
+   Interfaz: SATA 2.6, 3.0 Gb/s
+   Horas de uso: 12948 · Salud SMART: PASSED
+
+== /dev/sdc · sata · SE PRUEBA (autorizado; se borra)
+   Modelo: WDC WD5000LPVX-22V0TT0 (familia: Western Digital Blue Mobile)
+   S/N: WD-WX41E34EVT17 · Firmware: 01.01A01
+   Capacidad: 500 GB · Velocidad: 5400 rpm · Formato: 
+   Interfaz: SATA 3.0, 6.0 Gb/s (current: 3.0 Gb/s)
+   Horas de uso: 491 · Salud SMART: PASSED
+
+== /dev/sdd · sata · SE PRUEBA (autorizado; se borra)
+   Modelo: WDC WD5000LPVT-24G33T1
+   S/N: WD-WX51AC352188 · Firmware: 02.01A02
+   Capacidad: 500 GB · Velocidad: 5400 rpm · Formato: 
+   Interfaz: SATA 3.0, 3.0 Gb/s (current: 3.0 Gb/s)
+   Horas de uso: 2739 · Salud SMART: PASSED
+

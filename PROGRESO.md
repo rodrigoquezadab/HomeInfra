@@ -105,8 +105,11 @@ Quedan libres: P5Q PRO TURBO + E6750 + 4 GB DDR2, Zotac 8400 GS, Samsung PM981a 
   - [x] WD5000AZLX (2026-11-02, 2600K): **APTO**, 0 sectores malos, 216 h, 2 h 53 min.
   - [x] Seagate ST3250410AS (2026-11-02, 2600K): **APTO con observaciones** (0 sectores malos; 17.556 h, calor «FAIL Past», errores de cable antiguos). Solo para reserva o segunda copia.
   - [x] Seagate ST3320413AS (2026-11-02, PC MSI i5-12400F): **REVISAR / no recomendado para datos** (0 sectores malos, pero atributo 184 End-to-End_Error en FAIL NOW con 240 errores; 24.629 h).
+  - [x] Notebooks 500 GB (2026-11-02/03, 2600K, 9 h 56 min): WD5000LPVT, WD5000LPVX y MJA2500BH **APTOS**; Hitachi HTS547550A9E384 **REVISAR** (eventos de reasignación 38 → 55 durante la prueba, arranque a ~2 MB/s).
+  - [ ] Pendiente: Toshiba MQ01ACF050, WD7500BPVT, notebooks de 1 TB (WD10SPZX, WD10JPVX, ST1000LM024) y el respaldo del espejo (WD10EZEX, DT01ACA100, WD10EARS).
+  - [ ] Mejora propuesta al veredicto: marcar REVISAR si el atributo 196 o el registro de errores aumentan durante la prueba.
   - [ ] Volver a activar Secure Boot en el PC MSI (se desactivó para arrancar SystemRescue).
-  - [ ] Actualizar el script del otro pendrive (versión anterior al veredicto de tres niveles, commit 4f40674).
+  - [x] Ambos pendrives con el script a7b08f6 (descarte automático) y la lista común.
   - Ambos pendrives tienen la misma lista común de 14 discos que se pueden borrar (sin los de datos ni los 3 TB). Al copiar el espejo a un disco, quitarlo de la lista de los dos pendrives.
   - [ ] Respaldo del espejo: WD10EZEX, DT01ACA100, WD10EARS (ya en `discos-autorizados.txt` del pendrive; ~9 h juntos). Luego copiar el espejo a esos discos desde el Q6700.
 - [ ] Flashear la tarjeta Inspur a modo IT (desde DOS o shell UEFI).

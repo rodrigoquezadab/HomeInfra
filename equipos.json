@@ -2373,9 +2373,15 @@
         "action": "En stock",
         "deviceId": null,
         "note": "Registrada desde fotos de la etiqueta"
+      },
+      {
+        "date": "2026-11-03",
+        "action": "Revisada",
+        "deviceId": null,
+        "note": "Revisión completa (badblocks + prueba larga SMART): APTO, 0 sectores malos. Disco borrado."
       }
     ],
-    "updatedAt": "2026-11-02",
+    "updatedAt": "2026-11-03",
     "id": "pz-hdd-wd5000lpvt",
     "hardwareType": "HDD",
     "brand": "Western Digital",
@@ -2383,7 +2389,7 @@
     "serial": "WX51AC352188",
     "imageUrl": "img/hdd_wd5000lpvt_500gb_etiqueta.jpg",
     "driverUrl": "https://www.google.com/search?q=Western%20Digital%20WD%20Blue%20WD5000LPVT%20support",
-    "observaciones": "Datos de la etiqueta:\n• MDL: WD5000LPVT-24G33T1 · S/N: WX51AC352188 · FW: 02.01A02\n• Fecha: 16 JAN 2014\n• Lenovo LI P/N: SH20D70211 · LC P/N: 16-200523 (disco de un equipo Lenovo)",
+    "observaciones": "Datos de la etiqueta:\n• MDL: WD5000LPVT-24G33T1 · S/N: WX51AC352188 · FW: 02.01A02\n• Fecha: 16 JAN 2014\n• Lenovo LI P/N: SH20D70211 · LC P/N: 16-200523 (disco de un equipo Lenovo)\n\nRevisión de disco (2026-11-02, PC Z77-HD3, SystemRescue + revisar-discos.sh): APTO\n• badblocks escritura y lectura completas: 0 sectores malos (2 h 59 min)\n• Prueba larga del SMART: Completed without error (96 min) · Salud SMART: PASSED\n• Reasignados 0 · Pendientes 0 · Incorregibles 0 · Eventos de reasignación 0 · Sin errores registrados\n• Historia: 2.743 h de uso · 44.664 arranques del motor · 65.324 ciclos de cabezal · 3.015 encendidos\n• Temperatura: 37 °C en la prueba; mínima y máxima de su vida: 5 / 48 °C\n• Firmware 02.01A02 · Sectores 512 B lógicos / 4096 B físicos · El disco informa su número de serie como WD-WX51AC352188\n• No tenía particiones\nReportes: Collector/Registros/Discos/Z77-HD3_20261102-211510/",
     "images": [
       {
         "id": "img-pz-hdd-wd5000lpvt",
@@ -2391,7 +2397,13 @@
         "url": "img/hdd_wd5000lpvt_500gb_etiqueta.jpg"
       }
     ],
-    "year": "2014"
+    "year": "2014",
+    "diskTest": {
+      "date": "2026-11-03",
+      "verdict": "APTO",
+      "summary": "0 sectores malos · prueba larga SMART sin errores · 2.743 h de uso",
+      "reports": "Collector/Registros/Discos/Z77-HD3_20261102-211510/"
+    }
   },
   {
     "kind": "pieza",
@@ -2413,9 +2425,15 @@
         "action": "En stock",
         "deviceId": null,
         "note": "Registrada desde fotos de la etiqueta"
+      },
+      {
+        "date": "2026-11-03",
+        "action": "Revisada",
+        "deviceId": null,
+        "note": "Revisión completa (badblocks + prueba larga SMART): APTO, 0 sectores malos. Disco borrado."
       }
     ],
-    "updatedAt": "2026-11-02",
+    "updatedAt": "2026-11-03",
     "id": "pz-hdd-wd5000lpvx",
     "hardwareType": "HDD",
     "brand": "Western Digital",
@@ -2423,7 +2441,7 @@
     "serial": "WX41E34EVT17",
     "imageUrl": "img/hdd_wd5000lpvx_500gb_etiqueta.jpg",
     "driverUrl": "https://www.google.com/search?q=Western%20Digital%20WD%20Blue%20WD5000LPVX%20support",
-    "observaciones": "Datos de la etiqueta:\n• MDL: WD5000LPVX-22V0TT0 · S/N: WX41E34EVT17\n• Fecha: 14 MAY 2014 · DCM: EHKTJHN",
+    "observaciones": "Datos de la etiqueta:\n• MDL: WD5000LPVX-22V0TT0 · S/N: WX41E34EVT17\n• Fecha: 14 MAY 2014 · DCM: EHKTJHN\n\nRevisión de disco (2026-11-02, PC Z77-HD3, SystemRescue + revisar-discos.sh): APTO\n• badblocks escritura y lectura completas: 0 sectores malos (3 h 24 min)\n• Prueba larga del SMART: Completed without error (111 min) · Salud SMART: PASSED\n• Reasignados 0 · Pendientes 0 · Incorregibles 0 · Eventos de reasignación 0 · Sin errores registrados\n• Historia: 496 h de uso (casi nuevo) · 4.356 ciclos de cabezal · 455 encendidos · 5 errores CRC antiguos (no aumentaron) · 13 golpes registrados por el sensor de impactos (191)\n• Temperatura: 35 °C en la prueba; mínima y máxima de su vida: 14 / 48 °C\n• Familia: Western Digital Blue Mobile · Firmware 01.01A01 · Sectores 512 B lógicos / 4096 B físicos · El disco informa su número de serie como WD-WX41E34EVT17\n• No tenía particiones\nReportes: Collector/Registros/Discos/Z77-HD3_20261102-211510/",
     "images": [
       {
         "id": "img-pz-hdd-wd5000lpvx",
@@ -2431,7 +2449,13 @@
         "url": "img/hdd_wd5000lpvx_500gb_etiqueta.jpg"
       }
     ],
-    "year": "2014"
+    "year": "2014",
+    "diskTest": {
+      "date": "2026-11-03",
+      "verdict": "APTO",
+      "summary": "0 sectores malos · prueba larga SMART sin errores · 496 h de uso",
+      "reports": "Collector/Registros/Discos/Z77-HD3_20261102-211510/"
+    }
   },
   {
     "kind": "pieza",
@@ -2453,9 +2477,15 @@
         "action": "En stock",
         "deviceId": null,
         "note": "Registrada desde fotos de la etiqueta"
+      },
+      {
+        "date": "2026-11-03",
+        "action": "Revisada",
+        "deviceId": null,
+        "note": "Revisión completa (badblocks + prueba larga SMART): REVISAR, 17 eventos de reasignación nuevos durante la prueba y arranque muy lento. 0 sectores malos. Disco borrado."
       }
     ],
-    "updatedAt": "2026-11-02",
+    "updatedAt": "2026-11-03",
     "id": "pz-hdd-hitachi-hts547550a9e384",
     "hardwareType": "HDD",
     "brand": "Hitachi",
@@ -2463,7 +2493,7 @@
     "serial": "50G8837C",
     "imageUrl": "img/hdd_hitachi_hts547550a9e384_500gb_etiqueta.jpg",
     "driverUrl": "https://www.google.com/search?q=Hitachi%20Travelstar%205K750%20HTS547550A9E384%20support",
-    "observaciones": "Datos de la etiqueta:\n• HTS547550A9E384 · P/N: 0J15081 · S/N: 50G8837C\n• Fecha: 18 MAY 2011\n• Etiqueta Samsung: MODEL NP-RV411-S06CL (disco de un laptop Samsung RV411)",
+    "observaciones": "Datos de la etiqueta:\n• HTS547550A9E384 · P/N: 0J15081 · S/N: 50G8837C\n• Fecha: 18 MAY 2011\n• Etiqueta Samsung: MODEL NP-RV411-S06CL (disco de un laptop Samsung RV411)\n\nRevisión de disco (2026-11-02, PC Z77-HD3, SystemRescue + revisar-discos.sh): REVISAR · no recomendado para datos importantes\n• badblocks escritura y lectura completas: 0 sectores malos, pero tardó 7 h 55 min (el doble que los otros discos de esta tanda): los primeros ~36 min avanzó a ~2 MB/s y luego a ~38 MB/s\n• Eventos de reasignación (196): 38 → 55 durante la prueba. El disco encontró 17 zonas débiles al escribir, reintentó y las recuperó sin reasignar sectores (Reallocated_Sector_Ct sigue en 0); esos reintentos explican la lentitud inicial. Su superficie se está degradando\n• Prueba larga del SMART: Completed without error (2 h) · Salud SMART: PASSED · Pendientes 0 · Incorregibles 0\n• Historia: 12.958 h de uso · 477.371 ciclos de cabezal (diseñado para ~600.000) · 3.910 encendidos · 29 errores registrados (los últimos a las 12.739 h, antes de esta prueba)\n• Temperatura: 30 °C en la prueba; mínima y máxima de su vida: 10 / 59 °C\n• Familia: Hitachi/HGST Travelstar 5K750 · Firmware JE3OA50A · Sectores de 512 B · El disco informa su número de serie como J2150050G8837C\n• No tenía particiones\n• Con el descarte automático (script a7b08f6) se habría detenido a los 15 minutos por lento\nReportes: Collector/Registros/Discos/Z77-HD3_20261102-211510/",
     "images": [
       {
         "id": "img-pz-hdd-hitachi-hts547550a9e384",
@@ -2471,7 +2501,13 @@
         "url": "img/hdd_hitachi_hts547550a9e384_500gb_etiqueta.jpg"
       }
     ],
-    "year": "2011"
+    "year": "2011",
+    "diskTest": {
+      "date": "2026-11-03",
+      "verdict": "REVISAR",
+      "summary": "Eventos de reasignación (196) subieron de 38 a 55 durante la prueba · arranque muy lento (~2 MB/s) · 0 sectores malos · 12.958 h de uso · no recomendado para datos importantes",
+      "reports": "Collector/Registros/Discos/Z77-HD3_20261102-211510/"
+    }
   },
   {
     "kind": "pieza",
@@ -2493,9 +2529,15 @@
         "action": "En stock",
         "deviceId": null,
         "note": "Registrada desde fotos de la etiqueta"
+      },
+      {
+        "date": "2026-11-03",
+        "action": "Revisada",
+        "deviceId": null,
+        "note": "Revisión completa (badblocks + prueba larga SMART): APTO, 0 sectores malos. Disco borrado."
       }
     ],
-    "updatedAt": "2026-11-02",
+    "updatedAt": "2026-11-03",
     "id": "pz-hdd-toshiba-mja2500bh",
     "hardwareType": "HDD",
     "brand": "Toshiba (Fujitsu)",
@@ -2503,7 +2545,7 @@
     "serial": "K90DTA12NDY1",
     "imageUrl": "img/hdd_toshiba_mja2500bh_500gb_etiqueta.jpg",
     "driverUrl": "https://www.google.com/search?q=Toshiba%20(Fujitsu)%20MJA2500BH%20G2%20support",
-    "observaciones": "Datos de la etiqueta:\n• MODEL: MJA2500BH · TYPE: G2 · PART NO: CA07083-B341 · SER. NO: K90DTA12NDY1\n• Fecha: 2010-01-24 (marca Fujitsu, fabricado por Toshiba)",
+    "observaciones": "Datos de la etiqueta:\n• MODEL: MJA2500BH · TYPE: G2 · PART NO: CA07083-B341 · SER. NO: K90DTA12NDY1\n• Fecha: 2010-01-24 (marca Fujitsu, fabricado por Toshiba)\n\nRevisión de disco (2026-11-02, PC Z77-HD3, SystemRescue + revisar-discos.sh): APTO\n• badblocks escritura y lectura completas: 0 sectores malos (3 h 59 min)\n• Prueba larga del SMART: Completed without error (3 h 31 min) · Salud SMART: PASSED\n• Reasignados 0 · Pendientes 0 · Incorregibles 0 · Eventos de reasignación 0 · Sin errores registrados · Errores CRC 0\n• Historia: 9.532 h de uso · 271.433 ciclos de cabezal (alto, dentro de lo normal) · 2.617 encendidos\n• Temperatura: 30 °C en la prueba; mínima y máxima de su vida: 11 / 54 °C\n• El disco se identifica como FUJITSU MJA2500BH G2 (familia Fujitsu MJA BH; la división de discos de Fujitsu pasó a Toshiba) · Firmware 00000018 · Sectores 512 B\n• No tenía particiones\nReportes: Collector/Registros/Discos/Z77-HD3_20261102-211510/",
     "images": [
       {
         "id": "img-pz-hdd-toshiba-mja2500bh",
@@ -2511,7 +2553,13 @@
         "url": "img/hdd_toshiba_mja2500bh_500gb_etiqueta.jpg"
       }
     ],
-    "year": "2010"
+    "year": "2010",
+    "diskTest": {
+      "date": "2026-11-03",
+      "verdict": "APTO",
+      "summary": "0 sectores malos · prueba larga SMART sin errores · 9.532 h de uso",
+      "reports": "Collector/Registros/Discos/Z77-HD3_20261102-211510/"
+    }
   },
   {
     "kind": "pieza",

@@ -1,0 +1,7 @@
+2026-11-02 21:15:21  Inicio: /dev/sdc · WDC WD5000LPVX-22V0TT0 · 465.8G
+2026-11-02 21:15:21  1/4 Reporte SMART inicial guardado
+2026-11-02 21:15:21  2/4 badblocks en curso (escribe y lee todo el disco)
+2026-11-03 00:39:45  2/4 badblocks terminado (código 0, sectores malos: 0)
+2026-11-03 00:39:45  3/4 Prueba larga del SMART en curso (estimado: 113 min)
+2026-11-03 02:30:46  3/4 Prueba larga del SMART terminada
+2026-11-03 02:30:46  4/4 Reporte SMART final guardado · TERMINADO

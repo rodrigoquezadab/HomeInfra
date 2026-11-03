@@ -1,0 +1,52 @@
+HomeInfra - Revisión de discos v1.0.0
+Placa: Z77-HD3 · Inicio: 2026-11-02 21:15:21 · Fin: 2026-11-03 07:11:46
+
+== /dev/sda · S/N K90DTA12NDY1 · FUJITSU MJA2500BH G2
+   Capacidad: 500 GB
+   Horas de uso: 9532
+   Reasignados     inicial 0        final 0
+   Pendientes      inicial 0        final 0
+   Incorregibles   inicial 0        final 0
+   Errores_CRC     inicial 0        final 0
+   Ciclos_cabezal  inicial 271432   final 271433
+   Sectores malos (badblocks): 0
+   Prueba larga del SMART: Completed without error
+   Veredicto preliminar: APTO
+
+== /dev/sdb · S/N J2150050G8837C · Hitachi HTS547550A9E384
+   Capacidad: 500 GB
+   Horas de uso: 12958
+   Reasignados     inicial 0        final 0
+   Pendientes      inicial 0        final 0
+   Incorregibles   inicial 0        final 0
+   Errores_CRC     inicial 0        final 0
+   Ciclos_cabezal  inicial 477371   final 477371
+   Sectores malos (badblocks): 0
+   Prueba larga del SMART: Completed without error
+   Veredicto preliminar: APTO
+
+== /dev/sdc · S/N WD-WX41E34EVT17 · WDC WD5000LPVX-22V0TT0
+   Capacidad: 500 GB
+   Horas de uso: 496
+   Reasignados     inicial 0        final 0
+   Pendientes      inicial 0        final 0
+   Incorregibles   inicial 0        final 0
+   Errores_CRC     inicial 5        final 5
+   Ciclos_cabezal  inicial 4355     final 4356
+   Sectores malos (badblocks): 0
+   Prueba larga del SMART: Completed without error
+   Veredicto preliminar: APTO
+
+== /dev/sdd · S/N WD-WX51AC352188 · WDC WD5000LPVT-24G33T1
+   Capacidad: 500 GB
+   Horas de uso: 2743
+   Reasignados     inicial 0        final 0
+   Pendientes      inicial 0        final 0
+   Incorregibles   inicial 0        final 0
+   Errores_CRC     inicial 0        final 0
+   Ciclos_cabezal  inicial 65323    final 65324
+   Sectores malos (badblocks): 0
+   Prueba larga del SMART: Completed without error
+   Veredicto preliminar: APTO
+
+En discos-autorizados.txt pero no conectados: Z2A0XF4D 6RY08XZ6 54O9C6M8T 5409C6M8T WCC6Y3JZFCPE Y457MMEFS WXD1E72EHP04 WCAZA1114403 WXN1AA821XCH WX31A177YXJU S32HJ9HF204858
