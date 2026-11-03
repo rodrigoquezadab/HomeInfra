@@ -95,6 +95,13 @@ atributo() {
   awk -v id="$1" '$1==id && $2 ~ /^[A-Za-z]/ && $3 ~ /^[-A-Z]+$/ {print $8; exit}' "$2" 2>/dev/null
 }
 
+# Atributos SMART con FAIL "NOW" (bajo el umbral ahora) o "Past" (lo estuvieron),
+# desde un reporte de smartctl -x: "184 End-to-End_Error (240); ..."
+atributos_fallados() {
+  awk -v tipo="$1" '$1 ~ /^[0-9]+$/ && $2 ~ /^[A-Za-z]/ && $3 ~ /^[-A-Z]+$/ && $7 == tipo {
+    printf "%s%s %s (%s)", sep, $1, $2, $8; sep = "; " }' "$2" 2>/dev/null
+}
+
 # Resultado de la última autoprueba registrada en un reporte de smartctl -x
 ultima_autoprueba() {
   grep -m1 '^# 1 ' "$1" 2>/dev/null | sed -E 's/^# 1 +[^ ]+ +[^ ]+ +//; s/ {2,}[0-9]+% .*//'
@@ -131,7 +138,7 @@ case "$(findmnt -no FSTYPE --target "$BASE_DIR" 2>/dev/null)" in
       "Arranca desde el pendrive creado con Rufus en modo ISO, o ejecuta el script desde un disco o pendrive con escritura." ;;
 esac
 DESTINO_INFO="$BASE_DIR ($(findmnt -no SOURCE --target "$BASE_DIR" 2>/dev/null), etiqueta $(lsblk -no LABEL "$(findmnt -no SOURCE --target "$BASE_DIR" 2>/dev/null)" 2>/dev/null))"
-PLACA="$(cat /sys/class/dmi/id/board_name 2>/dev/null | tr -c 'A-Za-z0-9_.\n-' '_')"
+PLACA="$(cat /sys/class/dmi/id/board_name 2>/dev/null | tr -c 'A-Za-z0-9_.\n-' '_' | sed 's/__*/_/g; s/^_//; s/_$//')"
 RUN_DIR="$BASE_DIR/HomeInfra-Discos/${PLACA:-equipo}_$(date '+%Y%m%d-%H%M%S')"
 if ! mkdir -p "$RUN_DIR" 2>/dev/null || ! [ -w "$RUN_DIR" ]; then
   RUN_DIR=""
@@ -347,8 +354,9 @@ revisar_disco() {
 # Resumen de todos los discos
 # --------------------------------------------------------------------------
 escribir_resumen() {
-  local r="$RUN_DIR/RESUMEN.txt" d s p ini fin malos rc prueba veredicto id nombre a b
+  local r="$RUN_DIR/RESUMEN.txt" d s p ini fin malos rc prueba veredicto id nombre a b salud fallados pasado inc
   REVISAR_N=0
+  OBS_N=0
   {
     echo "HomeInfra - Revisión de discos v$VERSION"
     echo "Placa: ${PLACA:-desconocida} · Inicio: $INICIO · Fin: $(ahora)"
@@ -368,6 +376,16 @@ escribir_resumen() {
       echo "   Sectores malos (badblocks): ${malos:-?}"
       [ "${rc:-1}" != "0" ] && echo "   badblocks terminó con error (código ${rc:-?}): revisar ${s}_2_badblocks.log"
       echo "   Prueba larga del SMART: ${prueba:-sin resultado}"
+      salud="$(campo 'SMART overall-health self-assessment test result' "$fin")"
+      fallados="$(atributos_fallados NOW "$fin")"
+      pasado="$(atributos_fallados Past "$fin")"
+      inc="$(atributo 187 "$fin")"
+      echo "   Salud SMART: ${salud:-sin dato}"
+      [ -n "$fallados" ] && echo "   Atributos SMART fallados ahora (bajo el umbral del fabricante): $fallados"
+      [ -n "$pasado" ] && echo "   Atributos SMART fallados en el pasado: $pasado"
+      [ -n "$inc" ] && [ "$inc" != "0" ] && echo "   Lecturas incorregibles informadas en su historia (187): $inc"
+
+      # REVISAR: algo falla hoy. APTO con observaciones: hoy funciona, pero con historial de fallas.
       veredicto="APTO"
       [ "${malos:-1}" != "0" ] && veredicto="REVISAR"
       [ "${rc:-1}" != "0" ] && veredicto="REVISAR"
@@ -375,9 +393,15 @@ escribir_resumen() {
       a="$(atributo 5 "$ini")"; b="$(atributo 5 "$fin")"
       [ -n "$a" ] && [ -n "$b" ] && [ "$b" != "$a" ] && veredicto="REVISAR"
       echo "$prueba" | grep -q 'Completed without error' || veredicto="REVISAR"
+      [ -n "$fallados" ] && veredicto="REVISAR"
+      [ -n "$salud" ] && [ "$salud" != "PASSED" ] && veredicto="REVISAR"
+      if [ "$veredicto" = "APTO" ] && { [ -n "$pasado" ] || { [ -n "$inc" ] && [ "$inc" != "0" ]; }; }; then
+        veredicto="APTO con observaciones"
+      fi
       echo "   Veredicto preliminar: $veredicto"
       echo ""
       [ "$veredicto" = "REVISAR" ] && REVISAR_N=$(( REVISAR_N + 1 ))
+      [ "$veredicto" = "APTO con observaciones" ] && OBS_N=$(( OBS_N + 1 ))
     done
     if [ ${#NO_CONECTADOS[@]} -gt 0 ]; then
       echo "En discos-autorizados.txt pero no conectados: ${NO_CONECTADOS[*]}"
@@ -430,12 +454,17 @@ cat "$RUN_DIR/RESUMEN.txt"
 echo ""
 {
   echo "=============================================="
-  if [ "$REVISAR_N" -eq 0 ] && [ ${#DISCOS[@]} -eq 1 ]; then
+  if [ "$REVISAR_N" -gt 0 ]; then
+    echo "  TERMINADO con observaciones: $REVISAR_N de ${#DISCOS[@]} disco(s) para REVISAR."
+    [ "$OBS_N" -gt 0 ] && echo "  Además, $OBS_N disco(s) APTO(S) con observaciones."
+  elif [ "$OBS_N" -gt 0 ] && [ ${#DISCOS[@]} -eq 1 ]; then
+    echo "  TERMINADO: el disco está APTO con observaciones (ver RESUMEN.txt)."
+  elif [ "$OBS_N" -gt 0 ]; then
+    echo "  TERMINADO: los ${#DISCOS[@]} discos están APTOS; $OBS_N con observaciones (ver RESUMEN.txt)."
+  elif [ ${#DISCOS[@]} -eq 1 ]; then
     echo "  TERMINADO: el disco está APTO."
-  elif [ "$REVISAR_N" -eq 0 ]; then
-    echo "  TERMINADO: los ${#DISCOS[@]} discos están APTOS."
   else
-    echo "  TERMINADO con observaciones: $REVISAR_N de ${#DISCOS[@]} discos para REVISAR."
+    echo "  TERMINADO: los ${#DISCOS[@]} discos están APTOS."
   fi
   [ ${#NO_CONECTADOS[@]} -gt 0 ] && echo "  Aviso: ${#NO_CONECTADOS[@]} disco(s) de la lista no estaban conectados."
   echo "  Inventario de $INVENTARIO_N disco(s) conectados: INVENTARIO.txt"

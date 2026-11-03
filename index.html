@@ -900,8 +900,14 @@ Y457MMEFS      Toshiba DT01ACA100 1 TB</code>
           <ul class="disk-test-list">
             <li>Todos los discos se prueban al mismo tiempo; la prueba dura lo que tarde el disco más lento. Aproximadamente: 500 GB, de 3 a 5 horas; 1 TB, de 6 a 9 horas; 2 TB, de 12 a 16 horas; 3 TB, de 18 a 24 horas.</li>
             <li>No hace falta mirar: cada reporte se guarda en el pendrive apenas termina su etapa. Si vuelves, la pantalla muestra la etapa y el avance de cada disco, y se actualiza cada minuto.</li>
-            <li>No retires el pendrive hasta ver el mensaje final. Aparece un resumen con un veredicto preliminar por disco: <strong>APTO</strong> (sin sectores malos, sin sectores pendientes ni incorregibles, sin nuevos sectores reasignados y prueba larga sin errores) o <strong>REVISAR</strong>.</li>
-            <li>El mensaje final dice <strong>TERMINADO: los N discos están APTOS</strong> si todo salió bien, o <strong>TERMINADO con observaciones</strong> con cuántos discos hay que revisar. También avisa si algún disco de la lista no estaba conectado.</li>
+            <li>No retires el pendrive hasta ver el mensaje final. Aparece un resumen con un veredicto preliminar por disco:
+              <ul>
+                <li><strong>APTO</strong>: sin sectores malos, sin sectores pendientes ni incorregibles, sin nuevos sectores reasignados, prueba larga sin errores y ningún atributo SMART fallado.</li>
+                <li><strong>APTO con observaciones</strong>: hoy funciona bien, pero tiene historial de fallas: atributos SMART que fallaron en el pasado (por ejemplo, sobrecalentamiento) o lecturas incorregibles informadas. Sirve para reserva o copias secundarias, no como única copia.</li>
+                <li><strong>REVISAR</strong>: algo falla hoy: sectores malos, sectores pendientes o nuevos reasignados, prueba larga con errores, salud SMART distinta de PASSED o algún atributo SMART bajo el umbral del fabricante («FAIL NOW»), aunque la salud global diga PASSED.</li>
+              </ul>
+            </li>
+            <li>El mensaje final dice <strong>TERMINADO: los N discos están APTOS</strong> si todo salió bien, indica cuántos quedaron <strong>APTOS con observaciones</strong>, o dice <strong>TERMINADO con observaciones</strong> con cuántos discos hay que revisar. También avisa si algún disco de la lista no estaba conectado.</li>
             <li>El mensaje final (o el de error) queda en pantalla hasta que presiones Enter, y también se guarda en el pendrive como <code>FINAL.txt</code>, así que no hace falta estar presente cuando termina. Después de Enter aparece la consola de SystemRescue: para apagar el equipo escribe <code>poweroff</code> y presiona Enter.</li>
           </ul>
 
@@ -909,7 +915,7 @@ Y457MMEFS      Toshiba DT01ACA100 1 TB</code>
           <ul class="disk-test-list">
             <li>Cada ejecución crea en el pendrive la carpeta <code>HomeInfra-Discos\&lt;placa&gt;_&lt;fecha&gt;\</code>, así las pruebas de distintos equipos no se mezclan. Dentro quedan:
               <ul>
-                <li><code>RESUMEN.txt</code>: valores SMART iniciales y finales, sectores malos, resultado de la prueba larga y veredicto de cada disco; también los discos de la lista que no estaban conectados y los conectados que se ignoraron.</li>
+                <li><code>RESUMEN.txt</code>: valores SMART iniciales y finales, sectores malos, resultado de la prueba larga, salud SMART, atributos fallados (ahora o en el pasado) y veredicto de cada disco; también los discos de la lista que no estaban conectados y los conectados que se ignoraron.</li>
                 <li><code>INVENTARIO.txt</code>: todos los discos conectados, con modelo, número de serie, firmware, capacidad, velocidad, formato, interfaz, horas de uso, salud SMART, particiones y si se probó o no.</li>
                 <li><code>inventario\</code>: por cada disco conectado, su reporte SMART completo (<code>_smart.txt</code> y <code>_smart.json</code>) y sus particiones (<code>_particiones.txt</code>).</li>
                 <li><code>SIN_PRUEBA.txt</code>: solo si no se probó ningún disco, con el motivo.</li>
