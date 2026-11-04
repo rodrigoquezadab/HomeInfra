@@ -152,8 +152,17 @@ if ! mkdir -p "$RUN_DIR" 2>/dev/null || ! [ -w "$RUN_DIR" ]; then
     "El pendrive debe crearse con Rufus en modo ISO (FAT32), no en modo DD."
 fi
 mkdir -p "$TMP_DIR"
-rm -f "$TMP_DIR"/*.listo "$TMP_DIR"/*.rc "$TMP_DIR"/*.inicio_bb "$TMP_DIR"/*.pid_bb "$TMP_DIR"/*.descartado
+rm -f "$TMP_DIR"/*.listo "$TMP_DIR"/*.rc "$TMP_DIR"/*.inicio_bb "$TMP_DIR"/*.pid_bb "$TMP_DIR"/*.descartado "$TMP_DIR"/*.incompleta
 DISCO_PENDRIVE="$(disco_de_ruta "$BASE_DIR")"
+
+# El pendrive debe poder escribir y releer: si falla (pendrive dañado o que se
+# desconecta), los reportes y hasta los programas del sistema pueden fallar
+PRUEBA_ESCRITURA="$RUN_DIR/.prueba_escritura"
+if ! { echo "HomeInfra $$" > "$PRUEBA_ESCRITURA" && sync && [ "$(cat "$PRUEBA_ESCRITURA" 2>/dev/null)" = "HomeInfra $$" ]; }; then
+  error_fatal "No se pudo escribir y releer un archivo en el pendrive ($BASE_DIR)." \
+    "Revisa el pendrive en Windows (chkdsk) o recréalo con Rufus, y vuelve a intentar."
+fi
+rm -f "$PRUEBA_ESCRITURA"
 
 # --------------------------------------------------------------------------
 # Selección de discos
@@ -341,6 +350,14 @@ revisar_disco() {
   wait $!
   rc=$?
   echo "$rc" > "$TMP_DIR/${s}.rc"
+  # Prueba incompleta: escribir y leer todo el disco a más de ~300 MB/s no es posible
+  # en un disco duro (ej. badblocks no se pudo ejecutar o terminó al instante)
+  local dur cap
+  dur=$(( $(date +%s) - $(cat "$TMP_DIR/${s}.inicio_bb") ))
+  cap="$(lsblk -bdno SIZE "/dev/$d" 2>/dev/null | tr -d ' ')"
+  if [ ! -f "$TMP_DIR/${s}.descartado" ] && [ -n "$cap" ] && [ "$dur" -lt $(( cap * 2 / 300000000 )) ]; then
+    echo "badblocks terminó en $dur s, demasiado rápido para un disco de $(lsblk -dno SIZE "/dev/$d" | tr -d ' ') (código $rc)" > "$TMP_DIR/${s}.incompleta"
+  fi
   # badblocks reescribe el avance con retrocesos (\b) cada segundo: se quitan
   # esos avances intermedios y se guarda solo el último
   tr -d '\b' < "$TMP_DIR/${s}_badblocks.log" \
@@ -368,12 +385,21 @@ revisar_disco() {
     paso "3/4 Prueba larga del SMART en curso (estimado: ${minutos:-?} min)"
     limite=$(( ${minutos:-480} * 3 * 60 + 3600 ))
     espera=0
-    sleep 60
-    while smartctl -c "/dev/$d" | grep -q 'Self-test routine in progress' && [ $espera -lt $limite ]; do
-      sleep $POLL_SEGUNDOS
-      espera=$(( espera + POLL_SEGUNDOS ))
-    done
-    paso "3/4 Prueba larga del SMART terminada"
+    # Si sleep falla, el ciclo de espera se agotaría en segundos sin esperar la prueba
+    if sleep 60; then
+      while smartctl -c "/dev/$d" | grep -q 'Self-test routine in progress' && [ $espera -lt $limite ]; do
+        sleep $POLL_SEGUNDOS || { echo "el comando sleep falló: no se pudo esperar la prueba larga" > "$TMP_DIR/${s}.incompleta"; break; }
+        espera=$(( espera + POLL_SEGUNDOS ))
+      done
+    else
+      echo "el comando sleep falló: no se pudo esperar la prueba larga" > "$TMP_DIR/${s}.incompleta"
+    fi
+    if smartctl -c "/dev/$d" | grep -q 'Self-test routine in progress'; then
+      [ -f "$TMP_DIR/${s}.incompleta" ] || echo "la prueba larga del SMART seguía en curso al terminar la espera" > "$TMP_DIR/${s}.incompleta"
+      paso "3/4 Prueba larga del SMART NO terminada"
+    else
+      paso "3/4 Prueba larga del SMART terminada"
+    fi
   else
     paso "3/4 El disco no aceptó la prueba larga del SMART"
   fi
@@ -402,6 +428,15 @@ escribir_resumen() {
       malos=$(grep -c . "${p}_2_sectores_malos.txt" 2>/dev/null)
       rc="$(cat "$TMP_DIR/${s}.rc" 2>/dev/null)"
       prueba="$(ultima_autoprueba "$fin")"
+      # La última prueba larga registrada debe ser de esta revisión: sus horas de vida
+      # no pueden ser anteriores a las horas de uso del disco al empezar
+      local h_ini h_prueba
+      h_ini="$(atributo 9 "$ini" | tr -dc '0-9')"
+      h_prueba="$(grep -m1 '^# 1 ' "$fin" 2>/dev/null | awk '{for (i = 1; i <= NF; i++) if ($i ~ /%$/) { print $(i + 1); exit }}' | tr -dc '0-9')"
+      if [ ! -f "$TMP_DIR/${s}.descartado" ] && [ ! -f "$TMP_DIR/${s}.incompleta" ] && [ -n "$h_ini" ] && [ -n "$h_prueba" ] && [ "$h_prueba" -lt "$h_ini" ]; then
+        echo "la última prueba larga registrada (hora $h_prueba) es anterior a esta revisión (hora $h_ini)" > "$TMP_DIR/${s}.incompleta"
+      fi
+      [ -f "$TMP_DIR/${s}.incompleta" ] && prueba="no válida (prueba incompleta)"
       # Descartado: la última autoprueba del registro es antigua, no de esta revisión
       [ -f "$TMP_DIR/${s}.descartado" ] && prueba="omitida (disco descartado)"
       echo "== /dev/$d · S/N $s · $(grep -m1 -E '^(Device Model|Model Number|Product)' "$ini" | sed 's/^[^:]*: *//')"
@@ -415,6 +450,8 @@ escribir_resumen() {
       if [ -f "$TMP_DIR/${s}.descartado" ]; then
         echo "   Prueba detenida automáticamente: $(cat "$TMP_DIR/${s}.descartado"). Sin prueba larga del SMART."
         DESCARTADOS_N=$(( DESCARTADOS_N + 1 ))
+      elif [ -f "$TMP_DIR/${s}.incompleta" ]; then
+        echo "   PRUEBA INCOMPLETA: $(cat "$TMP_DIR/${s}.incompleta"). El resultado no es válido: repetir la prueba."
       elif [ "${rc:-1}" != "0" ]; then
         echo "   badblocks terminó con error (código ${rc:-?}): revisar ${s}_2_badblocks.log"
       fi
@@ -438,6 +475,7 @@ escribir_resumen() {
       echo "$prueba" | grep -q 'Completed without error' || veredicto="REVISAR"
       [ -n "$fallados" ] && veredicto="REVISAR"
       [ -f "$TMP_DIR/${s}.descartado" ] && veredicto="REVISAR"
+      [ -f "$TMP_DIR/${s}.incompleta" ] && veredicto="REVISAR"
       [ -n "$salud" ] && [ "$salud" != "PASSED" ] && veredicto="REVISAR"
       if [ "$veredicto" = "APTO" ] && { [ -n "$pasado" ] || { [ -n "$inc" ] && [ "$inc" != "0" ]; }; }; then
         veredicto="APTO con observaciones"
@@ -506,7 +544,8 @@ while [ "$(ls "$TMP_DIR"/*.listo 2>/dev/null | wc -l)" -lt ${#DISCOS[@]} ]; do
   done
   echo ""
   echo "Reportes: $RUN_DIR"
-  sleep 60
+  sleep 60 || error_fatal "El comando sleep falló: el sistema no puede ejecutar sus programas (¿pendrive dañado o desconectado?)." \
+    "Las pruebas en curso no son válidas. Revisa el pendrive en Windows (chkdsk) y repite la prueba."
 done
 wait
 
