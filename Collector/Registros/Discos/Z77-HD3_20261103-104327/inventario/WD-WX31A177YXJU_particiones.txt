@@ -1,0 +1,4 @@
+NAME     SIZE FSTYPE LABEL     PARTLABEL                    UUID
+sdb    931.5G                                               
+├─sdb1    16M                  Microsoft reserved partition 
+└─sdb2 931.5G ntfs   Nuevo vol Basic data partition         50407C71407C6020

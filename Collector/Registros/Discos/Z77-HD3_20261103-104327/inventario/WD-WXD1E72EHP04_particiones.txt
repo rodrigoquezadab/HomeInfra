@@ -1,0 +1,3 @@
+NAME     SIZE FSTYPE LABEL     PARTLABEL            UUID
+sdc    698.6G                                       
+└─sdc1 698.6G ntfs   Compartir Basic data partition 287E58B67E587F0E

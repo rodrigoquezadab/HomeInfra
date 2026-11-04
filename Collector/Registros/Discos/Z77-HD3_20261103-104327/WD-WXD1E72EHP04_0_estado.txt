@@ -1,0 +1,7 @@
+2026-11-03 10:43:31  Inicio: /dev/sdc · WDC WD7500BPVT-24HXZT3 · 698.6G
+2026-11-03 10:43:31  1/4 Reporte SMART inicial guardado
+2026-11-03 10:43:31  2/4 badblocks en curso (escribe y lee todo el disco)
+2026-11-03 16:00:17  2/4 badblocks terminado (código 0, sectores malos: 0)
+2026-11-03 16:00:17  3/4 Prueba larga del SMART en curso (estimado: 158 min)
+2026-11-03 16:06:17  3/4 Prueba larga del SMART terminada
+2026-11-03 16:06:18  4/4 Reporte SMART final guardado · TERMINADO

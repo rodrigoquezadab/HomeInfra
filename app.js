@@ -1847,7 +1847,7 @@ const DEFAULT_DEVICES = [
     location: "Hogar",
     windowsUser: "",
     windowsPassword: "",
-    updatedAt: "2026-11-02",
+    updatedAt: "2026-11-04",
     id: "dev-hdd-wd10spzx-1tb",
     brand: "Western Digital",
     model: "WD Blue 1TB WD10SPZX (marcado 1)",
@@ -1856,7 +1856,7 @@ const DEFAULT_DEVICES = [
     imageUrl: "img/hdd_wd10spzx_1tb_etiqueta.jpg",
     driverUrl: "https://www.westerndigital.com/support",
     notes: "Disco duro 2.5\" WD Blue de 1 TB, SATA 6 Gb/s, 5400 rpm (Advanced Format). Marcado a mano con \"1\".",
-    observaciones: "Datos de la etiqueta:\n• MDL: WD10SPZX-60Z10T0 · S/N: WXN1AA821XCH\n• Fecha: 14 DEC 2018 · FW: 04.01A04 · R/N: 800066\n• HP P/N: L24400-001 (disco de un equipo HP)\n\nDispositivo general: no está registrado como componente de ningún equipo.",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD10SPZX-60Z10T0 · S/N: WXN1AA821XCH\n• Fecha: 14 DEC 2018 · FW: 04.01A04 · R/N: 800066\n• HP P/N: L24400-001 (disco de un equipo HP)\n\nDispositivo general: no está registrado como componente de ningún equipo.\n\nRevisión de disco (2026-11-03, PC Z77-HD3, SystemRescue + revisar-discos.sh): APTO con observaciones (desgaste mecánico alto)\n• badblocks completo: 0 sectores malos (5 h 48 min) · Prueba larga del SMART: sin errores (3 h 1 min) · Salud PASSED\n• Reasignados, pendientes, incorregibles y errores CRC en 0 · Sin errores registrados\n• Historia: 24.446 h · 993.561 ciclos de cabezal (supera los ~600.000 de diseño) · 4.110 golpes registrados (191) · Temperatura de su vida 11/46 °C\n• Uso: copia adicional, no como única copia\nReportes: Collector/Registros/Discos/Z77-HD3_20261103-104327/",
     specs: {
       storage: "HDD SATA 6 Gb/s 1 TB 2.5\" 5400 rpm"
     },
@@ -1884,15 +1884,27 @@ const DEFAULT_DEVICES = [
         action: "En stock",
         deviceId: null,
         note: "Registrada como pieza suelta"
+      },
+      {
+        date: "2026-11-03",
+        action: "Revisada",
+        deviceId: null,
+        note: "Revisión completa (badblocks + prueba larga SMART): APTO con observaciones. Disco borrado."
       }
-    ]
+    ],
+    diskTest: {
+      date: "2026-11-03",
+      verdict: "APTO con observaciones",
+      summary: "0 sectores malos · prueba larga SMART sin errores · 993.561 ciclos de cabezal (diseñado para ~600.000) · 24.446 h",
+      reports: "Collector/Registros/Discos/Z77-HD3_20261103-104327/"
+    }
   },
   {
     assignedUser: "",
     location: "Hogar",
     windowsUser: "",
     windowsPassword: "",
-    updatedAt: "2026-11-02",
+    updatedAt: "2026-11-04",
     id: "dev-hdd-wd10jpvx-1tb",
     brand: "Western Digital",
     model: "WD Blue 1TB WD10JPVX (marcado 2)",
@@ -1901,7 +1913,7 @@ const DEFAULT_DEVICES = [
     imageUrl: "img/hdd_wd10jpvx_1tb_etiqueta.jpg",
     driverUrl: "https://www.westerndigital.com/support",
     notes: "Disco duro 2.5\" WD Blue de 1 TB, SATA 6 Gb/s, 5400 rpm (Advanced Format). Marcado a mano con \"2\".",
-    observaciones: "Datos de la etiqueta:\n• MDL: WD10JPVX-60JC3T0 · S/N: WX31A177YXJU\n• Fecha: 10 FEB 2017 · FW: 01.01A01 · DCM: HHNTJHN\n• HP P/N: 726834-001 (disco de un equipo HP)\n\nDispositivo general: no está registrado como componente de ningún equipo.",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD10JPVX-60JC3T0 · S/N: WX31A177YXJU\n• Fecha: 10 FEB 2017 · FW: 01.01A01 · DCM: HHNTJHN\n• HP P/N: 726834-001 (disco de un equipo HP)\n\nDispositivo general: no está registrado como componente de ningún equipo.\n\nRevisión de disco (2026-11-03, PC Z77-HD3, SystemRescue + revisar-discos.sh): APTO\n• badblocks completo: 0 sectores malos (6 h 20 min) · Prueba larga del SMART: sin errores (3 h 16 min) · Salud PASSED\n• Reasignados, pendientes, incorregibles y errores CRC en 0 · Sin errores registrados\n• Historia: 3.144 h · 55.288 ciclos de cabezal · 258 golpes registrados (191) · Temperatura de su vida 13/51 °C\n• Candidato principal para el respaldo del espejo\nReportes: Collector/Registros/Discos/Z77-HD3_20261103-104327/",
     specs: {
       storage: "HDD SATA 6 Gb/s 1 TB 2.5\" 5400 rpm"
     },
@@ -1924,15 +1936,27 @@ const DEFAULT_DEVICES = [
         action: "En stock",
         deviceId: null,
         note: "Registrada como pieza suelta"
+      },
+      {
+        date: "2026-11-03",
+        action: "Revisada",
+        deviceId: null,
+        note: "Revisión completa (badblocks + prueba larga SMART): APTO. Disco borrado."
       }
-    ]
+    ],
+    diskTest: {
+      date: "2026-11-03",
+      verdict: "APTO",
+      summary: "0 sectores malos · prueba larga SMART sin errores · 3.144 h de uso",
+      reports: "Collector/Registros/Discos/Z77-HD3_20261103-104327/"
+    }
   },
   {
     assignedUser: "",
     location: "Hogar",
     windowsUser: "",
     windowsPassword: "",
-    updatedAt: "2026-11-02",
+    updatedAt: "2026-11-04",
     id: "dev-hdd-st1000lm024-1tb",
     brand: "Seagate (Samsung)",
     model: "Spinpoint M8 1TB ST1000LM024 (marcado 3)",
@@ -1941,7 +1965,7 @@ const DEFAULT_DEVICES = [
     imageUrl: "img/hdd_st1000lm024_1tb_etiqueta.jpg",
     driverUrl: "https://www.seagate.com/support/",
     notes: "Disco duro 2.5\" Samsung Spinpoint M8 de 1 TB (fabricado por Seagate tras comprar la división de discos de Samsung), SATA 3 Gb/s, 5400 rpm. Marcado a mano con \"3\".",
-    observaciones: "Datos de la etiqueta:\n• Model: ST1000LM024 · HDD P/N: HN-M101MBB/SC3 · S/N: S32HJ9HF204858\n• REV. A · F/W: 2BA30001 · LBA 1.953.525.168 (1000.0 GB)\n• Etiqueta Samsung: MODEL NP870Z5G-X01CL 1TB · SEC S/N CN02BA5903851AC540F2D0996 (disco de un laptop Samsung NP870Z5G)\n\nSin imagen comercial que lo identifique; se usa la foto de la etiqueta.\n\nDispositivo general: no está registrado como componente de ningún equipo.",
+    observaciones: "Datos de la etiqueta:\n• Model: ST1000LM024 · HDD P/N: HN-M101MBB/SC3 · S/N: S32HJ9HF204858\n• REV. A · F/W: 2BA30001 · LBA 1.953.525.168 (1000.0 GB)\n• Etiqueta Samsung: MODEL NP870Z5G-X01CL 1TB · SEC S/N CN02BA5903851AC540F2D0996 (disco de un laptop Samsung NP870Z5G)\n\nSin imagen comercial que lo identifique; se usa la foto de la etiqueta.\n\nDispositivo general: no está registrado como componente de ningún equipo.\n\nRevisión de disco (2026-11-03, PC Z77-HD3, SystemRescue + revisar-discos.sh): APTO con observaciones\n• badblocks completo: 0 sectores malos (6 h 29 min) · Prueba larga del SMART: sin errores (3 h 16 min) · Salud PASSED\n• Reasignados, pendientes e incorregibles en 0\n• Historia: 4.827 h · 37 errores registrados y 32 errores CRC antiguos, sin aumento en la prueba · 822 golpes registrados (191) · Temperatura de su vida 9/45 °C\n• El disco se identifica como ST1000LM024 HN-M101MBB\n• Uso: copia adicional, no como única copia\nReportes: Collector/Registros/Discos/Z77-HD3_20261103-104327/",
     specs: {
       storage: "HDD SATA 3 Gb/s 1 TB 2.5\" 5400 rpm"
     },
@@ -1964,8 +1988,20 @@ const DEFAULT_DEVICES = [
         action: "En stock",
         deviceId: null,
         note: "Registrada como pieza suelta"
+      },
+      {
+        date: "2026-11-03",
+        action: "Revisada",
+        deviceId: null,
+        note: "Revisión completa (badblocks + prueba larga SMART): APTO con observaciones. Disco borrado."
       }
-    ]
+    ],
+    diskTest: {
+      date: "2026-11-03",
+      verdict: "APTO con observaciones",
+      summary: "0 sectores malos · prueba larga SMART sin errores · 37 errores y 32 CRC antiguos (sin aumento) · 4.827 h",
+      reports: "Collector/Registros/Discos/Z77-HD3_20261103-104327/"
+    }
   },
   {
     assignedUser: "",
@@ -2012,7 +2048,7 @@ const DEFAULT_DEVICES = [
     location: "Hogar",
     windowsUser: "",
     windowsPassword: "",
-    updatedAt: "2026-11-02",
+    updatedAt: "2026-11-04",
     id: "dev-hdd-wd7500bpvt-750gb",
     brand: "Western Digital",
     model: "WD Blue 750GB WD7500BPVT",
@@ -2021,7 +2057,7 @@ const DEFAULT_DEVICES = [
     imageUrl: "img/hdd_wd7500bpvt_750gb_etiqueta.jpg",
     driverUrl: "https://www.westerndigital.com/support",
     notes: "Disco duro 2.5\" WD Blue de 750 GB, SATA 3 Gb/s, 5400 rpm (Advanced Format). Marcado a mano con \"750\".",
-    observaciones: "Datos de la etiqueta:\n• MDL: WD7500BPVT-24HXZT3 · S/N: WXD1E72EHP04\n• Fecha: 04 NOV 2012 · DCM: SHOT2HN · DCX: EH30X7TZH\n• Lenovo LI P/N: 0B47496 · LC P/N: 16-004848 (disco de un equipo Lenovo)\n\nDispositivo general: no está registrado como componente de ningún equipo.",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD7500BPVT-24HXZT3 · S/N: WXD1E72EHP04\n• Fecha: 04 NOV 2012 · DCM: SHOT2HN · DCX: EH30X7TZH\n• Lenovo LI P/N: 0B47496 · LC P/N: 16-004848 (disco de un equipo Lenovo)\n\nDispositivo general: no está registrado como componente de ningún equipo.\n\nRevisión de disco (2026-11-03, PC Z77-HD3, SystemRescue + revisar-discos.sh): REVISAR · descartar\n• badblocks completo: 0 sectores malos (5 h 17 min); al reescribir el disco desaparecieron los 4 sectores pendientes iniciales\n• Prueba larga del SMART: «Completed: read failure» a los 6 minutos: el disco no pudo leer su propia superficie\n• 9.992 errores registrados en su historia · Salud PASSED\n• Historia: 3.791 h · 41.767 ciclos de cabezal · Temperatura de su vida 0/47 °C\n• No usar para datos\nReportes: Collector/Registros/Discos/Z77-HD3_20261103-104327/",
     specs: {
       storage: "HDD SATA 3 Gb/s 750 GB 2.5\" 5400 rpm"
     },
@@ -2044,8 +2080,20 @@ const DEFAULT_DEVICES = [
         action: "En stock",
         deviceId: null,
         note: "Registrada como pieza suelta"
+      },
+      {
+        date: "2026-11-03",
+        action: "Revisada",
+        deviceId: null,
+        note: "Revisión completa (badblocks + prueba larga SMART): REVISAR. Disco borrado."
       }
-    ]
+    ],
+    diskTest: {
+      date: "2026-11-03",
+      verdict: "REVISAR",
+      summary: "Prueba larga SMART falló (read failure) · 9.992 errores registrados · 4 sectores pendientes al inicio · no usar",
+      reports: "Collector/Registros/Discos/Z77-HD3_20261103-104327/"
+    }
   },
   {
     assignedUser: "",

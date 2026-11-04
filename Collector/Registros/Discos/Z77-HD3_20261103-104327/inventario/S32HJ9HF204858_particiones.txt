@@ -1,0 +1,3 @@
+NAME     SIZE FSTYPE LABEL PARTLABEL                    UUID
+sdd    931.5G                                           
+└─sdd1    16M              Microsoft reserved partition 

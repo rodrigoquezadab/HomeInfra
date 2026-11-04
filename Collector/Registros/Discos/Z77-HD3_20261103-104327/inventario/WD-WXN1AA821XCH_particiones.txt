@@ -1,0 +1,3 @@
+NAME     SIZE FSTYPE LABEL PARTLABEL            UUID
+sda    931.5G                                   
+└─sda1 931.5G ntfs   1tb   Basic data partition CCDC6BD9DC6BBC78

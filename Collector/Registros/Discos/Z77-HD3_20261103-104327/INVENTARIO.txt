@@ -1,0 +1,36 @@
+HomeInfra - Inventario de discos v1.0.0
+Placa: Z77-HD3 · Fecha: 2026-11-03 10:43:28
+
+== /dev/sda · sata · SE PRUEBA (autorizado; se borra)
+   Modelo: WDC WD10SPZX-60Z10T0 (familia: Western Digital Blue Mobile (SMR))
+   S/N: WD-WXN1AA821XCH · Firmware: 04.01A04
+   Capacidad: 1.00 TB · Velocidad: 5400 rpm · Formato: 2.5 inches
+   Interfaz: SATA 3.1, 6.0 Gb/s (current: 3.0 Gb/s)
+   Horas de uso: 24437 · Salud SMART: PASSED
+   Partición: sda1 ntfs 1tb 931.5G
+
+== /dev/sdb · sata · SE PRUEBA (autorizado; se borra)
+   Modelo: WDC WD10JPVX-60JC3T0 (familia: Western Digital Blue Mobile)
+   S/N: WD-WX31A177YXJU · Firmware: 01.01A01
+   Capacidad: 1.00 TB · Velocidad: 5400 rpm · Formato: 2.5 inches
+   Interfaz: SATA 3.0, 6.0 Gb/s (current: 3.0 Gb/s)
+   Horas de uso: 3135 · Salud SMART: PASSED
+   Partición: sdb1 16M  
+   Partición: sdb2 ntfs Nuevo\x20vol 931.5G
+
+== /dev/sdc · sata · SE PRUEBA (autorizado; se borra)
+   Modelo: WDC WD7500BPVT-24HXZT3 (familia: Western Digital Scorpio Blue Serial ATA (AF))
+   S/N: WD-WXD1E72EHP04 · Firmware: 03.01A03
+   Capacidad: 750 GB · Velocidad: 5400 rpm · Formato: 
+   Interfaz: SATA 2.6, 3.0 Gb/s (current: 3.0 Gb/s)
+   Horas de uso: 3786 · Salud SMART: PASSED
+   Partición: sdc1 ntfs Compartir 698.6G
+
+== /dev/sdd · sata · SE PRUEBA (autorizado; se borra)
+   Modelo: ST1000LM024 HN-M101MBB (familia: Seagate Samsung SpinPoint M8 (AF))
+   S/N: S32HJ9HF204858 · Firmware: 2BA30001
+   Capacidad: 1.00 TB · Velocidad: 5400 rpm · Formato: 2.5 inches
+   Interfaz: SATA 3.0, 6.0 Gb/s (current: 3.0 Gb/s)
+   Horas de uso: 4818 · Salud SMART: PASSED
+   Partición: sdd1 16M  
+

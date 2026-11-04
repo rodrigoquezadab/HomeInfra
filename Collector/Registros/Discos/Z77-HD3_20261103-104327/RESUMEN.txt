@@ -1,0 +1,56 @@
+HomeInfra - Revisión de discos v1.0.0
+Placa: Z77-HD3 · Inicio: 2026-11-03 10:43:31 · Fin: 2026-11-03 20:29:44
+
+== /dev/sda · S/N WD-WXN1AA821XCH · WDC WD10SPZX-60Z10T0
+   Capacidad: 1.00 TB
+   Horas de uso: 24446
+   Reasignados     inicial 0        final 0
+   Pendientes      inicial 0        final 0
+   Incorregibles   inicial 0        final 0
+   Errores_CRC     inicial 0        final 0
+   Ciclos_cabezal  inicial 993559   final 993561
+   Sectores malos (badblocks): 0
+   Prueba larga del SMART: Completed without error
+   Salud SMART: PASSED
+   Veredicto preliminar: APTO
+
+== /dev/sdb · S/N WD-WX31A177YXJU · WDC WD10JPVX-60JC3T0
+   Capacidad: 1.00 TB
+   Horas de uso: 3144
+   Reasignados     inicial 0        final 0
+   Pendientes      inicial 0        final 0
+   Incorregibles   inicial 0        final 0
+   Errores_CRC     inicial 0        final 0
+   Ciclos_cabezal  inicial 55286    final 55288
+   Sectores malos (badblocks): 0
+   Prueba larga del SMART: Completed without error
+   Salud SMART: PASSED
+   Veredicto preliminar: APTO
+
+== /dev/sdc · S/N WD-WXD1E72EHP04 · WDC WD7500BPVT-24HXZT3
+   Capacidad: 750 GB
+   Horas de uso: 3791
+   Reasignados     inicial 0        final 0
+   Pendientes      inicial 4        final 0
+   Incorregibles   inicial 0        final 0
+   Errores_CRC     inicial 0        final 0
+   Ciclos_cabezal  inicial 41766    final 41767
+   Sectores malos (badblocks): 0
+   Prueba larga del SMART: Completed: read failure
+   Salud SMART: PASSED
+   Veredicto preliminar: REVISAR
+
+== /dev/sdd · S/N S32HJ9HF204858 · ST1000LM024 HN-M101MBB
+   Capacidad: 1.00 TB
+   Horas de uso: 4827
+   Reasignados     inicial 0        final 0
+   Pendientes      inicial 0        final 0
+   Incorregibles   inicial 0        final 0
+   Errores_CRC     inicial 32       final 32
+   Ciclos_cabezal  inicial -        final -
+   Sectores malos (badblocks): 0
+   Prueba larga del SMART: Completed without error
+   Salud SMART: PASSED
+   Veredicto preliminar: APTO
+
+En discos-autorizados.txt pero no conectados: Z2A0XF4D 6RY08XZ6 54O9C6M8T 5409C6M8T WX41E34EVT17 WX51AC352188 50G8837C WCC6Y3JZFCPE Y457MMEFS K90DTA12NDY1 WCAZA1114403
