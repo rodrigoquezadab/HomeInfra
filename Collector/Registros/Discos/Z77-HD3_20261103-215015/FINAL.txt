@@ -1,0 +1,7 @@
+==============================================
+  TERMINADO: los 3 discos están APTOS.
+  Aviso: 12 disco(s) de la lista no estaban conectados.
+  Inventario de 3 disco(s) conectados: INVENTARIO.txt
+  Reportes guardados en el pendrive: HomeInfra-Discos/Z77-HD3_20261103-215015
+  Para apagar el equipo escribe: poweroff
+==============================================

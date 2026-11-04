@@ -3255,9 +3255,15 @@ const DEFAULT_DEVICES = [
         action: "En stock",
         deviceId: null,
         note: "Registrada desde fotos de la etiqueta"
+      },
+      {
+        date: "2026-11-04",
+        action: "Revisada",
+        deviceId: null,
+        note: "Revisión completa (badblocks + prueba larga SMART): APTO, 0 sectores malos. Disco borrado."
       }
     ],
-    updatedAt: "2026-11-02",
+    updatedAt: "2026-11-04",
     id: "pz-hdd-wd10ears",
     hardwareType: "HDD",
     brand: "Western Digital",
@@ -3265,7 +3271,7 @@ const DEFAULT_DEVICES = [
     serial: "WCAZA1114403",
     imageUrl: "img/hdd_wd10ears_1tb_etiqueta.jpg",
     driverUrl: "https://www.google.com/search?q=Western%20Digital%20WD%20Caviar%20Green%20WD10EARS%20support",
-    observaciones: "Datos de la etiqueta:\n• MDL: WD10EARS-00MVWB0 · S/N: WCAZA1114403\n• Fecha: 20 SEP 2010 · Producto de Malasia\n• DCM: HHRNNTJMH · DCX: 1M00V1RW4 · R/N: 771698 · WWN: 50014EE6007445C4 · LBA: 1953525168",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD10EARS-00MVWB0 · S/N: WCAZA1114403\n• Fecha: 20 SEP 2010 · Producto de Malasia\n• DCM: HHRNNTJMH · DCX: 1M00V1RW4 · R/N: 771698 · WWN: 50014EE6007445C4 · LBA: 1953525168\n\nRevisión de disco (2026-11-03/04, PC Z77-HD3, SystemRescue + revisar-discos.sh): APTO\n• badblocks completo: 0 sectores malos (7 h 42 min) · Prueba larga del SMART: sin errores (4 h 1 min) · Salud PASSED\n• Reasignados, pendientes, incorregibles y eventos de reasignación en 0 · Sin errores registrados\n• 98.314 errores CRC de su vida anterior (cable o conexión), sin aumento en la prueba: usar con un cable SATA en buen estado\n• Historia: 9.394 h · 234.110 ciclos de cabezal · Temperatura de su vida 21/55 °C\n• Una ejecución anterior (2026-11-03 21:13) fue inválida por fallas del pendrive; esta es la revisión válida\n• Candidato para el respaldo del espejo\nReportes: Collector/Registros/Discos/Z77-HD3_20261103-215015/",
     images: [
       {
         id: "img-pz-hdd-wd10ears",
@@ -3273,7 +3279,13 @@ const DEFAULT_DEVICES = [
         url: "img/hdd_wd10ears_1tb_etiqueta.jpg"
       }
     ],
-    year: "2010"
+    year: "2010",
+    diskTest: {
+      date: "2026-11-04",
+      verdict: "APTO",
+      summary: "0 sectores malos · prueba larga SMART sin errores · 98.314 errores CRC antiguos (cable) · 9.394 h",
+      reports: "Collector/Registros/Discos/Z77-HD3_20261103-215015/"
+    }
   },
   {
     kind: "pieza",
@@ -3295,9 +3307,15 @@ const DEFAULT_DEVICES = [
         action: "En stock",
         deviceId: null,
         note: "Registrada desde fotos de la etiqueta"
+      },
+      {
+        date: "2026-11-04",
+        action: "Revisada",
+        deviceId: null,
+        note: "Revisión completa (badblocks + prueba larga SMART): APTO, 0 sectores malos. Disco borrado."
       }
     ],
-    updatedAt: "2026-11-02",
+    updatedAt: "2026-11-04",
     id: "pz-hdd-wd10ezex",
     hardwareType: "HDD",
     brand: "Western Digital",
@@ -3305,7 +3323,7 @@ const DEFAULT_DEVICES = [
     serial: "WCC6Y3JZFCPE",
     imageUrl: "img/hdd_wd10ezex_1tb_etiqueta.jpg",
     driverUrl: "https://www.google.com/search?q=Western%20Digital%20WD%20Blue%20WD10EZEX%20support",
-    observaciones: "Datos de la etiqueta:\n• MDL: WD10EZEX-08WN4A0 · S/N: WCC6Y3JZFCPE\n• Fecha: 27 JAN 2017 · Producto de Tailandia\n• DCM: HANNKT2CEB · DCX: ZW0PN364F · R/N: 800039 · WWN: 50014EE20E63EA9A · LBA: 1953525168\n• Lenovo: LI PN SH20K17927 · FRU 00PC551 (disco de un equipo Lenovo)",
+    observaciones: "Datos de la etiqueta:\n• MDL: WD10EZEX-08WN4A0 · S/N: WCC6Y3JZFCPE\n• Fecha: 27 JAN 2017 · Producto de Tailandia\n• DCM: HANNKT2CEB · DCX: ZW0PN364F · R/N: 800039 · WWN: 50014EE20E63EA9A · LBA: 1953525168\n• Lenovo: LI PN SH20K17927 · FRU 00PC551 (disco de un equipo Lenovo)\n\nRevisión de disco (2026-11-03/04, PC Z77-HD3, SystemRescue + revisar-discos.sh): APTO\n• badblocks completo: 0 sectores malos (3 h 55 min) · Prueba larga del SMART: sin errores (2 h 6 min) · Salud PASSED\n• Reasignados, pendientes, incorregibles, eventos de reasignación y errores CRC en 0 · Sin errores registrados\n• Historia: 15.783 h · 14.613 ciclos de cabezal · 1.272 encendidos · Temperatura de su vida 12/49 °C\n• Contenía una partición NTFS «Respaldos» (931 GB), borrada por la prueba\n• Candidato para el respaldo del espejo\nReportes: Collector/Registros/Discos/Z77-HD3_20261103-215015/",
     images: [
       {
         id: "img-pz-hdd-wd10ezex",
@@ -3313,7 +3331,13 @@ const DEFAULT_DEVICES = [
         url: "img/hdd_wd10ezex_1tb_etiqueta.jpg"
       }
     ],
-    year: "2017"
+    year: "2017",
+    diskTest: {
+      date: "2026-11-04",
+      verdict: "APTO",
+      summary: "0 sectores malos · prueba larga SMART sin errores · 15.783 h de uso",
+      reports: "Collector/Registros/Discos/Z77-HD3_20261103-215015/"
+    }
   },
   {
     kind: "pieza",
@@ -3491,9 +3515,15 @@ const DEFAULT_DEVICES = [
         action: "En stock",
         deviceId: null,
         note: "Registrada desde fotos de la etiqueta"
+      },
+      {
+        date: "2026-11-04",
+        action: "Revisada",
+        deviceId: null,
+        note: "Revisión completa (badblocks + prueba larga SMART): APTO, 0 sectores malos. Disco borrado."
       }
     ],
-    updatedAt: "2026-11-02",
+    updatedAt: "2026-11-04",
     id: "pz-hdd-toshiba-dt01aca100",
     hardwareType: "HDD",
     brand: "Toshiba",
@@ -3501,7 +3531,7 @@ const DEFAULT_DEVICES = [
     serial: "Y457MMEFS",
     imageUrl: "img/hdd_toshiba_dt01aca100_1tb_etiqueta.jpg",
     driverUrl: "https://www.google.com/search?q=Toshiba%20DT01ACA100%20support",
-    observaciones: "Datos de la etiqueta:\n• DT01ACA100 · S/N: Y457MMEFS (junto al S/N aparece \"WK7\")\n• Fecha: NOV-2014 · Hecho en China\n• Drive rev: AAA AA10/750 · HDKPC03A0A02 S · LBA: 1,953,525,168\n• Marcado a mano \"1TB\".\n\nVelocidad de 7200 rpm según el modelo (no figura en la etiqueta).",
+    observaciones: "Datos de la etiqueta:\n• DT01ACA100 · S/N: Y457MMEFS (junto al S/N aparece \"WK7\")\n• Fecha: NOV-2014 · Hecho en China\n• Drive rev: AAA AA10/750 · HDKPC03A0A02 S · LBA: 1,953,525,168\n• Marcado a mano \"1TB\".\n\nVelocidad de 7200 rpm según el modelo (no figura en la etiqueta).\n\nRevisión de disco (2026-11-03/04, PC Z77-HD3, SystemRescue + revisar-discos.sh): APTO\n• badblocks completo: 0 sectores malos (3 h 32 min) · Prueba larga del SMART: sin errores (1 h 56 min) · Salud PASSED\n• Reasignados, pendientes, incorregibles, eventos de reasignación y errores CRC en 0 · Sin errores registrados\n• Historia: 12.002 h · 726 ciclos de cabezal · 693 encendidos · Temperatura de su vida 13/47 °C\n• Candidato para el respaldo del espejo\nReportes: Collector/Registros/Discos/Z77-HD3_20261103-215015/",
     images: [
       {
         id: "img-pz-hdd-toshiba-dt01aca100",
@@ -3509,7 +3539,13 @@ const DEFAULT_DEVICES = [
         url: "img/hdd_toshiba_dt01aca100_1tb_etiqueta.jpg"
       }
     ],
-    year: "2014"
+    year: "2014",
+    diskTest: {
+      date: "2026-11-04",
+      verdict: "APTO",
+      summary: "0 sectores malos · prueba larga SMART sin errores · 12.002 h de uso",
+      reports: "Collector/Registros/Discos/Z77-HD3_20261103-215015/"
+    }
   },
   {
     kind: "pieza",

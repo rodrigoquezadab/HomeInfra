@@ -1,0 +1,7 @@
+2026-11-03 21:50:21  Inicio: /dev/sda · WDC WD10EARS-00MVWB0 · 931.5G
+2026-11-03 21:50:21  1/4 Reporte SMART inicial guardado
+2026-11-03 21:50:21  2/4 badblocks en curso (escribe y lee todo el disco)
+2026-11-04 05:32:45  2/4 badblocks terminado (código 0, sectores malos: 0)
+2026-11-04 05:32:45  3/4 Prueba larga del SMART en curso (estimado: 232 min)
+2026-11-04 09:33:47  3/4 Prueba larga del SMART terminada
+2026-11-04 09:33:47  4/4 Reporte SMART final guardado · TERMINADO

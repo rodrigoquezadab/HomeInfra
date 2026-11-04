@@ -1,0 +1,2 @@
+NAME   SIZE FSTYPE LABEL PARTLABEL UUID
+sda  931.5G                        

@@ -107,7 +107,9 @@ Quedan libres: P5Q PRO TURBO + E6750 + 4 GB DDR2, Zotac 8400 GS, Samsung PM981a 
   - [x] Seagate ST3320413AS (2026-11-02, PC MSI i5-12400F): **REVISAR / no recomendado para datos** (0 sectores malos, pero atributo 184 End-to-End_Error en FAIL NOW con 240 errores; 24.629 h).
   - [x] Notebooks 500 GB (2026-11-02/03, 2600K, 9 h 56 min): WD5000LPVT, WD5000LPVX y MJA2500BH **APTOS**; Hitachi HTS547550A9E384 **REVISAR** (eventos de reasignación 38 → 55 durante la prueba, arranque a ~2 MB/s).
   - [x] Notebooks 1 TB y 750 GB (2026-11-03, 2600K): WD10JPVX **APTO**; WD10SPZX (993.561 ciclos de cabezal) y ST1000LM024 (errores antiguos) **APTO con observaciones**; WD7500BPVT **REVISAR** (prueba larga con read failure).
-  - [ ] Pendiente: Toshiba MQ01ACF050 y el respaldo del espejo (WD10EZEX, DT01ACA100, WD10EARS).
+  - [x] Respaldo del espejo (2026-11-04, 2600K): WD10EZEX, DT01ACA100 y WD10EARS **APTOS** (una ejecución previa fue inválida por fallas del pendrive; se reparó con chkdsk y se agregaron controles contra pruebas incompletas).
+  - [ ] Pendiente: Toshiba MQ01ACF050.
+  - [ ] Antes de copiar el espejo a WD10EZEX, DT01ACA100, WD10EARS y WD5000AZLX: sacarlos de discos-autorizados.txt en ambos pendrives.
   - [ ] Mejora propuesta al veredicto: marcar REVISAR si el atributo 196 o el registro de errores aumentan durante la prueba.
   - [ ] Volver a activar Secure Boot en el PC MSI (se desactivó para arrancar SystemRescue).
   - [x] Ambos pendrives con el script a7b08f6 (descarte automático) y la lista común.

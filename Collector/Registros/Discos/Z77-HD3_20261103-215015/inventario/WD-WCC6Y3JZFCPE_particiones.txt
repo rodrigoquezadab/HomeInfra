@@ -1,0 +1,3 @@
+NAME     SIZE FSTYPE LABEL     PARTLABEL            UUID
+sdb    931.5G                                       
+└─sdb1 931.5G ntfs   Respaldos Basic data partition 0E7EA9597EA939FB

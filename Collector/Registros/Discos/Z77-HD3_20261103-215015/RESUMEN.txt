@@ -1,0 +1,43 @@
+HomeInfra - Revisión de discos v1.0.0
+Placa: Z77-HD3 · Inicio: 2026-11-03 21:50:20 · Fin: 2026-11-04 09:34:10
+
+== /dev/sda · S/N WD-WCAZA1114403 · WDC WD10EARS-00MVWB0
+   Capacidad: 1.00 TB
+   Horas de uso: 9394
+   Reasignados     inicial 0        final 0
+   Pendientes      inicial 0        final 0
+   Incorregibles   inicial 0        final 0
+   Errores_CRC     inicial 98314    final 98314
+   Ciclos_cabezal  inicial 234109   final 234110
+   Sectores malos (badblocks): 0
+   Prueba larga del SMART: Completed without error
+   Salud SMART: PASSED
+   Veredicto preliminar: APTO
+
+== /dev/sdb · S/N WD-WCC6Y3JZFCPE · WDC WD10EZEX-08WN4A0
+   Capacidad: 1.00 TB
+   Horas de uso: 15783
+   Reasignados     inicial 0        final 0
+   Pendientes      inicial 0        final 0
+   Incorregibles   inicial 0        final 0
+   Errores_CRC     inicial 0        final 0
+   Ciclos_cabezal  inicial 14613    final 14613
+   Sectores malos (badblocks): 0
+   Prueba larga del SMART: Completed without error
+   Salud SMART: PASSED
+   Veredicto preliminar: APTO
+
+== /dev/sdc · S/N Y457MMEFS · TOSHIBA DT01ACA100
+   Capacidad: 1.00 TB
+   Horas de uso: 12002
+   Reasignados     inicial 0        final 0
+   Pendientes      inicial 0        final 0
+   Incorregibles   inicial 0        final 0
+   Errores_CRC     inicial 0        final 0
+   Ciclos_cabezal  inicial 726      final 726
+   Sectores malos (badblocks): 0
+   Prueba larga del SMART: Completed without error
+   Salud SMART: PASSED
+   Veredicto preliminar: APTO
+
+En discos-autorizados.txt pero no conectados: Z2A0XF4D 6RY08XZ6 54O9C6M8T 5409C6M8T WX41E34EVT17 WX51AC352188 50G8837C K90DTA12NDY1 WXD1E72EHP04 WXN1AA821XCH WX31A177YXJU S32HJ9HF204858

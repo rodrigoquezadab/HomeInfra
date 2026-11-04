@@ -1,0 +1,25 @@
+HomeInfra - Inventario de discos v1.0.0
+Placa: Z77-HD3 · Fecha: 2026-11-03 21:50:15
+
+== /dev/sda · sata · SE PRUEBA (autorizado; se borra)
+   Modelo: WDC WD10EARS-00MVWB0 (familia: Western Digital Caviar Green (AF))
+   S/N: WD-WCAZA1114403 · Firmware: 51.0AB51
+   Capacidad: 1.00 TB · Velocidad:  · Formato: 
+   Interfaz: SATA 2.6, 3.0 Gb/s
+   Horas de uso: 9383 · Salud SMART: PASSED
+
+== /dev/sdb · sata · SE PRUEBA (autorizado; se borra)
+   Modelo: WDC WD10EZEX-08WN4A0 (familia: Western Digital Blue (CMR))
+   S/N: WD-WCC6Y3JZFCPE · Firmware: 01.01A01
+   Capacidad: 1.00 TB · Velocidad: 7200 rpm · Formato: 3.5 inches
+   Interfaz: SATA 3.1, 6.0 Gb/s (current: 3.0 Gb/s)
+   Horas de uso: 15777 · Salud SMART: PASSED
+   Partición: sdb1 ntfs Respaldos 931.5G
+
+== /dev/sdc · sata · SE PRUEBA (autorizado; se borra)
+   Modelo: TOSHIBA DT01ACA100 (familia: Toshiba 3.5" DT01ACA... Desktop HDD)
+   S/N: Y457MMEFS · Firmware: MS2OA750
+   Capacidad: 1.00 TB · Velocidad: 7200 rpm · Formato: 3.5 inches
+   Interfaz: SATA 3.0, 6.0 Gb/s (current: 3.0 Gb/s)
+   Horas de uso: 11996 · Salud SMART: PASSED
+
