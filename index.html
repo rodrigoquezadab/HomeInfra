@@ -152,6 +152,7 @@
     <div class="view-switcher" role="tablist" aria-label="Vista del inventario">
       <button type="button" class="view-tab active" data-view="devices" role="tab">💻 Equipos completos</button>
       <button type="button" class="view-tab" data-view="components" role="tab">🧩 Piezas</button>
+      <button type="button" class="view-tab" data-view="disks" role="tab">🩺 Revisión de discos</button>
       <div class="layout-switch" role="group" aria-label="Modo de visualización">
         <button type="button" class="layout-btn" data-layout="cards" title="Ver como tarjetas">▦ Tarjetas</button>
         <button type="button" class="layout-btn" data-layout="list" title="Ver como lista">☰ Lista</button>
@@ -253,6 +254,9 @@
 
     <!-- Vista de componentes por separado -->
     <div class="devices-grid" id="components-grid" style="display: none;"></div>
+
+    <!-- Revisión de discos: próximos a revisar (del más rápido al más lento), en espera y revisados -->
+    <div id="disks-review" style="display: none;"></div>
     <div class="empty-state" id="components-empty-state" style="display: none;">
       <h3>No se encontraron piezas</h3>
       <p>Las piezas se registran al importar un registro del HomeInfra Collector o desde sus fotos.</p>

@@ -2709,7 +2709,7 @@ const DEFAULT_DEVICES = [
     replaceable: true,
     capacity: "2 TB",
     details: "3.5\" SATA 6 Gb/s · 64 MB caché",
-    notes: "",
+    notes: "Conectado en el PC Q6700 junto al espejo; contenido por confirmar antes de probarlo.",
     mfgDate: "2012-04-20",
     status: "En stock",
     installedIn: null,
@@ -2829,7 +2829,7 @@ const DEFAULT_DEVICES = [
     replaceable: true,
     capacity: "1 TB",
     details: "3.5\" SATA 3 Gb/s · 32 MB caché · 7200 rpm",
-    notes: "",
+    notes: "Conectado en el PC Q6700 junto al espejo; contenido por confirmar antes de probarlo.",
     mfgDate: "2009-03-16",
     status: "En stock",
     installedIn: null,
@@ -3566,7 +3566,7 @@ let currentFilterType = "ALL";
 let currentFilterBrand = "ALL";
 let currentSort = localStorage.getItem("homeinfra_devices_sort") || "category";
 let searchQuery = "";
-let currentView = localStorage.getItem("homeinfra_view") === "components" ? "components" : "devices";
+let currentView = ["components", "disks"].includes(localStorage.getItem("homeinfra_view")) ? localStorage.getItem("homeinfra_view") : "devices";
 let currentComponentCategory = "ALL";
 let currentComponentSort = "default";
 let currentPieceStatus = "ALL";
@@ -4475,6 +4475,20 @@ function render() {
  */
 function applyViewVisibility() {
   const isComponents = currentView === "components";
+  const isDisks = currentView === "disks";
+  // La vista de revisión de discos no usa buscador, filtros ni modo tarjetas/lista
+  document.querySelector(".toolbar-section").style.display = isDisks ? "none" : "";
+  document.querySelector(".layout-switch").style.display = isDisks ? "none" : "";
+  document.querySelector(".results-header").style.display = isDisks ? "none" : "";
+  document.getElementById("disks-review").style.display = isDisks ? "" : "none";
+  if (isDisks) {
+    document.querySelectorAll(".view-tab").forEach((tab) => tab.classList.toggle("active", tab.dataset.view === currentView));
+    devicesGrid.style.display = "none";
+    emptyState.style.display = "none";
+    componentsGrid.style.display = "none";
+    componentsEmptyState.style.display = "none";
+    return;
+  }
   document.querySelectorAll(".view-tab").forEach((tab) => {
     tab.classList.toggle("active", tab.dataset.view === currentView);
   });
@@ -4611,6 +4625,83 @@ function diskTestBadgeHtml(p) {
     return `<span class="disk-test-badge disk-test-pendiente" title="Aún no se revisa con el pendrive de prueba">🩺 Sin revisión</span>`;
   }
   return "";
+}
+
+/**
+ * Horas estimadas de revisión completa de un disco duro (badblocks + prueba larga del SMART),
+ * según su capacidad y tipo. Valores medidos con el pendrive de prueba: 2.5" ~9,5 h/TB,
+ * 3.5" de 7200 rpm ~6 h/TB, 3.5" de 5400 rpm o WD Green ~8,5 h/TB.
+ */
+function estimateDiskTestHours(p) {
+  const text = `${p.capacity || ""} ${p.model || ""}`;
+  const m = text.match(/(\d+(?:[.,]\d+)?)\s*(TB|GB)/i);
+  if (!m) return null;
+  const tb = parseFloat(m[1].replace(",", ".")) / (m[2].toUpperCase() === "GB" ? 1000 : 1);
+  const info = `${p.details || ""} ${p.notes || ""} ${p.model || ""}`;
+  let perTb = 8.5;
+  if (/2\.5/.test(info)) perTb = 9.5;
+  else if (/7200|EZEX|AZLX|DT01ACA|FALS|ST3\d/i.test(info)) perTb = 6;
+  return Math.max(1, Math.round(tb * perTb * 2) / 2);
+}
+
+/**
+ * Motivo por el que un disco aún no se puede revisar (la prueba lo borra), o "" si está libre
+ */
+function diskTestWaitReason(p) {
+  const text = `${p.model || ""} ${p.notes || ""}`;
+  if (p.installedIn) return `Instalado en ${deviceName(p.installedIn)}`;
+  if (/sellad/i.test(text)) return "Repuesto sellado: no se prueba";
+  if (/espejo|contiene datos|respaldos|trabajo 1/i.test(text) && !/por confirmar/i.test(text)) return "Tiene datos: respaldarlos antes de probar";
+  if (/por confirmar/i.test(text)) return "En el Q6700: confirmar su contenido antes de probar";
+  return "";
+}
+
+/**
+ * Vista "Revisión de discos": próximos a revisar (del más rápido al más lento),
+ * en espera y revisados al final
+ */
+function renderDisksReview() {
+  const container = document.getElementById("disks-review");
+  const disks = devices.filter((d) => isPiece(d) && d.hardwareType === "HDD");
+  const byHours = (a, b) => (estimateDiskTestHours(a) ?? 99) - (estimateDiskTestHours(b) ?? 99);
+  const pending = disks.filter((d) => !d.diskTest && !diskTestWaitReason(d)).sort(byHours);
+  const waiting = disks.filter((d) => !d.diskTest && diskTestWaitReason(d)).sort(byHours);
+  const done = disks.filter((d) => d.diskTest).sort((a, b) => (b.diskTest.date || "").localeCompare(a.diskTest.date || ""));
+
+  const row = (d, i, last) => {
+    const hours = estimateDiskTestHours(d);
+    return `
+      <tr onclick="openDeviceDetailModal('${escapeHtml(d.id)}')" title="Ver ficha del disco">
+        <td class="col-year">${i + 1}</td>
+        <td class="disk-review-thumb">${d.imageUrl ? `<img src="${escapeHtml(d.imageUrl)}" alt="${escapeHtml(d.model)}" loading="lazy">` : "💽"}</td>
+        <td class="col-name">${d.brand && !(d.model || "").toLowerCase().includes(d.brand.toLowerCase()) ? `<strong>${escapeHtml(d.brand)}</strong> ` : ""}${escapeHtml(d.model)}</td>
+        <td class="col-serial">${escapeHtml(d.serial || "—")}</td>
+        <td>${escapeHtml(d.capacity || (d.model.match(/\d+\s*[GT]B/i) || [""])[0] || "—")}</td>
+        <td>${hours ? `~${String(hours).replace(".", ",")} h` : "—"}</td>
+        <td>${last(d)}</td>
+      </tr>`;
+  };
+  const table = (title, hint, list, last, lastHead) => list.length === 0 ? "" : `
+    <h3 class="disk-review-title">${title} <span>(${list.length})</span></h3>
+    ${hint ? `<p class="disk-review-hint">${hint}</p>` : ""}
+    <div class="inventory-table-wrap">
+      <table class="inventory-table">
+        <thead><tr><th>#</th><th>Foto</th><th>Disco</th><th>N.º de serie</th><th>Capacidad</th><th>Tiempo estimado</th><th>${lastHead}</th></tr></thead>
+        <tbody>${list.map((d, i) => row(d, i, last)).join("")}</tbody>
+      </table>
+    </div>`;
+
+  const pendingHours = pending.reduce((sum, d) => sum + (estimateDiskTestHours(d) || 0), 0);
+  container.innerHTML = `
+    <p class="disk-review-hint">
+      Discos duros ordenados para revisarlos con el pendrive de prueba (Configuración → Revisión de discos): primero los que tardan menos.
+      Los discos de una misma tanda se prueban a la vez, así que la tanda dura lo que tarde su disco más lento.
+      ${pending.length ? `Faltan ${pending.length} disco(s) libres: ~${String(pendingHours).replace(".", ",")} h si se probaran de a uno.` : ""}
+    </p>
+    ${table("🔜 Próximos a revisar", "Sin datos que perder: se pueden probar cuando quieras.", pending, () => diskTestBadgeHtml({ hardwareType: "HDD" }), "Revisión")}
+    ${table("⏸️ En espera", "Aún no se pueden probar: la prueba borra el disco.", waiting, (d) => `<span class="disk-review-wait">${escapeHtml(diskTestWaitReason(d))}</span>`, "Motivo")}
+    ${table("✅ Revisados", "", done, (d) => `${diskTestBadgeHtml(d)}<div class="list-sub">${escapeHtml(d.diskTest.date || "")}</div>`, "Resultado")}
+  `;
 }
 
 /**
@@ -5352,6 +5443,10 @@ function buildCompactSpecsHtml(dev) {
  * Renderizar tarjetas de equipos en formato compacto (ahorro de espacio)
  */
 function renderGrid() {
+  if (currentView === "disks") {
+    renderDisksReview();
+    return;
+  }
   if (currentView === "components") {
     renderComponentsGrid();
     return;

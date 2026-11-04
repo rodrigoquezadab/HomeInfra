@@ -2690,6 +2690,38 @@ button.card-linked-row:hover {
 .piece-status.status-retirada { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border-color: rgba(148, 163, 184, 0.4); }
 .piece-status.status-dada-de-baja { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border-color: rgba(239, 68, 68, 0.4); }
 
+/* Vista "Revisión de discos" */
+.disk-review-title {
+  margin: 1.4rem 0 0.4rem;
+  font-size: 1rem;
+  color: var(--text-main);
+}
+
+.disk-review-title span {
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
+.disk-review-hint {
+  margin: 0 0 0.6rem;
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.disk-review-thumb img {
+  width: 56px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+.disk-review-wait {
+  font-size: 0.78rem;
+  color: #fcd34d;
+}
+
 /* Resultado de la revisión de disco (pendrive de prueba) */
 .disk-test-badge {
   display: inline-block;
