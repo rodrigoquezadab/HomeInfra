@@ -3586,6 +3586,61 @@ const DEFAULT_DEVICES = [
       }
     ],
     year: "2011"
+  },
+  {
+    id: "dev-tv-caixun-cocina",
+    brand: "Caixun",
+    model: "32\" LED HD TV C32V1HA (Cocina)",
+    type: "Monitor",
+    serial: "",
+    assignedUser: "",
+    location: "Cocina",
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=Caixun%20C32V1HA",
+    windowsUser: "",
+    windowsPassword: "",
+    notes: "Smart TV Caixun 32\" (81 cm) LED HD 1280x720, plataforma Expressluck (familia Changhong \"AI PONT\"), modelo técnico AiPlus2K (dispositivo martin), SoC MediaTek MT5867. Android TV 14 (SDK 34). Alimentación AC 100-240 V 50/60 Hz, 56 W (espera < 0,5 W). Puertos: HDMI x3, AV compuesto, sintonizador TV, USB 5 V 0,5 A, Ethernet.",
+    observaciones: "CMDB: CI-TV-001 · Clase: Televisor Smart TV · Estado: En producción · Alta: 2026-11-05\n\nSistema:\n• Android TV 14 (SDK 34), interfaz clásica de Android TV\n• Compilación UKNV.260502.001 · kernel 5.15.192+\n• Parche de seguridad: 2026-05-01\n• Red: Ethernet por cable · DNS AdGuard privado\n• Control remoto: Bluetooth (BLE) + receptor IR\n• Certificaciones: HDMI, Dolby Audio, Clase II\n• Acceso de administración: ADB desactivado (puerto cerrado verificado)\n\nSoftware gestionado:\n• CleanYourTV launcher 3.4 (modificado con panel del tiempo)\n• El tiempo 1.0 (modificado)\n• Power debounce 1.0\n\nApps conservadas: YouTube, Movistar TV, Jellyfin, Twitch, YouTube Music, Play Películas, MMP, Play Store.\nServicios conservados: asistente de voz, Chromecast integrado, control desde el teléfono.\nPaquetes desactivados: 15 (14 de las listas + launcher de fábrica) + 2 de fábrica.\n\nCambios (2026-11-05, todos exitosos y reversibles):\n• CHG-001: respaldo de configuración y desactivación de telemetría, publicidad y apps precargadas (13 paquetes). Vuelta atrás: restaurar.sh\n• CHG-002: launcher de fábrica reemplazado por CleanYourTV; DNS AdGuard. Vuelta atrás: restaurar.sh\n• CHG-003: Netflix desactivado; widget del tiempo en Inicio. Vuelta atrás: restaurar.sh; dejar home_weather vacío\n• CHG-004 (correctivo): Power debounce 1.0 por doble pulsación del botón de encendido (KE-001). Vuelta atrás: desactivar el servicio en Accesibilidad\n\nErrores conocidos:\n• KE-001: una pulsación corta del botón de encendido apaga y vuelve a encender la pantalla (el control envía la tecla dos veces). Resuelto con Power debounce.\n• KE-002: tras apagar, \"no enciende\" (se prende un instante y se apaga). Pendiente: actualizar a Power debounce 1.1. Workaround: encender con una sola pulsación y esperar ~5 s.\n\nPendientes:\n• PND-001 (media): actualizar Power debounce de 1.0 a 1.1\n• PND-003 (baja): reservar la IP en el router (DHCP)\n• PND-004 (recurrente): tras cada actualización de firmware, comprobar que los paquetes sigan desactivados y que Inicio siga siendo CleanYourTV\n\nConfiguración común: widget del tiempo con Santiago de Chile; DNS privado AdGuard (dns.adguard-dns.com); zona horaria America/Santiago.\nProcedimiento: PROCEDIMIENTO_TV.md (local, privado).",
+    mfgDate: "",
+    updatedAt: "2026-11-05"
+  },
+  {
+    id: "dev-tv-caixun-martha",
+    brand: "Caixun",
+    model: "AiPlus2K (Habitación de Martha)",
+    type: "Monitor",
+    serial: "",
+    assignedUser: "",
+    location: "Habitación de Martha",
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=Caixun%20AiPlus2K",
+    windowsUser: "",
+    windowsPassword: "",
+    notes: "Smart TV Caixun, plataforma Expressluck, modelo técnico AiPlus2K (dispositivo martin), SoC MediaTek MT5867, pantalla HD 1280x720. Android TV 14 (SDK 34). Puertos: HDMI x3, AV compuesto, sintonizador TV, USB, Ethernet. Modelo comercial y tamaño por confirmar con la etiqueta trasera.",
+    observaciones: "CMDB: CI-TV-002 · Clase: Televisor Smart TV · Estado: En producción · Alta: 2026-11-05\n\nSistema:\n• Android TV 14 (SDK 34)\n• Compilación UKNV.260502.001 · kernel 5.15.192+ (idéntica a la TV de la cocina)\n• Parche de seguridad: 2026-05-01\n• Red: Ethernet por cable · DNS AdGuard privado\n• Control remoto: Bluetooth (BLE) + receptor IR\n• Acceso de administración: ADB desactivado (puerto cerrado verificado)\n\nSoftware gestionado:\n• CleanYourTV launcher 3.4 (modificado)\n• El tiempo 1.0 (modificado)\n• Power debounce 1.1\n\nApps conservadas: YouTube, Movistar TV, Play Películas, MMP, Play Store.\nServicios conservados: asistente de voz, Chromecast integrado, control desde el teléfono.\nPaquetes desactivados: 16 (15 de las listas + launcher de fábrica) + 1 de fábrica.\n\nCambios (2026-11-05, todos exitosos y reversibles):\n• CHG-005: mismo estándar que la TV de la cocina: 15 paquetes (incluye Netflix y Prime Video), launcher, widget, DNS. Vuelta atrás: restaurar-martha.sh\n• CHG-006 (correctivo): Power debounce 1.1 (corrige KE-002). Vuelta atrás: desactivar el servicio en Accesibilidad\n\nErrores conocidos:\n• KE-001: doble pulsación del botón de encendido. Resuelto con Power debounce.\n• KE-002: tras apagar, \"no enciende\" (se prende un instante y se apaga). Resuelto con Power debounce 1.1.\n\nPendientes:\n• PND-002 (baja): fotografiar la etiqueta trasera para completar modelo comercial y tamaño\n• PND-003 (baja): reservar la IP en el router (DHCP)\n• PND-004 (recurrente): tras cada actualización de firmware, comprobar que los paquetes sigan desactivados y que Inicio siga siendo CleanYourTV\n\nConfiguración común: widget del tiempo con Santiago de Chile; DNS privado AdGuard (dns.adguard-dns.com); zona horaria America/Santiago.\nProcedimiento: PROCEDIMIENTO_TV_MARTHA.md (local, privado).",
+    mfgDate: "",
+    updatedAt: "2026-11-05"
+  },
+  {
+    id: "dev-chromecast-dormitorio",
+    brand: "Google",
+    model: "Chromecast con Google TV HD (Dormitorio)",
+    type: "Periférico",
+    serial: "",
+    assignedUser: "",
+    location: "Dormitorio",
+    imageUrl: "",
+    driverUrl: "https://www.google.com/search?q=Chromecast%20con%20Google%20TV%20HD",
+    windowsUser: "",
+    windowsPassword: "",
+    notes: "Reproductor multimedia (dongle HDMI) Google Chromecast con Google TV HD (2022), modelo técnico Chromecast HD (dispositivo boreal), SoC Amlogic S805X2, 1,4 GB RAM, 4,3 GB de almacenamiento, salida 1920x1080. Google TV 14 (SDK 34). Red Wi-Fi (sin Ethernet). Conectado por HDMI al televisor LG del dormitorio.",
+    observaciones: "CMDB: CI-STB-001 · Clase: Reproductor multimedia (dongle HDMI) · Estado: En producción · Alta: 2026-11-05\n\nSistema:\n• Google TV 14 (SDK 34)\n• Compilación UTTC.250917.004\n• Parche de seguridad: 2025-10-01\n• Versión de Cast: 3.72.446070\n• Red: Wi-Fi · DNS AdGuard privado\n• Control remoto: control Chromecast por Bluetooth\n• Conectado a: televisor LG del dormitorio (HDMI), no registrado\n• Acceso de administración: depuración USB e inalámbrica desactivadas (puertos cerrados verificados). Opciones para desarrolladores activadas (las requiere Cast Fix)\n\nSoftware gestionado:\n• CleanYourTV launcher 3.4 (modificado) con tema propio\n• El tiempo 1.0 (modificado)\n• Cast Fix 1.0 (terceros, github.com/thayford/castfix)\n\nApps conservadas: YouTube, Movistar TV, Jellyfin, VLC, Send Files to TV, File Commander, RetroArch, Super Retro 16, USB Mounter, Play Store.\nServicios conservados: asistente de voz, receptor Cast, control desde el teléfono.\nPaquetes desactivados: 23 (incluye 2 de fábrica).\n\nCambios (2026-11-05, todos exitosos y reversibles):\n• CHG-007: desactivación de telemetría, apps no usadas (Netflix, Disney+, Max, Prime Video, Apple TV, Plex) y modo ambiente; launcher con tema propio; botones del control remapeados. Vuelta atrás: restaurar-dormitorio.sh\n• CHG-008: Cast Fix 1.0 para mantener el envío desde el teléfono; DNS AdGuard. Vuelta atrás: restaurar-dormitorio.sh (reactiva el asistente)\n\nErrores conocidos:\n• KE-003: el envío desde el teléfono fallaba (\"Untrusted device\") tras reiniciar con el launcher nuevo. Resuelto con Cast Fix.\n• KE-004: el botón YouTube del control no hacía nada con el launcher nuevo. Resuelto con remapeo (app_keys del launcher).\n\nPendientes:\n• PND-004 (recurrente): tras cada actualización de firmware, comprobar que los paquetes sigan desactivados y que Inicio siga siendo CleanYourTV\n\nConfiguración común: widget del tiempo con Santiago de Chile; DNS privado AdGuard (dns.adguard-dns.com); zona horaria America/Santiago.\nProcedimiento: PROCEDIMIENTO_CHROMECAST_DORMITORIO.md (local, privado).",
+    specs: {
+      ram: "1,4 GB",
+      storage: "4,3 GB"
+    },
+    mfgDate: "",
+    updatedAt: "2026-11-05"
   }
 ];
 
